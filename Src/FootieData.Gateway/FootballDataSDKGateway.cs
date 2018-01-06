@@ -1,10 +1,7 @@
 ﻿using FootballDataSDK.Services;
 using FootyData.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FootieData.Gateway
 {
@@ -12,9 +9,11 @@ namespace FootieData.Gateway
     {
         public LeagueResponse GetLeagueTable(LeagueRequest leagueRequest)
         {
-            var client = new FootDataServices();
-            //This is Optional (Can be used without Token, but it's limited [request number])
-            client.AuthToken = "52109775b1584a93854ca187690ed4bb";
+            var client = new FootDataServices
+            {
+                //This is Optional (Can be used without Token, but it's limited [request number])
+                AuthToken = "52109775b1584a93854ca187690ed4bb"
+            };
 
             var leagues = client.SoccerSeasons();
             var premLgeId = leagues.Seasons.Where(x => x.league == "PL").Select(x => x.id).First();

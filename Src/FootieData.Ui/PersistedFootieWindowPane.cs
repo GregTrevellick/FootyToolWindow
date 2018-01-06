@@ -1,26 +1,26 @@
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Shell;
 
-namespace Microsoft.Samples.VisualStudio.IDE.ToolWindow
+namespace FootieData.Ui
 {
-	/// <summary>
-	/// Tool windows are composed of a frame (provided by Visual Studio) and a pane (provided by the package implementer). 
+    /// <summary>
+    /// Tool windows are composed of a frame (provided by Visual Studio) and a pane (provided by the package implementer). 
     /// The frame implements IVsWindowFrame while the pane implements IVsWindowPane.
-	/// 
-	/// PersistedWindowPane inherits the IVsWindowPane implementation from its base class (ToolWindowPane). 
+    /// 
+    /// PersistedWindowPane inherits the IVsWindowPane implementation from its base class (ToolWindowPane). 
     /// PersistedWindowPane will host a .NET UserControl (PersistedWindowControl). 
     /// The Package base class will/ get the user control by asking for the Window property on this class.
-	/// </summary>
-	[Guid("0A6F8EDC-5DDB-4aaa-A6B3-2AC1E319693E")]
-	class PersistedWindowPane : ToolWindowPane
+    /// </summary>
+    [Guid("0A6F8EDC-5DDB-4aaa-A6B3-2AC1E319693E")]
+	class PersistedFootieWindowPane : ToolWindowPane
 	{
 		// Control that will be hosted in the tool window
-		private PersistedWindowWPFControl control = null;
+		private FootieUserControl control = null;
 
-		public PersistedWindowPane() : base(null)
+		public PersistedFootieWindowPane() : base(null)
 		{
 			// Add the toolbar by specifying the Guid/MenuID pair corresponding to the toolbar definition in the vsct file.
 			ToolBar = new CommandID(GuidsList.guidClientCmdSet, PkgCmdId.IDM_MyToolbar);
@@ -29,7 +29,7 @@ namespace Microsoft.Samples.VisualStudio.IDE.ToolWindow
 			ToolBarLocation = (int)VSTWT_LOCATION.VSTWT_TOP;
 
 			// Creating the user control that will be displayed in the window 
-            control = new PersistedWindowWPFControl();
+            control = new FootieUserControl();
 
             Content = control;
 
@@ -40,7 +40,7 @@ namespace Microsoft.Samples.VisualStudio.IDE.ToolWindow
 		{
 			base.OnToolWindowCreated();
 
-			PackageToolWindow package = (PackageToolWindow)this.Package;
+            VSPackageToolWindow package = (VSPackageToolWindow)this.Package;
 
 			CommandID id = new CommandID(GuidsList.guidClientCmdSet, PkgCmdId.cmdidRefreshWindowsList);
 
@@ -59,8 +59,8 @@ namespace Microsoft.Samples.VisualStudio.IDE.ToolWindow
 
 		private OleMenuCommand DefineCommandHandler(EventHandler handler, CommandID id)
 		{
-			// First add it to the package. This is to keep the visibility of the command on the toolbar constant when the tool window does not have focus. In addition, it creates the command object for us.
-			PackageToolWindow package = (PackageToolWindow)this.Package;
+            // First add it to the package. This is to keep the visibility of the command on the toolbar constant when the tool window does not have focus. In addition, it creates the command object for us.
+            VSPackageToolWindow package = (VSPackageToolWindow)this.Package;
             OleMenuCommand command = package.DefineCommandHandler(handler, id);
 
             if (command == null)
