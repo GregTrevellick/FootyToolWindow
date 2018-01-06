@@ -46,20 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="FootballDataSDKGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FootieData.Client\FootieData.Client.csproj">
-      <Project>{0086a354-c3e5-4333-9572-8b3a9ada8918}</Project>
-      <Name>FootieData.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FootyData.Entities\FootyData.Entities.csproj">
+    <ProjectReference Include="..\FootyData.Entities\FootieData.Entities.csproj">
       <Project>{7689bd11-c3be-43a1-983e-a66e9f22af7c}</Project>
-      <Name>FootyData.Entities</Name>
+      <Name>FootieData.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

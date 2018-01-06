@@ -7,9 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Ui", "FootieData
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Gateway", "FootieData.Gateway\FootieData.Gateway.csproj", "{296F4CC7-491D-47E3-8CAF-E88DD3223C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootyData.Entities", "FootyData.Entities\FootyData.Entities.csproj", "{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Client", "FootieData.Client\FootieData.Client.csproj", "{0086A354-C3E5-4333-9572-8B3A9ADA8918}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Entities", "FootyData.Entities\FootieData.Entities.csproj", "{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6071EB5-C79D-45FE-94B4-46538E606B11}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,10 +34,6 @@ Global
 		{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
