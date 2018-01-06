@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FootieData.Gateway
 {
-    public class FootballDataSDKGateway
+    public class FootballDataSdkGateway
     {
         public LeagueResponse GetLeagueTable(LeagueRequest leagueRequest)
         {
@@ -28,7 +28,7 @@ namespace FootieData.Gateway
                     Rank = sta.position,
                     Team = sta.teamName,
                     PlayedGames = sta.playedGames,
-                    CrestURI = sta.crestURI,
+                    //CrestURI = sta.crestURI,
                     Points = sta.points,
                     Goals = sta.goals,
                     GoalsAgainst = sta.goalsAgainst,

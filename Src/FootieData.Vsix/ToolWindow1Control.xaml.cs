@@ -36,7 +36,7 @@ namespace FootieData.Vsix
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            var gateway = new FootballDataSDKGateway();
+            var gateway = new FootballDataSdkGateway();
             var leagueTable = gateway.GetLeagueTable(new LeagueRequest
             {
                 LeagueTable = true,
