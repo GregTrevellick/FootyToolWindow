@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Gateway", "Footi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootyData.Entities", "FootyData.Entities\FootyData.Entities.csproj", "{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Client", "FootieData.Client\FootieData.Client.csproj", "{0086A354-C3E5-4333-9572-8B3A9ADA8918}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0086A354-C3E5-4333-9572-8B3A9ADA8918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
