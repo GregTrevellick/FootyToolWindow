@@ -14,11 +14,11 @@ namespace FootieData.Ui
     /// PersistedWindowPane will host a .NET UserControl (PersistedWindowControl). 
     /// The Package base class will/ get the user control by asking for the Window property on this class.
     /// </summary>
-    [Guid("0A6F8EDC-5DDB-4aaa-A6B3-2AC1E319693E")]
-	class PersistedFootieWindowPane : ToolWindowPane
+    //[Guid("0A6F8EDC-5DDB-4aaa-A6B3-2AC1E319693E")]
+	//class PersistedFootieWindowPane : ToolWindowPane
 	{
 		// Control that will be hosted in the tool window
-		private FootieUserControl control = null;
+		private WpfUserControl wpfUserControl = null;
 
 		public PersistedFootieWindowPane() : base(null)
 		{
@@ -28,25 +28,25 @@ namespace FootieData.Ui
             // Specify that we want the toolbar at the top of the window
 			ToolBarLocation = (int)VSTWT_LOCATION.VSTWT_TOP;
 
-			// Creating the user control that will be displayed in the window 
-            control = new FootieUserControl();
+            // Creating the user control that will be displayed in the window 
+            wpfUserControl = new WpfUserControl();
 
-            Content = control;
+		    //this.Caption = "Gregt League Tables";
 
-            this.Caption = "Gregt League Tables";
+            //Content = wpfUserControl;
         }
         
 		public override void OnToolWindowCreated()
 		{
 			base.OnToolWindowCreated();
 
-            VSPackageToolWindow package = (VSPackageToolWindow)this.Package;
+            VSPackage package = (VSPackage)this.Package;
 
 			CommandID id = new CommandID(GuidsList.guidClientCmdSet, PkgCmdId.cmdidRefreshWindowsList);
 
             OleMenuCommand command = DefineCommandHandler(new EventHandler(this.RefreshList), id);
-        
-            control.Dispatcher.BeginInvoke((Action)delegate
+
+            wpfUserControl.Dispatcher.BeginInvoke((Action)delegate
             {
                 this.RefreshList(this, null);
             });
@@ -54,13 +54,13 @@ namespace FootieData.Ui
 
 		private void RefreshList(object sender, EventArgs arguments)
 		{
-			control.RefreshData();
+			//control.RefreshData();
 		}
 
 		private OleMenuCommand DefineCommandHandler(EventHandler handler, CommandID id)
 		{
             // First add it to the package. This is to keep the visibility of the command on the toolbar constant when the tool window does not have focus. In addition, it creates the command object for us.
-            VSPackageToolWindow package = (VSPackageToolWindow)this.Package;
+            VSPackage package = (VSPackage)this.Package;
             OleMenuCommand command = package.DefineCommandHandler(handler, id);
 
             if (command == null)

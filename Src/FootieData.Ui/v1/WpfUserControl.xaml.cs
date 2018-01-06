@@ -5,9 +5,9 @@ using FootyData.Entities;
 
 namespace FootieData.Ui
 {
-    public partial class FootieUserControl : UserControl
+    public partial class WpfUserControl : UserControl
     {
-        public FootieUserControl()
+        public WpfUserControl()
         {
             InitializeComponent();
             //SizeToContent = SizeToContent.WidthAndHeight;
