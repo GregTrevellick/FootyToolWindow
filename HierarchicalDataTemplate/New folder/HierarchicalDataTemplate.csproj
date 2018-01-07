@@ -56,7 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ListLeagueList.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="DataArtefact.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,7 +66,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="League.cs" />
-    <Compile Include="Division.cs" />
+    <Compile Include="League2.cs" />
     <Compile Include="MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

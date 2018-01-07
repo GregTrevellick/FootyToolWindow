@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace HierarchicalDataTemplate
 {
-    public class Division
+    public class League2
     {
-        public Division(string name)
+        public League2(string name)
         {
             Name = name;
-            Teams = new List<Team>();
+            Teams = new List<DataArtefact>();
         }
 
         public string Name { get; }
-        public List<Team> Teams { get; }
+        public List<DataArtefact> Teams { get; }
     }
 }

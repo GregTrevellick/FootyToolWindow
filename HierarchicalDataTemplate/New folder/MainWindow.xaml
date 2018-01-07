@@ -15,12 +15,12 @@
                 <TextBlock Text="{Binding Path=Name}"/>
             </HierarchicalDataTemplate>
 
-            <HierarchicalDataTemplate DataType    = "{x:Type local:Division}"
+            <HierarchicalDataTemplate DataType    = "{x:Type local:League2}"
                                 ItemsSource = "{Binding Path=Teams}">
                 <TextBlock Text="{Binding Path=Name}"/>
             </HierarchicalDataTemplate>
 
-            <DataTemplate DataType="{x:Type local:Team}">
+            <DataTemplate DataType="{x:Type local:DataArtefact}">
                 <TextBlock Text="{Binding Path=Name}"/>
             </DataTemplate>
         </DockPanel.Resources>
