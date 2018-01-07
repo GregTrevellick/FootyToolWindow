@@ -15,28 +15,26 @@ namespace FootieData.Vsix
             _gateway = new FootballDataSdkGateway();
         }
 
-        private void DataGridLoaded_Bundesliga1(object sender, RoutedEventArgs e)
+        private void DataGridLoaded_BL1(object sender, RoutedEventArgs e)
         {
-            var leagueRequest = new LeagueRequest
-            {
-                LeagueIdentifier = "BL1",
-                LeagueTable = true,
-                RecentResults = false,
-                ImminentFixtures = false
-            };
-
-            var leagueResponse = _gateway.GetLeagueResponse(leagueRequest);
-
-            var grid = sender as DataGrid;
-            grid.ItemsSource = leagueResponse.Standings;
-            grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
+            GetLeagueData(sender, "BL1");
         }
 
-        private void DataGridLoaded_PremierLeague(object sender, RoutedEventArgs e)
+        private void DataGridLoaded_BL2(object sender, RoutedEventArgs e)
+        {
+            GetLeagueData(sender, "BL2");
+        }
+
+        private void DataGridLoaded_PL(object sender, RoutedEventArgs e)
+        {
+            GetLeagueData(sender, "PL");
+        }
+
+        private void GetLeagueData(object sender, string leagueIdentifier)
         {
             var leagueRequest = new LeagueRequest
             {
-                LeagueIdentifier = "PL",
+                LeagueIdentifier = leagueIdentifier,
                 LeagueTable = true,
                 RecentResults = false,
                 ImminentFixtures = false

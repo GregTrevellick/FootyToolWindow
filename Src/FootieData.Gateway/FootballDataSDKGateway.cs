@@ -36,8 +36,8 @@ namespace FootieData.Gateway
             };
 
             var leagues = client.SoccerSeasons();
-            var premLgeId = leagues.Seasons.Where(x => x.league == leagueRequest.LeagueIdentifier).Select(x => x.id).First();
-            var tbl = client.LeagueTable(premLgeId);
+            var leagueId = leagues.Seasons.Where(x => x.league == leagueRequest.LeagueIdentifier).Select(x => x.id).First();
+            var tbl = client.LeagueTable(leagueId);
 
             var result = new List<Standing>();
 

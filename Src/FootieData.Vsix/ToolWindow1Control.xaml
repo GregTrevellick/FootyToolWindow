@@ -7,15 +7,16 @@
              Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d">
-    <!--d:DesignHeight="300" d:DesignWidth="300"-->
-    <!--Name="MyToolWindow"-->
 
     <StackPanel Orientation="Vertical">
         <Grid>
-            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_Bundesliga1"/>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_BL1"/>
         </Grid>
         <Grid>
-            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PremierLeague"/>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_BL2"/>
+        </Grid>
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PL"/>
         </Grid>
     </StackPanel> 
 
