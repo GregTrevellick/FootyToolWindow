@@ -1,22 +1,42 @@
 ﻿using FootballDataSDK.Services;
-using FootyData.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using FootieData.Entities;
 
 namespace FootieData.Gateway
 {
     public class FootballDataSdkGateway
     {
-        public LeagueResponse GetLeagueTable(LeagueRequest leagueRequest)
+        public LeagueResponse GetLeagueResponse(LeagueRequest leagueRequest)
+        {
+            var leagueRequests = new List<LeagueRequest>{leagueRequest};
+
+            var leagueResponses = GetLeagueResponses(leagueRequests);
+
+            return leagueResponses.First();
+        }
+
+        public IEnumerable<LeagueResponse> GetLeagueResponses(IEnumerable<LeagueRequest> leagueRequests)
+        {
+            var leagueResponses = new List<LeagueResponse>();
+
+            foreach (var leagueRequest in leagueRequests)
+            {
+                leagueResponses.Add(GetLeagueResponseFromClient(leagueRequest));
+            }
+
+            return leagueResponses;
+        }
+
+        private LeagueResponse GetLeagueResponseFromClient(LeagueRequest leagueRequest)
         {
             var client = new FootDataServices
             {
-                //This is Optional (Can be used without Token, but it's limited [request number])
                 AuthToken = "52109775b1584a93854ca187690ed4bb"
             };
 
             var leagues = client.SoccerSeasons();
-            var premLgeId = leagues.Seasons.Where(x => x.league == "PL").Select(x => x.id).First();
+            var premLgeId = leagues.Seasons.Where(x => x.league == leagueRequest.LeagueIdentifier).Select(x => x.id).First();
             var tbl = client.LeagueTable(premLgeId);
 
             var result = new List<Standing>();

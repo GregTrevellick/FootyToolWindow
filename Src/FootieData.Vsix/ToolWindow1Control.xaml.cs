@@ -1,51 +1,51 @@
-﻿using FootieData.Gateway;
-using FootyData.Entities;
+﻿using FootieData.Entities;
+using FootieData.Gateway;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FootieData.Vsix
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    /// <summary>
-    /// Interaction logic for ToolWindow1Control.
-    /// </summary>
     public partial class ToolWindow1Control : UserControl
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ToolWindow1Control"/> class.
-        /// </summary>
+        private FootballDataSdkGateway _gateway;
+
         public ToolWindow1Control()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            _gateway = new FootballDataSdkGateway();
         }
 
-        ///// <summary>
-        ///// Handles click on the button by displaying a message box.
-        ///// </summary>
-        ///// <param name="sender">The event sender.</param>
-        ///// <param name="e">The event args.</param>
-        //[SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
-        //[SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        //private void button1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MessageBox.Show(
-        //        string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
-        //        "ToolWindow1");
-        //}
-
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        private void DataGridLoaded_Bundesliga1(object sender, RoutedEventArgs e)
         {
-            var gateway = new FootballDataSdkGateway();
-            var leagueTable = gateway.GetLeagueTable(new LeagueRequest
+            var leagueRequest = new LeagueRequest
             {
+                LeagueIdentifier = "BL1",
                 LeagueTable = true,
                 RecentResults = false,
                 ImminentFixtures = false
-            });
+            };
+
+            var leagueResponse = _gateway.GetLeagueResponse(leagueRequest);
 
             var grid = sender as DataGrid;
-            grid.ItemsSource = leagueTable.Standings;
+            grid.ItemsSource = leagueResponse.Standings;
+            grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
+        }
+
+        private void DataGridLoaded_PremierLeague(object sender, RoutedEventArgs e)
+        {
+            var leagueRequest = new LeagueRequest
+            {
+                LeagueIdentifier = "PL",
+                LeagueTable = true,
+                RecentResults = false,
+                ImminentFixtures = false
+            };
+
+            var leagueResponse = _gateway.GetLeagueResponse(leagueRequest);
+
+            var grid = sender as DataGrid;
+            grid.ItemsSource = leagueResponse.Standings;
             grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
         }
     }

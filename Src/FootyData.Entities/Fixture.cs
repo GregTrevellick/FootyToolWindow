@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootyData.Entities
+namespace FootieData.Entities
 {
     public class Fixture
     {

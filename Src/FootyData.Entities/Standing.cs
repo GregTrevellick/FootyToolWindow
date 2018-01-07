@@ -1,4 +1,4 @@
-﻿namespace FootyData.Entities
+﻿namespace FootieData.Entities
 {
     public class Standing
     {
@@ -11,5 +11,4 @@
         public int GoalsAgainst { get; set; }
         public int GoalDifference { get; set; }
     }
-
 }

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace FootyData.Entities
+namespace FootieData.Entities
 {
     public class LeagueResponse
     {
-        public string leagueCaption { get; set; }
-        public int matchday { get; set; }
+        public string LeagueCaption { get; set; }
+        public int MatchDay { get; set; }
         public IEnumerable<Standing> Standings;
         public IEnumerable<Fixture> PastFixtures;
         public IEnumerable<Fixture> NextFixtures;

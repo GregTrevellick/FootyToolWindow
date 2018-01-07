@@ -1,4 +1,4 @@
-﻿namespace FootyData.Entities
+﻿namespace FootieData.Entities
 {
     public class Result
     {

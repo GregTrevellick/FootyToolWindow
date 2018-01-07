@@ -15,6 +15,7 @@
             <TextBlock Margin="10" HorizontalAlignment="Center">ToolWindow1</TextBlock>
             <Button Content="Click me!" Click="button1_Click" Width="120" Height="80" Name="button1"/>
         </StackPanel>-->
-        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGrid_Loaded"/>
+        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_Bundesliga1"/>
+        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PremierLeague"/>
     </Grid>
 </UserControl>
