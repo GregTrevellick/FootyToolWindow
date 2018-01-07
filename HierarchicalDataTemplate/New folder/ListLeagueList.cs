@@ -13,6 +13,7 @@ namespace HierarchicalDataTemplate
             League l;
             Division d;
 
+            //gregt
             Add(l = new League("League A"));
             l.Divisions.Add((d = new Division("Division A")));
             d.Teams.Add(new Team("Team I"));
