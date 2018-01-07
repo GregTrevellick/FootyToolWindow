@@ -10,10 +10,10 @@ namespace HierarchicalDataTemplate
         public League2(string name)
         {
             Name = name;
-            Teams = new List<DataArtefact>();
+            DataArtefacts = new List<DataArtefact>();
         }
 
         public string Name { get; }
-        public List<DataArtefact> Teams { get; }
+        public List<DataArtefact> DataArtefacts { get; }
     }
 }

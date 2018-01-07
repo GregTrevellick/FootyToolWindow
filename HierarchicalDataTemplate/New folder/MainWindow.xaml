@@ -6,17 +6,16 @@
         xmlns:local="clr-namespace:HierarchicalDataTemplate"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+
     <DockPanel>
         <DockPanel.Resources>
             <local:ListLeagueList x:Key="MyList"/>
 
-            <HierarchicalDataTemplate DataType    = "{x:Type local:League}"
-                                ItemsSource = "{Binding Path=Divisions}">
+            <HierarchicalDataTemplate DataType    = "{x:Type local:League}" ItemsSource = "{Binding Path=League2s}">
                 <TextBlock Text="{Binding Path=Name}"/>
             </HierarchicalDataTemplate>
 
-            <HierarchicalDataTemplate DataType    = "{x:Type local:League2}"
-                                ItemsSource = "{Binding Path=Teams}">
+            <HierarchicalDataTemplate DataType    = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
                 <TextBlock Text="{Binding Path=Name}"/>
             </HierarchicalDataTemplate>
 
@@ -26,8 +25,7 @@
         </DockPanel.Resources>
 
         <Menu Name="menu1" DockPanel.Dock="Top" Margin="10,10,10,10">
-            <MenuItem Header="Total League Tables"
-                  ItemsSource="{Binding Source={StaticResource MyList}}" />
+            <MenuItem Header="Total League Tables" ItemsSource="{Binding Source={StaticResource MyList}}" />
         </Menu>
 
         <TreeView>
