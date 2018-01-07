@@ -6,49 +6,42 @@ using System.Linq;
 
 namespace HierarchicalDataTemplate
 {
-    public class ListLeagueList : List<League>
+    public class ListLeagueList : List<League2>
     {
         public ListLeagueList()
         {
-            League l;
-            League2 league2;
+           // League2 l;
+            //League2 league2;
 
             //gregt
-            Add(l = new League("League A"));
-            l.League2s.Add((league2 = new League2("Premier league")));
-            league2.DataArtefacts.Add(new DataArtefact("Standings"){ActualData = { "man city", "chelsea", "man utd"}});
-            league2.DataArtefacts.Add(new DataArtefact("Recent results") {
-                ActualData = {
-                    "chelsea 1-0 man city", "liverpool 3-2 everton"}
-                });
-            league2.DataArtefacts.Add(new DataArtefact("Upcoming fixtures")
+            //Add(//l = new League2("League A"));
+
+            Add(new League2("Premier league")
             {
-                ActualData = {
-                "dd/mm/yy team1 v team2","dd/mm/yy team1 v team2","dd/mm/yy team1 v team2"}});
+                DataArtefacts =
+                {
+                    new DataArtefact("Standings") {ActualData = {"man city", "chelsea", "man utd"}},
+                    new DataArtefact("Recent results") {ActualData = {"chelsea 1-0 man city", "liverpool 3-2 everton"}},
+                    new DataArtefact("Upcoming fixtures"){ActualData = {"dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2"}},
+                }
+            });
             //d.Teams.Add(new Team("Team IV"));
             //d.Teams.Add(new Team("Team V"));
-            l.League2s.Add((league2 = new League2("Budesliga 1")));
-            league2.DataArtefacts.Add(new DataArtefact("Standings") { ActualData = { "schalke", "hamburg", "berlin utd" } });
-            league2.DataArtefacts.Add(new DataArtefact("Recent results")
+            Add(new League2("Budesliga 1")
             {
-                ActualData = {
-                    "schalke 1-0 hamburg", "berlin 3-2 hamburg" }});
-            league2.DataArtefacts.Add(new DataArtefact("Upcoming fixtures")
-            {
-                ActualData = {
-                "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2" }});
+                DataArtefacts = {
+                    new DataArtefact("Standings") { ActualData = { "schalke", "hamburg", "berlin utd" } },
+                new DataArtefact("Recent results") { ActualData = { "schalke 1-0 hamburg", "berlin 3-2 hamburg" } },
+                new DataArtefact("Upcoming fixtures") { ActualData = { "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2" } },
+             }   });
             //d.Teams.Add(new Team("Team Green"));
             //d.Teams.Add(new Team("Team Orange"));
-            l.League2s.Add((league2 = new League2("Budesliga 2")));
-            league2.DataArtefacts.Add(new DataArtefact("Standings") { ActualData = { "munich", "bayern", "colonge" } });
-            league2.DataArtefacts.Add(new DataArtefact("Recent results")
+            Add(new League2("Budesliga 2"){DataArtefacts =
             {
-                ActualData = {
-                    "munich 1-0 cologne", "bayern 3-2 munich" }});
-            league2.DataArtefacts.Add(new DataArtefact("Upcoming fixtures")
-            {
-                ActualData = {
-                    "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2" }});
+                new DataArtefact("Standings") { ActualData = { "munich", "bayern", "colonge" } },
+                new DataArtefact("Recent results"){ActualData = {"munich 1-0 cologne", "bayern 3-2 munich" }},
+                new DataArtefact("Upcoming fixtures"){ActualData = {"dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2", "dd/mm/yy team1 v team2" }},
+     }   });
             //d.Teams.Add(new Team("Team South"));
             //Add(l = new League("League B"));
             //l.Divisions.Add((d = new Division("Division A")));
@@ -70,6 +63,6 @@ namespace HierarchicalDataTemplate
             //d.Teams.Add(new Team("Team Epsilon"));
         }
 
-        public League this[string name] => this.FirstOrDefault(l => l.Name == name);
+   //     public League this[string name] => this.FirstOrDefault(l => l.Name == name);
     }
 }

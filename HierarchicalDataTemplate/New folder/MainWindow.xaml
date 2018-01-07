@@ -11,9 +11,9 @@
         <DockPanel.Resources>
             <local:ListLeagueList x:Key="MyList"/>
 
-            <HierarchicalDataTemplate DataType    = "{x:Type local:League}" ItemsSource = "{Binding Path=League2s}">
+            <!--<HierarchicalDataTemplate DataType    = "{x:Type local:League}" ItemsSource = "{Binding Path=League2s}">
                 <TextBlock Text="{Binding Path=Name}"/>
-            </HierarchicalDataTemplate>
+            </HierarchicalDataTemplate>-->
 
             <HierarchicalDataTemplate DataType    = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
                 <TextBlock Text="{Binding Path=Name}"/>
