@@ -7,15 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
 
-    <DockPanel>
+    <!--<DockPanel>
         <DockPanel.Resources>
-            <local:ListLeagueList x:Key="MyList"/>
+            <local:ListLeagueList x:Key="MyListLeagueList"/>
 
-            <!--<HierarchicalDataTemplate DataType    = "{x:Type local:League}" ItemsSource = "{Binding Path=League2s}">
-                <TextBlock Text="{Binding Path=Name}"/>
-            </HierarchicalDataTemplate>-->
-
-            <HierarchicalDataTemplate DataType    = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
+            <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
                 <TextBlock Text="{Binding Path=Name}"/>
             </HierarchicalDataTemplate>
 
@@ -25,12 +21,25 @@
         </DockPanel.Resources>
 
         <Menu Name="menu1" DockPanel.Dock="Top" Margin="10,10,10,10">
-            <MenuItem Header="Total League Tables" ItemsSource="{Binding Source={StaticResource MyList}}" />
+            <MenuItem Header="Total League Tables" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" />
         </Menu>
 
         <TreeView>
-            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyList}}" Header="My Soccer Leagues" />
+            <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
         </TreeView>
 
-    </DockPanel>
+    </DockPanel>-->
+
+    <Grid>
+        <TreeView
+            HorizontalAlignment="Left"
+            Height="200"
+            Margin="10,10,0,0"
+            VerticalAlignment="Top"
+            Width="300"
+            Loaded="TreeView_Loaded"
+            SelectedItemChanged="TreeView_SelectedItemChanged"
+            Background="AliceBlue"/>
+    </Grid>
+
 </Window>

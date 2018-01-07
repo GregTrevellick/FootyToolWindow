@@ -8,6 +8,8 @@ namespace HierarchicalDataTemplate
 {
     public class ListLeagueList : List<League2>
     {
+        //public List<League2> League22;
+
         public ListLeagueList()
         {
            // League2 l;
