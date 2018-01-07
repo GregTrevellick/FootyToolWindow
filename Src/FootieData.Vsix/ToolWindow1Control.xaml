@@ -10,12 +10,13 @@
     <!--d:DesignHeight="300" d:DesignWidth="300"-->
     <!--Name="MyToolWindow"-->
 
-    <Grid>
-        <!--<StackPanel Orientation="Vertical">
-            <TextBlock Margin="10" HorizontalAlignment="Center">ToolWindow1</TextBlock>
-            <Button Content="Click me!" Click="button1_Click" Width="120" Height="80" Name="button1"/>
-        </StackPanel>-->
-        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_Bundesliga1"/>
-        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PremierLeague"/>
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_Bundesliga1"/>
+        </Grid>
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PremierLeague"/>
+        </Grid>
+    </StackPanel> 
+
 </UserControl>
