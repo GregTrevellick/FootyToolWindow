@@ -9,11 +9,11 @@ namespace HierarchicalDataTemplate
     {
         public League2(string name)
         {
-            Name = name;
+            LeagueName = name;
             DataArtefacts = new List<DataArtefact>();
         }
 
-        public string Name { get; }
+        public string LeagueName { get; }
         public List<DataArtefact> DataArtefacts { get; }
     }
 }

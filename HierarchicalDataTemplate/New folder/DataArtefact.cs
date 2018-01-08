@@ -9,11 +9,11 @@ namespace HierarchicalDataTemplate
     {
         public DataArtefact(string name)
         {
-            Name = name;
+            SubName = name;
             ActualData = new List<string>();
         }
 
-        public string Name { get; }
+        public string SubName { get; }
 
         public List<string> ActualData { get; }
 
