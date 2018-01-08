@@ -10,7 +10,40 @@
     <DockPanel>
         <DockPanel.Resources>
             <local:ListLeagueList x:Key="MyListLeagueList"/>
+            <HierarchicalDataTemplate  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataStandings}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <DataGrid   Loaded="DataGridLoaded_Standings"/>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataResults}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <DataGrid Loaded="DataGridLoaded_Results"/>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataFixtures}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <DataGrid  Loaded="DataGridLoaded_Fixtures"/>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+        </DockPanel.Resources>
+        <TreeView>
+            <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
+        </TreeView>
+    </DockPanel>
 
+
+    <!--<DockPanel>
+        <DockPanel.Resources>
+            <local:ListLeagueList x:Key="MyListLeagueList"/>
             <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
@@ -18,35 +51,17 @@
                         <TextBlock Text="{Binding Path=SubName}"/>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate DataType="{x:Type local:DataArtefact}">
-                                <TextBlock Text="SomeActualData"/>
+                                --><!--<DataGrid ItemsSource="{Binding Path=ActualData}" Loaded="DataGridLoaded_BL1"/>--><!--
+                                <DataGrid Loaded="DataGridLoaded_Standings"/>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
-
         </DockPanel.Resources>
-
-        <Menu Name="menu1" DockPanel.Dock="Top" Margin="10,10,10,10">
-            <MenuItem Header="Total League Tables" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" />
-        </Menu>
-
         <TreeView>
             <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
         </TreeView>
-
-    </DockPanel>
-
-    <!--<Grid>
-        <TreeView
-            HorizontalAlignment="Left"
-            Height="200"
-            Margin="10,10,0,0"
-            VerticalAlignment="Top"
-            Width="300"
-            Loaded="TreeView_Loaded"
-            SelectedItemChanged="TreeView_SelectedItemChanged"
-            Background="AliceBlue"/>
-    </Grid>-->
+    </DockPanel>-->
 
 </Window>
