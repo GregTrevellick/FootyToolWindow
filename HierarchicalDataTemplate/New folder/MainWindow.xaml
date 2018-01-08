@@ -13,11 +13,18 @@
 
             <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <HierarchicalDataTemplate DataType = "{x:Type local:DataArtefact}" ItemsSource = "{Binding Path=ActualData}">
+                        <TextBlock Text="{Binding Path=SubName}"/>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:DataArtefact}">
+                                <TextBlock Text="SomeActualData"/>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
 
-            <DataTemplate DataType="{x:Type local:DataArtefact}">
-                <TextBlock Text="{Binding Path=SubName}"/>
-            </DataTemplate>
         </DockPanel.Resources>
 
         <Menu Name="menu1" DockPanel.Dock="Top" Margin="10,10,10,10">
