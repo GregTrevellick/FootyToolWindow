@@ -10,7 +10,7 @@
     <DockPanel>
         <DockPanel.Resources>
             <local:ListLeagueList x:Key="MyListLeagueList"/>
-            <HierarchicalDataTemplate  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataStandings}">
+            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataStandings}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -18,7 +18,7 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataResults}">
+            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataResults}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -26,7 +26,7 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataFixtures}">
+            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataFixtures}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -36,7 +36,10 @@
             </HierarchicalDataTemplate>
         </DockPanel.Resources>
         <TreeView>
-            <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" IsExpanded="True" />
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_s}"/>
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_r}"/>
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_f}"/>
         </TreeView>
     </DockPanel>
 
