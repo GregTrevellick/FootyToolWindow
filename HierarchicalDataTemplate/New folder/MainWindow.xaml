@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
 
-    <!--<DockPanel>
+    <DockPanel>
         <DockPanel.Resources>
             <local:ListLeagueList x:Key="MyListLeagueList"/>
 
@@ -28,9 +28,9 @@
             <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
         </TreeView>
 
-    </DockPanel>-->
+    </DockPanel>
 
-    <Grid>
+    <!--<Grid>
         <TreeView
             HorizontalAlignment="Left"
             Height="200"
@@ -40,6 +40,6 @@
             Loaded="TreeView_Loaded"
             SelectedItemChanged="TreeView_SelectedItemChanged"
             Background="AliceBlue"/>
-    </Grid>
+    </Grid>-->
 
 </Window>
