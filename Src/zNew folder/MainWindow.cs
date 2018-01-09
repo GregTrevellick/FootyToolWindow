@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,13 +40,23 @@ namespace HierarchicalDataTemplate
             grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
         }
 
-        private League2 GetLeagueResponse()
+        private LeagueResponse GetLeagueResponse()
         {
-            League2 league2 = new League2("Serie a")
+            LeagueResponse league2 = new LeagueResponse("Serie a")
             {
-                ActualDataStandings = new List<Stringer>() { new Stringer() { Aaa = "roma", Bbb = "naples", Ccc = "milan" } },
-                ActualDataResults = new List<Stringer>() { new Stringer() { Aaa = "roma 1-0 naples", Bbb = "milan 3-2 naples" } },
-                ActualDataFixtures = new List<Stringer>() { new Stringer() { Aaa = "dd/mm/yy team1 v team2", Bbb = "dd/mm/yy team1 v team2", Ccc = "dd/mm/yy team1 v team2" } },
+                ActualDataStandings = new List<Standing>() {
+                    new Standing() {Team = "roma", Rank = 3, Points = 30},
+                    new Standing() {Team = "inter", Rank = 3, Points = 30},
+                    new Standing() {Team = "naples", Rank = 3, Points = 30},
+                },
+                ActualDataResults = new List<Fixture>
+                {
+                    new Fixture{AwayTeamName="naples", HomeTeamName="roma", Date = new DateTime(2017,02,03),Result=new Result{goalsAwayTeam=3,goalsHomeTeam=3}},
+                    new Fixture{AwayTeamName="inter", HomeTeamName="naples", Date = new DateTime(2017,02,03),Result=new Result{goalsAwayTeam=2,goalsHomeTeam=2}},                },
+                ActualDataFixtures = new List<Fixture>
+                {
+                    new Fixture{AwayTeamName="inter", HomeTeamName="naples", Date = new DateTime(2017,02,04),Result=new Result{goalsAwayTeam=1,goalsHomeTeam=1}},
+                    new Fixture{AwayTeamName="naples", HomeTeamName="roma", Date = new DateTime(2017,02,05),Result=new Result{goalsAwayTeam=5,goalsHomeTeam=5}},                },
             };
             return league2;
         }

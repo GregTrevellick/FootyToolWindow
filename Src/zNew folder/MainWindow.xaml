@@ -9,8 +9,8 @@
 
     <DockPanel>
         <DockPanel.Resources>
-            <local:ListLeagueList x:Key="MyListLeagueList"/>
-            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataStandings}">
+            <local:ListLeagueResponse x:Key="MyListLeagueList"/>
+            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataStandings}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -18,7 +18,7 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataResults}">
+            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataResults}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -26,7 +26,7 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
-            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataFixtures}">
+            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataFixtures}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
