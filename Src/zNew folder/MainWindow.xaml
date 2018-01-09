@@ -5,40 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HierarchicalDataTemplate"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="850" Width="825">
 
 
     <StackPanel Orientation="Vertical">
-        <Expander >
-            <Grid>
-                <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLs"/>
-            </Grid>
-        </Expander>
-        <Expander >
-        <Grid>
+        <Expander IsExpanded="True" Header="PLs">
+          <Grid>
             <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLs"/>
-        </Grid>
+          </Grid>
         </Expander>
-            <Expander >
-        <Grid>
+        <Expander  Header="PLr">
+          <Grid>
             <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLr"/>
-        </Grid>
+          </Grid>
         </Expander>
-                <Expander >
-        <Grid>
+        <Expander  Header="PLf" IsExpanded="True">
+          <Grid>
             <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLf"/>
-        </Grid>
+          </Grid>
         </Expander>
-                    <Expander >
-        <Grid>
+        <Expander Header="BL1s" Visibility="Collapsed">
+          <Grid>
             <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_BL1s"/>
-        </Grid>
+          </Grid>
         </Expander>
-                        <Expander >
-        <Grid>
+        <Expander Header="BL2s">
+          <Grid>
             <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_BL2s"/>
-        </Grid>
-                        </Expander>
+          </Grid>
+        </Expander>
     </StackPanel>
 
 
