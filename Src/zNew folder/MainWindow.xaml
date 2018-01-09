@@ -7,11 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
 
-    <DockPanel>
+
+    <StackPanel Orientation="Vertical">
+        <Expander >
+            <Grid>
+                <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLs"/>
+            </Grid>
+        </Expander>
+        <Expander >
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLs"/>
+        </Grid>
+        </Expander>
+            <Expander >
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLr"/>
+        </Grid>
+        </Expander>
+                <Expander >
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_PLf"/>
+        </Grid>
+        </Expander>
+                    <Expander >
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_BL1s"/>
+        </Grid>
+        </Expander>
+                        <Expander >
+        <Grid>
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DataGridLoaded_BL2s"/>
+        </Grid>
+                        </Expander>
+    </StackPanel>
+
+
+
+    <!--<DockPanel>
         <DockPanel.Resources>
             <local:ListLeagueResponse x:Key="MyListLeagueList"/>
             
-            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataStandings}">
+            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=Standings}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -20,7 +56,7 @@
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
             
-            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataResults}">
+            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=Results}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -29,7 +65,7 @@
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
 
-            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataFixtures}">
+            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=Fixtures}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
@@ -45,7 +81,7 @@
             <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_r}"/>
             <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_f}"/>
         </TreeView>
-    </DockPanel>
+    </DockPanel>-->
 
 
     <!--<DockPanel>
