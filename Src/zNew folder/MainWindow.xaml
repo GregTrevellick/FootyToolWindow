@@ -10,6 +10,7 @@
     <DockPanel>
         <DockPanel.Resources>
             <local:ListLeagueResponse x:Key="MyListLeagueList"/>
+            
             <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataStandings}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
@@ -18,6 +19,7 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
+            
             <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataResults}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
@@ -26,6 +28,7 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
+
             <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=ActualDataFixtures}">
                 <TextBlock Text="{Binding Path=LeagueName}"/>
                 <HierarchicalDataTemplate.ItemTemplate>
@@ -34,7 +37,8 @@
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
-        </DockPanel.Resources>
+        
+            </DockPanel.Resources>
         <TreeView>
             <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" IsExpanded="True" />
             <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_s}"/>

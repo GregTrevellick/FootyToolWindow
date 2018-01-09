@@ -45,9 +45,9 @@ namespace HierarchicalDataTemplate
             LeagueResponse league2 = new LeagueResponse("Serie a")
             {
                 ActualDataStandings = new List<Standing>() {
-                    new Standing() {Team = "roma", Rank = 3, Points = 30},
-                    new Standing() {Team = "inter", Rank = 3, Points = 30},
-                    new Standing() {Team = "naples", Rank = 3, Points = 30},
+                    new Standing() {Team = "roma", Rank = 1, Points = 30},
+                    new Standing() {Team = "inter", Rank = 2, Points = 20},
+                    new Standing() {Team = "naples", Rank = 3, Points = 15},
                 },
                 ActualDataResults = new List<Fixture>
                 {
