@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Vsix", "FootieData.Vsix\FootieData.Vsix.csproj", "{CEF49E5C-E22C-45F1-B67F-768C77E3F4CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDataTemplate", "zNew folder\HierarchicalDataTemplate.csproj", "{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{CEF49E5C-E22C-45F1-B67F-768C77E3F4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEF49E5C-E22C-45F1-B67F-768C77E3F4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEF49E5C-E22C-45F1-B67F-768C77E3F4CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
