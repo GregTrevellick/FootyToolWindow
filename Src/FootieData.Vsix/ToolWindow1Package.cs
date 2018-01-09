@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace FootieData.Vsix
 {
+    [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]//[ProvideMenuResource(1000, 1)]
@@ -15,6 +16,8 @@ namespace FootieData.Vsix
     {
         public const string PackageGuidString = "4431588e-199d-477f-b3c4-c0b9603602b0";
 
+        public static GeneralOptions GeneralOptions { get; private set; }
+        
         public ToolWindow1Package()
         {
         }
@@ -23,6 +26,8 @@ namespace FootieData.Vsix
         {
             ToolWindow1Command.Initialize(this);
             base.Initialize();
+            
+            GeneralOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
 
             //show here ????
         }
