@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+using FootieData.Vsix.Options;
 
 namespace FootieData.Vsix
 {

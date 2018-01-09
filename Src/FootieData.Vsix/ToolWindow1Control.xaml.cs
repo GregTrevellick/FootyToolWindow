@@ -9,10 +9,32 @@ namespace FootieData.Vsix
     {
         private FootballDataSdkGateway _gateway;
 
+        private bool _showPl  = true;
+        private bool _expandPl  = false;
+        private bool _showBl1  = true;
+        private bool _expandL1 = false;
+        private bool _showBl2  = false;
+        private bool _expandBl2 = false;
+
         public ToolWindow1Control()
         {
             InitializeComponent();
             _gateway = new FootballDataSdkGateway();
+
+            if (_showPl)
+            {
+                //todo
+            }
+
+            if (_showBl1)
+            {
+                //todo
+            }
+
+            if (_showBl2)
+            {
+                //todo
+            }
         }
 
         private void DataGridLoaded_BL1(object sender, RoutedEventArgs e)

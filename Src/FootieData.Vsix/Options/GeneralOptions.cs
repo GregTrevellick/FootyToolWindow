@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.Shell;
-using SolutionOpenPopUp.Helpers;
 using System.ComponentModel;
+using FootieData.Vsix.Helpers;
 
 namespace FootieData.Vsix.Options
 {
