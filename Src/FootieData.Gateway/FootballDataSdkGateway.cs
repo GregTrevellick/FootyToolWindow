@@ -50,12 +50,12 @@ namespace FootieData.Gateway
                 {
                     Rank = sta.position,
                     Team = sta.teamName,
-                    PlayedGames = sta.playedGames,
+                    Played = sta.playedGames,
                     //CrestURI = sta.crestURI,
                     Points = sta.points,
-                    Goals = sta.goals,
-                    GoalsAgainst = sta.goalsAgainst,
-                    GoalDifference = sta.goalDifference
+                    For = sta.goals,
+                    Against = sta.goalsAgainst,
+                    Diff = sta.goalDifference
                 });
             }
 
@@ -68,25 +68,17 @@ namespace FootieData.Gateway
 
             var tbl = client.Fixtures(leagueId, timeFrame);
 
-            var result = new LeagueResponse_Matches();
-            result.MatchFixtures = new List<Fixture>();
+            var result = new LeagueResponse_Matches {MatchFixtures = new List<Fixture>()};
 
             foreach (var item in tbl.fixtures)
             {
-                //var rslt = new Result
-                //{
-                //    goalsAwayTeam = item.result.goalsAwayTeam,
-                //    goalsHomeTeam = item.result.goalsHomeTeam
-                //};
-
                 result.MatchFixtures.Add(new Fixture()
                 {
-                     HomeTeamName= item.homeTeamName,
-                     AwayTeamName= item.awayTeamName,
+                     HomeName= item.homeTeamName,
+                     AwayName= item.awayTeamName,
                      Date=item.date,
-                     //Result= rslt
-                     goalsHomeTeam =item.result.goalsAwayTeam,
-                     goalsAwayTeam =item.result.goalsAwayTeam,
+                     GoalsHome =item.result.goalsAwayTeam,
+                     GoalsAway =item.result.goalsAwayTeam,
                 });
             }
 

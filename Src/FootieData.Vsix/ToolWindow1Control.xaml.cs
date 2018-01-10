@@ -57,9 +57,9 @@ namespace FootieData.Vsix
             var leagueRequest = new LeagueRequest
             {
                 LeagueIdentifier = leagueIdentifier,
-                LeagueTable = true,
-                RecentResults = false,
-                ImminentFixtures = false
+                //LeagueTable = true,
+                //RecentResults = false,
+                //ImminentFixtures = false
             };
 
             var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueRequest);

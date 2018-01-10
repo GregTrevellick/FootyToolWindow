@@ -52,9 +52,6 @@ namespace HierarchicalDataTemplate
             var leagueRequest = new LeagueRequest
             {
                 LeagueIdentifier = leagueIdentifier,
-                LeagueTable = true,
-                RecentResults = false,
-                ImminentFixtures = false
             };
 
             var grid = sender as DataGrid;
