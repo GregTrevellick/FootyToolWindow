@@ -11,6 +11,6 @@ namespace FootieData.Entities
         public int? goalsHomeTeam { get; set; }
         public int? goalsAwayTeam { get; set; }
 
-        public Odds Odds { get; set; }
+        //public Odds Odds { get; set; }
     }
 }
