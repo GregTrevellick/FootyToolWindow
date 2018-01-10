@@ -1,52 +1,51 @@
-﻿using System;
-using FootballDataSDK.Services;
+﻿using FootballDataSDK.Services;
+using FootieData.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using FootieData.Entities;
 
 namespace FootieData.Gateway
 {
     public class FootballDataSdkGateway
     {
-        private FootDataServices client;
-        private string leagueCaption;
+        private readonly FootDataServices _client;
+        private string _leagueCaption;
 
         public FootballDataSdkGateway()
         {
-            client = new FootDataServices
+            _client = new FootDataServices
             {
                 AuthToken = "52109775b1584a93854ca187690ed4bb"
             };
         }
 
-        public LeagueResponse_Standings GetLeagueResponse_Standings(string leagueIdentifier)
+        public LeagueStandings GetLeagueResponse_Standings(string leagueIdentifier)
         {
             var result = GetLeagueResponseFromClient_Standings(leagueIdentifier);
             return result;
         }
 
-        public LeagueResponse_Matches GetLeagueResponse_Results(string leagueIdentifier)
+        public LeagueMatches GetLeagueResponse_Results(string leagueIdentifier)
         {
             var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "p7");
             return result;
         }
 
-        public LeagueResponse_Matches GetLeagueResponse_Fixtures(string leagueIdentifier)
+        public LeagueMatches GetLeagueResponse_Fixtures(string leagueIdentifier)
         {
             var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "n7");
             return result;
         }
 
-        private LeagueResponse_Standings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
+        private LeagueStandings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
         {
             var leagueId = GetLeagueId(leagueIdentifier);
 
-            var tbl = client.LeagueTable(leagueId);
+            var tbl = _client.LeagueTable(leagueId);
 
-            var result = new LeagueResponse_Standings
+            var result = new LeagueStandings
             {
                 Standings = new List<Standing>(),
-                LeagueCaption = leagueCaption
+                LeagueCaption = _leagueCaption
             };
 
             foreach (var sta in tbl.standing)
@@ -64,19 +63,19 @@ namespace FootieData.Gateway
                 });
             }
 
-            return result;// new LeagueResponse_Standings { Standings = result };
+            return result;
         }
 
-        private LeagueResponse_Matches GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
+        private LeagueMatches GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
         {
             var leagueId = GetLeagueId(leagueIdentifier);
 
-            var tbl = client.Fixtures(leagueId, timeFrame);
+            var tbl = _client.Fixtures(leagueId, timeFrame);
 
-            var result = new LeagueResponse_Matches
+            var result = new LeagueMatches
             {
                 MatchFixtures = new List<Fixture>(),
-                LeagueCaption = leagueCaption
+                LeagueCaption = _leagueCaption
             };
 
             foreach (var item in tbl.fixtures)
@@ -96,9 +95,9 @@ namespace FootieData.Gateway
 
         private int GetLeagueId(string leagueIdentifier)
         {
-            var leagues = client.SoccerSeasons();
+            var leagues = _client.SoccerSeasons();
             var league = leagues.Seasons.First(x => x.league == leagueIdentifier);
-            leagueCaption = league.caption;
+            _leagueCaption = league.caption;
             return league.id;
         }
     }
