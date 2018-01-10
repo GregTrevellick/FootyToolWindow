@@ -2,13 +2,10 @@
 
 namespace FootieData.Entities
 {
-    public class LeagueResponse
+    public class LeagueResponse_Standings
     {
         public string LeagueCaption { get; set; }
         public int MatchDay { get; set; }
         public IEnumerable<Standing> Standings;
-        public IEnumerable<Fixture> PastFixtures;
-        public IEnumerable<Fixture> NextFixtures;
     }
-
 }

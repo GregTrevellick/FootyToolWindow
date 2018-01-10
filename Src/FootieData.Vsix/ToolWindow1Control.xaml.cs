@@ -62,7 +62,7 @@ namespace FootieData.Vsix
                 ImminentFixtures = false
             };
 
-            var leagueResponse = _gateway.GetLeagueResponse(leagueRequest);
+            var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueRequest);
 
             var grid = sender as DataGrid;
             grid.ItemsSource = leagueResponse.Standings;

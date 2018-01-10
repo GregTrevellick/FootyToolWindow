@@ -10,7 +10,7 @@
 
     <StackPanel Orientation="Vertical">
         <Expander IsExpanded="True" Header="PLs">
-            <DataGrid Name="PLs" Loaded="DataGridLoaded_PLs"/>
+            <DataGrid Name="PL" Loaded="DataGridLoaded_PLs"/>
         </Expander>
         <Expander  Header="PLr">
             <DataGrid Name="PLr"  Loaded="DataGridLoaded_PLr"/>
@@ -19,10 +19,10 @@
             <DataGrid Name="PLf"   Loaded="DataGridLoaded_PLf"/>
         </Expander>
         <Expander Header="BL1s" Visibility="Collapsed">
-            <DataGrid Name="BL1s"  Loaded="DataGridLoaded_BL1s"/>
+            <DataGrid Name="BL1"  Loaded="DataGridLoaded_BL1s"/>
         </Expander>
         <Expander Header="BL2s">
-            <DataGrid Name="BL2s"  Loaded="DataGridLoaded_BL2s"/>
+            <DataGrid Name="BL2"  Loaded="DataGridLoaded_BL2s"/>
         </Expander>
     </StackPanel>
 
