@@ -54,15 +54,7 @@ namespace FootieData.Vsix
 
         private void GetLeagueData(object sender, string leagueIdentifier)
         {
-            var leagueRequest = new LeagueRequest
-            {
-                LeagueIdentifier = leagueIdentifier,
-                //LeagueTable = true,
-                //RecentResults = false,
-                //ImminentFixtures = false
-            };
-
-            var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueRequest);
+            var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
 
             var grid = sender as DataGrid;
             grid.ItemsSource = leagueResponse.Standings;

@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fixture.cs" />
-    <Compile Include="LeagueRequest.cs" />
     <Compile Include="LeagueResponse_Matches.cs" />
     <Compile Include="LeagueResponse_Standings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

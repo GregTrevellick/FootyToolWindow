@@ -7,89 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="825">
 
-
     <StackPanel Orientation="Vertical">
-        <Expander IsExpanded="True" Header="PLs">
+        <Expander Name="Expander_PLs" IsExpanded="True" >
             <DataGrid Name="PL" Loaded="DataGridLoaded_PLs"/>
         </Expander>
-        <Expander  Header="PLr">
+        <Expander Name="Expander_PLr">
             <DataGrid Name="PLr"  Loaded="DataGridLoaded_PLr"/>
         </Expander>
-        <Expander  Header="PLf" IsExpanded="True">
+        <Expander Name="Expander_PLf" IsExpanded="True" >
             <DataGrid Name="PLf"   Loaded="DataGridLoaded_PLf"/>
         </Expander>
-        <Expander Header="BL1s" Visibility="Collapsed">
+        <Expander Name="Expander_BL1s" Visibility="Collapsed">
             <DataGrid Name="BL1"  Loaded="DataGridLoaded_BL1s"/>
         </Expander>
-        <Expander Header="BL2s">
+        <Expander Name="Expander_BL2s">
             <DataGrid Name="BL2"  Loaded="DataGridLoaded_BL2s"/>
         </Expander>
     </StackPanel>
-
-
-
-    <!--<DockPanel>
-        <DockPanel.Resources>
-            <local:ListLeagueResponse x:Key="MyListLeagueList"/>
-            
-            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=Standings}">
-                <TextBlock Text="{Binding Path=LeagueName}"/>
-                <HierarchicalDataTemplate.ItemTemplate>
-                    <DataTemplate>
-                        <DataGrid   Loaded="DataGridLoaded_Standings"/>
-                    </DataTemplate>
-                </HierarchicalDataTemplate.ItemTemplate>
-            </HierarchicalDataTemplate>
-            
-            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=Results}">
-                <TextBlock Text="{Binding Path=LeagueName}"/>
-                <HierarchicalDataTemplate.ItemTemplate>
-                    <DataTemplate>
-                        <DataGrid Loaded="DataGridLoaded_Results"/>
-                    </DataTemplate>
-                </HierarchicalDataTemplate.ItemTemplate>
-            </HierarchicalDataTemplate>
-
-            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:LeagueResponse}" ItemsSource = "{Binding Path=Fixtures}">
-                <TextBlock Text="{Binding Path=LeagueName}"/>
-                <HierarchicalDataTemplate.ItemTemplate>
-                    <DataTemplate>
-                        <DataGrid  Loaded="DataGridLoaded_Fixtures"/>
-                    </DataTemplate>
-                </HierarchicalDataTemplate.ItemTemplate>
-            </HierarchicalDataTemplate>
-        
-            </DockPanel.Resources>
-        <TreeView>
-            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" IsExpanded="True" />
-            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_s}"/>
-            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_r}"/>
-            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_f}"/>
-        </TreeView>
-    </DockPanel>-->
-
-
-    <!--<DockPanel>
-        <DockPanel.Resources>
-            <local:ListLeagueList x:Key="MyListLeagueList"/>
-            <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
-                <TextBlock Text="{Binding Path=LeagueName}"/>
-                <HierarchicalDataTemplate.ItemTemplate>
-                    <HierarchicalDataTemplate DataType = "{x:Type local:DataArtefact}" ItemsSource = "{Binding Path=ActualData}">
-                        <TextBlock Text="{Binding Path=SubName}"/>
-                        <HierarchicalDataTemplate.ItemTemplate>
-                            <DataTemplate DataType="{x:Type local:DataArtefact}">
-                                --><!--<DataGrid ItemsSource="{Binding Path=ActualData}" Loaded="DataGridLoaded_BL1"/>--><!--
-                                <DataGrid Loaded="DataGridLoaded_Standings"/>
-                            </DataTemplate>
-                        </HierarchicalDataTemplate.ItemTemplate>
-                    </HierarchicalDataTemplate>
-                </HierarchicalDataTemplate.ItemTemplate>
-            </HierarchicalDataTemplate>
-        </DockPanel.Resources>
-        <TreeView>
-            <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
-        </TreeView>
-    </DockPanel>-->
 
 </Window>
