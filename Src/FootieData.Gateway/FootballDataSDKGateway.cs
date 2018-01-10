@@ -73,19 +73,20 @@ namespace FootieData.Gateway
 
             foreach (var item in tbl.fixtures)
             {
-                var rslt = new Result
-                {
-                    goalsAwayTeam = item.result.goalsAwayTeam,
-                    goalsHomeTeam = item.result.goalsHomeTeam
-                };
-
+                //var rslt = new Result
+                //{
+                //    goalsAwayTeam = item.result.goalsAwayTeam,
+                //    goalsHomeTeam = item.result.goalsHomeTeam
+                //};
 
                 result.MatchFixtures.Add(new Fixture()
                 {
                      HomeTeamName= item.homeTeamName,
                      AwayTeamName= item.awayTeamName,
                      Date=item.date,
-                     Result= rslt
+                     //Result= rslt
+                     goalsHomeTeam =item.result.goalsAwayTeam,
+                    goalsAwayTeam =item.result.goalsAwayTeam,
                 });
             }
 
