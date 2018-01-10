@@ -1,74 +1,83 @@
-﻿using FootieData.Gateway;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FootieData.Entities;
+using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
-using FootieData.Entities;
 
 namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
+        private string _leagueCaption;
+        private readonly FootballDataSdkGateway _gateway;
+
         public MainWindow()
         {
             InitializeComponent();
+            _gateway = new FootballDataSdkGateway();
         }
 
         private void DataGridLoaded_PLs(object sender, RoutedEventArgs e)
         {
             var grid = sender as DataGrid;
-            GetLeagueData(sender, grid.Name, "s");
-            this.Expander_PLs.Header = "dgdgdgdgdgdgdgd";
+            GetLeagueData(grid, "PL", "s");
+            Expander_PLs.Header = _leagueCaption;
         }
 
         private void DataGridLoaded_PLr(object sender, RoutedEventArgs e)
         {
             var grid = sender as DataGrid;
-            GetLeagueData(sender, "PL", "r");
+            GetLeagueData(grid, "PL", "r");
+            Expander_PLr.Header = _leagueCaption;
         }
 
         private void DataGridLoaded_PLf(object sender, RoutedEventArgs e)
         {
             var grid = sender as DataGrid;
-            GetLeagueData(sender, "PL", "f");
+            GetLeagueData(grid, "PL", "f");
+            Expander_PLf.Header = _leagueCaption;
         }
 
         private void DataGridLoaded_BL1s(object sender, RoutedEventArgs e)
         {
             var grid = sender as DataGrid;
-            GetLeagueData(sender, grid.Name, "s");
+            GetLeagueData(grid, "BL1", "s");
+            Expander_BL1s.Header = _leagueCaption;
         }
 
         private void DataGridLoaded_BL2s(object sender, RoutedEventArgs e)
         {
             var grid = sender as DataGrid;
-            GetLeagueData(sender, grid.Name, "s");
+            GetLeagueData(grid, "BL2", "s");
+            Expander_BL2s.Header = _leagueCaption;
         }
 
-        private void GetLeagueData(object sender, string leagueIdentifier, string srf)
+        private void GetLeagueData(DataGrid grid, string leagueIdentifier, string srf)
         {
-            var _gateway = new FootballDataSdkGateway();
-
-            var grid = sender as DataGrid;
             grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
 
             if (srf == "s")
             {
-                var leagueResponseS = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
-                grid.ItemsSource = leagueResponseS.Standings;
+                var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
+                _leagueCaption = leagueResponse.LeagueCaption;
+                grid.ItemsSource = leagueResponse.Standings;
             }
 
-            if (srf == "r")
+            if (srf == "r" || srf == "f")
             {
-                var leagueResponseR = _gateway.GetLeagueResponse_Results(leagueIdentifier);
-                grid.ItemsSource = leagueResponseR.MatchFixtures;
-            }
+                LeagueMatches leagueResponse = null;
 
-            if (srf == "f")
-            {
-                var leagueResponseF = _gateway.GetLeagueResponse_Fixtures(leagueIdentifier);
-                grid.ItemsSource = leagueResponseF.MatchFixtures;
+                if (srf == "r")
+                {
+                    leagueResponse = _gateway.GetLeagueResponse_Results(leagueIdentifier);
+                }
+
+                if (srf == "f")
+                {
+                    leagueResponse = _gateway.GetLeagueResponse_Fixtures(leagueIdentifier);
+                }
+
+                _leagueCaption = leagueResponse?.LeagueCaption;
+                grid.ItemsSource = leagueResponse?.MatchFixtures;
             }
         }
     }

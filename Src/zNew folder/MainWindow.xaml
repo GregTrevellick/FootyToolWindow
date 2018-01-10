@@ -8,20 +8,20 @@
         Title="MainWindow" Height="850" Width="825">
 
     <StackPanel Orientation="Vertical">
-        <Expander Name="Expander_PLs" IsExpanded="True" >
-            <DataGrid Name="PL" Loaded="DataGridLoaded_PLs"/>
+        <Expander Name="Expander_PLs">
+            <DataGrid Loaded="DataGridLoaded_PLs"/>
         </Expander>
         <Expander Name="Expander_PLr">
-            <DataGrid Name="PLr"  Loaded="DataGridLoaded_PLr"/>
+            <DataGrid Loaded="DataGridLoaded_PLr"/>
         </Expander>
-        <Expander Name="Expander_PLf" IsExpanded="True" >
-            <DataGrid Name="PLf"   Loaded="DataGridLoaded_PLf"/>
+        <Expander Name="Expander_PLf">
+            <DataGrid Loaded="DataGridLoaded_PLf"/>
         </Expander>
-        <Expander Name="Expander_BL1s" Visibility="Collapsed">
-            <DataGrid Name="BL1"  Loaded="DataGridLoaded_BL1s"/>
+        <Expander Name="Expander_BL1s">
+            <DataGrid Loaded="DataGridLoaded_BL1s"/>
         </Expander>
         <Expander Name="Expander_BL2s">
-            <DataGrid Name="BL2"  Loaded="DataGridLoaded_BL2s"/>
+            <DataGrid Loaded="DataGridLoaded_BL2s"/>
         </Expander>
     </StackPanel>
 

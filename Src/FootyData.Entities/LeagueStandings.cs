@@ -2,7 +2,7 @@
 
 namespace FootieData.Entities
 {
-    public class LeagueResponse_Standings
+    public class LeagueStandings
     {
         public string LeagueCaption { get; set; }
         public IList<Standing> Standings;
