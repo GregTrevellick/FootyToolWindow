@@ -2,6 +2,7 @@
 using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace HierarchicalDataTemplate
 {
@@ -79,6 +80,30 @@ namespace HierarchicalDataTemplate
                 _leagueCaption = leagueResponse?.LeagueCaption;
                 grid.ItemsSource = leagueResponse?.MatchFixtures;
             }
+        }
+
+        //private void HyperLinkLeagueMode_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        //{
+        //    StackPanelLeagueMode.Visibility = Visibility.Collapsed;
+        //    StackPanelBossMode.Visibility = Visibility.Visible;
+        //}
+
+        //private void HyperLinkBossMode_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        //{
+        //    StackPanelLeagueMode.Visibility = Visibility.Visible;
+        //    StackPanelBossMode.Visibility = Visibility.Collapsed;
+        //}
+
+        private void Click_Handler1(object sender, RoutedEventArgs e)
+        {
+            StackPanelLeagueMode.Visibility = Visibility.Collapsed;
+            StackPanelBossMode.Visibility = Visibility.Visible;
+        }
+
+        private void Click_Handler2(object sender, RoutedEventArgs e)
+        {
+            StackPanelLeagueMode.Visibility = Visibility.Visible;
+            StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
     }
 

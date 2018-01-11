@@ -11,22 +11,55 @@
         <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
     </Window.Resources>
 
-    <StackPanel Orientation="Vertical" Margin="0,2,0,-2">
-        <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True" Margin="1,0,-1,0">
-            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue" CanUserAddRows="False" />
-        </Expander>
-        <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
-        </Expander>
-        <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
-        </Expander>
-        <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
-        </Expander>
-        <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
-        </Expander>
+    <StackPanel>
+        <StackPanel Orientation="Vertical" Name="StackPanelLeagueMode">
+
+            <Button Content="Boss mode" Click="Click_Handler1">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!--<TextBlock Name="TextBlockLeagueMode">
+                <Hyperlink Name="HyperLinkLeagueMode" RequestNavigate="HyperLinkLeagueMode_RequestNavigate" >
+                    Boss mode
+                </Hyperlink>
+            </TextBlock>-->
+            <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True" Margin="1,0,-1,0">
+                <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue" CanUserAddRows="False" />
+            </Expander>
+            <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            </Expander>
+            <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            </Expander>
+            <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            </Expander>
+            <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            </Expander>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Name="StackPanelBossMode">
+            <TextBlock Text="Any.sln" />
+            <TextBlock Text="SomeThing.csproj" />
+            <TextBlock Text="Program.cs" />
+            <Button Content="league mode" Click="Click_Handler2">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!--<TextBlock Name="TextBlockBossMode" Text="League mode" >
+                <Hyperlink Name="HyperLinkBossMode" RequestNavigate="HyperLinkBossMode_RequestNavigate" />
+            </TextBlock>-->
+        </StackPanel>
     </StackPanel>
+
 
 </Window>
