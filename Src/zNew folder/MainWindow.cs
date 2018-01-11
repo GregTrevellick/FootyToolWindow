@@ -82,18 +82,6 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        //private void HyperLinkLeagueMode_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        //{
-        //    StackPanelLeagueMode.Visibility = Visibility.Collapsed;
-        //    StackPanelBossMode.Visibility = Visibility.Visible;
-        //}
-
-        //private void HyperLinkBossMode_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        //{
-        //    StackPanelLeagueMode.Visibility = Visibility.Visible;
-        //    StackPanelBossMode.Visibility = Visibility.Collapsed;
-        //}
-
         private void Click_Handler1(object sender, RoutedEventArgs e)
         {
             StackPanelLeagueMode.Visibility = Visibility.Collapsed;
