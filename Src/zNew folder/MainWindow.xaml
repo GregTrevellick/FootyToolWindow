@@ -13,19 +13,19 @@
 
     <StackPanel Orientation="Vertical">
         <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue" CanUserAddRows="False" />
         </Expander>
         <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
         <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
         <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
         <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
     </StackPanel>
 
