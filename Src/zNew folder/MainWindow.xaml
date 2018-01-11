@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HierarchicalDataTemplate"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="825">
+        Title="MainWindow" Height="850" Width="325">
 
     <Window.Resources>
         <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
@@ -13,19 +13,19 @@
 
     <StackPanel Orientation="Vertical" Margin="0,2,0,-2">
         <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True" Margin="1,0,-1,0">
-            <local:MyDataGrid RowHeaderWidth="0" Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue" CanUserAddRows="False" />
+            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue" CanUserAddRows="False" />
         </Expander>
         <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid RowHeaderWidth="0" Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
         <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid RowHeaderWidth="0" Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
         <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid RowHeaderWidth="0" Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
         <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid RowHeaderWidth="0" Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
+            <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
         </Expander>
     </StackPanel>
 
