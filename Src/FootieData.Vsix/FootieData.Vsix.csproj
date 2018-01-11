@@ -85,6 +85,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\closed.png" />
+    <Content Include="Assets\closed_neonglow.png" />
+    <Content Include="Assets\closed_plasticwrap.png" />
+    <Content Include="Assets\open.png" />
+    <Content Include="Assets\open_neonglow.png" />
+    <Content Include="Assets\open_plasticwrap.png" />
     <Content Include="Resources\ToolWindow1Command.png" />
     <Content Include="Resources\ToolWindow1Package.ico" />
     <VSCTCompile Include="ToolWindow1Package.vsct">
@@ -94,6 +100,10 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\PlusMinusExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ToolWindow1Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
