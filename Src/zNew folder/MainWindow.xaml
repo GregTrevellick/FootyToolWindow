@@ -19,13 +19,13 @@
             <local:MyDataGrid Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue"/>
         </Expander>
         <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLf" AlternatingRowBackground="LightSkyBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_PLf" AlternatingRowBackground="AliceBlue"/>
         </Expander>
         <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="LightSkyBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="AliceBlue"/>
         </Expander>
         <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-            <local:MyDataGrid Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="LightSkyBlue"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue"/>
         </Expander>
     </StackPanel>
 
