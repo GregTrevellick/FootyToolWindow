@@ -13,19 +13,19 @@
 
     <StackPanel Orientation="Vertical">
         <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLs" AlternatingRowBackground="Coral"/>
+            <local:MyDataGrid Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue"/>
         </Expander>
-        <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLr" AlternatingRowBackground="Coral"/>
+        <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <local:MyDataGrid Loaded="DataGridLoaded_PLr" AlternatingRowBackground="AliceBlue"/>
         </Expander>
-        <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-            <local:MyDataGrid Loaded="DataGridLoaded_PLf" AlternatingRowBackground="Coral"/>
+        <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <local:MyDataGrid Loaded="DataGridLoaded_PLf" AlternatingRowBackground="LightSkyBlue"/>
         </Expander>
-        <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-            <local:MyDataGrid Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="Coral"/>
+        <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <local:MyDataGrid Loaded="DataGridLoaded_BL1s" AlternatingRowBackground="LightSkyBlue"/>
         </Expander>
-        <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-            <local:MyDataGrid Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="Coral"/>
+        <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <local:MyDataGrid Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="LightSkyBlue"/>
         </Expander>
     </StackPanel>
 

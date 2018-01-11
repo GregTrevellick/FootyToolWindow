@@ -1,5 +1,4 @@
-﻿using System;
-using FootieData.Entities;
+﻿using FootieData.Entities;
 using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
@@ -84,22 +83,4 @@ namespace HierarchicalDataTemplate
     }
 
     //https://stackoverflow.com/questions/17121934/wpf-datagrid-can-i-decorate-my-pocos-with-attributes-to-have-custom-column-nam
-    public class MyDataGrid : DataGrid
-    {
-        protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)
-        {
-            try
-            {
-                base.OnAutoGeneratingColumn(e);
-                var propDescr = e.PropertyDescriptor as System.ComponentModel.PropertyDescriptor;
-                e.Column.Header = propDescr.Description;
-            }
-            catch (Exception ex)
-            {
-                //Utils.ReportException(ex);
-            }
-        }
-
-    }
-
 }
