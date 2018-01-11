@@ -1,7 +1,10 @@
-﻿namespace FootieData.Entities
+﻿using System.ComponentModel;
+
+namespace FootieData.Entities
 {
     public class Standing
     {
+        [Description("Pos")]
         public int Rank { get; set; }
         public string Team { get; set; }
         public int Played { get; set; }

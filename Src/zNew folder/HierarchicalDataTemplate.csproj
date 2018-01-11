@@ -56,6 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\PlusMinusExpanderStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,6 +109,14 @@
       <Project>{7689bd11-c3be-43a1-983e-a66e9f22af7c}</Project>
       <Name>FootieData.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\closed.png" />
+    <Resource Include="Assets\closed_neonglow.png" />
+    <Resource Include="Assets\closed_plasticwrap.png" />
+    <Resource Include="Assets\open.png" />
+    <Resource Include="Assets\open_neonglow.png" />
+    <Resource Include="Assets\open_plasticwrap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
