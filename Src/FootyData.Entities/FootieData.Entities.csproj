@@ -41,12 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fixture.cs" />
-    <Compile Include="Halftime.cs" />
-    <Compile Include="LeagueRequest.cs" />
-    <Compile Include="LeagueResponse.cs" />
-    <Compile Include="Odds.cs" />
+    <Compile Include="LeagueMatches.cs" />
+    <Compile Include="LeagueStandings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Result.cs" />
     <Compile Include="Standing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

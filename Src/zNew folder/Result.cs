@@ -1,9 +1,10 @@
-﻿//namespace FootieData.Entities
+﻿//namespace HierarchicalDataTemplate
 //{
-//    public class Halftime
+//    public class Result
 //    {
 //        public int goalsHomeTeam { get; set; }
 //        public int goalsAwayTeam { get; set; }
+//       // public Halftime halfTime { get; set; }
 //    }
 
 //}
