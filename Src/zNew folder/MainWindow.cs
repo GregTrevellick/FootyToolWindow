@@ -1,4 +1,5 @@
-﻿using FootieData.Entities;
+﻿using System.Collections.Generic;
+using FootieData.Entities;
 using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,19 +21,57 @@ namespace HierarchicalDataTemplate
 
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
+            var leaguesToShow = new List<string>
+            {
+                "PL",
+                "BL1",
+                "BL2"
+            };
+
+            var leaguesToExpand = new List<string>
+            {
+                "PL",
+                "BL1"
+            };
+
             var grid = sender as DataGrid;
 
-            var color = (Color)ColorConverter.ConvertFromString("Red");
-            grid.AlternatingRowBackground = new SolidColorBrush(color);
-            grid.ColumnHeaderHeight = 2;
-            grid.RowHeaderWidth = 2;
-
             var str = grid.Name;
-            var srf = str.Substring(str.Length - 1);//last char of name
             var leagueIdentifier = str.Remove(str.Length - 1, 1); //everything except the last char
-            GetLeagueData(grid, leagueIdentifier, srf);
 
-            Expander_PLs.Header = _leagueCaption;
+            //////////////var parentExpander = VisualTreeHelper.GetParent(grid) as Expander;
+            //////////////  Expander parentExpander = GetWindow((DependencyObject)grid) as Expander;
+            //////////////UIElement parent = grid.Parent;
+            Expander parentExpander = grid.Parent as Expander;
+
+            if (leaguesToShow.Contains(leagueIdentifier))
+            {
+                Expander_PLs.Header = _leagueCaption;
+
+                if (leaguesToExpand.Contains(leagueIdentifier))
+                {
+                    var color = (Color)ColorConverter.ConvertFromString("Red");
+                    grid.AlternatingRowBackground = new SolidColorBrush(color);
+                    grid.ColumnHeaderHeight = 2;
+                    grid.RowHeaderWidth = 2;
+                    grid.CanUserAddRows = false;
+
+                    var srf = str.Substring(str.Length - 1);//last char of name
+
+                    GetLeagueData(grid, leagueIdentifier, srf);
+                    
+                    parentExpander.Visibility = Visibility.Visible;
+                    parentExpander.IsExpanded = true;
+                }
+                else
+                {
+                    parentExpander.IsExpanded = false;
+                }
+            }
+            else
+            {
+                parentExpander.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void GetLeagueData(DataGrid grid, string leagueIdentifier, string srf)
@@ -76,7 +115,18 @@ namespace HierarchicalDataTemplate
             StackPanelLeagueMode.Visibility = Visibility.Visible;
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
-    }
 
-    //https://stackoverflow.com/questions/17121934/wpf-datagrid-can-i-decorate-my-pocos-with-attributes-to-have-custom-column-nam
+        //public static T TryFindParent<T>(DependencyObject current) where T : class
+        //{
+        //    DependencyObject parent = VisualTreeHelper.GetParent(current);
+        //    if (parent == null)
+        //        parent = LogicalTreeHelper.GetParent(current);
+        //    if (parent == null)
+        //        return null;
+        //    if (parent is T)
+        //        return parent as T;
+        //    else
+        //        return TryFindParent<T>(parent);
+        //}
+    }
 }

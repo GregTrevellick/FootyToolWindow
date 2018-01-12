@@ -20,20 +20,20 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
-                <local:MyDataGrid x:Name="PLs" Loaded="DataGridLoaded_Any" CanUserAddRows="False" />
+            <Expander Name="Expander_PLs" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
+                <local:MyDataGrid x:Name="PLs" Loaded="DataGridLoaded_Any"  />
             </Expander>
-            <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-                <local:MyDataGrid x:Name="PLr" Loaded="DataGridLoaded_Any" CanUserAddRows="False"/>
+            <Expander Name="Expander_PLr" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid x:Name="PLr" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_PLf" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-                <local:MyDataGrid x:Name="PLf" Loaded="DataGridLoaded_Any" CanUserAddRows="False"/>
+            <Expander Name="Expander_PLf" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid x:Name="PLf" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL1s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-                <local:MyDataGrid x:Name="BL1s" Loaded="DataGridLoaded_Any" CanUserAddRows="False"/>
+            <Expander Name="Expander_BL1s" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid x:Name="BL1s" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL2s" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
-                <local:MyDataGrid x:Name="BL2s" Loaded="DataGridLoaded_Any" CanUserAddRows="False"/>
+            <Expander Name="Expander_BL2s" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+                <local:MyDataGrid x:Name="BL2s" Loaded="DataGridLoaded_Any" />
             </Expander>
         </StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelBossMode" Visibility="Collapsed">
