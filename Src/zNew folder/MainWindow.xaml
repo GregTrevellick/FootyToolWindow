@@ -20,7 +20,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True" Margin="1,0,-1,0">
+            <Expander Name="Expander_PLs" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
                 <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_PLs" AlternatingRowBackground="AliceBlue" CanUserAddRows="False" />
             </Expander>
             <Expander Name="Expander_PLr" Header="Description0" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
@@ -36,7 +36,7 @@
                 <local:MyDataGrid ColumnHeaderHeight="20" RowHeaderWidth="0" Loaded="DataGridLoaded_BL2s" AlternatingRowBackground="AliceBlue" CanUserAddRows="False"/>
             </Expander>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Name="StackPanelBossMode">
+        <StackPanel Orientation="Vertical" Name="StackPanelBossMode" Visibility="Collapsed">
             <TextBlock Text="Any.sln" />
             <TextBlock Text="SomeThing.csproj" />
             <TextBlock Text="Program.cs" />
