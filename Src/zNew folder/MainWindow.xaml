@@ -20,21 +20,41 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Expander Name="Expander_PLs" Style="{StaticResource PlusMinusExpander}" IsExpanded="True">
+            <Expander Name="Expander_PLs" Style="{StaticResource PlusMinusExpander}" >
                 <local:MyDataGrid x:Name="PLs" Loaded="DataGridLoaded_Any"  />
             </Expander>
-            <Expander Name="Expander_PLr" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <Expander Name="Expander_PLr" Style="{StaticResource PlusMinusExpander}" >
                 <local:MyDataGrid x:Name="PLr" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_PLf" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <Expander Name="Expander_PLf" Style="{StaticResource PlusMinusExpander}" >
                 <local:MyDataGrid x:Name="PLf" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL1s" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <Expander Name="Expander_BL1s" Style="{StaticResource PlusMinusExpander}" >
                 <local:MyDataGrid x:Name="BL1s" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL2s" Style="{StaticResource PlusMinusExpander}" IsExpanded="False">
+            <Expander Name="Expander_BL1r" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="BL1r" Loaded="DataGridLoaded_Any" />
+            </Expander>
+            <Expander Name="Expander_BL1f" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="BL1f" Loaded="DataGridLoaded_Any" />
+            </Expander>
+            <Expander Name="Expander_BL2s" Style="{StaticResource PlusMinusExpander}" >
                 <local:MyDataGrid x:Name="BL2s" Loaded="DataGridLoaded_Any" />
             </Expander>
+            <Expander Name="Expander_BL2r" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="BL2r" Loaded="DataGridLoaded_Any" />
+            </Expander>
+            <Expander Name="Expander_BL2f" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="BL2f" Loaded="DataGridLoaded_Any" />
+            </Expander>
+            <!--
+            "PD",
+            "EL1",
+            "FAC",
+            "CL",
+            "EL",
+            "WC",
+            -->
         </StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelBossMode" Visibility="Collapsed">
             <TextBlock Text="Any.sln" />

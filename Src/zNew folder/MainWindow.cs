@@ -4,7 +4,6 @@ using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Navigation;
 
 namespace HierarchicalDataTemplate
 {
@@ -19,19 +18,70 @@ namespace HierarchicalDataTemplate
             _gateway = new FootballDataSdkGateway();
         }
 
+        //GERMANY
+        //BL1 Germany 1. Bundesliga
+        //BL2 Germany 2. Bundesliga
+        //BL3 Germany 3. Bundesliga
+        //DFB Germany Dfb-Cup
+
+        //ENGLAND
+        //PL England Premiere League
+        //EL1 England League One
+        //ELC England Championship
+        //FAC England FA-Cup
+
+        //ITALY
+        //SA Italy Serie A
+        //SB Italy Serie B
+
+        //SPAIN
+        //PD Spain Primera Division
+        //SD Spain Segunda Division
+        //CDR Spain Copa del Rey
+
+        //FRANCE
+        //FL1 France Ligue 1
+        //FL2 France Ligue 2
+
+        //OTHER
+        //DED Netherlands Eredivisie
+        //PPL Portugal Primeira Liga
+        //GSL Greece Super League
+
+        //EUROPE
+        //CL Europe Champions-League
+        //EL Europe UEFA-Cup
+        //EC Europe European-Cup of Nations
+           
+        //FIFA
+        //WC World World-Cup
+
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             var leaguesToShow = new List<string>
             {
                 "PL",
+                "PD",
                 "BL1",
-                "BL2"
+                "BL2",
+                "EL1",
+                "FAC",
+                "CL",
+                "EL",
+                "WC",
             };
 
             var leaguesToExpand = new List<string>
             {
-                "PL",
-                "BL1"
+                //"PL",
+                "PD",
+                //"BL1",
+                //"BL2",
+                //"EL1",
+                //"FAC",
+                //"CL",
+                //"EL",
+                //"WC",
             };
 
             var grid = sender as DataGrid;
@@ -39,9 +89,6 @@ namespace HierarchicalDataTemplate
             var str = grid.Name;
             var leagueIdentifier = str.Remove(str.Length - 1, 1); //everything except the last char
 
-            //////////////var parentExpander = VisualTreeHelper.GetParent(grid) as Expander;
-            //////////////  Expander parentExpander = GetWindow((DependencyObject)grid) as Expander;
-            //////////////UIElement parent = grid.Parent;
             Expander parentExpander = grid.Parent as Expander;
 
             if (leaguesToShow.Contains(leagueIdentifier))
@@ -56,7 +103,8 @@ namespace HierarchicalDataTemplate
                     grid.RowHeaderWidth = 2;
                     grid.CanUserAddRows = false;
 
-                    var srf = str.Substring(str.Length - 1);//last char of name
+                    var lastChar = str.Substring(str.Length - 1);
+                    var srf = GetSrf(lastChar);
 
                     GetLeagueData(grid, leagueIdentifier, srf);
                     
@@ -74,27 +122,49 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private void GetLeagueData(DataGrid grid, string leagueIdentifier, string srf)
+        private static Srf GetSrf(string lastChar)
+        {
+            Srf srf;
+            switch (lastChar)
+            {
+                case "s":
+                    srf = Srf.Standings;
+                    break;
+                case "r":
+                    srf = Srf.Results;
+                    break;
+                case "f":
+                    srf = Srf.Fixtures;
+                    break;
+                default:
+                    srf = 0;
+                    break;
+            }
+
+            return srf;
+        }
+
+        private void GetLeagueData(DataGrid grid, string leagueIdentifier, Srf srf)
         {
             grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
 
-            if (srf == "s")
+            if (srf == Srf.Standings)
             {
                 var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
                 _leagueCaption = leagueResponse.LeagueCaption;
                 grid.ItemsSource = leagueResponse.Standings;
             }
 
-            if (srf == "r" || srf == "f")
+            if (srf == Srf.Results || srf == Srf.Fixtures)
             {
                 LeagueMatches leagueResponse = null;
 
-                if (srf == "r")
+                if (srf == Srf.Results)
                 {
                     leagueResponse = _gateway.GetLeagueResponse_Results(leagueIdentifier);
                 }
 
-                if (srf == "f")
+                if (srf == Srf.Fixtures)
                 {
                     leagueResponse = _gateway.GetLeagueResponse_Fixtures(leagueIdentifier);
                 }
@@ -115,18 +185,5 @@ namespace HierarchicalDataTemplate
             StackPanelLeagueMode.Visibility = Visibility.Visible;
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
-
-        //public static T TryFindParent<T>(DependencyObject current) where T : class
-        //{
-        //    DependencyObject parent = VisualTreeHelper.GetParent(current);
-        //    if (parent == null)
-        //        parent = LogicalTreeHelper.GetParent(current);
-        //    if (parent == null)
-        //        return null;
-        //    if (parent is T)
-        //        return parent as T;
-        //    else
-        //        return TryFindParent<T>(parent);
-        //}
     }
 }
