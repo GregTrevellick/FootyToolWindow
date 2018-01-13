@@ -11,6 +11,58 @@ namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
+        private GeneralOptions _generalOptions = new GeneralOptions
+        {
+            LeagueOptions = new List<LeagueOption>
+            {
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                    {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                    {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                    {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand = false,GridType = GridType.Fixture}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE2,
+                    ShowLeague = false},
+                    //LeagueSubOptions = new List<LeagueSubOption>
+                    //    {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE2,
+                    ShowLeague = false},
+                    //LeagueSubOptions = new List<LeagueSubOption>
+                    //    {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE2,
+                    ShowLeague = false},
+                    //LeagueSubOptions = new List<LeagueSubOption>
+                    //    {new LeagueSubOption {Expand = false,GridType = GridType.Fixture}}},
+            }
+        };
+
         private readonly FootballDataSdkGateway _gateway;
 
         public MainWindow()
@@ -50,34 +102,34 @@ namespace HierarchicalDataTemplate
         ////////////    }
         ////////////}
 
-        private void ExpanderExpanded_Any(object sender, RoutedEventArgs e)
-        {
-            //    var expander = sender as Expander;
+        //private void ExpanderExpanded_Any(object sender, RoutedEventArgs e)
+        //{
+        //    //    var expander = sender as Expander;
 
-            //    //var style = new Style();
-            //    //style.Resources = new ResourceDictionary();
-            //    //style.Resources.Add("StaticResource", "PlusMinusExpander");
-            //    //expander.SetValue(StyleProperty, style);
+        //    //    //var style = new Style();
+        //    //    //style.Resources = new ResourceDictionary();
+        //    //    //style.Resources.Add("StaticResource", "PlusMinusExpander");
+        //    //    //expander.SetValue(StyleProperty, style);
 
-            //    var kids = FindVisualChildren<MyDataGrid>(expander);
+        //    //    var kids = FindVisualChildren<MyDataGrid>(expander);
 
-            //    var kidsCount = kids.Count();
-            //    //if (kids.Count() == 0)
-            //    //{
-            //    //    expander.UpdateLayout();
-            //    //    foreach (MyDataGrid myDataGrid in kids)
-            //    //    {
-            //    //        PopulateDataGrid(myDataGrid);
-            //    //    }
-            //    //}
-            //    //else
-            //    //{
-            //        foreach (MyDataGrid myDataGrid in kids)
-            //        {
-            //            PopulateDataGrid(myDataGrid);
-            //        }
-            //    //}
-        }
+        //    //    var kidsCount = kids.Count();
+        //    //    //if (kids.Count() == 0)
+        //    //    //{
+        //    //    //    expander.UpdateLayout();
+        //    //    //    foreach (MyDataGrid myDataGrid in kids)
+        //    //    //    {
+        //    //    //        PopulateDataGrid(myDataGrid);
+        //    //    //    }
+        //    //    //}
+        //    //    //else
+        //    //    //{
+        //    //        foreach (MyDataGrid myDataGrid in kids)
+        //    //        {
+        //    //            PopulateDataGrid(myDataGrid);
+        //    //        }
+        //    //    //}
+        //}
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
@@ -115,8 +167,8 @@ namespace HierarchicalDataTemplate
             {
                 var gridType = GetGridType(dataGrid.Name);
 
-                //if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
-                //{
+                if (ShouldExpandGrid(internalLeagueCode, gridType))
+                {
                     var color = (Color)ColorConverter.ConvertFromString("Blue");
                     dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
                     dataGrid.ColumnHeaderHeight = 2;
@@ -136,21 +188,21 @@ namespace HierarchicalDataTemplate
                         //TODO ERROR
                         parentExpander.IsExpanded = false;
                     }
-                //}
-                //else
-                //{
-                //    parentExpander.IsExpanded = false;
-                //}
+                }
+                else
+                {
+                    parentExpander.IsExpanded = false;
+                }
             }
-            //else
-            //{
-            //    parentExpander.Visibility = Visibility.Collapsed;
-            //}
+            else
+            {
+                parentExpander.Visibility = Visibility.Collapsed;
+            }
         }
 
         private bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
-            if (LeagueOptions.LeaguesToShow.Contains(internalLeagueCode))
+            if (_generalOptions.LeagueOptions.Any(x=>x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
             {
                 return true;
             }
@@ -160,22 +212,20 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        //private bool ShouldExpandGrid(bool showLeague, InternalLeagueCode internalLeagueCode, GridType gridType)
-        //{
-        //    if (!showLeague)
-        //    {
-        //        return false;
-        //    }
-
-        //    if (ExpanderOptions.GridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+        private bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
+        {
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode 
+                                                       && x.ShowLeague 
+                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType 
+                                                                                        && ccc.Expand)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private static GridType GetGridType(string gridName)
         {

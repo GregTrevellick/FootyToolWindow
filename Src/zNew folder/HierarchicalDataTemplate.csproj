@@ -56,12 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="ReferenceData\LeagueCodeMappings.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="Dtos\GridType.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
-    <Compile Include="Options\LeagueOptions.cs" />
-    <Compile Include="Options\ExpanderOptions.cs" />
+    <Compile Include="Options\GeneralOptions.cs" />
     <Page Include="Assets\PlusMinusExpanderStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,7 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\EnumExtensions.cs" />
-    <Compile Include="Dtos\GridToExpand.cs" />
+    <Compile Include="Options\LeagueSubOption.cs" />
     <Compile Include="MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
