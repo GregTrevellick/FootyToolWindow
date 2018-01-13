@@ -16,12 +16,16 @@ namespace HierarchicalDataTemplate
         private List<InternalLeagueCode> leaguesToShow = new List<InternalLeagueCode>
         {
             InternalLeagueCode.UK1,
+            InternalLeagueCode.DE1,
+            InternalLeagueCode.DE2,
         };
 
         private List<GridToExpand> gridToExpands = new List<GridToExpand>
         {
             new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Standing},
             new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Result},
+            new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Fixture},
+            new GridToExpand{internalLeagueCode = InternalLeagueCode.DE1, gridType = GridType.Standing},
         };
 
         public MainWindow()
