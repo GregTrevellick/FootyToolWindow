@@ -79,75 +79,12 @@ namespace HierarchicalDataTemplate
             if (shouldShowLeague)
             {
                 expander.Visibility = Visibility.Visible;
-                expander.Header = internalLeagueCode.GetDescription();//gregt         + " " + gridType.GetDescription();
+                expander.Header = internalLeagueCode.GetDescription();
+                //gregt         expander.Header += " " + gridType.GetDescription();
             }
             else
             {
                 expander.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        ////////////private void ContextMenuOpening_Any(object sender, ContextMenuEventArgs e)
-        ////////////{
-        ////////////    var expander = sender as Expander;
-
-        ////////////    //var style = new Style();
-        ////////////    //style.Resources = new ResourceDictionary();
-        ////////////    //style.Resources.Add("StaticResource", "PlusMinusExpander");
-        ////////////    //expander.SetValue(StyleProperty, style);
-
-        ////////////    foreach (MyDataGrid myDataGrid in FindVisualChildren<MyDataGrid>(expander))
-        ////////////    {
-        ////////////        PopulateDataGrid(myDataGrid);
-        ////////////    }
-        ////////////}
-
-        //private void ExpanderExpanded_Any(object sender, RoutedEventArgs e)
-        //{
-        //    //    var expander = sender as Expander;
-
-        //    //    //var style = new Style();
-        //    //    //style.Resources = new ResourceDictionary();
-        //    //    //style.Resources.Add("StaticResource", "PlusMinusExpander");
-        //    //    //expander.SetValue(StyleProperty, style);
-
-        //    //    var kids = FindVisualChildren<MyDataGrid>(expander);
-
-        //    //    var kidsCount = kids.Count();
-        //    //    //if (kids.Count() == 0)
-        //    //    //{
-        //    //    //    expander.UpdateLayout();
-        //    //    //    foreach (MyDataGrid myDataGrid in kids)
-        //    //    //    {
-        //    //    //        PopulateDataGrid(myDataGrid);
-        //    //    //    }
-        //    //    //}
-        //    //    //else
-        //    //    //{
-        //    //        foreach (MyDataGrid myDataGrid in kids)
-        //    //        {
-        //    //            PopulateDataGrid(myDataGrid);
-        //    //        }
-        //    //    //}
-        //}
-
-        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T)child;
-                    }
-
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
             }
         }
 
@@ -312,3 +249,67 @@ namespace HierarchicalDataTemplate
 
     }
 }
+
+////////////private void ContextMenuOpening_Any(object sender, ContextMenuEventArgs e)
+////////////{
+////////////    var expander = sender as Expander;
+
+////////////    //var style = new Style();
+////////////    //style.Resources = new ResourceDictionary();
+////////////    //style.Resources.Add("StaticResource", "PlusMinusExpander");
+////////////    //expander.SetValue(StyleProperty, style);
+
+////////////    foreach (MyDataGrid myDataGrid in FindVisualChildren<MyDataGrid>(expander))
+////////////    {
+////////////        PopulateDataGrid(myDataGrid);
+////////////    }
+////////////}
+
+//private void ExpanderExpanded_Any(object sender, RoutedEventArgs e)
+//{
+//    //    var expander = sender as Expander;
+
+//    //    //var style = new Style();
+//    //    //style.Resources = new ResourceDictionary();
+//    //    //style.Resources.Add("StaticResource", "PlusMinusExpander");
+//    //    //expander.SetValue(StyleProperty, style);
+
+//    //    var kids = FindVisualChildren<MyDataGrid>(expander);
+
+//    //    var kidsCount = kids.Count();
+//    //    //if (kids.Count() == 0)
+//    //    //{
+//    //    //    expander.UpdateLayout();
+//    //    //    foreach (MyDataGrid myDataGrid in kids)
+//    //    //    {
+//    //    //        PopulateDataGrid(myDataGrid);
+//    //    //    }
+//    //    //}
+//    //    //else
+//    //    //{
+//    //        foreach (MyDataGrid myDataGrid in kids)
+//    //        {
+//    //            PopulateDataGrid(myDataGrid);
+//    //        }
+//    //    //}
+//}
+
+//public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+//{
+//    if (depObj != null)
+//    {
+//        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+//        {
+//            DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+//            if (child != null && child is T)
+//            {
+//                yield return (T)child;
+//            }
+
+//            foreach (T childOfChild in FindVisualChildren<T>(child))
+//            {
+//                yield return childOfChild;
+//            }
+//        }
+//    }
+//}
