@@ -26,13 +26,13 @@ namespace FootieData.Gateway
 
         public LeagueMatches GetLeagueResponse_Results(string leagueIdentifier)
         {
-            var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "p7");
+            var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "p30");
             return result;
         }
 
         public LeagueMatches GetLeagueResponse_Fixtures(string leagueIdentifier)
         {
-            var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "n7");
+            var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "n30");
             return result;
         }
 

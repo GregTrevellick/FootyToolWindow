@@ -29,22 +29,22 @@
             <Expander Name="UK1_Rand0003" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
                 <local:MyDataGrid x:Name="Fixture_Rand0001" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="DE1_Rand0001" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
+            <Expander Name="DE1_Rand0001" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any" >
                 <local:MyDataGrid x:Name="Standing_Rand0002" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="DE1_Rand0002" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
+            <Expander Name="DE1_Rand0002" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any" >
                 <local:MyDataGrid x:Name="Result_Rand0002" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="DE1_Rand0003" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
+            <Expander Name="DE1_Rand0003" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any" >
                 <local:MyDataGrid x:Name="Fixture_Rand0002" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="DE2_Rand0001" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
+            <Expander Name="DE2_Rand0001" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any" >
                 <local:MyDataGrid x:Name="Standing_Rand0003" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="DE2_Rand0002" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
+            <Expander Name="DE2_Rand0002" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any" >
                 <local:MyDataGrid x:Name="Result_Rand0003" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="DE2_Rand0003" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any">
+            <Expander Name="DE2_Rand0003" Style="{StaticResource PlusMinusExpander}" Loaded="ExpanderLoaded_Any" Expanded="ExpanderExpanded_Any" >
                 <local:MyDataGrid x:Name="Fixture_Rand0003" Loaded="DataGridLoaded_Any" />
             </Expander>
         </StackPanel>

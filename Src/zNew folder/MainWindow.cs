@@ -35,19 +35,48 @@ namespace HierarchicalDataTemplate
             }
         }
 
+        ////////////private void ContextMenuOpening_Any(object sender, ContextMenuEventArgs e)
+        ////////////{
+        ////////////    var expander = sender as Expander;
+
+        ////////////    //var style = new Style();
+        ////////////    //style.Resources = new ResourceDictionary();
+        ////////////    //style.Resources.Add("StaticResource", "PlusMinusExpander");
+        ////////////    //expander.SetValue(StyleProperty, style);
+
+        ////////////    foreach (MyDataGrid myDataGrid in FindVisualChildren<MyDataGrid>(expander))
+        ////////////    {
+        ////////////        PopulateDataGrid(myDataGrid);
+        ////////////    }
+        ////////////}
+
         private void ExpanderExpanded_Any(object sender, RoutedEventArgs e)
         {
-            var expander = sender as Expander;
+            //    var expander = sender as Expander;
 
-            //var style = new Style();
-            //style.Resources = new ResourceDictionary();
-            //style.Resources.Add("StaticResource", "PlusMinusExpander");
-            //expander.SetValue(StyleProperty, style);
+            //    //var style = new Style();
+            //    //style.Resources = new ResourceDictionary();
+            //    //style.Resources.Add("StaticResource", "PlusMinusExpander");
+            //    //expander.SetValue(StyleProperty, style);
 
-            foreach (MyDataGrid myDataGrid in FindVisualChildren<MyDataGrid>(expander))
-            {
-                PopulateDataGrid(myDataGrid);
-            }
+            //    var kids = FindVisualChildren<MyDataGrid>(expander);
+
+            //    var kidsCount = kids.Count();
+            //    //if (kids.Count() == 0)
+            //    //{
+            //    //    expander.UpdateLayout();
+            //    //    foreach (MyDataGrid myDataGrid in kids)
+            //    //    {
+            //    //        PopulateDataGrid(myDataGrid);
+            //    //    }
+            //    //}
+            //    //else
+            //    //{
+            //        foreach (MyDataGrid myDataGrid in kids)
+            //        {
+            //            PopulateDataGrid(myDataGrid);
+            //        }
+            //    //}
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -86,8 +115,8 @@ namespace HierarchicalDataTemplate
             {
                 var gridType = GetGridType(dataGrid.Name);
 
-                if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
-                {
+                //if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
+                //{
                     var color = (Color)ColorConverter.ConvertFromString("Blue");
                     dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
                     dataGrid.ColumnHeaderHeight = 2;
@@ -107,7 +136,7 @@ namespace HierarchicalDataTemplate
                         //TODO ERROR
                         parentExpander.IsExpanded = false;
                     }
-                }
+                //}
                 //else
                 //{
                 //    parentExpander.IsExpanded = false;
@@ -131,22 +160,22 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private bool ShouldExpandGrid(bool showLeague, InternalLeagueCode internalLeagueCode, GridType gridType)
-        {
-            if (!showLeague)
-            {
-                return false;
-            }
+        //private bool ShouldExpandGrid(bool showLeague, InternalLeagueCode internalLeagueCode, GridType gridType)
+        //{
+        //    if (!showLeague)
+        //    {
+        //        return false;
+        //    }
 
-            if (ExpanderOptions.GridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    if (ExpanderOptions.GridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         private static GridType GetGridType(string gridName)
         {
@@ -230,5 +259,6 @@ namespace HierarchicalDataTemplate
             var internalLeagueCodeString = expander.Name.Substring(0, 4).Replace("_", "");
             return internalLeagueCodeString;
         }
+
     }
 }
