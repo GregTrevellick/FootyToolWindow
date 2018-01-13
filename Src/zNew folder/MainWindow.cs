@@ -28,11 +28,6 @@ namespace HierarchicalDataTemplate
             {
                 expander.Visibility = Visibility.Visible;
                 expander.Header = internalLeagueCode.GetDescription();//gregt         + " " + gridType.GetDescription();
-
-                //var style = new Style();
-                //style.Resources = new ResourceDictionary();
-                //style.Resources.Add("StaticResource", "PlusMinusExpander");
-                //expander.SetValue(StyleProperty, style);
             }
             else
             {
@@ -40,30 +35,70 @@ namespace HierarchicalDataTemplate
             }
         }
 
+        private void ExpanderExpanded_Any(object sender, RoutedEventArgs e)
+        {
+            var expander = sender as Expander;
+
+            //var style = new Style();
+            //style.Resources = new ResourceDictionary();
+            //style.Resources.Add("StaticResource", "PlusMinusExpander");
+            //expander.SetValue(StyleProperty, style);
+
+            foreach (MyDataGrid myDataGrid in FindVisualChildren<MyDataGrid>(expander))
+            {
+                PopulateDataGrid(myDataGrid);
+            }
+        }
+
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
+        }
+
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
-            var grid = sender as DataGrid;
-            Expander parentExpander = grid.Parent as Expander;
+            PopulateDataGrid(sender);
+        }
+
+        private void PopulateDataGrid(object sender)
+        {
+            var dataGrid = sender as DataGrid;
+            Expander parentExpander = dataGrid.Parent as Expander;
             var internalLeagueCode = InternalLeagueCode(parentExpander);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
 
             if (shouldShowLeague)
             {
-                var gridType = GetGridType(grid.Name);
+                var gridType = GetGridType(dataGrid.Name);
 
                 if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
                 {
-                    var color = (Color)ColorConverter.ConvertFromString("Red");
-                    grid.AlternatingRowBackground = new SolidColorBrush(color);
-                    grid.ColumnHeaderHeight = 2;
-                    grid.RowHeaderWidth = 2;
-                    grid.CanUserAddRows = false;
-                    grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
+                    var color = (Color)ColorConverter.ConvertFromString("Blue");
+                    dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
+                    dataGrid.ColumnHeaderHeight = 2;
+                    dataGrid.RowHeaderWidth = 2;
+                    dataGrid.CanUserAddRows = false;
+                    dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
 
                     var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
                     if (internalToExternalMappingExists)
                     {
-                        GetLeagueData(grid, externalLeagueCode, gridType);
+                        GetLeagueData(dataGrid, externalLeagueCode, gridType);
                         //parentExpander.Visibility = Visibility.Visible;
                         parentExpander.IsExpanded = true;
                     }
@@ -139,12 +174,12 @@ namespace HierarchicalDataTemplate
             return gridType;
         }
 
-        private void GetLeagueData(DataGrid grid, ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (gridType == GridType.Standing)
             {
                 var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
-                grid.ItemsSource = leagueResponse.Standings;
+                dataGrid.ItemsSource = leagueResponse.Standings;
             }
 
             if (gridType == GridType.Result || gridType == GridType.Fixture)
@@ -161,7 +196,7 @@ namespace HierarchicalDataTemplate
                     leagueResponse = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
                 }
 
-                grid.ItemsSource = leagueResponse?.MatchFixtures;
+                dataGrid.ItemsSource = leagueResponse?.MatchFixtures;
             }
         }
 
