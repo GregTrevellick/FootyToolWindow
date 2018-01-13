@@ -13,20 +13,20 @@ namespace HierarchicalDataTemplate
     {
         private readonly FootballDataSdkGateway _gateway;
 
-        private List<InternalLeagueCode> leaguesToShow = new List<InternalLeagueCode>
-        {
-            InternalLeagueCode.UK1,
-            InternalLeagueCode.DE1,
-            InternalLeagueCode.DE2,
-        };
+        //public List<InternalLeagueCode> leaguesToShow = new List<InternalLeagueCode>
+        //{
+        //    InternalLeagueCode.UK1,
+        //    InternalLeagueCode.DE1,
+        //    InternalLeagueCode.DE2,
+        //};
 
-        private List<GridToExpand> gridToExpands = new List<GridToExpand>
-        {
-            new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Standing},
-            new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Result},
-            new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Fixture},
-            new GridToExpand{internalLeagueCode = InternalLeagueCode.DE1, gridType = GridType.Standing},
-        };
+        //public List<GridToExpand> gridToExpands = new List<GridToExpand>
+        //{
+        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Standing},
+        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Result},
+        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Fixture},
+        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.DE1, gridType = GridType.Standing},
+        //};
 
         public MainWindow()
         {
@@ -82,7 +82,7 @@ namespace HierarchicalDataTemplate
 
         private bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
-            if (leaguesToShow.Contains(internalLeagueCode))
+            if (Mappings2.LeaguesToShow.Contains(internalLeagueCode))
             {
                 return true;
             }
@@ -100,7 +100,7 @@ namespace HierarchicalDataTemplate
                 return false;
             }
 
-            if (gridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
+            if (Mappings3.GridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
             {
                 return true;
             }

@@ -56,10 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dtos\Mappings.cs" />
-    <Compile Include="Dtos\ExternalLeagueCode.cs" />
+    <Compile Include="ReferenceData\Mappings.cs" />
+    <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="Dtos\GridType.cs" />
-    <Compile Include="Dtos\InternalLeagueCode.cs" />
+    <Compile Include="ReferenceData\InternalLeagueCode.cs" />
+    <Compile Include="ReferenceData\Mappings2.cs" />
+    <Compile Include="ReferenceData\Mappings3.cs" />
     <Page Include="Assets\PlusMinusExpanderStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,7 +74,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Dtos\GridToExpand.cs" />
     <Compile Include="MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -125,6 +127,7 @@
     <Resource Include="Assets\open_neonglow.png" />
     <Resource Include="Assets\open_plasticwrap.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
