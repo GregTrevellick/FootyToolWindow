@@ -20,41 +20,33 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Expander Name="Expander_PLs" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="PLs" Loaded="DataGridLoaded_Any"  />
+            <Expander Name="UK1_Rand0001" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Standing_Rand0001" Loaded="DataGridLoaded_Any"  />
             </Expander>
-            <Expander Name="Expander_PLr" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="PLr" Loaded="DataGridLoaded_Any" />
+            <Expander Name="UK1_Rand0002" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Result_Rand0001" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_PLf" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="PLf" Loaded="DataGridLoaded_Any" />
+            <Expander Name="UK1_Rand0003" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Fixture_Rand0001" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL1s" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="BL1s" Loaded="DataGridLoaded_Any" />
+            <Expander Name="DE1_Rand0001" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Standing_Rand0002" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL1r" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="BL1r" Loaded="DataGridLoaded_Any" />
+            <Expander Name="DE1_Rand0002" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Result_Rand0002" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL1f" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="BL1f" Loaded="DataGridLoaded_Any" />
+            <Expander Name="DE1_Rand0003" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Fixture_Rand0002" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL2s" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="BL2s" Loaded="DataGridLoaded_Any" />
+            <Expander Name="DE2_Rand0001" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Standing_Rand0003" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL2r" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="BL2r" Loaded="DataGridLoaded_Any" />
+            <Expander Name="DE2_Rand0002" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Result_Rand0003" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <Expander Name="Expander_BL2f" Style="{StaticResource PlusMinusExpander}" >
-                <local:MyDataGrid x:Name="BL2f" Loaded="DataGridLoaded_Any" />
+            <Expander Name="DE2_Rand0003" Style="{StaticResource PlusMinusExpander}" >
+                <local:MyDataGrid x:Name="Fixture_Rand0003" Loaded="DataGridLoaded_Any" />
             </Expander>
-            <!--
-            "PD",
-            "EL1",
-            "FAC",
-            "CL",
-            "EL",
-            "WC",
-            -->
         </StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelBossMode" Visibility="Collapsed">
             <TextBlock Text="Any.sln" />

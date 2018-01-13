@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FootieData.Entities;
 using FootieData.Gateway;
 using System.Windows;
@@ -9,8 +11,18 @@ namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
-        private string _leagueCaption;
         private readonly FootballDataSdkGateway _gateway;
+
+        private List<InternalLeagueCode> leaguesToShow = new List<InternalLeagueCode>
+        {
+            InternalLeagueCode.UK1,
+        };
+
+        private List<GridToExpand> gridToExpands = new List<GridToExpand>
+        {
+            new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Standing},
+            new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Result},
+        };
 
         public MainWindow()
         {
@@ -18,98 +30,40 @@ namespace HierarchicalDataTemplate
             _gateway = new FootballDataSdkGateway();
         }
 
-        //GERMANY
-        //BL1 Germany 1. Bundesliga
-        //BL2 Germany 2. Bundesliga
-        //BL3 Germany 3. Bundesliga
-        //DFB Germany Dfb-Cup
-
-        //ENGLAND
-        //PL England Premiere League
-        //EL1 England League One
-        //ELC England Championship
-        //FAC England FA-Cup
-
-        //ITALY
-        //SA Italy Serie A
-        //SB Italy Serie B
-
-        //SPAIN
-        //PD Spain Primera Division
-        //SD Spain Segunda Division
-        //CDR Spain Copa del Rey
-
-        //FRANCE
-        //FL1 France Ligue 1
-        //FL2 France Ligue 2
-
-        //OTHER
-        //DED Netherlands Eredivisie
-        //PPL Portugal Primeira Liga
-        //GSL Greece Super League
-
-        //EUROPE
-        //CL Europe Champions-League
-        //EL Europe UEFA-Cup
-        //EC Europe European-Cup of Nations
-           
-        //FIFA
-        //WC World World-Cup
-
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
-            var leaguesToShow = new List<string>
-            {
-                "PL",
-                "PD",
-                "BL1",
-                "BL2",
-                "EL1",
-                "FAC",
-                "CL",
-                "EL",
-                "WC",
-            };
-
-            var leaguesToExpand = new List<string>
-            {
-                //"PL",
-                "PD",
-                //"BL1",
-                //"BL2",
-                //"EL1",
-                //"FAC",
-                //"CL",
-                //"EL",
-                //"WC",
-            };
-
             var grid = sender as DataGrid;
 
-            var str = grid.Name;
-            var leagueIdentifier = str.Remove(str.Length - 1, 1); //everything except the last char
-
             Expander parentExpander = grid.Parent as Expander;
+            var internalLeagueCodeString = parentExpander.Name.Substring(0, 4).Replace("_", "");
+            var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
+            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
 
-            if (leaguesToShow.Contains(leagueIdentifier))
+            if (shouldShowLeague)
             {
-                Expander_PLs.Header = _leagueCaption;
+                parentExpander.Header = internalLeagueCode.GetDescription();
 
-                if (leaguesToExpand.Contains(leagueIdentifier))
+                var gridType = GetGridType(grid.Name);
+
+                if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
                 {
                     var color = (Color)ColorConverter.ConvertFromString("Red");
                     grid.AlternatingRowBackground = new SolidColorBrush(color);
                     grid.ColumnHeaderHeight = 2;
                     grid.RowHeaderWidth = 2;
                     grid.CanUserAddRows = false;
-
-                    var lastChar = str.Substring(str.Length - 1);
-                    var srf = GetSrf(lastChar);
-
-                    GetLeagueData(grid, leagueIdentifier, srf);
+                    grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
                     
-                    parentExpander.Visibility = Visibility.Visible;
-                    parentExpander.IsExpanded = true;
+                    if (Mappings.IntExt.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode))
+                    {
+                        GetLeagueData(grid, externalLeagueCode, gridType);
+                        parentExpander.Visibility = Visibility.Visible;
+                        parentExpander.IsExpanded = true;
+                    }
+                    else
+                    {
+                        //TODO ERROR
+                    }
                 }
                 else
                 {
@@ -122,54 +76,84 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private static Srf GetSrf(string lastChar)
+        private bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
-            Srf srf;
-            switch (lastChar)
+            if (leaguesToShow.Contains(internalLeagueCode))
             {
-                case "s":
-                    srf = Srf.Standings;
-                    break;
-                case "r":
-                    srf = Srf.Results;
-                    break;
-                case "f":
-                    srf = Srf.Fixtures;
-                    break;
-                default:
-                    srf = 0;
-                    break;
+                return true;
             }
-
-            return srf;
+            else
+            {
+                return false;
+            }
         }
 
-        private void GetLeagueData(DataGrid grid, string leagueIdentifier, Srf srf)
-        {
-            grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
 
-            if (srf == Srf.Standings)
+        private bool ShouldExpandGrid(bool showLeague, InternalLeagueCode internalLeagueCode, GridType gridType)
+        {
+            if (!showLeague)
             {
-                var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
-                _leagueCaption = leagueResponse.LeagueCaption;
+                return false;
+            }
+
+            if (gridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static GridType GetGridType(string gridName)
+        {
+            GridType gridType = 0;
+
+            if (gridName.StartsWith("Standing"))
+            {
+                gridType = GridType.Standing;
+            }
+            else
+            {
+                if (gridName.StartsWith("Result"))
+                {
+                    gridType = GridType.Result;
+                }
+                else
+                {
+                    if (gridName.StartsWith("Fixture"))
+                    {
+                        gridType = GridType.Fixture;
+                    }
+                }
+            }
+
+            return gridType;
+        }
+
+        private void GetLeagueData(DataGrid grid, ExternalLeagueCode externalLeagueCode, GridType gridType)
+        {
+            if (gridType == GridType.Standing)
+            {
+                var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
                 grid.ItemsSource = leagueResponse.Standings;
             }
 
-            if (srf == Srf.Results || srf == Srf.Fixtures)
+            if (gridType == GridType.Result || gridType == GridType.Fixture)
             {
                 LeagueMatches leagueResponse = null;
 
-                if (srf == Srf.Results)
+                if (gridType == GridType.Result)
                 {
-                    leagueResponse = _gateway.GetLeagueResponse_Results(leagueIdentifier);
+                    leagueResponse = _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
                 }
 
-                if (srf == Srf.Fixtures)
+                if (gridType == GridType.Fixture)
                 {
-                    leagueResponse = _gateway.GetLeagueResponse_Fixtures(leagueIdentifier);
+                    leagueResponse = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
                 }
 
-                _leagueCaption = leagueResponse?.LeagueCaption;
                 grid.ItemsSource = leagueResponse?.MatchFixtures;
             }
         }
