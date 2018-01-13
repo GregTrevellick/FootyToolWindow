@@ -6,7 +6,7 @@ namespace HierarchicalDataTemplate
     {
         public static List<InternalLeagueCode> LeaguesToShow = new List<InternalLeagueCode>
         {
-            InternalLeagueCode.UK1,
+            //InternalLeagueCode.UK1,
             InternalLeagueCode.DE1,
             InternalLeagueCode.DE2,
         };

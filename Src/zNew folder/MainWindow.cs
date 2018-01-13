@@ -19,25 +19,6 @@ namespace HierarchicalDataTemplate
             _gateway = new FootballDataSdkGateway();
         }
 
-        //////////void InitializeControl()
-        //////////{
-        //////////    //My 3 attempts only using one method per attempt of course:
-
-        //////////    //#region Attempt One
-        //////////    //ResourceDictionary rd = new ResourceDictionary();
-        //////////    //rd.Source = new Uri(@"Styles.xaml", UriKind.RelativeOrAbsolute);
-        //////////    //this.Style = (Style)rd["RoundButton"];
-        //////////    //#endregion
-
-        //////////    #region Attempt Two
-        //////////    this.SetValue(Expander.StyleProperty, "{StaticResource RoundButton}");
-        //////////    #endregion
-
-        //////////    //#region Attempt Three
-        //////////    //this.Style = (Style)FindResource("RoundButton");
-        //////////    //#endregion
-        //////////}
-
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
         {
             var expander = sender as Expander;
