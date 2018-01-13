@@ -45,9 +45,10 @@ namespace HierarchicalDataTemplate
 
             if (shouldShowLeague)
             {
-                parentExpander.Header = internalLeagueCode.GetDescription();
-
                 var gridType = GetGridType(grid.Name);
+
+                parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+
 
                 if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
                 {
