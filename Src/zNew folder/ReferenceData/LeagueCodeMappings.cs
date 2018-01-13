@@ -2,9 +2,9 @@
 
 namespace HierarchicalDataTemplate
 {
-    public static class Mappings
+    public static class LeagueCodeMappings
     {
-        public static Dictionary<InternalLeagueCode, ExternalLeagueCode> IntExt =
+        public static IDictionary<InternalLeagueCode, ExternalLeagueCode> Mappings =
             new Dictionary<InternalLeagueCode, ExternalLeagueCode>
             {
                 {InternalLeagueCode.DE1, ExternalLeagueCode.BL1},

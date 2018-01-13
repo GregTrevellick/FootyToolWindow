@@ -13,42 +13,62 @@ namespace HierarchicalDataTemplate
     {
         private readonly FootballDataSdkGateway _gateway;
 
-        //public List<InternalLeagueCode> leaguesToShow = new List<InternalLeagueCode>
-        //{
-        //    InternalLeagueCode.UK1,
-        //    InternalLeagueCode.DE1,
-        //    InternalLeagueCode.DE2,
-        //};
-
-        //public List<GridToExpand> gridToExpands = new List<GridToExpand>
-        //{
-        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Standing},
-        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Result},
-        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.UK1, gridType = GridType.Fixture},
-        //    new GridToExpand{internalLeagueCode = InternalLeagueCode.DE1, gridType = GridType.Standing},
-        //};
-
         public MainWindow()
         {
             InitializeComponent();
             _gateway = new FootballDataSdkGateway();
         }
 
+        //////////void InitializeControl()
+        //////////{
+        //////////    //My 3 attempts only using one method per attempt of course:
+
+        //////////    //#region Attempt One
+        //////////    //ResourceDictionary rd = new ResourceDictionary();
+        //////////    //rd.Source = new Uri(@"Styles.xaml", UriKind.RelativeOrAbsolute);
+        //////////    //this.Style = (Style)rd["RoundButton"];
+        //////////    //#endregion
+
+        //////////    #region Attempt Two
+        //////////    this.SetValue(Expander.StyleProperty, "{StaticResource RoundButton}");
+        //////////    #endregion
+
+        //////////    //#region Attempt Three
+        //////////    //this.Style = (Style)FindResource("RoundButton");
+        //////////    //#endregion
+        //////////}
+
+        private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
+        {
+            var expander = sender as Expander;
+            var internalLeagueCode = InternalLeagueCode(expander);
+            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+            if (shouldShowLeague)
+            {
+                expander.Visibility = Visibility.Visible;
+                expander.Header = internalLeagueCode.GetDescription();//gregt         + " " + gridType.GetDescription();
+
+                //var style = new Style();
+                //style.Resources = new ResourceDictionary();
+                //style.Resources.Add("StaticResource", "PlusMinusExpander");
+                //expander.SetValue(StyleProperty, style);
+            }
+            else
+            {
+                expander.Visibility = Visibility.Collapsed;
+            }
+        }
+
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             var grid = sender as DataGrid;
-
             Expander parentExpander = grid.Parent as Expander;
-            var internalLeagueCodeString = parentExpander.Name.Substring(0, 4).Replace("_", "");
-            var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
+            var internalLeagueCode = InternalLeagueCode(parentExpander);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
 
             if (shouldShowLeague)
             {
                 var gridType = GetGridType(grid.Name);
-
-                parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-
 
                 if (ShouldExpandGrid(shouldShowLeague, internalLeagueCode, gridType))
                 {
@@ -58,27 +78,29 @@ namespace HierarchicalDataTemplate
                     grid.RowHeaderWidth = 2;
                     grid.CanUserAddRows = false;
                     grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-                    
-                    if (Mappings.IntExt.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode))
+
+                    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+                    if (internalToExternalMappingExists)
                     {
                         GetLeagueData(grid, externalLeagueCode, gridType);
-                        parentExpander.Visibility = Visibility.Visible;
+                        //parentExpander.Visibility = Visibility.Visible;
                         parentExpander.IsExpanded = true;
                     }
                     else
                     {
                         //TODO ERROR
+                        parentExpander.IsExpanded = false;
                     }
                 }
-                else
-                {
-                    parentExpander.IsExpanded = false;
-                }
+                //else
+                //{
+                //    parentExpander.IsExpanded = false;
+                //}
             }
-            else
-            {
-                parentExpander.Visibility = Visibility.Collapsed;
-            }
+            //else
+            //{
+            //    parentExpander.Visibility = Visibility.Collapsed;
+            //}
         }
 
         private bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
@@ -92,7 +114,6 @@ namespace HierarchicalDataTemplate
                 return false;
             }
         }
-
 
         private bool ShouldExpandGrid(bool showLeague, InternalLeagueCode internalLeagueCode, GridType gridType)
         {
@@ -173,6 +194,25 @@ namespace HierarchicalDataTemplate
         {
             StackPanelLeagueMode.Visibility = Visibility.Visible;
             StackPanelBossMode.Visibility = Visibility.Collapsed;
+        }
+
+        private static InternalLeagueCode InternalLeagueCode(Expander expander)
+        {
+            var internalLeagueCodeString = GetInternalLeagueCodeString(expander);
+            var internalLeagueCode = GetInternalLeagueCode(internalLeagueCodeString);
+            return internalLeagueCode;
+        }
+
+        private static InternalLeagueCode GetInternalLeagueCode(string internalLeagueCodeString)
+        {
+            var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
+            return internalLeagueCode;
+        }
+
+        private static string GetInternalLeagueCodeString(Expander expander)
+        {
+            var internalLeagueCodeString = expander.Name.Substring(0, 4).Replace("_", "");
+            return internalLeagueCodeString;
         }
     }
 }

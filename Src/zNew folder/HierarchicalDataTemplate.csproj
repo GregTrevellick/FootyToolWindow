@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ReferenceData\Mappings.cs" />
+    <Compile Include="ReferenceData\LeagueCodeMappings.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="Dtos\GridType.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
