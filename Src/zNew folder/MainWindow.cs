@@ -79,8 +79,8 @@ namespace HierarchicalDataTemplate
             if (shouldShowLeague)
             {
                 expander.Visibility = Visibility.Visible;
-                expander.Header = internalLeagueCode.GetDescription();
-                //gregt         expander.Header += " " + gridType.GetDescription();
+                //expander.Header = internalLeagueCode.GetDescription();
+                ////gregt         expander.Header += " " + gridType.GetDescription();
             }
             else
             {
@@ -104,6 +104,8 @@ namespace HierarchicalDataTemplate
             {
                 var gridType = GetGridType(dataGrid.Name);
 
+                parentExpander.Header= internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+
                 if (ShouldExpandGrid(internalLeagueCode, gridType))
                 {
                     var color = (Color)ColorConverter.ConvertFromString("Blue");
@@ -117,7 +119,6 @@ namespace HierarchicalDataTemplate
                     if (internalToExternalMappingExists)
                     {
                         GetLeagueData(dataGrid, externalLeagueCode, gridType);
-                        //parentExpander.Visibility = Visibility.Visible;
                         parentExpander.IsExpanded = true;
                     }
                     else

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HierarchicalDataTemplate"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="325">
+        Title="MainWindow" Height="850" Width="425">
 
     <Window.Resources>
         <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
