@@ -79,8 +79,6 @@ namespace HierarchicalDataTemplate
             if (shouldShowLeague)
             {
                 expander.Visibility = Visibility.Visible;
-                //expander.Header = internalLeagueCode.GetDescription();
-                ////gregt         expander.Header += " " + gridType.GetDescription();
             }
             else
             {
