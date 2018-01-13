@@ -82,7 +82,7 @@ namespace HierarchicalDataTemplate
 
         private bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
-            if (Mappings2.LeaguesToShow.Contains(internalLeagueCode))
+            if (LeagueOptions.LeaguesToShow.Contains(internalLeagueCode))
             {
                 return true;
             }
@@ -100,7 +100,7 @@ namespace HierarchicalDataTemplate
                 return false;
             }
 
-            if (Mappings3.GridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
+            if (ExpanderOptions.GridToExpands.Any(x => x.internalLeagueCode == internalLeagueCode && x.gridType == gridType))
             {
                 return true;
             }

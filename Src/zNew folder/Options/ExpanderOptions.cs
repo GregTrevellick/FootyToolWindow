@@ -2,7 +2,7 @@
 
 namespace HierarchicalDataTemplate
 {
-    public static class Mappings3
+    public static class ExpanderOptions
     {
         public static List<GridToExpand> GridToExpands = new List<GridToExpand>
         {

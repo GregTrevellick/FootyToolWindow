@@ -2,7 +2,7 @@
 
 namespace HierarchicalDataTemplate
 {
-    public static class Mappings2
+    public static class LeagueOptions
     {
         public static List<InternalLeagueCode> LeaguesToShow = new List<InternalLeagueCode>
         {

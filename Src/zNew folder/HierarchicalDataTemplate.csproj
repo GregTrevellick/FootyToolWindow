@@ -60,8 +60,8 @@
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="Dtos\GridType.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
-    <Compile Include="ReferenceData\Mappings2.cs" />
-    <Compile Include="ReferenceData\Mappings3.cs" />
+    <Compile Include="Options\LeagueOptions.cs" />
+    <Compile Include="Options\ExpanderOptions.cs" />
     <Page Include="Assets\PlusMinusExpanderStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
