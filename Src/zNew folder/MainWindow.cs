@@ -20,11 +20,11 @@ namespace HierarchicalDataTemplate
                     ShowLeague = true,
                     LeagueSubOptions = new List<LeagueSubOption>
                     {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //    {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                    {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
                 //new LeagueOption{
                 //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
                 //    ShowLeague = true,
