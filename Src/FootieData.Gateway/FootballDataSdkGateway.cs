@@ -1,4 +1,5 @@
-﻿using FootballDataSDK.Services;
+﻿using System;
+using FootballDataSDK.Services;
 using FootieData.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace FootieData.Gateway
     public class FootballDataSdkGateway
     {
         private readonly FootDataServices _client;
+        private SoccerSeasonResult _soccerSeasonResult;
 
         public FootballDataSdkGateway()
         {
@@ -40,58 +42,35 @@ namespace FootieData.Gateway
 
         private async Task<LeagueStandings> GetLeagueResponseFromClient_Standings(string leagueIdentifier)
         {
-            var leagueId = await GetLeagueId1a(leagueIdentifier);
-
-            var tbl = await _client.LeagueTableAsync(leagueId);
-
             var result = new LeagueStandings
             {
                 Standings = new List<Standing>(),
             };
 
-            foreach (var sta in tbl.standing)
+            var leagueId = await GetLeagueId1a(leagueIdentifier);
+
+            if (leagueId != int.MinValue)                       
             {
-                result.Standings.Add(new Standing
+                var tbl = await _client.LeagueTableAsync(leagueId);
+
+                foreach (var sta in tbl.standing)
                 {
-                    Rank = sta.position,
-                    Team = sta.teamName,
-                    Played = sta.playedGames,
-                    //CrestURI = sta.crestURI,
-                    Points = sta.points,
-                    For = sta.goals,
-                    Against = sta.goalsAgainst,
-                    Diff = sta.goalDifference
-                });
+                    result.Standings.Add(new Standing
+                    {
+                        Rank = sta.position,
+                        Team = sta.teamName,
+                        Played = sta.playedGames,
+                        //CrestURI = sta.crestURI,
+                        Points = sta.points,
+                        For = sta.goals,
+                        Against = sta.goalsAgainst,
+                        Diff = sta.goalDifference
+                    });
+                }
             }
 
             return result;
         }
-
-        //private async Task<LeagueMatches> GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
-        //{
-        //    var leagueId = await GetLeagueId(leagueIdentifier);
-
-        //    var tbl = await _client.FixturesAsync(leagueId, timeFrame);
-
-        //    var result = new LeagueMatchesFixtures()
-        //    {
-        //        MatchFixtures = new List<Fixture>(),
-        //    };
-
-        //    foreach (var item in tbl.fixtures)
-        //    {
-        //        result.MatchFixtures.Add(new Fixture()
-        //        {
-        //             HomeName= item.homeTeamName,
-        //             AwayName= item.awayTeamName,
-        //             Date=item.date,
-        //             GoalsHome =item.result.goalsAwayTeam,
-        //             GoalsAway =item.result.goalsAwayTeam,
-        //        });
-        //    }
-
-        //    return result;
-        //}
 
         private async Task<LeagueMatchesResults> GetLeagueResponseFromClient_MatchesResult(string leagueIdentifier, string timeFrame)
         {
@@ -118,7 +97,6 @@ namespace FootieData.Gateway
 
             return result;
         }
-
 
         private async Task<LeagueMatchesFixtures> GetLeagueResponseFromClient_MatchesFixture(string leagueIdentifier, string timeFrame)
         {
@@ -149,59 +127,68 @@ namespace FootieData.Gateway
         private async Task<int> GetLeagueIdResult(string leagueIdentifier)
         {
             var taskSeasons = await GetLeagueId2r(leagueIdentifier);
-            //var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
-            return taskSeasons; //league.id;
+            return taskSeasons;
         }
-
 
         private async Task<int> GetLeagueIdFixture(string leagueIdentifier)
         {
             var taskSeasons = await GetLeagueId2f(leagueIdentifier);
-           // var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
-            return taskSeasons; //league.id;
+            return taskSeasons;
         }
-
-
-
 
         private async Task<int> GetLeagueId1a(string leagueIdentifier)
         {
-            var taskSeasons = await GetLeagueId1b(leagueIdentifier);
-            var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
-            return league.id;
-            //return taskSeasons;
+            if (_soccerSeasonResult == null)
+            {
+                //_soccerSeasonResult = await GetLeagueId1b();
+                _soccerSeasonResult = GetLeagueId1b();
+            }
+
+            if (_soccerSeasonResult == null ||
+                _soccerSeasonResult.Seasons == null||
+                _soccerSeasonResult.Seasons.Length == 0)
+            {
+                //throw new Exception("yep");
+                return int.MinValue;
+            }
+            else
+            {
+                var league = _soccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
+                return league.id;
+            }            
         }
 
-        private async Task<SoccerSeasonResult> GetLeagueId1b(string leagueIdentifier)
+        //private async Task<SoccerSeasonResult> GetLeagueId1b()
+        //{
+        //    var result = await _client.SoccerSeasonsAsync();
+        //    return result;
+        //}
+        private SoccerSeasonResult GetLeagueId1b()
         {
-            return await _client.SoccerSeasonsAsync();
+            var result = _client.SoccerSeasons();
+            return result;
         }
-
-
 
         private async Task<int> GetLeagueId2r(string leagueIdentifier)
         {
-            var taskSeasons = await GetLeagueId2rb(leagueIdentifier);
+            var taskSeasons = await GetLeagueId2rb();
             var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
             return league.id;
         }
 
-        private async Task<SoccerSeasonResult> GetLeagueId2rb(string leagueIdentifier)
+        private async Task<SoccerSeasonResult> GetLeagueId2rb()
         {
             return await _client.SoccerSeasonsAsync();
         }
 
-
-
-
         private async Task<int> GetLeagueId2f(string leagueIdentifier)
         {
-            var taskSeasons = await GetLeagueId2fb(leagueIdentifier);
+            var taskSeasons = await GetLeagueId2fb();
             var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
             return league.id;
         }
 
-        private async Task<SoccerSeasonResult> GetLeagueId2fb(string leagueIdentifier)
+        private async Task<SoccerSeasonResult> GetLeagueId2fb()
         {
             return await _client.SoccerSeasonsAsync();
         }
