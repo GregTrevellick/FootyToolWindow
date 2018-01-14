@@ -6,6 +6,7 @@ using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootieData.Common.Helpers;
 
 namespace HierarchicalDataTemplate
 {
@@ -64,11 +65,13 @@ namespace HierarchicalDataTemplate
         };
 
         private readonly FootballDataSdkGateway _gateway;
+        private readonly WpfHelper _wpfHelper;
 
         public MainWindow()
         {
             InitializeComponent();
             _gateway = new FootballDataSdkGateway();
+            _wpfHelper = new WpfHelper();
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
@@ -100,7 +103,7 @@ namespace HierarchicalDataTemplate
 
             if (shouldShowLeague)
             {
-                var gridType = GetGridType(dataGrid.Name);
+                var gridType = _wpfHelper.GetGridType(dataGrid.Name);
 
                 parentExpander.Header= internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
 
@@ -138,7 +141,7 @@ namespace HierarchicalDataTemplate
 
         private bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
-            if (_generalOptions.LeagueOptions.Any(x=>x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
             {
                 return true;
             }
@@ -150,9 +153,9 @@ namespace HierarchicalDataTemplate
 
         private bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
         {
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode 
-                                                       && x.ShowLeague 
-                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType 
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+                                                       && x.ShowLeague
+                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
                                                                                         && ccc.Expand)))
             {
                 return true;
@@ -163,31 +166,30 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private static GridType GetGridType(string gridName)
-        {
-            GridType gridType = 0;
+        //private static GridType GetGridType(string gridName)
+        //{
+        //    GridType gridType = 0;
+        //    if (gridName.StartsWith("Standing"))
+        //    {
+        //        gridType = GridType.Standing;
+        //    }
+        //    else
+        //    {
+        //        if (gridName.StartsWith("Result"))
+        //        {
+        //            gridType = GridType.Result;
+        //        }
+        //        else
+        //        {
+        //            if (gridName.StartsWith("Fixture"))
+        //            {
+        //                gridType = GridType.Fixture;
+        //            }
+        //        }
+        //    }
 
-            if (gridName.StartsWith("Standing"))
-            {
-                gridType = GridType.Standing;
-            }
-            else
-            {
-                if (gridName.StartsWith("Result"))
-                {
-                    gridType = GridType.Result;
-                }
-                else
-                {
-                    if (gridName.StartsWith("Fixture"))
-                    {
-                        gridType = GridType.Fixture;
-                    }
-                }
-            }
-
-            return gridType;
-        }
+        //    return gridType;
+        //}
 
         private async void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
@@ -234,9 +236,9 @@ namespace HierarchicalDataTemplate
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
 
-        private static InternalLeagueCode InternalLeagueCode(Expander expander)
+        private InternalLeagueCode InternalLeagueCode(Expander expander)
         {
-            var internalLeagueCodeString = GetInternalLeagueCodeString(expander);
+            var internalLeagueCodeString = _wpfHelper.GetInternalLeagueCodeString(expander.Name);
             var internalLeagueCode = GetInternalLeagueCode(internalLeagueCodeString);
             return internalLeagueCode;
         }
@@ -247,11 +249,11 @@ namespace HierarchicalDataTemplate
             return internalLeagueCode;
         }
 
-        private static string GetInternalLeagueCodeString(Expander expander)
-        {
-            var internalLeagueCodeString = expander.Name.Substring(0, 4).Replace("_", "");
-            return internalLeagueCodeString;
-        }
+        //private static string GetInternalLeagueCodeString(string expanderName)
+        //{
+        //    var internalLeagueCodeString = expanderName.Substring(0, 4).Replace("_", "");
+        //    return internalLeagueCodeString;
+        //}
 
     }
 }
