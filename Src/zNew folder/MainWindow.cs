@@ -25,12 +25,12 @@ namespace HierarchicalDataTemplate
                     InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
                     ShowLeague = true,
                     LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
+                    {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
                 new LeagueOption{
                     InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
                     ShowLeague = true,
                     LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption {Expand =true,GridType = GridType.Fixture}}},
+                    {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
                 //new LeagueOption{
                 //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
                 //    ShowLeague = true,
@@ -89,12 +89,12 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async void DataGridLoaded_Any(object sender, RoutedEventArgs e)
+        private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             PopulateDataGrid(sender);
         }
 
-        private async void PopulateDataGrid(object sender)
+        private void PopulateDataGrid(object sender)
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
@@ -109,7 +109,7 @@ namespace HierarchicalDataTemplate
 
                 if (ShouldExpandGrid(internalLeagueCode, gridType))
                 {
-                    var color = (Color)ColorConverter.ConvertFromString("Blue");
+                    var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
                     dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
                     dataGrid.ColumnHeaderHeight = 2;
                     dataGrid.RowHeaderWidth = 2;
