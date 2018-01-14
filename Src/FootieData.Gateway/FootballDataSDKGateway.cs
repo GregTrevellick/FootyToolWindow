@@ -28,13 +28,13 @@ namespace FootieData.Gateway
 
         public async Task<LeagueMatches> GetLeagueResponse_Results(string leagueIdentifier)
         {
-            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "p30");
+            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "p7");
             return result;
         }
 
         public async Task<LeagueMatches> GetLeagueResponse_Fixtures(string leagueIdentifier)
         {
-            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "n30");
+            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "n7");
             return result;
         }
 
