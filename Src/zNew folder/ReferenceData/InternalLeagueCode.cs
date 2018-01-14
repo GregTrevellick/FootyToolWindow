@@ -12,13 +12,13 @@ namespace HierarchicalDataTemplate
         DE3,
         [Description("Dfb-Cup")]
         DE4,
-        [Description("Premiere League")]
+        [Description("English Premiere League")]
         UK1,
-        [Description("England League One")]
+        [Description("English League One")]
         UK2,
-        [Description("Championship")]
+        [Description("English Championship")]
         UK3,
-        [Description("FA-Cup")]
+        [Description("English F.A. Cup")]
         UK4,
         [Description("Serie A")]
         IT1,
@@ -40,13 +40,13 @@ namespace HierarchicalDataTemplate
         PT1,
         [Description("Greece Super League")]
         GR1,
-        [Description("Champions-League")]
+        [Description("UEFA Champions League")]
         UEFA1,
-        [Description("UEFA-Cup")]
+        [Description("UEFA Europa Cup")]
         UEFA2,
-        [Description("Europe European-Cup of Nations")]
+        [Description("UEFA Europe European-Cup of Nations")]
         UEFA3,
-        [Description("World-Cup")]
+        [Description("FIFA World Cup")]
         FIFA1,
     }
 

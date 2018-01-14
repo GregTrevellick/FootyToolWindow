@@ -6,7 +6,8 @@ namespace FootieData.Common.Helpers
     {
         public string GetInternalLeagueCodeString(string expanderName)
         {
-            var internalLeagueCodeString = expanderName.Substring(0, 4).Replace("_", "");
+            var underscorePosition = expanderName.IndexOf('_');
+            var internalLeagueCodeString = expanderName.Substring(0, underscorePosition).Replace("_", "");
             return internalLeagueCodeString;
         }
 

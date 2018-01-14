@@ -31,6 +31,116 @@ namespace HierarchicalDataTemplate
                     ShowLeague = true,
                     LeagueSubOptions = new List<LeagueSubOption>
                     {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+
+
+
+                //uk2
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK2,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK2,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK2,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+                //uk4
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+                //es3
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+                //uefa1
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+                //uefa2
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+                //fifa1
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                new LeagueOption{
+                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+
+
+
+
+
                 //new LeagueOption{
                 //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
                 //    ShowLeague = true,
