@@ -197,21 +197,28 @@ namespace HierarchicalDataTemplate
                 dataGrid.ItemsSource = leagueResponse.Standings;
             }
 
-            if (gridType == GridType.Result || gridType == GridType.Fixture)
+            if (gridType == GridType.Result)
             {
-                LeagueMatches leagueResponse = null;
+                LeagueMatchesResults leagueMatchesResults = null;
 
                 if (gridType == GridType.Result)
                 {
-                    leagueResponse = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
+                    leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
                 }
+                dataGrid.ItemsSource = leagueMatchesResults.MatchFixtures;
+
+            }
+
+            if (gridType == GridType.Fixture)
+            { 
+                LeagueMatchesFixtures leagueMatchesFixtures = null;
 
                 if (gridType == GridType.Fixture)
                 {
-                    leagueResponse = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+                    leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
                 }
 
-                dataGrid.ItemsSource = leagueResponse?.MatchFixtures;
+                dataGrid.ItemsSource = leagueMatchesFixtures.MatchFixtures;
             }
         }
 

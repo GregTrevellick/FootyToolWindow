@@ -26,15 +26,15 @@ namespace FootieData.Gateway
             return result;
         }
 
-        public async Task<LeagueMatches> GetLeagueResponse_Results(string leagueIdentifier)
+        public async Task<LeagueMatchesResults> GetLeagueResponse_Results(string leagueIdentifier)
         {
-            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "p7");
+            var result = await GetLeagueResponseFromClient_MatchesResult(leagueIdentifier, "p7");
             return result;
         }
 
-        public async Task<LeagueMatches> GetLeagueResponse_Fixtures(string leagueIdentifier)
+        public async Task<LeagueMatchesFixtures> GetLeagueResponse_Fixtures(string leagueIdentifier)
         {
-            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "n7");
+            var result = await GetLeagueResponseFromClient_MatchesFixture(leagueIdentifier, "n7");
             return result;
         }
 
@@ -67,13 +67,39 @@ namespace FootieData.Gateway
             return result;
         }
 
-        private async Task<LeagueMatches> GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
+        //private async Task<LeagueMatches> GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
+        //{
+        //    var leagueId = await GetLeagueId(leagueIdentifier);
+
+        //    var tbl = await _client.FixturesAsync(leagueId, timeFrame);
+
+        //    var result = new LeagueMatchesFixtures()
+        //    {
+        //        MatchFixtures = new List<Fixture>(),
+        //    };
+
+        //    foreach (var item in tbl.fixtures)
+        //    {
+        //        result.MatchFixtures.Add(new Fixture()
+        //        {
+        //             HomeName= item.homeTeamName,
+        //             AwayName= item.awayTeamName,
+        //             Date=item.date,
+        //             GoalsHome =item.result.goalsAwayTeam,
+        //             GoalsAway =item.result.goalsAwayTeam,
+        //        });
+        //    }
+
+        //    return result;
+        //}
+
+        private async Task<LeagueMatchesResults> GetLeagueResponseFromClient_MatchesResult(string leagueIdentifier, string timeFrame)
         {
             var leagueId = await GetLeagueId(leagueIdentifier);
 
             var tbl = await _client.FixturesAsync(leagueId, timeFrame);
 
-            var result = new LeagueMatches
+            var result = new LeagueMatchesResults()
             {
                 MatchFixtures = new List<Fixture>(),
             };
@@ -82,16 +108,44 @@ namespace FootieData.Gateway
             {
                 result.MatchFixtures.Add(new Fixture()
                 {
-                     HomeName= item.homeTeamName,
-                     AwayName= item.awayTeamName,
-                     Date=item.date,
-                     GoalsHome =item.result.goalsAwayTeam,
-                     GoalsAway =item.result.goalsAwayTeam,
+                    HomeName = item.homeTeamName,
+                    AwayName = item.awayTeamName,
+                    Date = item.date,
+                    GoalsHome = item.result.goalsAwayTeam,
+                    GoalsAway = item.result.goalsAwayTeam,
                 });
             }
 
             return result;
         }
+
+
+        private async Task<LeagueMatchesFixtures> GetLeagueResponseFromClient_MatchesFixture(string leagueIdentifier, string timeFrame)
+        {
+            var leagueId = await GetLeagueId(leagueIdentifier);
+
+            var tbl = await _client.FixturesAsync(leagueId, timeFrame);
+
+            var result = new LeagueMatchesFixtures()
+            {
+                MatchFixtures = new List<Fixture>(),
+            };
+
+            foreach (var item in tbl.fixtures)
+            {
+                result.MatchFixtures.Add(new Fixture()
+                {
+                    HomeName = item.homeTeamName,
+                    AwayName = item.awayTeamName,
+                    Date = item.date,
+                    GoalsHome = item.result.goalsAwayTeam,
+                    GoalsAway = item.result.goalsAwayTeam,
+                });
+            }
+
+            return result;
+        }
+
 
         private async Task<int> GetLeagueId(string leagueIdentifier)
         {
