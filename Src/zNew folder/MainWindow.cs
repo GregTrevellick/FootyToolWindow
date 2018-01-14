@@ -87,6 +87,26 @@ namespace HierarchicalDataTemplate
             {
                 expander.Visibility = Visibility.Collapsed;
             }
+
+            expander.Style = (Style)TryFindResource("PlusMinusExpander");
+        }
+
+        public static object TryFindResource(FrameworkElement element, object resourceKey)
+        {
+            var currentElement = element;
+
+            while (currentElement != null)
+            {
+                var resource = currentElement.Resources[resourceKey];
+                if (resource != null)
+                {
+                    return resource;
+                }
+
+                currentElement = currentElement.Parent as FrameworkElement;
+            }
+
+            return Application.Current.Resources[resourceKey];
         }
 
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)

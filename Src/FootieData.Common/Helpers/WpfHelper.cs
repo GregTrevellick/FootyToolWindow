@@ -20,13 +20,13 @@ namespace FootieData.Common.Helpers
             }
             else
             {
-                if (gridName.StartsWith("Result"))
+                if (gridName.StartsWith("Results1"))
                 {
                     gridType = GridType.Result;
                 }
                 else
                 {
-                    if (gridName.StartsWith("Fixture"))
+                    if (gridName.StartsWith("Fixtures"))
                     {
                         gridType = GridType.Fixture;
                     }
