@@ -11,7 +11,6 @@ namespace FootieData.Gateway
     public class FootballDataSdkGateway
     {
         private readonly FootDataServices _client;
-        //private string _leagueCaption;
 
         public FootballDataSdkGateway()
         {
@@ -48,7 +47,6 @@ namespace FootieData.Gateway
             var result = new LeagueStandings
             {
                 Standings = new List<Standing>(),
-                //LeagueCaption = _leagueCaption
             };
 
             foreach (var sta in tbl.standing)
@@ -78,7 +76,6 @@ namespace FootieData.Gateway
             var result = new LeagueMatches
             {
                 MatchFixtures = new List<Fixture>(),
-                //LeagueCaption = _leagueCaption
             };
 
             foreach (var item in tbl.fixtures)
@@ -98,17 +95,14 @@ namespace FootieData.Gateway
 
         private async Task<int> GetLeagueId(string leagueIdentifier)
         {
-            var taskSeasons = await GetLeagueId2(leagueIdentifier);//await _client.SoccerSeasonsAsync());//.SoccerSeasons();
-            //var league = taskSeasons.Result.Seasons.First(x => x.league == leagueIdentifier);
-            //return league.id;
-            return 445;
+            var taskSeasons = await GetLeagueId2(leagueIdentifier);
+            var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
+            return league.id;
         }
 
         private async Task<SoccerSeasonResult> GetLeagueId2(string leagueIdentifier)
         {
             return await _client.SoccerSeasonsAsync();
-                //.Result.Seasons
-                //.First(x => x.league == leagueIdentifier);
         }
     }
 }
