@@ -13,7 +13,7 @@
 
     <StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelLeagueMode">
-            <Button Content="Boss mode" Click="Click_Handler1">
+            <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <ContentPresenter />
@@ -49,16 +49,14 @@
             </Expander>
         </StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelBossMode" Visibility="Collapsed">
-            <TextBlock Text="Any.sln" />
-            <TextBlock Text="SomeThing.csproj" />
-            <TextBlock Text="Program.cs" />
-            <Button Content="league mode" Click="Click_Handler2">
+            <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <ContentPresenter />
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            <TextBlock Name="TextBlockBossMode" />
         </StackPanel>
     </StackPanel>
 

@@ -222,6 +222,7 @@ namespace HierarchicalDataTemplate
         {
             StackPanelLeagueMode.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Visible;
+            TextBlockBossMode.Text = $"a{Environment.NewLine}b";
         }
 
         private void Click_Handler2(object sender, RoutedEventArgs e)
