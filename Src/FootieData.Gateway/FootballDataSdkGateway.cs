@@ -2,13 +2,15 @@
 using FootieData.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using FootballDataSDK.Models.Results;
+using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
 {
     public class FootballDataSdkGateway
     {
         private readonly FootDataServices _client;
-        private string _leagueCaption;
 
         public FootballDataSdkGateway()
         {
@@ -18,34 +20,33 @@ namespace FootieData.Gateway
             };
         }
 
-        public LeagueStandings GetLeagueResponse_Standings(string leagueIdentifier)
+        public async Task<LeagueStandings> GetLeagueResponse_Standings(string leagueIdentifier)
         {
-            var result = GetLeagueResponseFromClient_Standings(leagueIdentifier);
+            var result = await GetLeagueResponseFromClient_Standings(leagueIdentifier);
             return result;
         }
 
-        public LeagueMatches GetLeagueResponse_Results(string leagueIdentifier)
+        public async Task<LeagueMatches> GetLeagueResponse_Results(string leagueIdentifier)
         {
-            var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "p30");
+            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "p30");
             return result;
         }
 
-        public LeagueMatches GetLeagueResponse_Fixtures(string leagueIdentifier)
+        public async Task<LeagueMatches> GetLeagueResponse_Fixtures(string leagueIdentifier)
         {
-            var result = GetLeagueResponseFromClient_Matches(leagueIdentifier, "n30");
+            var result = await GetLeagueResponseFromClient_Matches(leagueIdentifier, "n30");
             return result;
         }
 
-        private LeagueStandings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
+        private async Task<LeagueStandings> GetLeagueResponseFromClient_Standings(string leagueIdentifier)
         {
-            var leagueId = GetLeagueId(leagueIdentifier);
+            var leagueId = await GetLeagueId(leagueIdentifier);
 
-            var tbl = _client.LeagueTable(leagueId);
+            var tbl = await _client.LeagueTableAsync(leagueId);
 
             var result = new LeagueStandings
             {
                 Standings = new List<Standing>(),
-                LeagueCaption = _leagueCaption
             };
 
             foreach (var sta in tbl.standing)
@@ -66,16 +67,15 @@ namespace FootieData.Gateway
             return result;
         }
 
-        private LeagueMatches GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
+        private async Task<LeagueMatches> GetLeagueResponseFromClient_Matches(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = GetLeagueId(leagueIdentifier);
+            var leagueId = await GetLeagueId(leagueIdentifier);
 
-            var tbl = _client.Fixtures(leagueId, timeFrame);
+            var tbl = await _client.FixturesAsync(leagueId, timeFrame);
 
             var result = new LeagueMatches
             {
                 MatchFixtures = new List<Fixture>(),
-                LeagueCaption = _leagueCaption
             };
 
             foreach (var item in tbl.fixtures)
@@ -93,12 +93,16 @@ namespace FootieData.Gateway
             return result;
         }
 
-        private int GetLeagueId(string leagueIdentifier)
+        private async Task<int> GetLeagueId(string leagueIdentifier)
         {
-            var leagues = _client.SoccerSeasons();
-            var league = leagues.Seasons.First(x => x.league == leagueIdentifier);
-            _leagueCaption = league.caption;
+            var taskSeasons = await GetLeagueId2(leagueIdentifier);
+            var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
             return league.id;
+        }
+
+        private async Task<SoccerSeasonResult> GetLeagueId2(string leagueIdentifier)
+        {
+            return await _client.SoccerSeasonsAsync();
         }
     }
 }
