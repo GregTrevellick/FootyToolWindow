@@ -82,13 +82,12 @@ namespace HierarchicalDataTemplate
             if (shouldShowLeague)
             {
                 expander.Visibility = Visibility.Visible;
+                expander.Style = (Style)TryFindResource("PlusMinusExpander");
             }
             else
             {
                 expander.Visibility = Visibility.Collapsed;
             }
-
-            expander.Style = (Style)TryFindResource("PlusMinusExpander");
         }
 
         public static object TryFindResource(FrameworkElement element, object resourceKey)//gregt make private ?
