@@ -77,7 +77,7 @@ namespace HierarchicalDataTemplate
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
         {
             var expander = sender as Expander;
-            var internalLeagueCode = InternalLeagueCode(expander);
+            var internalLeagueCode = InternalLeagueCode(expander.Name);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
             if (shouldShowLeague)
             {
@@ -98,7 +98,7 @@ namespace HierarchicalDataTemplate
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
-            var internalLeagueCode = InternalLeagueCode(parentExpander);
+            var internalLeagueCode = InternalLeagueCode(parentExpander.Name);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
 
             if (shouldShowLeague)
@@ -236,9 +236,9 @@ namespace HierarchicalDataTemplate
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
 
-        private InternalLeagueCode InternalLeagueCode(Expander expander)
+        private InternalLeagueCode InternalLeagueCode(string expanderName)
         {
-            var internalLeagueCodeString = _wpfHelper.GetInternalLeagueCodeString(expander.Name);
+            var internalLeagueCodeString = _wpfHelper.GetInternalLeagueCodeString(expanderName);
             var internalLeagueCode = GetInternalLeagueCode(internalLeagueCodeString);
             return internalLeagueCode;
         }
