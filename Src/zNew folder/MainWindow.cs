@@ -91,7 +91,7 @@ namespace HierarchicalDataTemplate
             expander.Style = (Style)TryFindResource("PlusMinusExpander");
         }
 
-        public static object TryFindResource(FrameworkElement element, object resourceKey)
+        public static object TryFindResource(FrameworkElement element, object resourceKey)//gregt make private ?
         {
             var currentElement = element;
 
