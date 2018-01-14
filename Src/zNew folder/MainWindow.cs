@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FootieData.Common.Helpers;
 using FootieData.Entities;
 using FootieData.Gateway;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using FootieData.Common.Helpers;
 
 namespace HierarchicalDataTemplate
 {
