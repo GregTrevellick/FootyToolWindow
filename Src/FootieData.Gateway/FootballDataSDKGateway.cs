@@ -95,7 +95,7 @@ namespace FootieData.Gateway
 
         private async Task<LeagueMatchesResults> GetLeagueResponseFromClient_MatchesResult(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = await GetLeagueId(leagueIdentifier);
+            var leagueId = await GetLeagueIdResult(leagueIdentifier);
 
             var tbl = await _client.FixturesAsync(leagueId, timeFrame);
 
@@ -122,7 +122,7 @@ namespace FootieData.Gateway
 
         private async Task<LeagueMatchesFixtures> GetLeagueResponseFromClient_MatchesFixture(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = await GetLeagueId(leagueIdentifier);
+            var leagueId = await GetLeagueIdFixture(leagueIdentifier);
 
             var tbl = await _client.FixturesAsync(leagueId, timeFrame);
 
@@ -146,6 +146,20 @@ namespace FootieData.Gateway
             return result;
         }
 
+        private async Task<int> GetLeagueIdResult(string leagueIdentifier)
+        {
+            var taskSeasons = await GetLeagueId2(leagueIdentifier);
+            var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
+            return league.id;
+        }
+
+
+        private async Task<int> GetLeagueIdFixture(string leagueIdentifier)
+        {
+            var taskSeasons = await GetLeagueId2(leagueIdentifier);
+            var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
+            return league.id;
+        }
 
         private async Task<int> GetLeagueId(string leagueIdentifier)
         {
