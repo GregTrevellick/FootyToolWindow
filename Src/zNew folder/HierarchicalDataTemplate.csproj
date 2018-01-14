@@ -59,7 +59,6 @@
     <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="ReferenceData\LeagueCodeMappings.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
-    <Compile Include="Dtos\GridType.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
     <Compile Include="Options\GeneralOptions.cs" />
     <Page Include="Assets\PlusMinusExpanderStyles.xaml">
@@ -74,7 +73,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Options\LeagueSubOption.cs" />
     <Compile Include="MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -110,6 +108,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FootieData.Common\FootieData.Common.csproj">
+      <Project>{d2a60350-d05c-4005-a3f7-f8f66527e793}</Project>
+      <Name>FootieData.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootieData.Gateway\FootieData.Gateway.csproj">
       <Project>{296f4cc7-491d-47e3-8caf-e88dd3223c6c}</Project>
       <Name>FootieData.Gateway</Name>
