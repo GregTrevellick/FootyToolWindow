@@ -86,12 +86,12 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
+        private async void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             PopulateDataGrid(sender);
         }
 
-        private void PopulateDataGrid(object sender)
+        private async void PopulateDataGrid(object sender)
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
@@ -189,11 +189,11 @@ namespace HierarchicalDataTemplate
             return gridType;
         }
 
-        private void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private async void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (gridType == GridType.Standing)
             {
-                var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+                var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
                 dataGrid.ItemsSource = leagueResponse.Standings;
             }
 
@@ -203,12 +203,12 @@ namespace HierarchicalDataTemplate
 
                 if (gridType == GridType.Result)
                 {
-                    leagueResponse = _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
+                    leagueResponse = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
                 }
 
                 if (gridType == GridType.Fixture)
                 {
-                    leagueResponse = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+                    leagueResponse = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
                 }
 
                 dataGrid.ItemsSource = leagueResponse?.MatchFixtures;
