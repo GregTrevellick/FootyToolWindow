@@ -12,6 +12,7 @@ namespace FootieData.Gateway
     public class FootballDataSdkGateway
     {
         private readonly FootDataServices _client;
+        private SoccerSeasonResult _soccerSeasonResult;
 
         public FootballDataSdkGateway()
         {
@@ -137,19 +138,35 @@ namespace FootieData.Gateway
 
         private async Task<int> GetLeagueId1a(string leagueIdentifier)
         {
-            var taskSeasons = await GetLeagueId1b();
-            if (taskSeasons == null)
+            if (_soccerSeasonResult == null)
+            {
+                //_soccerSeasonResult = await GetLeagueId1b();
+                _soccerSeasonResult = GetLeagueId1b();
+            }
+
+            if (_soccerSeasonResult == null ||
+                _soccerSeasonResult.Seasons == null||
+                _soccerSeasonResult.Seasons.Length == 0)
             {
                 //throw new Exception("yep");
                 return int.MinValue;
             }
-            var league = taskSeasons.Seasons.FirstOrDefault(x => x.league == leagueIdentifier);
-            return league.id;
+            else
+            {
+                var league = _soccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
+                return league.id;
+            }            
         }
 
-        private async Task<SoccerSeasonResult> GetLeagueId1b()
+        //private async Task<SoccerSeasonResult> GetLeagueId1b()
+        //{
+        //    var result = await _client.SoccerSeasonsAsync();
+        //    return result;
+        //}
+        private SoccerSeasonResult GetLeagueId1b()
         {
-            return await _client.SoccerSeasonsAsync();
+            var result = _client.SoccerSeasons();
+            return result;
         }
 
         private async Task<int> GetLeagueId2r(string leagueIdentifier)
