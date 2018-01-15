@@ -10,8 +10,8 @@
     <Window.Resources>
         <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
     </Window.Resources>
-
-    <StackPanel>
+    <ScrollViewer >
+        <StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelLeagueMode">
             <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right">
                 <Button.Template>
@@ -239,7 +239,7 @@
             </Button>
             <TextBlock Name="TextBlockBossMode" />
         </StackPanel>
-    </StackPanel>
-
+      </StackPanel>
+    </ScrollViewer >
 
 </Window>
