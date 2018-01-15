@@ -1,10 +1,9 @@
-﻿using System;
+﻿using FootballDataSDK.Models.Results;
 using FootballDataSDK.Services;
 using FootieData.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FootballDataSDK.Models.Results;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
