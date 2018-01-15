@@ -13,170 +13,65 @@ namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
-        private GeneralOptions _generalOptions = new GeneralOptions
+        private void AddThem(InternalLeagueCode internalLeagueCode)
         {
-            LeagueOptions = new List<LeagueOption>
+            _generalOptions.LeagueOptions.Add(
+                new LeagueOption
+                {
+                    InternalLeagueCode = internalLeagueCode,
+                    ShowLeague = true,
+                    LeagueSubOptions = new List<LeagueSubOption>
+                        {new LeagueSubOption {Expand = true, GridType = GridType.Standing}}
+                });
+
+            _generalOptions.LeagueOptions.Add(new LeagueOption
             {
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                InternalLeagueCode = internalLeagueCode,
+                ShowLeague = true,
+                LeagueSubOptions = new List<LeagueSubOption>
+                    {new LeagueSubOption {Expand = false, GridType = GridType.Result}}
+            });
 
+            _generalOptions.LeagueOptions.Add(new LeagueOption
+            {
+                InternalLeagueCode = internalLeagueCode,
+                ShowLeague = true,
+                LeagueSubOptions = new List<LeagueSubOption>
+                    {new LeagueSubOption {Expand = false, GridType = GridType.Fixture}}
+            });
+        }
 
+        private void GetGeneralOptions()
+        {
+            _generalOptions = new GeneralOptions
+            {
+                LeagueOptions = new List<LeagueOption>()
+            };
 
-
-                //uk2
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK2,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK2,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK2,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
-
-                //uk4 (fa cup)
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
-
-                //es3 (copa del rey)
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
-
-                ////uefa1 (champions league)
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
-
-                //uefa2(europa league)
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
-
-                //fifa1 (world cup)
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
-
-
-
-
-
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE1,
-                //    ShowLeague = true,
-                //    LeagueSubOptions = new List<LeagueSubOption>
-                //        {new LeagueSubOption {Expand = false,GridType = GridType.Fixture}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE2,
-                //    ShowLeague = false},
-                //    //LeagueSubOptions = new List<LeagueSubOption>
-                //    //    {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE2,
-                //    ShowLeague = false},
-                //    //LeagueSubOptions = new List<LeagueSubOption>
-                //    //    {new LeagueSubOption{Expand = true,GridType = GridType.Result}}},
-                //new LeagueOption{
-                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.DE2,
-                //    ShowLeague = false},
-                //    //LeagueSubOptions = new List<LeagueSubOption>
-                //    //    {new LeagueSubOption {Expand = false,GridType = GridType.Fixture}}},
-            }
-        };
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE3);
+            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE4);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES3);
+            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES3);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.GR1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.NL1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.PT1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK3);
+            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK4);
+        }
 
         private readonly FootballDataSdkGateway _gateway;
         private readonly WpfHelper _wpfHelper;
+        private GeneralOptions _generalOptions;
 
         public MainWindow()
         {
@@ -189,6 +84,8 @@ namespace HierarchicalDataTemplate
             _gateway = new FootballDataSdkGateway(_footDataServices);
 
             _wpfHelper = new WpfHelper();
+
+            GetGeneralOptions();
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)

@@ -4,6 +4,14 @@ namespace HierarchicalDataTemplate
 {
     public enum InternalLeagueCode
     {
+        [Description("English Premiere League")]
+        UK1,
+        [Description("English League One")]
+        UK2,
+        [Description("English Championship")]
+        UK3,
+        [Description("English F.A. Cup")]
+        UK4,       
         [Description("Bundesliga 1")]
         DE1,
         [Description("Bundesliga 2 ")]
@@ -12,14 +20,6 @@ namespace HierarchicalDataTemplate
         DE3,
         [Description("Dfb-Cup")]
         DE4,
-        [Description("English Premiere League")]
-        UK1,
-        [Description("English League One")]
-        UK2,
-        [Description("English Championship")]
-        UK3,
-        [Description("English F.A. Cup")]
-        UK4,
         [Description("Serie A")]
         IT1,
         [Description("Serie B")]
