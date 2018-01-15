@@ -11,15 +11,12 @@ namespace FootieData.Gateway
 {
     public class FootballDataSdkGateway
     {
-        private readonly FootDataServices _client;
+        private readonly FootDataServices _footDataServices;
         private SoccerSeasonResult _soccerSeasonResult;
 
-        public FootballDataSdkGateway()
+        public FootballDataSdkGateway(FootDataServices footDataServices)
         {
-            _client = new FootDataServices
-            {
-                AuthToken = "52109775b1584a93854ca187690ed4bb"
-            };
+            _footDataServices = footDataServices;
         }
 
         public async Task<LeagueStandings> GetLeagueResponse_Standings(string leagueIdentifier)
@@ -51,7 +48,7 @@ namespace FootieData.Gateway
 
             if (leagueId != int.MinValue)                       
             {
-                var tbl = await _client.LeagueTableAsync(leagueId);
+                var tbl = await _footDataServices.LeagueTableAsync(leagueId);
 
                 foreach (var sta in tbl.standing)
                 {
@@ -76,7 +73,7 @@ namespace FootieData.Gateway
         {
             var leagueId = await GetLeagueIdResult(leagueIdentifier);
 
-            var tbl = await _client.FixturesAsync(leagueId, timeFrame);
+            var tbl = await _footDataServices.FixturesAsync(leagueId, timeFrame);
 
             var result = new LeagueMatchesResults()
             {
@@ -102,7 +99,7 @@ namespace FootieData.Gateway
         {
             var leagueId = await GetLeagueIdFixture(leagueIdentifier);
 
-            var tbl = await _client.FixturesAsync(leagueId, timeFrame);
+            var tbl = await _footDataServices.FixturesAsync(leagueId, timeFrame);
 
             var result = new LeagueMatchesFixtures()
             {
@@ -140,8 +137,8 @@ namespace FootieData.Gateway
         {
             if (_soccerSeasonResult == null)
             {
-                //_soccerSeasonResult = await GetLeagueId1b();
-                _soccerSeasonResult = GetLeagueId1b();
+                _soccerSeasonResult = await GetLeagueId1b();
+                //_soccerSeasonResult = GetLeagueId1b();
             }
 
             if (_soccerSeasonResult == null ||
@@ -158,16 +155,16 @@ namespace FootieData.Gateway
             }            
         }
 
-        //private async Task<SoccerSeasonResult> GetLeagueId1b()
-        //{
-        //    var result = await _client.SoccerSeasonsAsync();
-        //    return result;
-        //}
-        private SoccerSeasonResult GetLeagueId1b()
+        private async Task<SoccerSeasonResult> GetLeagueId1b()
         {
-            var result = _client.SoccerSeasons();
+            var result = await _footDataServices.SoccerSeasonsAsync();
             return result;
         }
+        //private SoccerSeasonResult GetLeagueId1b()
+        //{
+        //    var result = _footDataServices.SoccerSeasons();
+        //    return result;
+        //}
 
         private async Task<int> GetLeagueId2r(string leagueIdentifier)
         {
@@ -178,7 +175,7 @@ namespace FootieData.Gateway
 
         private async Task<SoccerSeasonResult> GetLeagueId2rb()
         {
-            return await _client.SoccerSeasonsAsync();
+            return await _footDataServices.SoccerSeasonsAsync();
         }
 
         private async Task<int> GetLeagueId2f(string leagueIdentifier)
@@ -190,7 +187,7 @@ namespace FootieData.Gateway
 
         private async Task<SoccerSeasonResult> GetLeagueId2fb()
         {
-            return await _client.SoccerSeasonsAsync();
+            return await _footDataServices.SoccerSeasonsAsync();
         }
     }
 }
