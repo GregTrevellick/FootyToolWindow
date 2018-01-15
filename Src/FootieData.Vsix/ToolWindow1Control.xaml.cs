@@ -2,6 +2,7 @@
 using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
+using FootballDataSDK.Services;
 
 namespace FootieData.Vsix
 {
@@ -19,7 +20,12 @@ namespace FootieData.Vsix
         public ToolWindow1Control()
         {
             InitializeComponent();
-            _gateway = new FootballDataSdkGateway();
+
+            var _footDataServices = new FootDataServices
+            {
+                AuthToken = "52109775b1584a93854ca187690ed4bb"
+            };
+            _gateway = new FootballDataSdkGateway(_footDataServices);
 
             if (_showPl)
             {

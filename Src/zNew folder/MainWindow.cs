@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootballDataSDK.Services;
 
 namespace HierarchicalDataTemplate
 {
@@ -52,90 +53,90 @@ namespace HierarchicalDataTemplate
                     LeagueSubOptions = new List<LeagueSubOption>
                         {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
 
-                //uk4
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                //uk4 (fa cup)
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UK4,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
 
-                //es3
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                //es3 (copa del rey)
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.ES3,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
 
-                //uefa1
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                ////uefa1 (champions league)
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA1,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
 
-                //uefa2
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                //uefa2(europa league)
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.UEFA2,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
 
-                //fifa1
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
-                new LeagueOption{
-                    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
+                //fifa1 (world cup)
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = true,GridType = GridType.Standing}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption{Expand = false,GridType = GridType.Result}}},
+                //new LeagueOption{
+                //    InternalLeagueCode= HierarchicalDataTemplate.InternalLeagueCode.FIFA1,
+                //    ShowLeague = true,
+                //    LeagueSubOptions = new List<LeagueSubOption>
+                //        {new LeagueSubOption {Expand =false,GridType = GridType.Fixture}}},
 
 
 
@@ -180,7 +181,13 @@ namespace HierarchicalDataTemplate
         public MainWindow()
         {
             InitializeComponent();
-            _gateway = new FootballDataSdkGateway();
+
+            var _footDataServices = new FootDataServices
+            {
+                AuthToken = "52109775b1584a93854ca187690ed4bb"
+            };
+            _gateway = new FootballDataSdkGateway(_footDataServices);
+
             _wpfHelper = new WpfHelper();
         }
 
