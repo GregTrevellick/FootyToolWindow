@@ -115,10 +115,13 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private static async void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        //private static async void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        //{
+        //    await Task.Run(() => LoadShownData(externalLeagueCode, gridType));
+        //}
+        private static void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
-            // This method runs asynchronously.
-            await Task.Run(() => LoadShownData(externalLeagueCode, gridType));
+            LoadShownData(externalLeagueCode, gridType);
         }
 
         private static async void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
@@ -224,7 +227,7 @@ namespace HierarchicalDataTemplate
                     var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
                     if (internalToExternalMappingExists)
                     {
-                        //GetLeagueData(dataGrid, externalLeagueCode, gridType);
+                        GetLeagueData(dataGrid, externalLeagueCode, gridType);
                         parentExpander.IsExpanded = true;
                     }
                     else
