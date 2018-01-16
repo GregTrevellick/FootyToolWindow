@@ -67,6 +67,7 @@
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
     <Compile Include="Options\GeneralOptions.cs" />
+    <Compile Include="TempryGetOptions.cs" />
     <Page Include="Assets\PlusMinusExpanderStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
