@@ -208,7 +208,7 @@ namespace HierarchicalDataTemplate
 
             try
             {
-                var result = await PopulateDataGridAsync(dataGrid, parentExpanderName, gridType);
+                var result = await PopulateDataGridAsync(parentExpanderName, gridType);
                 //next lines wont run til LoginAsync has finished
                 switch (gridType)
                 {
@@ -233,7 +233,7 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async Task<string> PopulateDataGridAsync(DataGrid dataGrid, string parentExpanderName, GridType gridType)
+        private async Task<string> PopulateDataGridAsync(string parentExpanderName, GridType gridType)
         {
             try
             {
