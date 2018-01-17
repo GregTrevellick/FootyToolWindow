@@ -10,6 +10,7 @@
     <Window.Resources>
         <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
     </Window.Resources>
+    
     <ScrollViewer >
         <StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelLeagueMode">
@@ -20,6 +21,9 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            
+            <Button Content="abc" Name="MyBtn" Click="ButtonBase_OnClick"/>
+
             <Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" >
                 <local:MyDataGrid x:Name="Standing_Rand0001" Loaded="DataGridLoaded_Any" />
             </Expander>

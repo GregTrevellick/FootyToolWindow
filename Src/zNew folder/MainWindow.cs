@@ -4,6 +4,7 @@ using FootieData.Gateway;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,11 @@ namespace HierarchicalDataTemplate
         private static List<DataGridStanding2> dataGridStanding2s;
         private static List<DataGridResult2> dataGridResult2s;
         private static List<DataGridFixture2> dataGridFixture2s;
+
+        private static List<Standing> dataGridItemsSourceStanding;
+        private static List<Fixture> dataGridItemsSourceResult;
+        private static List<Fixture> dataGridItemsSourceFixture;
+        private static string parentExpanderHeader;
 
         public MainWindow()
         {
@@ -141,63 +147,265 @@ namespace HierarchicalDataTemplate
             return Application.Current.Resources[resourceKey];
         }
 
-        private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
+        #region button
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            //PopulateDataGrid2Async(sender);
-            PopulateDataGrid2(sender);
+            try
+            {
+                var result = await LoginAsync();
+                //next line wont run til LoginAsync has finished
+                MyBtn.Content = result;
+
+            }
+            catch (Exception)
+            {
+                MyBtn.Content = "internal error";
+            }
         }
 
-        //static async void PopulateDataGrid1(object sender)
-        //{
-        //    // This method runs asynchronously.
-        //    await Task.Run(() => PopulateDataGrid2(sender));
-        //}
+        private async Task<string> LoginAsync()
+        {
+            try
+            {
+                //the next 3 run at same time 
+                var loginTask = Task.Run(() =>
+                {
+                    Thread.Sleep(2000);
+                    return "login successful";
+                });
 
-        //private async void PopulateDataGrid2Async(object sender)
-        private void PopulateDataGrid2(object sender)
+                var payTask = Task.Delay(2000);
+
+                var purchaseTask = Task.Delay(1000);
+
+                //next line ensures that only when all 3 are done do we return 
+                await Task.WhenAll(loginTask, payTask, purchaseTask);
+
+                //all 3 done before this line runs
+                return loginTask.Result;
+            }
+            catch (Exception)
+            {
+                return "login failed";
+            }
+        }
+        #endregion
+
+        #region new DataGridLoaded_Any
+        private async void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
-            var internalLeagueCode = InternalLeagueCode(parentExpander.Name);
+            var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
+            dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
+            dataGrid.ColumnHeaderHeight = 2;
+            dataGrid.RowHeaderWidth = 2;
+            dataGrid.CanUserAddRows = false;
+            dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
+
+            var gridType = _wpfHelper.GetGridType(dataGrid.Name);
+            var parentExpanderName = parentExpander.Name;
+
+            try
+            {
+                var result = await PopulateDataGridAsync(dataGrid, parentExpanderName, gridType);
+                //next lines wont run til LoginAsync has finished
+                switch (gridType)
+                {
+                    case GridType.Unknown:
+                        break;
+                    case GridType.Standing:
+                        dataGrid.ItemsSource = dataGridItemsSourceStanding;
+                        break;
+                    case GridType.Result:
+                        dataGrid.ItemsSource = dataGridItemsSourceResult;
+                        break;
+                    case GridType.Fixture:
+                        dataGrid.ItemsSource = dataGridItemsSourceFixture;
+                        break;
+                }
+                MyBtn.Content = result;
+                parentExpander.Header = parentExpanderHeader;
+            }
+            catch (Exception)
+            {
+                MyBtn.Content = "DataGridLoaded_Any internal error";
+            }
+        }
+
+        private async Task<string> PopulateDataGridAsync(DataGrid dataGrid, string parentExpanderName, GridType gridType)
+        {
+            try
+            {
+                //the next 3 run at same time 
+                var standingsTask = Task.Run(() =>
+                {
+                    parentExpanderHeader = GetAndPopulateDataGrid(parentExpanderName, gridType);
+                    return "standings task done";
+                });
+
+                var resultsTask = Task.Delay(2);
+
+                var fixturesTask = Task.Delay(1);
+
+                //next line ensures that only when all 3 are done do we return 
+                await Task.WhenAll(standingsTask, resultsTask, fixturesTask);
+
+                //all 3 done before these line runs
+                var r = new Random();
+                var rv = r.Next();
+                return standingsTask.Result + rv; 
+            }
+            catch (Exception)
+            {
+                return "login failed";
+            }
+        }
+
+        private static string GetAndPopulateDataGrid(string parentExpanderName, GridType gridType)
+        {
+            var parentExpanderHeader = "parentExpanderHeader";
+
+            var internalLeagueCode = InternalLeagueCode(parentExpanderName);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
 
             if (shouldShowLeague)
             {
-                var gridType = _wpfHelper.GetGridType(dataGrid.Name);
 
-                parentExpander.Header= internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                parentExpanderHeader = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
 
                 if (ShouldExpandGrid(internalLeagueCode, gridType))
                 {
-                    var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
-                    dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
-                    dataGrid.ColumnHeaderHeight = 2;
-                    dataGrid.RowHeaderWidth = 2;
-                    dataGrid.CanUserAddRows = false;
-                    dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-
                     var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
                     if (internalToExternalMappingExists)
                     {
-                        GetLeagueData(dataGrid, externalLeagueCode, gridType);
-                        parentExpander.IsExpanded = true;
+                        switch (gridType)
+                        {
+                            case GridType.Unknown:
+                                break;
+                            case GridType.Standing:
+                                dataGridItemsSourceStanding = GetLeagueDataStanding(externalLeagueCode, gridType);
+                                break;
+                            case GridType.Result:
+                                dataGridItemsSourceResult = GetLeagueDataResult(externalLeagueCode, gridType);
+                                break;
+                            case GridType.Fixture:
+                                dataGridItemsSourceFixture = GetLeagueDataFixture(externalLeagueCode, gridType);
+                                break;
+                        }
+                        //parentExpander.IsExpanded = true;
                     }
                     else
                     {
                         //TODO ERROR
-                        parentExpander.IsExpanded = false;
+                        //parentExpander.IsExpanded = false;
                     }
                 }
                 else
                 {
-                    parentExpander.IsExpanded = false;
+                    //parentExpander.IsExpanded = false;
                 }
             }
             else
             {
-                parentExpander.Visibility = Visibility.Collapsed;
+                //parentExpander.Visibility = Visibility.Collapsed;
             }
+
+            return parentExpanderHeader;
         }
+
+        private static List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        {
+            if (!dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Standings.Count > 0))
+            {
+                LoadLeagueToShow(externalLeagueCode, gridType);
+                var dataGridItemsSource = dataGridStanding2s
+                    ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+                    .Select(x => x.Standings);
+                return dataGridItemsSource.First();
+            }
+            return null;
+        }
+
+        private static List<Fixture> GetLeagueDataResult(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        {
+            if (!dataGridResult2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Results.Count > 0))
+            {
+                LoadLeagueToShow(externalLeagueCode, gridType);
+                var dataGridItemsSource = dataGridResult2s
+                    ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+                    .Select(x => x.Results);
+                return dataGridItemsSource.First();
+            }
+            return null;
+        }
+
+        private static List<Fixture> GetLeagueDataFixture(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        {
+            if (!dataGridFixture2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Fixtures.Count > 0))
+            {
+                LoadLeagueToShow(externalLeagueCode, gridType);
+                var dataGridItemsSource = dataGridFixture2s
+                    ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+                    .Select(x => x.Fixtures);
+                return dataGridItemsSource.First();
+            }
+            return null;
+        }
+        #endregion
+
+        //static async void PopulateDataGrid1Async(object sender)
+        //{
+        //    // This method runs asynchronously.
+        //    await Task.Run(() => PopulateDataGrid2Async(sender));
+        //}
+
+        //private static async void PopulateDataGrid2Async(object sender)
+        //private static void PopulateDataGrid2Async(object sender)
+        //private void GetAndPopulateDataGrid(object sender)
+        //{
+        //    var dataGrid = sender as DataGrid;
+        //    Expander parentExpander = dataGrid.Parent as Expander;
+        //    var internalLeagueCode = InternalLeagueCode(parentExpander.Name);
+        //    var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+
+        //    if (shouldShowLeague)
+        //    {
+        //        var gridType = _wpfHelper.GetGridType(dataGrid.Name);
+
+        //        parentExpander.Header= internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+
+        //        if (ShouldExpandGrid(internalLeagueCode, gridType))
+        //        {
+        //            var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
+        //            dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
+        //            dataGrid.ColumnHeaderHeight = 2;
+        //            dataGrid.RowHeaderWidth = 2;
+        //            dataGrid.CanUserAddRows = false;
+        //            dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
+
+        //            var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+        //            if (internalToExternalMappingExists)
+        //            {
+        //                GetLeagueData(dataGrid, externalLeagueCode, gridType);
+        //                parentExpander.IsExpanded = true;
+        //            }
+        //            else
+        //            {
+        //                //TODO ERROR
+        //                parentExpander.IsExpanded = false;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            parentExpander.IsExpanded = false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        parentExpander.Visibility = Visibility.Collapsed;
+        //    }
+        //}
 
         private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
@@ -227,51 +435,81 @@ namespace HierarchicalDataTemplate
         }
 
         //private static async void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
-        private static void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
-        {
-            if (gridType == GridType.Standing)
-            {
-                //var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
-                //dataGrid.ItemsSource = leagueResponse.Standings;
+        ////private static void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
+        //{
+        //    if (gridType == GridType.Standing)
+        //    {
+        //        //var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+        //        //dataGrid.ItemsSource = leagueResponse.Standings;
 
-                if (dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode &&
-                                                x.Standings.Count > 0))
-                {
-                    //dataGridStanding2s is already populated so do nowt, not even setting the data grid source (as that will already have happened)
-                }
-                else
-                {
-                    //dataGridStanding2s is not populated for this league
-                    LoadLeagueToShow(externalLeagueCode, gridType);
-                    var dataGridItemsSource = dataGridStanding2s
-                        ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                        .Select(x => x.Standings);
-                    dataGrid.ItemsSource = dataGridItemsSource.First();
-                }
-            }
+        //        if (dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode &&
+        //                                        x.Standings.Count > 0))
+        //        {
+        //            //dataGridStanding2s is already populated so do nowt, not even setting the data grid source (as that will already have happened)
+        //        }
+        //        else
+        //        {
+        //            //dataGridStanding2s is not populated for this league
+        //            LoadLeagueToShow(externalLeagueCode, gridType);
+        //            var dataGridItemsSource = dataGridStanding2s
+        //                ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+        //                .Select(x => x.Standings);
+        //            dataGrid.ItemsSource = dataGridItemsSource.First();
+        //        }
+        //    }
 
-            if (gridType == GridType.Result)
-            {
-                //LeagueMatchesResults leagueMatchesResults = null;
-                //if (gridType == GridType.Result)
-                //{
-                //    leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
-                //}
-                //dataGrid.ItemsSource = leagueMatchesResults.MatchFixtures;
-                dataGrid.ItemsSource = dataGridResult2s?.Where(x => x.ExternalLeagueCode == externalLeagueCode).Select(x => x.Results); 
-            }
+        //    if (gridType == GridType.Result)
+        //    {
+        //        ////LeagueMatchesResults leagueMatchesResults = null;
+        //        ////if (gridType == GridType.Result)
+        //        ////{
+        //        ////    leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
+        //        ////}
+        //        ////dataGrid.ItemsSource = leagueMatchesResults.MatchFixtures;
+        //        //dataGrid.ItemsSource = dataGridResult2s?.Where(x => x.ExternalLeagueCode == externalLeagueCode).Select(x => x.Results); 
 
-            if (gridType == GridType.Fixture)
-            {
-                //LeagueMatchesFixtures leagueMatchesFixtures = null;
-                //if (gridType == GridType.Fixture)
-                //{
-                //    leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
-                //}
-                //dataGrid.ItemsSource = leagueMatchesFixtures.MatchFixtures;
-                dataGrid.ItemsSource = dataGridFixture2s?.Where(x => x.ExternalLeagueCode == externalLeagueCode).Select(x => x.Fixtures);;
-            }
-        }
+        //        if (dataGridResult2s.Any(x => x.ExternalLeagueCode == externalLeagueCode &&
+        //                                        x.Results.Count > 0))
+        //        {
+        //            //dataGridResult2s is already populated so do nowt, not even setting the data grid source (as that will already have happened)
+        //        }
+        //        else
+        //        {
+        //            //dataGridResult2s is not populated for this league
+        //            LoadLeagueToShow(externalLeagueCode, gridType);
+        //            var dataGridItemsSource = dataGridResult2s
+        //                ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+        //                .Select(x => x.Results);
+        //            dataGrid.ItemsSource = dataGridItemsSource.First();
+        //        }
+        //    }
+
+        //    if (gridType == GridType.Fixture)
+        //    {
+        //        ////LeagueMatchesFixtures leagueMatchesFixtures = null;
+        //        ////if (gridType == GridType.Fixture)
+        //        ////{
+        //        ////    leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+        //        ////}
+        //        ////dataGrid.ItemsSource = leagueMatchesFixtures.MatchFixtures;
+        //        //dataGrid.ItemsSource = dataGridFixture2s?.Where(x => x.ExternalLeagueCode == externalLeagueCode).Select(x => x.Fixtures);
+
+        //        if (dataGridFixture2s.Any(x => x.ExternalLeagueCode == externalLeagueCode &&
+        //                                      x.Fixtures.Count > 0))
+        //        {
+        //            //dataGridFixture2s is already populated so do nowt, not even setting the data grid source (as that will already have happened)
+        //        }
+        //        else
+        //        {
+        //            //dataGridFixture2s is not populated for this league
+        //            LoadLeagueToShow(externalLeagueCode, gridType);
+        //            var dataGridItemsSource = dataGridFixture2s
+        //                ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+        //                .Select(x => x.Fixtures);
+        //            dataGrid.ItemsSource = dataGridItemsSource.First();
+        //        }
+        //    }
+        //}
 
         private void Click_Handler1(object sender, RoutedEventArgs e)
         {
@@ -322,6 +560,7 @@ Sed aliquam, libero eget vehicula aliquam, metus magna rhoncus lectus, ut malesu
             var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
             return internalLeagueCode;
         }
+
     }
 
     public class DataGridStanding2

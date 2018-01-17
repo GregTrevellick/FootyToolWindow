@@ -18,7 +18,7 @@ namespace HierarchicalDataTemplate
                 {InternalLeagueCode.IT1, ExternalLeagueCode.SA},
                 {InternalLeagueCode.IT2, ExternalLeagueCode.SB},
                 {InternalLeagueCode.ES1, ExternalLeagueCode.PD},
-                //{InternalLeagueCode.ES2, ExternalLeagueCode.SD},
+                {InternalLeagueCode.ES2, ExternalLeagueCode.SD},
                 {InternalLeagueCode.ES3, ExternalLeagueCode.CDR},
                 {InternalLeagueCode.FR1, ExternalLeagueCode.FL1},
                 {InternalLeagueCode.FR2, ExternalLeagueCode.FL2},
