@@ -351,6 +351,33 @@ namespace HierarchicalDataTemplate
             }
             return null;
         }
+
+        private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
+        {
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
+        {
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+                                                       && x.ShowLeague
+                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
+                                                                                        && ccc.Expand)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion
 
         //static async void PopulateDataGrid1Async(object sender)
@@ -406,32 +433,32 @@ namespace HierarchicalDataTemplate
         //    }
         //}
 
-        private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
-        {
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
+        //{
+        //    if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
-        {
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
-                                                       && x.ShowLeague
-                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
-                                                                                        && ccc.Expand)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
+        //{
+        //    if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+        //                                               && x.ShowLeague
+        //                                               && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
+        //                                                                                && ccc.Expand)))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         //private static async void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
         ////private static void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
@@ -565,7 +592,6 @@ Sed aliquam, libero eget vehicula aliquam, metus magna rhoncus lectus, ut malesu
     public class DataGridStanding2
     {
         public ExternalLeagueCode ExternalLeagueCode { get; set; }
-        //public List<Standing> Standings { get; set; }
         public List<Standing> Standings { get; set; }
     }
 
