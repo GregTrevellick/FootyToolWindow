@@ -25,7 +25,7 @@ namespace HierarchicalDataTemplate
         private static List<Standing> dataGridItemsSourceStanding;
         private static List<Fixture> dataGridItemsSourceResult;
         private static List<Fixture> dataGridItemsSourceFixture;
-        private static string parentExpanderHeader;
+        private static string _parentExpanderHeader;
 
         public MainWindow()
         {
@@ -225,7 +225,7 @@ namespace HierarchicalDataTemplate
                         break;
                 }
                 MyBtn.Content = result;
-                parentExpander.Header = parentExpanderHeader;
+                parentExpander.Header = _parentExpanderHeader;
             }
             catch (Exception)
             {
@@ -240,7 +240,7 @@ namespace HierarchicalDataTemplate
                 //the next 3 run at same time 
                 var standingsTask = Task.Run(() =>
                 {
-                    parentExpanderHeader = GetAndPopulateDataGrid(parentExpanderName, gridType);
+                    _parentExpanderHeader = GetAndPopulateDataGrid(parentExpanderName, gridType);
                     return "standings task done";
                 });
 
@@ -271,7 +271,6 @@ namespace HierarchicalDataTemplate
 
             if (shouldShowLeague)
             {
-
                 parentExpanderHeader = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
 
                 if (ShouldExpandGrid(internalLeagueCode, gridType))
