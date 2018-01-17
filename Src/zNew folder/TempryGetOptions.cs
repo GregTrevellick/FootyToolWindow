@@ -17,22 +17,22 @@ namespace HierarchicalDataTemplate
                 LeagueOptions = new List<LeagueOption>()
             };
 
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE2);
             //AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE3);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES1);
             //AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR2);
             //AddThem(HierarchicalDataTemplate.InternalLeagueCode.GR1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.NL1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.PT1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.NL1);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.PT1);
             AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK3);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
+            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK3);
 
             //////AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE4);
             //////AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES3);

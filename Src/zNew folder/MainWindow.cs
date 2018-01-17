@@ -14,62 +14,6 @@ namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
-        private void AddThem(InternalLeagueCode internalLeagueCode)
-        {
-            _generalOptions.LeagueOptions.Add(
-                new LeagueOption
-                {
-                    InternalLeagueCode = internalLeagueCode,
-                    ShowLeague = true,
-                    LeagueSubOptions = new List<LeagueSubOption>
-                        {new LeagueSubOption {Expand = true, GridType = GridType.Standing}}
-                });
-
-            _generalOptions.LeagueOptions.Add(new LeagueOption
-            {
-                InternalLeagueCode = internalLeagueCode,
-                ShowLeague = true,
-                LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption {Expand = false, GridType = GridType.Result}}
-            });
-
-            _generalOptions.LeagueOptions.Add(new LeagueOption
-            {
-                InternalLeagueCode = internalLeagueCode,
-                ShowLeague = true,
-                LeagueSubOptions = new List<LeagueSubOption>
-                    {new LeagueSubOption {Expand = false, GridType = GridType.Fixture}}
-            });
-        }
-
-        private void GetGeneralOptions()
-        {
-            _generalOptions = new GeneralOptions
-            {
-                LeagueOptions = new List<LeagueOption>()
-            };
-
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE2);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE3);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE4);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES3);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR2);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.GR1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT2);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.NL1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.PT1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK3);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK4);
-        }
-
         private static FootballDataSdkGateway _gateway;
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
@@ -90,29 +34,30 @@ namespace HierarchicalDataTemplate
 
             _wpfHelper = new WpfHelper();
 
-            GetGeneralOptions();
+            var tempryGetOptions = new TempryGetOptions();
+            _generalOptions = tempryGetOptions.GetGeneralOptions();
 
             dataGridFixture2s = new List<DataGridFixture2>();
             dataGridResult2s = new List<DataGridResult2>();
             dataGridStanding2s = new List<DataGridStanding2>();
 
-            var leagueSubOptionsToShow = _generalOptions.LeagueOptions.Where(x => x.ShowLeague);
+            //var leagueSubOptionsToShow = _generalOptions.LeagueOptions.Where(x => x.ShowLeague);
 
-            foreach (var subOptionsToShow in leagueSubOptionsToShow)
-            {
-                var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(subOptionsToShow.InternalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+            //foreach (var subOptionsToShow in leagueSubOptionsToShow)
+            //{
+            //    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(subOptionsToShow.InternalLeagueCode, out ExternalLeagueCode externalLeagueCode);
 
-                if (internalToExternalMappingExists)
-                {
-                    foreach (var subOption in subOptionsToShow.LeagueSubOptions)
-                    {
-                        if (subOption.Expand)
-                        {
-                            LoadLeagueToShow(externalLeagueCode, subOption.GridType);
-                        }
-                    }
-                }                
-            }
+            //    if (internalToExternalMappingExists)
+            //    {
+            //        foreach (var subOption in subOptionsToShow.LeagueSubOptions)
+            //        {
+            //            if (subOption.Expand)
+            //            {
+            //                LoadLeagueToShow(externalLeagueCode, subOption.GridType);
+            //            }
+            //        }
+            //    }                
+            //}
         }
 
         //private static async void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
@@ -124,11 +69,14 @@ namespace HierarchicalDataTemplate
             LoadShownData(externalLeagueCode, gridType);
         }
 
-        private static async void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        //private static async void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private static void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (gridType == GridType.Standing)
             {
-                var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+                //var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+                var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+                dataGridStanding2s.Clear();
                 dataGridStanding2s.Add(new DataGridStanding2
                 {
                     ExternalLeagueCode = externalLeagueCode,
@@ -138,7 +86,8 @@ namespace HierarchicalDataTemplate
 
             if (gridType == GridType.Result)
             {
-                var leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());                
+                //var leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());                
+                var leagueMatchesResults = _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
                 dataGridResult2s.Add(new DataGridResult2
                 {
                     ExternalLeagueCode = externalLeagueCode,
@@ -148,7 +97,8 @@ namespace HierarchicalDataTemplate
 
             if (gridType == GridType.Fixture)
             {
-                var leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+                //var leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+                var leagueMatchesFixtures = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
                 dataGridFixture2s.Add(new DataGridFixture2
                 {
                     ExternalLeagueCode = externalLeagueCode,
@@ -193,6 +143,7 @@ namespace HierarchicalDataTemplate
 
         private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
+            //PopulateDataGrid2Async(sender);
             PopulateDataGrid2(sender);
         }
 
@@ -202,7 +153,8 @@ namespace HierarchicalDataTemplate
         //    await Task.Run(() => PopulateDataGrid2(sender));
         //}
 
-        private static void PopulateDataGrid2(object sender)
+        //private async void PopulateDataGrid2Async(object sender)
+        private void PopulateDataGrid2(object sender)
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
@@ -274,13 +226,28 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private static async void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
+        //private static async void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private static void GetLeagueData(DataGrid dataGrid, ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (gridType == GridType.Standing)
             {
                 //var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
                 //dataGrid.ItemsSource = leagueResponse.Standings;
-                dataGrid.ItemsSource = dataGridStanding2s?.Where(x=>x.ExternalLeagueCode == externalLeagueCode).Select(x => x.Standings);
+
+                if (dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode &&
+                                                x.Standings.Count > 0))
+                {
+                    //dataGridStanding2s is already populated so do nowt, not even setting the data grid source (as that will already have happened)
+                }
+                else
+                {
+                    //dataGridStanding2s is not populated for this league
+                    LoadLeagueToShow(externalLeagueCode, gridType);
+                    var dataGridItemsSource = dataGridStanding2s
+                        ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
+                        .Select(x => x.Standings);
+                    dataGrid.ItemsSource = dataGridItemsSource.First();
+                }
             }
 
             if (gridType == GridType.Result)
@@ -360,6 +327,7 @@ Sed aliquam, libero eget vehicula aliquam, metus magna rhoncus lectus, ut malesu
     public class DataGridStanding2
     {
         public ExternalLeagueCode ExternalLeagueCode { get; set; }
+        //public List<Standing> Standings { get; set; }
         public List<Standing> Standings { get; set; }
     }
 

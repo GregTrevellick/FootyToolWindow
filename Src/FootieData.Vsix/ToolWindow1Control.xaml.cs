@@ -63,7 +63,8 @@ namespace FootieData.Vsix
             var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
 
             var grid = sender as DataGrid;
-            grid.ItemsSource = leagueResponse.Result.Standings;
+            //grid.ItemsSource = leagueResponse.Result.Standings;
+            grid.ItemsSource = leagueResponse.Standings;
             grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
         }
     }
