@@ -17,26 +17,26 @@ namespace HierarchicalDataTemplate
                 LeagueOptions = new List<LeagueOption>()
             };
 
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE2);
-            ////AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE3);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES1);
-            ////AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.FR2);
-            ////AddThem(HierarchicalDataTemplate.InternalLeagueCode.GR1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.IT2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.NL1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.PT1);
-            AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK1);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK2);
-            //AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK3);
+            AddThem(InternalLeagueCode.DE1);
+            //AddThem(InternalLeagueCode.DE2);
+            ////AddThem(InternalLeagueCode.DE3);
+            //AddThem(InternalLeagueCode.ES1);
+            ////AddThem(InternalLeagueCode.ES2);
+            //AddThem(InternalLeagueCode.FR1);
+            //AddThem(InternalLeagueCode.FR2);
+            ////AddThem(InternalLeagueCode.GR1);
+            //AddThem(InternalLeagueCode.IT1);
+            //AddThem(InternalLeagueCode.IT2);
+            //AddThem(InternalLeagueCode.NL1);
+            //AddThem(InternalLeagueCode.PT1);
+            AddThem(InternalLeagueCode.UK1);
+            //AddThem(InternalLeagueCode.UK2);
+            //AddThem(InternalLeagueCode.UK2);
+            //AddThem(InternalLeagueCode.UK3);
 
-            //////AddThem(HierarchicalDataTemplate.InternalLeagueCode.DE4);
-            //////AddThem(HierarchicalDataTemplate.InternalLeagueCode.ES3);
-            //////AddThem(HierarchicalDataTemplate.InternalLeagueCode.UK4);
+            //////AddThem(InternalLeagueCode.DE4);
+            //////AddThem(InternalLeagueCode.ES3);
+            //////AddThem(InternalLeagueCode.UK4);
 
             return _generalOptions;
         }
