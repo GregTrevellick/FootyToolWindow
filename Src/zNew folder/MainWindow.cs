@@ -46,21 +46,21 @@ namespace HierarchicalDataTemplate
             dataGridResult2s = new List<DataGridResult2>();
             dataGridStanding2s = new List<DataGridStanding2>();
 
-            //var leagueSubOptionsToShow = _generalOptions.LeagueOptions.Where(x => x.ShowLeague);
-            //foreach (var subOptionsToShow in leagueSubOptionsToShow)
-            //{
-            //    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(subOptionsToShow.InternalLeagueCode, out ExternalLeagueCode externalLeagueCode);
-            //    if (internalToExternalMappingExists)
-            //    {
-            //        foreach (var subOption in subOptionsToShow.LeagueSubOptions)
-            //        {
-            //            if (subOption.Expand)
-            //            {
-            //                LoadLeagueToShow(externalLeagueCode, subOption.GridType);
-            //            }
-            //        }
-            //    }                
-            //}
+            ////////////////////var leagueSubOptionsToShow = _generalOptions.LeagueOptions.Where(x => x.ShowLeague);
+            ////////////////////foreach (var subOptionsToShow in leagueSubOptionsToShow)
+            ////////////////////{
+            ////////////////////    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(subOptionsToShow.InternalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+            ////////////////////    if (internalToExternalMappingExists)
+            ////////////////////    {
+            ////////////////////        foreach (var subOption in subOptionsToShow.LeagueSubOptions)
+            ////////////////////        {
+            ////////////////////            if (subOption.Expand)
+            ////////////////////            {
+            ////////////////////                LoadLeagueToShow(externalLeagueCode, subOption.GridType);
+            ////////////////////            }
+            ////////////////////        }
+            ////////////////////    }                
+            ////////////////////}
         }
 
         //private static async void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
@@ -241,7 +241,6 @@ namespace HierarchicalDataTemplate
         {
             try
             {
-                //string result = "abc";
                 var theTask = Task.Run(() =>
                 {
                     var internalLeagueCode = InternalLeagueCode(parentExpanderName);
@@ -260,11 +259,7 @@ namespace HierarchicalDataTemplate
                 });
                 await Task.WhenAll(theTask);
 
-                //all 3 done before these line runs
-                //var r = new Random();
-                //var rv = r.Next();
                 return theTask.Result;
-                //return result;
             }
             catch (Exception)
             {
