@@ -25,7 +25,7 @@ namespace HierarchicalDataTemplate
         private static List<Standing> dataGridItemsSourceStanding;
         private static List<Fixture> dataGridItemsSourceResult;
         private static List<Fixture> dataGridItemsSourceFixture;
-        private static string _parentExpanderHeader;
+        //private static string _parentExpanderHeader;
 
         public MainWindow()
         {
@@ -48,11 +48,9 @@ namespace HierarchicalDataTemplate
             dataGridStanding2s = new List<DataGridStanding2>();
 
             //var leagueSubOptionsToShow = _generalOptions.LeagueOptions.Where(x => x.ShowLeague);
-
             //foreach (var subOptionsToShow in leagueSubOptionsToShow)
             //{
             //    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(subOptionsToShow.InternalLeagueCode, out ExternalLeagueCode externalLeagueCode);
-
             //    if (internalToExternalMappingExists)
             //    {
             //        foreach (var subOption in subOptionsToShow.LeagueSubOptions)
@@ -197,6 +195,7 @@ namespace HierarchicalDataTemplate
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
             parentExpander.IsExpanded = true;
+
             #region grid properties
             var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
             dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
@@ -205,29 +204,33 @@ namespace HierarchicalDataTemplate
             dataGrid.CanUserAddRows = false;
             dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
             #endregion
+
             var gridType = _wpfHelper.GetGridType(dataGrid.Name);
             var parentExpanderName = parentExpander.Name;
 
             try
             {
-                var result = await PopulateDataGridAsync(parentExpanderName, gridType);
+                string result="";
                 //next lines wont run til PopulateDataGridAsync above has finished
                 switch (gridType)
                 {
                     case GridType.Unknown:
                         break;
                     case GridType.Standing:
+                        result = await PopulateDataGridAsync(parentExpanderName, gridType);
                         dataGrid.ItemsSource = dataGridItemsSourceStanding;
                         break;
                     case GridType.Result:
+                        result = await PopulateDataGridAsync(parentExpanderName, gridType);
                         dataGrid.ItemsSource = dataGridItemsSourceResult;
                         break;
                     case GridType.Fixture:
+                        result = await PopulateDataGridAsync(parentExpanderName, gridType);
                         dataGrid.ItemsSource = dataGridItemsSourceFixture;
                         break;
                 }
                 MyBtn.Content = result;
-                parentExpander.Header = _parentExpanderHeader;
+                parentExpander.Header = result;
             }
             catch (Exception)
             {
@@ -239,77 +242,53 @@ namespace HierarchicalDataTemplate
         {
             try
             {
-                //the next 3 run at same time 
-                var standingsTask = Task.Run(() =>
+                string result = "abc";
+                var theTask = Task.Run(() =>
                 {
-                    _parentExpanderHeader = GetAndPopulateDataGrid(parentExpanderName, gridType);
-                    return "standings task done";
+                    var internalLeagueCode = InternalLeagueCode(parentExpanderName);
+                    var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+                    result = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                    if (shouldShowLeague)
+                    {
+                        var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+                        var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
+                        if (shouldExpandGrid && internalToExternalMappingExists)
+                        {
+                            GetAndPopulateDataGrid(gridType, externalLeagueCode);
+                        }
+                    }
+                    return result;
                 });
-                var resultsTask = Task.Delay(2);
-                var fixturesTask = Task.Delay(1);
-
-                //next line ensures that only when all 3 are done do we return 
-                await Task.WhenAll(standingsTask, resultsTask, fixturesTask);
+                await Task.WhenAll(theTask);
 
                 //all 3 done before these line runs
-                var r = new Random();
-                var rv = r.Next();
-                return standingsTask.Result + rv; 
+                //var r = new Random();
+                //var rv = r.Next();
+                //return theTask.Result + rv; 
+                return result;
             }
             catch (Exception)
             {
                 return "login failed";
             }
         }
-
-        private static string GetAndPopulateDataGrid(string parentExpanderName, GridType gridType)
+        
+        private static void GetAndPopulateDataGrid(GridType gridType,  ExternalLeagueCode externalLeagueCode)
         {
-            var parentExpanderHeader = "parentExpanderHeader";
-            var internalLeagueCode = InternalLeagueCode(parentExpanderName);
-            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-
-            if (shouldShowLeague)
+            switch (gridType)
             {
-                parentExpanderHeader = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-
-                if (ShouldExpandGrid(internalLeagueCode, gridType))
-                {
-                    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
-                    if (internalToExternalMappingExists)
-                    {
-                        switch (gridType)
-                        {
-                            case GridType.Unknown:
-                                break;
-                            case GridType.Standing:
-                                dataGridItemsSourceStanding = GetLeagueDataStanding(externalLeagueCode, gridType);
-                                break;
-                            case GridType.Result:
-                                dataGridItemsSourceResult = GetLeagueDataResult(externalLeagueCode, gridType);
-                                break;
-                            case GridType.Fixture:
-                                dataGridItemsSourceFixture = GetLeagueDataFixture(externalLeagueCode, gridType);
-                                break;
-                        }
-                        //parentExpander.IsExpanded = true;
-                    }
-                    else
-                    {
-                        //TODO ERROR
-                        //parentExpander.IsExpanded = false;
-                    }
-                }
-                else
-                {
-                    //parentExpander.IsExpanded = false;
-                }
+                case GridType.Unknown:
+                    break;
+                case GridType.Standing:
+                    dataGridItemsSourceStanding = GetLeagueDataStanding(externalLeagueCode, gridType);
+                    break;
+                case GridType.Result:
+                    dataGridItemsSourceResult = GetLeagueDataResult(externalLeagueCode, gridType);
+                    break;
+                case GridType.Fixture:
+                    dataGridItemsSourceFixture = GetLeagueDataFixture(externalLeagueCode, gridType);
+                    break;
             }
-            else
-            {
-                //parentExpander.Visibility = Visibility.Collapsed;
-            }
-
-            return parentExpanderHeader;
         }
 
         private static List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode, GridType gridType)
