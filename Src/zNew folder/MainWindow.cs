@@ -25,7 +25,6 @@ namespace HierarchicalDataTemplate
         private static List<Standing> dataGridItemsSourceStanding;
         private static List<Fixture> dataGridItemsSourceResult;
         private static List<Fixture> dataGridItemsSourceFixture;
-        //private static string _parentExpanderHeader;
 
         public MainWindow()
         {
@@ -242,12 +241,12 @@ namespace HierarchicalDataTemplate
         {
             try
             {
-                string result = "abc";
+                //string result = "abc";
                 var theTask = Task.Run(() =>
                 {
                     var internalLeagueCode = InternalLeagueCode(parentExpanderName);
                     var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-                    result = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                    var result = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
                     if (shouldShowLeague)
                     {
                         var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
@@ -264,8 +263,8 @@ namespace HierarchicalDataTemplate
                 //all 3 done before these line runs
                 //var r = new Random();
                 //var rv = r.Next();
-                //return theTask.Result + rv; 
-                return result;
+                return theTask.Result;
+                //return result;
             }
             catch (Exception)
             {
