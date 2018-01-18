@@ -18,7 +18,7 @@ namespace HierarchicalDataTemplate
             };
 
             AddThem(InternalLeagueCode.DE1);
-            //AddThem(InternalLeagueCode.DE2);
+            AddThem(InternalLeagueCode.DE2);
             ////AddThem(InternalLeagueCode.DE3);
             //AddThem(InternalLeagueCode.ES1);
             ////AddThem(InternalLeagueCode.ES2);
@@ -30,7 +30,7 @@ namespace HierarchicalDataTemplate
             //AddThem(InternalLeagueCode.NL1);
             //AddThem(InternalLeagueCode.PT1);
             AddThem(InternalLeagueCode.UK1);
-            //AddThem(InternalLeagueCode.UK2);
+            AddThem(InternalLeagueCode.UK2);
             //AddThem(InternalLeagueCode.UK2);
             //AddThem(InternalLeagueCode.UK3);
 
