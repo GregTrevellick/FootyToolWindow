@@ -139,7 +139,7 @@ namespace FootieData.Gateway
                     HomeName = item.homeTeamName,
                     AwayName = item.awayTeamName,
                     Date = item.date,
-                    GoalsHome = item.result.goalsAwayTeam,
+                    GoalsHome = item.result.goalsHomeTeam,
                     GoalsAway = item.result.goalsAwayTeam,
                 });
             }
