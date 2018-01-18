@@ -196,6 +196,8 @@ namespace HierarchicalDataTemplate
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
+            parentExpander.IsExpanded = true;
+
             var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
             dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
             dataGrid.ColumnHeaderHeight = 2;
@@ -366,17 +368,18 @@ namespace HierarchicalDataTemplate
 
         private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
         {
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
-                                                       && x.ShowLeague
-                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
-                                                                                        && ccc.Expand)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
+            //if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+            //                                           && x.ShowLeague
+            //                                           && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
+            //                                                                            && ccc.Expand)))
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
         }
         #endregion
 
