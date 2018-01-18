@@ -197,14 +197,14 @@ namespace HierarchicalDataTemplate
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
             parentExpander.IsExpanded = true;
-
+            #region grid properties
             var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
             dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
             dataGrid.ColumnHeaderHeight = 2;
             dataGrid.RowHeaderWidth = 2;
             dataGrid.CanUserAddRows = false;
             dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-
+            #endregion
             var gridType = _wpfHelper.GetGridType(dataGrid.Name);
             var parentExpanderName = parentExpander.Name;
 
@@ -245,9 +245,7 @@ namespace HierarchicalDataTemplate
                     _parentExpanderHeader = GetAndPopulateDataGrid(parentExpanderName, gridType);
                     return "standings task done";
                 });
-
                 var resultsTask = Task.Delay(2);
-
                 var fixturesTask = Task.Delay(1);
 
                 //next line ensures that only when all 3 are done do we return 
@@ -267,7 +265,6 @@ namespace HierarchicalDataTemplate
         private static string GetAndPopulateDataGrid(string parentExpanderName, GridType gridType)
         {
             var parentExpanderHeader = "parentExpanderHeader";
-
             var internalLeagueCode = InternalLeagueCode(parentExpanderName);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
 
