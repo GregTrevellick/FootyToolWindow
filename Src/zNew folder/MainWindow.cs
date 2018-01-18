@@ -211,7 +211,7 @@ namespace HierarchicalDataTemplate
             try
             {
                 var result = await PopulateDataGridAsync(parentExpanderName, gridType);
-                //next lines wont run til LoginAsync has finished
+                //next lines wont run til PopulateDataGridAsync above has finished
                 switch (gridType)
                 {
                     case GridType.Unknown:
