@@ -220,44 +220,44 @@ namespace HierarchicalDataTemplate
 
         private List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
-            if (!dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Standings.Count > 0))
-            {
+            //if (!dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Standings.Count > 0))
+            //{
                 LoadShownData(externalLeagueCode, gridType);
                 var dataGridItemsSource = dataGridStanding2s
                     ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
                     .Select(x => x.Standings)
                     .Last();
                 return dataGridItemsSource;
-            }
-            return null;
+            //}
+            //return null;
         }
 
         private List<Fixture> GetLeagueDataResult(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
-            if (!dataGridResult2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Results.Count > 0))
-            {
+            //if (!dataGridResult2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Results.Count > 0))
+            //{
                 LoadShownData(externalLeagueCode, gridType);
                 var dataGridItemsSource = dataGridResult2s
                     ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
                     .Select(x => x.Results)
                     .Last();
                 return dataGridItemsSource;
-            }
-            return null;
+            //}
+            //return null;
         }
 
         private List<Fixture> GetLeagueDataFixture(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
-            if (!dataGridFixture2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Fixtures.Count > 0))
-            {
+            //if (!dataGridFixture2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Fixtures.Count > 0))
+            //{
                 LoadShownData(externalLeagueCode, gridType);
                 var dataGridItemsSource = dataGridFixture2s
                     ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
                     .Select(x => x.Fixtures)
                     .Last();
                 return dataGridItemsSource;
-            }
-            return null;
+            //}
+            //return null;
         }
 
         private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
