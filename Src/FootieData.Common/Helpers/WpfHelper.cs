@@ -36,7 +36,5 @@ namespace FootieData.Common.Helpers
 
             return gridType;
         }
-
-
     }
 }

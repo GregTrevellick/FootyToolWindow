@@ -24,10 +24,13 @@ namespace HierarchicalDataTemplate
         private static List<Standing> dataGridItemsSourceStanding;
         private static List<Fixture> dataGridItemsSourceResult;
         private static List<Fixture> dataGridItemsSourceFixture;
+        private SolidColorBrush color;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFF0"));
 
             var _footDataServices = new FootDataServices
             {
@@ -61,21 +64,30 @@ namespace HierarchicalDataTemplate
                 expander.Visibility = Visibility.Collapsed;
             }
         }
-        
+
+        private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
+        {
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private async void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
-            parentExpander.IsExpanded = true;
-
-            #region data grid properties
-            var color = (Color)ColorConverter.ConvertFromString("#FFFFF0");
-            dataGrid.AlternatingRowBackground = new SolidColorBrush(color);
+            //parentExpander.IsExpanded = true;
+           
+            dataGrid.AlternatingRowBackground = color;
             dataGrid.ColumnHeaderHeight = 2;
             dataGrid.RowHeaderWidth = 2;
             dataGrid.CanUserAddRows = false;
             dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-            #endregion
 
             var gridType = _wpfHelper.GetGridType(dataGrid.Name);
             var parentExpanderName = parentExpander.Name;
@@ -242,18 +254,6 @@ namespace HierarchicalDataTemplate
                 return dataGridItemsSource.First();
             }
             return null;
-        }
-
-        private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
-        {
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
