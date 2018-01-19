@@ -73,13 +73,12 @@ namespace FootieData.Gateway
 
             var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
 
-            var result = new LeagueMatchesResults()
+            var result = new LeagueMatchesResults
             {
                 MatchFixtures = new List<Fixture>(),
             };
 
-            if (tbl == null
-                || tbl.fixtures == null)
+            if (tbl == null || tbl.fixtures == null)
             {
                 //error !
             }
@@ -107,13 +106,12 @@ namespace FootieData.Gateway
 
             var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
 
-            var result = new LeagueMatchesFixtures()
+            var result = new LeagueMatchesFixtures
             {
                 MatchFixtures = new List<Fixture>(),
             };
 
-            if (tbl == null
-                || tbl.fixtures == null)
+            if (tbl == null || tbl.fixtures == null)
             {
                 //error !
             }
