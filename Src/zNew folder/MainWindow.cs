@@ -81,7 +81,8 @@ namespace HierarchicalDataTemplate
         {
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
-            //parentExpander.IsExpanded = true;
+
+      parentExpander.IsExpanded = true;
            
             dataGrid.AlternatingRowBackground = color;
             dataGrid.ColumnHeaderHeight = 2;
@@ -126,11 +127,11 @@ namespace HierarchicalDataTemplate
         //{
         //    await Task.Run(() => LoadShownData(externalLeagueCode, gridType));
         //}
-        private static void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        {
-            LoadShownData(externalLeagueCode, gridType);
-        }
-
+        //private static void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        //{
+        //    LoadShownData(externalLeagueCode, gridType);
+        //}
+        
         //private static async void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
         private static void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
@@ -199,7 +200,7 @@ namespace HierarchicalDataTemplate
             }
         }
         
-        private static void GetAndPopulateDataGrid(GridType gridType,  ExternalLeagueCode externalLeagueCode)
+        private void GetAndPopulateDataGrid(GridType gridType,  ExternalLeagueCode externalLeagueCode)
         {
             switch (gridType)
             {
@@ -217,41 +218,44 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private static List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (!dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Standings.Count > 0))
             {
-                LoadLeagueToShow(externalLeagueCode, gridType);
+                LoadShownData(externalLeagueCode, gridType);
                 var dataGridItemsSource = dataGridStanding2s
                     ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                    .Select(x => x.Standings);
-                return dataGridItemsSource.First();
+                    .Select(x => x.Standings)
+                    .Last();
+                return dataGridItemsSource;
             }
             return null;
         }
 
-        private static List<Fixture> GetLeagueDataResult(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private List<Fixture> GetLeagueDataResult(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (!dataGridResult2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Results.Count > 0))
             {
-                LoadLeagueToShow(externalLeagueCode, gridType);
+                LoadShownData(externalLeagueCode, gridType);
                 var dataGridItemsSource = dataGridResult2s
                     ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                    .Select(x => x.Results);
-                return dataGridItemsSource.First();
+                    .Select(x => x.Results)
+                    .Last();
+                return dataGridItemsSource;
             }
             return null;
         }
 
-        private static List<Fixture> GetLeagueDataFixture(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private List<Fixture> GetLeagueDataFixture(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             if (!dataGridFixture2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Fixtures.Count > 0))
             {
-                LoadLeagueToShow(externalLeagueCode, gridType);
+                LoadShownData(externalLeagueCode, gridType);
                 var dataGridItemsSource = dataGridFixture2s
                     ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                    .Select(x => x.Fixtures);
-                return dataGridItemsSource.First();
+                    .Select(x => x.Fixtures)
+                    .Last();
+                return dataGridItemsSource;
             }
             return null;
         }
