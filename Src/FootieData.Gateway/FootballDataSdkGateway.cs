@@ -24,12 +24,10 @@ namespace FootieData.Gateway
             IEnumerable<Standing> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
             var leagueTableResult = _footDataServices.LeagueTable(idSeason);
-
             if (leagueTableResult != null)
             {
                 result = GetResultMatchStandings(leagueTableResult);
             }
-
             return result;
         }
 
@@ -38,12 +36,10 @@ namespace FootieData.Gateway
             IEnumerable<Fixture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
             var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
-
             if (fixturesResult != null)
             {
                 result = GetResultMatchFixtures(fixturesResult);
             }
-
             return result;
         }
 
@@ -51,13 +47,11 @@ namespace FootieData.Gateway
         {
             IEnumerable<Fixture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
-            var tbl = _footDataServices.Fixtures(idSeason, timeFrame);
-
-            if (tbl != null)
+            var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
+            if (fixturesResult != null)
             {
-                result = GetResultMatchFixtures(tbl);
+                result = GetResultMatchFixtures(fixturesResult);
             }
-
             return result;
         }
 
