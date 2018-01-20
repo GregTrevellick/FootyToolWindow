@@ -19,9 +19,9 @@ namespace FootieData.Gateway
             _soccerSeasonResultSingleton = soccerSeasonResultSingletonInstance;
         }
 
-        public LeagueStandings GetFromClientStandings(string leagueIdentifier)
+        public IEnumerable<Standing> GetFromClientStandings(string leagueIdentifier)
         {
-            var result = new LeagueStandings();
+            IEnumerable<Standing> result = null;// = new LeagueStandings();
             
             var idSeason = GetIdSeason(leagueIdentifier);
 
@@ -29,15 +29,15 @@ namespace FootieData.Gateway
 
             if (leagueTableResult != null)
             {
-                result.Standings = GetResultMatchStandings(leagueTableResult);
+                result = GetResultMatchStandings(leagueTableResult);
             }
 
             return result;
         }
 
-        public LeagueMatchesResults GetFromClientResults(string leagueIdentifier, string timeFrame)
+        public IEnumerable<Fixture> GetFromClientResults(string leagueIdentifier, string timeFrame)
         {
-            var result = new LeagueMatchesResults();
+            IEnumerable<Fixture> result = null;// = new LeagueMatchesResults();
 
             var idSeason = GetIdSeason(leagueIdentifier);
 
@@ -45,15 +45,15 @@ namespace FootieData.Gateway
 
             if (fixturesResult != null)
             {
-                result.MatchFixtures = GetResultMatchFixtures(fixturesResult);
+                result = GetResultMatchFixtures(fixturesResult);
             }
 
             return result;
         }
 
-        public LeagueMatchesFixtures GetFromClientFixtures(string leagueIdentifier, string timeFrame)
+        public IEnumerable<Fixture> GetFromClientFixtures(string leagueIdentifier, string timeFrame)
         {
-            var result = new LeagueMatchesFixtures();
+            IEnumerable<Fixture> result = null;// = new LeagueMatchesFixtures();
 
             var idSeason = GetIdSeason(leagueIdentifier);
 
@@ -61,7 +61,7 @@ namespace FootieData.Gateway
 
             if (tbl != null)
             {
-                result.MatchFixtures = GetResultMatchFixtures(tbl);
+                result = GetResultMatchFixtures(tbl);
             }
 
             return result;
