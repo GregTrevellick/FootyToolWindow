@@ -205,18 +205,18 @@ namespace HierarchicalDataTemplate
 
         private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
         {
-            return true;
-            //if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
-            //                                           && x.ShowLeague
-            //                                           && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
-            //                                                                            && ccc.Expand)))
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
+            //return true;
+            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+                                                       && x.ShowLeague
+                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
+                                                                                        && ccc.Expand)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void Click_Handler1(object sender, RoutedEventArgs e)
@@ -246,8 +246,7 @@ namespace HierarchicalDataTemplate
                                      @"Proin eget sodales mi. Donec volutpat vitae lectus ut efficitur. Integer efficitur eu lorem at tincidunt. Mauris id magna dictum, vulputate turpis sed, euismod enim.Nulla commodo tincidunt blandit."
                                      + Environment.NewLine + 
                                      @"Pellentesque laoreet justo sed porta dignissim. Quisque vitae erat eget lorem hendrerit semper scelerisque nec dui. Suspendisse vitae nisl ullamcorper nunc sollicitudin dictum ut quis tellus.";
-
-          StackPanelLeagueMode.Visibility = Visibility.Collapsed;
+            StackPanelLeagueMode.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Visible;
         }
 
@@ -270,9 +269,9 @@ namespace HierarchicalDataTemplate
             return internalLeagueCode;
         }
 
-        public static object TryFindResource(FrameworkElement element, object resourceKey)//gregt make private ?
+        public static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)//gregt make private ?
         {
-            var currentElement = element;
+            var currentElement = frameworkElement;
 
             while (currentElement != null)
             {
