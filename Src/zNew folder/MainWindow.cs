@@ -15,7 +15,7 @@ namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
-        private static FootballDataSdkGateway _gateway;
+        //private static FootballDataSdkGateway _gateway;
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
         private SolidColorBrush color;
@@ -26,17 +26,26 @@ namespace HierarchicalDataTemplate
 
             color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
 
-            var _footDataServices = new FootDataServices
-            {
-                AuthToken = "52109775b1584a93854ca187690ed4bb"
-            };
-
-            _gateway = new FootballDataSdkGateway(_footDataServices);
+            //var _footDataServices = new FootDataServices
+            //{
+            //    AuthToken = "52109775b1584a93854ca187690ed4bb"
+            //};
+            //var _gateway = new FootballDataSdkGateway(_footDataServices);
 
             _wpfHelper = new WpfHelper();
 
             var tempryGetOptions = new TempryGetOptions();
             _generalOptions = tempryGetOptions.GetGeneralOptions();
+        }
+
+        private FootballDataSdkGateway GetGateway()
+        {
+            var _footDataServices = new FootDataServices
+            {
+                AuthToken = "52109775b1584a93854ca187690ed4bb"
+            };
+            var _gateway = new FootballDataSdkGateway(_footDataServices);
+            return _gateway;
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
@@ -129,6 +138,7 @@ namespace HierarchicalDataTemplate
                         var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
+                            var _gateway = GetGateway();
                             var leagueResponse = _gateway.GetLeagueResponseFromClient_Standings(externalLeagueCode.ToString());
                             result = (List<Standing>)leagueResponse.Standings;
                         }
@@ -159,6 +169,7 @@ namespace HierarchicalDataTemplate
                         var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
+                            var _gateway = GetGateway();
                             var leagueMatchesResults = _gateway.GetLeagueResponseFromClient_MatchesResult(externalLeagueCode.ToString(), "p20");
                             result = (List<Fixture>)leagueMatchesResults.MatchFixtures;
                         }
@@ -189,6 +200,7 @@ namespace HierarchicalDataTemplate
                         var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
+                            var _gateway = GetGateway();
                             var leagueMatchesFixtures = _gateway.GetLeagueResponseFromClient_MatchesFixture(externalLeagueCode.ToString(), "n20");
                             result = (List<Fixture>)leagueMatchesFixtures.MatchFixtures;}
                     }
