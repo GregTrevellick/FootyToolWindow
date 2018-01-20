@@ -12,6 +12,12 @@ namespace FootieData.Gateway
 {
     public class FootballDataSdkGateway
     {
+        //gregt for testing
+        private static CultureInfo enUS = new CultureInfo("en-US");
+        private static CultureInfo enGB = new CultureInfo("en-GB");
+        private static CultureInfo frFR = new CultureInfo("fr-FR");
+        private static CultureInfo deDE = new CultureInfo("de-DE");
+
         private readonly FootDataServices _footDataServices;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingleton;
 
@@ -36,31 +42,31 @@ namespace FootieData.Gateway
             return result;
         }
 
-        public IEnumerable<Fixture> GetFromClientResults(string leagueIdentifier, string timeFrame)
+        public IEnumerable<FixturePast> GetFromClientFixturePasts(string leagueIdentifier, string timeFrame)
         {
-            IEnumerable<Fixture> result = null;
+            IEnumerable<FixturePast> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
                 var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
                 if (fixturesResult != null)
                 {
-                    result = GetResultMatchFixtures(fixturesResult);
+                    result = GetFixturePasts(fixturesResult);
                 }
             }
             return result;
         }
 
-        public IEnumerable<Fixture> GetFromClientFixtures(string leagueIdentifier, string timeFrame)
+        public IEnumerable<FixtureFuture> GetFromClientFixtureFutures(string leagueIdentifier, string timeFrame)
         {
-            IEnumerable<Fixture> result = null;
+            IEnumerable<FixtureFuture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
                 var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
                 if (fixturesResult != null)
                 {
-                    result = GetResultMatchFixtures(fixturesResult);
+                    result = GetFixtureFutures(fixturesResult);
                 }
             }
             return result;
@@ -100,13 +106,13 @@ namespace FootieData.Gateway
             }
         }
 
-        private static IEnumerable<Fixture> GetResultMatchFixtures(FixturesResult fixturesResult)//fixturesResult.Error = "You reached your request limit. Wait 19 seconds."
+        private static IEnumerable<FixturePast> GetFixturePasts(FixturesResult fixturesResult)
         {
             if (!string.IsNullOrEmpty(fixturesResult?.error))
             {
-                return new List<Fixture>
+                return new List<FixturePast>
                 {
-                    new Fixture
+                    new FixturePast
                     {
                         HomeName = fixturesResult.error
                     }
@@ -114,19 +120,37 @@ namespace FootieData.Gateway
             }
             else
             {
-                //gregt for testing
-                //var ci = new CultureInfo("en-US");
-                //var ci = new CultureInfo("en-GB");
-                //var ci = new CultureInfo("fr-FR");
-                var ci = new CultureInfo("de-DE");
-
-                return fixturesResult?.fixtures?.Select(x => new Fixture
+                return fixturesResult?.fixtures?.Select(x => new FixturePast
                 {
                     AwayName = x.awayTeamName,
-                    Date = x.date.ToString("d", ci),
-                    GoalsAway = x.result.goalsAwayTeam,
-                    GoalsHome = x.result.goalsHomeTeam,
+                    Date = x.date.ToString("d", enGB),//gregt unit test & remove culture
                     HomeName = x.homeTeamName,
+                    GoalsAway = x.result?.goalsAwayTeam,
+                    GoalsHome = x.result?.goalsHomeTeam,
+                });
+            }
+        }
+
+        private static IEnumerable<FixtureFuture> GetFixtureFutures(FixturesResult fixturesResult)
+        {
+            if (!string.IsNullOrEmpty(fixturesResult?.error))
+            {
+                return new List<FixtureFuture>
+                {
+                    new FixtureFuture
+                    {
+                        HomeName = fixturesResult.error
+                    }
+                };
+            }
+            else
+            {
+                return fixturesResult?.fixtures?.Select(x => new FixtureFuture
+                {
+                    AwayName = x.awayTeamName,
+                    Date = x.date.ToString("d", enGB),//gregt unit test & remove culture
+                    HomeName = x.homeTeamName,
+                    Time = x.date.ToString("t", enUS),//gregt unit test & remove culture - to be tested
                 });
             }
         }
@@ -134,8 +158,10 @@ namespace FootieData.Gateway
 }
 
 
-
-
+//https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
+//2009-06-15T13:45:30 -> 1:45 PM(en-US)
+//2009-06-15T13:45:30 -> 13:45 (hr-HR)
+//2009-06-15T13:45:30 -> 01:45 م(ar-EG)
 
 
 
