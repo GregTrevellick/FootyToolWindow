@@ -4,6 +4,7 @@ using FootieData.Common.Helpers;
 using FootieData.Entities;
 using FootieData.Gateway;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -82,7 +83,7 @@ namespace HierarchicalDataTemplate
 
                     //gregt move these to MyDataGrid ?
                     dataGrid.AlternatingRowBackground = _color;
-                    dataGrid.ColumnHeaderHeight = 21;
+                    dataGrid.ColumnHeaderHeight = 20;
                     dataGrid.RowHeaderWidth = 0;
                     dataGrid.CanUserAddRows = false;
                     dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
@@ -98,31 +99,16 @@ namespace HierarchicalDataTemplate
                         switch (gridType)
                         {
                             case GridType.Standing:
-                                var standings = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
-                                if (standings == null)
-                                {
-                                    dataGrid.ItemsSource = _nullStandings;
-                                    break;
-                                }
-                                dataGrid.ItemsSource = standings;
+                                var standings = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call has finished
+                               dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
                                 break;
                             case GridType.Result:
-                                var results = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
-                                if (results == null)
-                                {
-                                    dataGrid.ItemsSource = _nullResults;
-                                    break;
-                                }
-                                dataGrid.ItemsSource = results;
+                                var results = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call finished
+                                dataGrid.ItemsSource = results ?? (IEnumerable)_nullResults;
                                 break;
                             case GridType.Fixture:
-                                var fixtures = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
-                                if (fixtures == null)
-                                {
-                                    dataGrid.ItemsSource = _nullFixtures;
-                                    break;
-                                }
-                                dataGrid.ItemsSource = fixtures;
+                                var fixtures = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call has finished
+                                dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtures;
                                 break;
                         }
                     }
