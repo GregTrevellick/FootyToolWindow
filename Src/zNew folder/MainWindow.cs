@@ -83,7 +83,7 @@ namespace HierarchicalDataTemplate
 
                     //gregt move these to MyDataGrid ?
                     dataGrid.AlternatingRowBackground = _color;
-                    dataGrid.ColumnHeaderHeight = 20;
+                    dataGrid.ColumnHeaderHeight = 21;
                     dataGrid.RowHeaderWidth = 0;
                     dataGrid.CanUserAddRows = false;
                     dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
