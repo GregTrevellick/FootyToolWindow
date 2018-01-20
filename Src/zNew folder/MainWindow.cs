@@ -131,8 +131,8 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            var leagueResponse = gateway.GetFromClientStandings(externalLeagueCode.ToString());
-                            result = leagueResponse?.Standings;
+                            var standings = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+                            result = standings;
                         }
                     }
                     return result;
@@ -161,8 +161,8 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            var leagueMatchesResults = gateway.GetFromClientResults(externalLeagueCode.ToString(), "p10");
-                            result = leagueMatchesResults?.MatchFixtures;
+                            var results = gateway.GetFromClientResults(externalLeagueCode.ToString(), "p10");
+                            result = results;
                         }
                     }
                     return result;
@@ -191,8 +191,8 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            var leagueMatchesFixtures = gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n10");
-                            result = leagueMatchesFixtures?.MatchFixtures;
+                            var fixtures = gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n10");
+                            result = fixtures;
                         }
                     }
                     return result;

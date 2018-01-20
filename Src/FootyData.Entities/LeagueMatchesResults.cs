@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿//using System.Collections.Generic;
 
-namespace FootieData.Entities
-{
-    public class LeagueMatchesResults
-    {
-        public IEnumerable<Fixture> MatchFixtures;
-    }
-}
+//namespace FootieData.Entities
+//{
+//    public class LeagueMatchesResults
+//    {
+//        public IEnumerable<Fixture> MatchFixtures;
+//    }
+//}
