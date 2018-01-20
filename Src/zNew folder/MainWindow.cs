@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootieData.Common;
 
 namespace HierarchicalDataTemplate
 {
@@ -42,8 +43,7 @@ namespace HierarchicalDataTemplate
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
         {
-            var expander = sender as Expander;
-            if (expander != null)
+            if (sender is Expander expander)
             {
                 var internalLeagueCode = GetInternalLeagueCode(expander.Name);
                 var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
@@ -65,58 +65,55 @@ namespace HierarchicalDataTemplate
 
         private static bool ShouldShowLeague(InternalLeagueCode internalLeagueCode)
         {
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague);
         }
 
         private async void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
-            var dataGrid = sender as DataGrid;
-            Expander parentExpander = dataGrid.Parent as Expander;
-
-            parentExpander.IsExpanded = true;
-
-            dataGrid.AlternatingRowBackground = _color;
-            dataGrid.ColumnHeaderHeight = 25;
-            dataGrid.RowHeaderWidth = 0;
-            dataGrid.CanUserAddRows = false;
-            dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-
-            var gridType = _wpfHelper.GetGridType(dataGrid.Name);
-            var parentExpanderName = parentExpander.Name;
-            var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
-            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-            var result2 = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-            MyBtn.Content = result2;
-            parentExpander.Header = result2;
-
-            try
+            if (sender is DataGrid dataGrid)
             {
-                switch (gridType)
+                if (dataGrid.Parent is Expander parentExpander)
                 {
-                    case GridType.Unknown:
-                        break;
-                    case GridType.Standing:
-                        dataGrid.ItemsSource = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode);//wont run web service call has finished
-                        break;
-                    case GridType.Result:
-                        dataGrid.ItemsSource = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode);//wont run web service call has finished
-                        break;
-                    case GridType.Fixture:
-                        dataGrid.ItemsSource = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode);//wont run web service call has finished
-                        break;
+                    parentExpander.IsExpanded = true;
+
+                    dataGrid.AlternatingRowBackground = _color;
+                    dataGrid.ColumnHeaderHeight = 25;
+                    dataGrid.RowHeaderWidth = 0;
+                    dataGrid.CanUserAddRows = false;
+                    dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
+
+                    var gridType = _wpfHelper.GetGridType(dataGrid.Name);
+                    var parentExpanderName = parentExpander.Name;
+                    var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
+                    var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+                    var result2 = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+
+                    ////////////////////////////////////////////////MyBtn.Content = result2;
+                    
+                    parentExpander.Header = result2;
+
+                    try
+                    {
+                        switch (gridType)
+                        {
+                            case GridType.Standing:
+                                dataGrid.ItemsSource = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                break;
+                            case GridType.Result:
+                                dataGrid.ItemsSource = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                break;
+                            case GridType.Fixture:
+                                dataGrid.ItemsSource = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        ///////////////////////////////////MyBtn.Content = "DataGridLoaded_Any internal error";
+                        
+                        parentExpander.Header = "DataGridLoaded_Any internal error";
+                    }
                 }
-            }
-            catch (Exception)
-            {
-                MyBtn.Content = "DataGridLoaded_Any internal error";
-                parentExpander.Header = "DataGridLoaded_Any internal error";
             }
         }
 
@@ -209,47 +206,15 @@ namespace HierarchicalDataTemplate
 
         private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
         {
-            //return true;
-            if (_generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
-                                                       && x.ShowLeague
-                                                       && x.LeagueSubOptions.Any(ccc => ccc.GridType == gridType
-                                                                                        && ccc.Expand)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+                                                          && x.ShowLeague
+                                                          && x.LeagueSubOptions.Any(y => y.GridType == gridType
+                                                                                         && y.Expand));
         }
 
         private void Click_Handler1(object sender, RoutedEventArgs e)
         {
-            TextBlockBossMode.Text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                     + Environment.NewLine + 
-                                     "Sed aliquam, libero eget vehicula aliquam, metus magna rhoncus lectus, ut malesuada tellus felis et nunc.Curabitur at sodales tortor, non tincidunt nisi. "
-                                     + Environment.NewLine + 
-                                     @"Quisque auctor bibendum metus et suscipit. Mauris sit amet metus interdum, faucibus metus et, placerat tellus. Suspendisse maximus dui dolor, vel vestibulum nisi porta sit amet.Nulla maximus dui et nisi gravida laoreet.Suspendisse sed tempor mi."
-                                     + Environment.NewLine
-                                     + @"Curabitur sit amet posuere felis, non sagittis sem.Vivamus pellentesque mi sapien, id elementum diam dictum in."
-                                     + Environment.NewLine + 
-                                     @"Nunc ut neque finibus, rutrum diam et, congue eros.Nulla ut metus sit amet tortor finibus mollis tempus eget nibh."
-                                     + Environment.NewLine + 
-                                     @"Mauris non rutrum nulla, volutpat eleifend leo. Pellentesque a iaculis est, at volutpat mi. Vestibulum ullamcorper dictum tincidunt. Cras ac enim vel orci accumsan tristique sed mattis ex."
-                                     + Environment.NewLine + 
-                                     @"Aliquam erat volutpat.Aenean ut sem nec leo molestie pharetra.Aenean velit ipsum, cursus eget nisl eget, facilisis vehicula nibh. "
-                                     + Environment.NewLine + 
-                                     @"Aliquam et metus ornare ante ullamcorper consectetur.Quisque sollicitudin sapien nulla, a mollis ante pellentesque ut. Aliquam erat volutpat.Maecenas condimentum iaculis lobortis. Vivamus non facilisis tortor."
-                                     + Environment.NewLine+
-                                     @"Etiam in viverra purus. Nullam viverra fringilla lacus. Nam laoreet arcu id bibendum accumsan. Curabitur semper quam nisi, ultricies suscipit nibh laoreet nec. " 
-                                     + Environment.NewLine +
-                                     @"In turpis metus, venenatis sit amet turpis vel, gravida maximus arcu.Etiam a elit ante. Donec quis odio erat. Aenean vel est quis ligula mattis tristique et at sem. Nulla malesuada, ante vel hendrerit fringilla, diam augue pulvinar nunc, eget consectetur felis orci eu sem.Vestibulum id laoreet ex. "
-                                     + Environment.NewLine + 
-                                     @"Pellentesque libero dolor, interdum nec urna at, convallis vehicula purus. Donec elementum mi nulla, a maximus tortor rhoncus vitae. Quisque pellentesque eros nibh. Cras metus velit, aliquet ut volutpat non, eleifend at dolor."
-                                     + Environment.NewLine+
-                                     @"Proin eget sodales mi. Donec volutpat vitae lectus ut efficitur. Integer efficitur eu lorem at tincidunt. Mauris id magna dictum, vulputate turpis sed, euismod enim.Nulla commodo tincidunt blandit."
-                                     + Environment.NewLine + 
-                                     @"Pellentesque laoreet justo sed porta dignissim. Quisque vitae erat eget lorem hendrerit semper scelerisque nec dui. Suspendisse vitae nisl ullamcorper nunc sollicitudin dictum ut quis tellus.";
+            TextBlockBossMode.Text = CommonConstants.TheBossIsCommingText;
             StackPanelLeagueMode.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Visible;
         }
@@ -263,16 +228,8 @@ namespace HierarchicalDataTemplate
         private static InternalLeagueCode GetInternalLeagueCode(string expanderName)
         {
             var internalLeagueCodeString = _wpfHelper.GetInternalLeagueCodeString(expanderName);
-            ///////////////////////////////var internalLeagueCode = GetInternalLeagueCode(internalLeagueCodeString);
-            var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
-            return internalLeagueCode;
+            return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
         }
-
-        //////////////private static InternalLeagueCode GetInternalLeagueCode(string internalLeagueCodeString)
-        //////////////{
-        //////////////    var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
-        //////////////    return internalLeagueCode;
-        //////////////}
 
         public static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)//gregt make private ?
         {
@@ -730,3 +687,9 @@ namespace HierarchicalDataTemplate
 //    var leagueMatchesFixtures = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
 //    return (List<Fixture>)leagueMatchesFixtures.MatchFixtures;
 //}
+
+//////////////private static InternalLeagueCode GetInternalLeagueCode(string internalLeagueCodeString)
+//////////////{
+//////////////    var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
+//////////////    return internalLeagueCode;
+//////////////}
