@@ -21,11 +21,8 @@ namespace FootieData.Gateway
 
         public LeagueStandings GetFromClientStandings(string leagueIdentifier)
         {
-            var result = new LeagueStandings
-            {
-                //Standings = new List<Standing>(),
-            };
-
+            var result = new LeagueStandings();
+            
             var idSeason = GetIdSeason(leagueIdentifier);
 
             var leagueTableResult = _footDataServices.LeagueTable(idSeason);
@@ -40,10 +37,7 @@ namespace FootieData.Gateway
 
         public LeagueMatchesResults GetFromClientResults(string leagueIdentifier, string timeFrame)
         {
-            var result = new LeagueMatchesResults
-            {
-                //MatchFixtures = new List<Fixture>(),
-            };
+            var result = new LeagueMatchesResults();
 
             var idSeason = GetIdSeason(leagueIdentifier);
 
@@ -59,10 +53,7 @@ namespace FootieData.Gateway
 
         public LeagueMatchesFixtures GetFromClientFixtures(string leagueIdentifier, string timeFrame)
         {
-            var result = new LeagueMatchesFixtures
-            {
-               // MatchFixtures = new List<Fixture>(),
-            };
+            var result = new LeagueMatchesFixtures();
 
             var idSeason = GetIdSeason(leagueIdentifier);
 
