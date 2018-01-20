@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace HierarchicalDataTemplate
+namespace FootieData.Common.Helpers
 {
     public static class EnumExtensions
     {
@@ -11,8 +11,8 @@ namespace HierarchicalDataTemplate
             string description = null;
             if (e is Enum)
             {
-                Type type = e.GetType();
-                Array values = System.Enum.GetValues(type);
+                var type = e.GetType();
+                var values = Enum.GetValues(type);
                 foreach (int val in values)
                 {
                     if (val == e.ToInt32(CultureInfo.InvariantCulture))

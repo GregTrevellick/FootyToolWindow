@@ -11,11 +11,11 @@ namespace HierarchicalDataTemplate
             {
                 base.OnAutoGeneratingColumn(e);
                 var propDescr = e.PropertyDescriptor as System.ComponentModel.PropertyDescriptor;
-                e.Column.Header = propDescr.Description;
+                e.Column.Header = propDescr?.Description;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //Utils.ReportException(ex);
+                //gregt error
             }
         }
     }

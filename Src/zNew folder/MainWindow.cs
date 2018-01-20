@@ -25,13 +25,10 @@ namespace HierarchicalDataTemplate
             InitializeComponent();
 
             _color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
-
             _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
-
             _wpfHelper = new WpfHelper();
 
-            var tempryGetOptions = new TempryGetOptions();
-            _generalOptions = tempryGetOptions.GetGeneralOptions();
+            _generalOptions = new TempryGetOptions().GetGeneralOptions();
         }
 
         private FootballDataSdkGateway GetGateway()
@@ -46,16 +43,23 @@ namespace HierarchicalDataTemplate
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
         {
             var expander = sender as Expander;
-            var internalLeagueCode = GetInternalLeagueCode(expander.Name);
-            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-            if (shouldShowLeague)
+            if (expander != null)
             {
-                expander.Visibility = Visibility.Visible;
-                expander.Style = (Style) TryFindResource("PlusMinusExpander");
+                var internalLeagueCode = GetInternalLeagueCode(expander.Name);
+                var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+                if (shouldShowLeague)
+                {
+                    expander.Visibility = Visibility.Visible;
+                    expander.Style = (Style)TryFindResource("PlusMinusExpander");
+                }
+                else
+                {
+                    expander.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
-                expander.Visibility = Visibility.Collapsed;
+                //gregt error
             }
         }
 
