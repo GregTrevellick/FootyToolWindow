@@ -21,7 +21,7 @@ namespace FootieData.Gateway
 
         public IEnumerable<Standing> GetFromClientStandings(string leagueIdentifier)
         {
-            IEnumerable<Standing> result = null;// = new LeagueStandings();
+            IEnumerable<Standing> result = null;
             
             var idSeason = GetIdSeason(leagueIdentifier);
 
@@ -37,7 +37,7 @@ namespace FootieData.Gateway
 
         public IEnumerable<Fixture> GetFromClientResults(string leagueIdentifier, string timeFrame)
         {
-            IEnumerable<Fixture> result = null;// = new LeagueMatchesResults();
+            IEnumerable<Fixture> result = null;
 
             var idSeason = GetIdSeason(leagueIdentifier);
 
@@ -53,7 +53,7 @@ namespace FootieData.Gateway
 
         public IEnumerable<Fixture> GetFromClientFixtures(string leagueIdentifier, string timeFrame)
         {
-            IEnumerable<Fixture> result = null;// = new LeagueMatchesFixtures();
+            IEnumerable<Fixture> result = null;
 
             var idSeason = GetIdSeason(leagueIdentifier);
 
