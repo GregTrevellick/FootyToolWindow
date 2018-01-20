@@ -114,16 +114,16 @@ namespace FootieData.Gateway
             }
             else
             {
-                //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-                //Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
-                //Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-                CultureInfo ci = new CultureInfo("de-DE");
+                //gregt for testing
+                //var ci = new CultureInfo("en-US");
+                //var ci = new CultureInfo("en-GB");
+                //var ci = new CultureInfo("fr-FR");
+                var ci = new CultureInfo("de-DE");
 
                 return fixturesResult?.fixtures?.Select(x => new Fixture
                 {
                     AwayName = x.awayTeamName,
-                    Date = x.date.ToString("d", ci),//x.date.ToShortDateString() + x.date.ToShortTimeString(),
+                    Date = x.date.ToString("d", ci),
                     GoalsAway = x.result.goalsAwayTeam,
                     GoalsHome = x.result.goalsHomeTeam,
                     HomeName = x.homeTeamName,
