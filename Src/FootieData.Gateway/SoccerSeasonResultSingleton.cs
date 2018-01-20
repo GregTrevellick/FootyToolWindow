@@ -3,12 +3,13 @@ using FootballDataSDK.Services;
 
 namespace FootieData.Gateway
 {
-    public sealed class SiteStructureSingleton
+    public sealed class SoccerSeasonResultSingleton
     {
         public SoccerSeasonResult SoccerSeasonResult;
 
-        private static readonly SiteStructureSingleton _instance = new SiteStructureSingleton();
-        public static SiteStructureSingleton Instance
+        private static readonly SoccerSeasonResultSingleton _instance = new SoccerSeasonResultSingleton();
+
+        public static SoccerSeasonResultSingleton Instance
         {
             get
             {
@@ -16,7 +17,7 @@ namespace FootieData.Gateway
             }
         }
 
-        private SiteStructureSingleton()
+        private SoccerSeasonResultSingleton()
         {
             var footDataServices = new FootDataServices
             {

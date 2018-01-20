@@ -18,7 +18,7 @@ namespace HierarchicalDataTemplate
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
         private SolidColorBrush color;
-        private SiteStructureSingleton _siteStructureSingletonInstance;
+        private SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
 
         public MainWindow()
         {
@@ -26,7 +26,7 @@ namespace HierarchicalDataTemplate
 
             color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
 
-            _siteStructureSingletonInstance = SiteStructureSingleton.Instance;
+            _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
 
             _wpfHelper = new WpfHelper();
 
@@ -40,7 +40,7 @@ namespace HierarchicalDataTemplate
             {
                 AuthToken = "52109775b1584a93854ca187690ed4bb"
             };
-            var _gateway = new FootballDataSdkGateway(_footDataServices, _siteStructureSingletonInstance);
+            var _gateway = new FootballDataSdkGateway(_footDataServices, _soccerSeasonResultSingletonInstance);
             return _gateway;
         }
 

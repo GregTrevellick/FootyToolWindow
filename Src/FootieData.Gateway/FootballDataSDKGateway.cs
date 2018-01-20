@@ -1,11 +1,7 @@
-﻿using System;
-using FootballDataSDK.Models.Results;
-using FootballDataSDK.Services;
+﻿using FootballDataSDK.Services;
 using FootieData.Entities;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using System.Threading.Tasks;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
@@ -13,13 +9,13 @@ namespace FootieData.Gateway
     public class FootballDataSdkGateway
     {
         private readonly FootDataServices _footDataServices;
-        private readonly SiteStructureSingleton _siteStructureSingleton;
+        private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingleton;
 
-        public FootballDataSdkGateway(FootDataServices footDataServices, SiteStructureSingleton siteStructureSingletonInstance)
+        public FootballDataSdkGateway(FootDataServices footDataServices, SoccerSeasonResultSingleton soccerSeasonResultSingletonInstance)
         {
             _footDataServices = footDataServices;
 
-            _siteStructureSingleton = siteStructureSingletonInstance;
+            _soccerSeasonResultSingleton = soccerSeasonResultSingletonInstance;
         }
 
         public LeagueStandings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
@@ -135,7 +131,7 @@ namespace FootieData.Gateway
 
         private int GetLeagueId5(string leagueIdentifier)
         {
-            var league = _siteStructureSingleton.SoccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
+            var league = _soccerSeasonResultSingleton.SoccerSeasonResult.Seasons.Single(x => x.league == leagueIdentifier);
             return league.id;
         }
 
@@ -165,35 +161,6 @@ namespace FootieData.Gateway
 
 
 
-
-
-
-
-
-
-
-//class SingletonB
-//{
-//    public static readonly SingletonB _instance = new SingletonB();
-
-//    public void Test()
-//    {
-//        // Code runs.
-//        Console.WriteLine(true);
-//    }
-
-//    SingletonB()
-//    {
-//    }
-//}
-
-//class Program
-//{
-//    public static void Main()
-//    {
-//        SingletonB._instance.Test();
-//    }
-//}
 
 
 
