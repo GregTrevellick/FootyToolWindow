@@ -135,8 +135,9 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var _gateway = GetGateway();
-                            var leagueResponse = _gateway.GetLeagueResponseFromClient_Standings(externalLeagueCode.ToString());
-                            result = (List<Standing>)leagueResponse.Standings;
+                            var leagueResponse = _gateway.GetFromClientStandings(externalLeagueCode.ToString());
+                            //result = (List<Standing>)leagueResponse.Standings;
+                            result = leagueResponse?.Standings.ToList();
                         }
                     }
                     return result;
@@ -166,8 +167,9 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var _gateway = GetGateway();
-                            var leagueMatchesResults = _gateway.GetLeagueResponseFromClient_MatchesResult(externalLeagueCode.ToString(), "p20");
-                            result = (List<Fixture>)leagueMatchesResults.MatchFixtures;
+                            var leagueMatchesResults = _gateway.GetFromClientResults(externalLeagueCode.ToString(), "p20");
+                            //result = (List<Fixture>)leagueMatchesResults.MatchFixtures;
+                            result = leagueMatchesResults?.MatchFixtures.ToList();
                         }
                     }
                     return result;
@@ -183,7 +185,7 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async Task<List<Fixture>> PopulateDataGridFixtureAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
+        private async Task<List<Fixture>> PopulateDataGridFixtureAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)//gregt return ienumerable
         {
             try
             {
@@ -197,8 +199,10 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var _gateway = GetGateway();
-                            var leagueMatchesFixtures = _gateway.GetLeagueResponseFromClient_MatchesFixture(externalLeagueCode.ToString(), "n20");
-                            result = (List<Fixture>)leagueMatchesFixtures.MatchFixtures;}
+                            var leagueMatchesFixtures = _gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n20");
+                            //result = (List<Fixture>)leagueMatchesFixtures.MatchFixtures;}
+                            result = leagueMatchesFixtures?.MatchFixtures.ToList();
+                        }
                     }
                     return result;
                 });

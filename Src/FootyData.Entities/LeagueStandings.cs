@@ -4,6 +4,6 @@ namespace FootieData.Entities
 {
     public class LeagueStandings
     {
-        public IList<Standing> Standings;
+        public IEnumerable<Standing> Standings;
     }
 }
