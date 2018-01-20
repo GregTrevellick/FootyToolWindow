@@ -4,20 +4,20 @@ namespace FootieData.Entities
 {
     public class Standing
     {
-        [Description("Pos")]
+        [Description("")]
         public int Rank { get; set; }
         [Description("Club")]
         public string Team { get; set; }
-        [Description("Pl")]
+        [Description("P")]
         public int Played { get; set; }
         //public string CrestURI { get; set; }
         [Description("F")]
         public int For { get; set; }
         [Description("A")]
         public int Against { get; set; }
-        [Description("Gd")]
+        [Description("GD")]
         public int Diff { get; set; }
-        [Description("Pts")]
+        [Description("PTs")]
         public int Points { get; set; }
     }
 }
