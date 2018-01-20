@@ -20,12 +20,10 @@ namespace HierarchicalDataTemplate
         private static GeneralOptions _generalOptions;
         private readonly SolidColorBrush _color;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
-        //private readonly IEnumerable<Standing> _nullStandings = new List<Standing> { new Standing { Team = "no standings" } };
-        //private readonly IEnumerable<Fixture> _nullResults = new List<Fixture> { new Fixture { HomeName = "no results" } };
-        //private readonly IEnumerable<Fixture> _nullFixtures = new List<Fixture> { new Fixture { HomeName = "no fixtures" } };
-        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = "no standings" } };
-        private readonly IEnumerable<NullReturn> _nullResults = new List<NullReturn> { new NullReturn { Error = "no results" } };
-        private readonly IEnumerable<NullReturn> _nullFixtures = new List<NullReturn> { new NullReturn { Error = "no fixtures" } };
+        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullResults = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixtures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
+        private const string Unavailable = "unavailable at this time - try again later";
 
         public MainWindow()
         {
