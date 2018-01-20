@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HierarchicalDataTemplate.Options;
 using HierarchicalDataTemplate.ReferenceData;
 
 namespace HierarchicalDataTemplate
@@ -19,22 +18,21 @@ namespace HierarchicalDataTemplate
                 LeagueOptions = new List<LeagueOption>()
             };
 
-            AddThem(InternalLeagueCode.DE1);
-            AddThem(InternalLeagueCode.DE2);
-            ////AddThem(InternalLeagueCode.DE3);
-            AddThem(InternalLeagueCode.ES1);
-            ////AddThem(InternalLeagueCode.ES2);
-            AddThem(InternalLeagueCode.FR1);
-            AddThem(InternalLeagueCode.FR2);
-            ////AddThem(InternalLeagueCode.GR1);
-            AddThem(InternalLeagueCode.IT1);
-            AddThem(InternalLeagueCode.IT2);
-            AddThem(InternalLeagueCode.NL1);
-            AddThem(InternalLeagueCode.PT1);
-            AddThem(InternalLeagueCode.UK1);
-            AddThem(InternalLeagueCode.UK2);
+            //AddThem(InternalLeagueCode.DE1);
+            //AddThem(InternalLeagueCode.DE2);
+            //AddThem(InternalLeagueCode.ES1);
+            //AddThem(InternalLeagueCode.FR1);
+            //AddThem(InternalLeagueCode.FR2);
+            //AddThem(InternalLeagueCode.IT1);
+            //AddThem(InternalLeagueCode.IT2);
+            //AddThem(InternalLeagueCode.NL1);
+            //AddThem(InternalLeagueCode.PT1);
+            //AddThem(InternalLeagueCode.UK1);
             //AddThem(InternalLeagueCode.UK2);
-            //AddThem(InternalLeagueCode.UK3);
+            AddThem(InternalLeagueCode.DE3);
+            AddThem(InternalLeagueCode.ES2);
+            AddThem(InternalLeagueCode.GR1);
+            AddThem(InternalLeagueCode.UK3);
 
             //////AddThem(InternalLeagueCode.DE4);
             //////AddThem(InternalLeagueCode.ES3);

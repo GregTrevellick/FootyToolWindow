@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using HierarchicalDataTemplate.Options;
 using HierarchicalDataTemplate.ReferenceData;
 
 namespace HierarchicalDataTemplate
@@ -21,6 +20,9 @@ namespace HierarchicalDataTemplate
         private static GeneralOptions _generalOptions;
         private readonly SolidColorBrush _color;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
+        private readonly IEnumerable<Standing> _nullStandings = new List<Standing> { new Standing { Team = "no standings" } };
+        private readonly IEnumerable<Fixture> _nullResults = new List<Fixture> { new Fixture { HomeName = "no results" } };
+        private readonly IEnumerable<Fixture> _nullFixtures = new List<Fixture> { new Fixture { HomeName = "no fixtures" } };
 
         public MainWindow()
         {
@@ -95,13 +97,28 @@ namespace HierarchicalDataTemplate
                         switch (gridType)
                         {
                             case GridType.Standing:
-                                dataGrid.ItemsSource = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                var standings = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                if (standings == null)
+                                {
+                                    standings = _nullStandings;
+                                }
+                                dataGrid.ItemsSource = standings;
                                 break;
                             case GridType.Result:
-                                dataGrid.ItemsSource = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                var results = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                if (results == null)
+                                {
+                                    results = _nullResults;
+                                }
+                                dataGrid.ItemsSource = results;
                                 break;
                             case GridType.Fixture:
-                                dataGrid.ItemsSource = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                var fixtures = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
+                                if (fixtures == null)
+                                {
+                                    fixtures = _nullFixtures;
+                                }
+                                dataGrid.ItemsSource = fixtures;
                                 break;
                         }
                     }

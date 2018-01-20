@@ -23,10 +23,13 @@ namespace FootieData.Gateway
         {
             IEnumerable<Standing> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
-            var leagueTableResult = _footDataServices.LeagueTable(idSeason);
-            if (leagueTableResult != null)
+            if (idSeason > 0)
             {
-                result = GetResultMatchStandings(leagueTableResult);
+                var leagueTableResult = _footDataServices.LeagueTable(idSeason);
+                if (leagueTableResult != null)
+                {
+                    result = GetResultMatchStandings(leagueTableResult);
+                }
             }
             return result;
         }
@@ -35,10 +38,13 @@ namespace FootieData.Gateway
         {
             IEnumerable<Fixture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
-            var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
-            if (fixturesResult != null)
+            if (idSeason > 0)
             {
-                result = GetResultMatchFixtures(fixturesResult);
+                var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
+                if (fixturesResult != null)
+                {
+                    result = GetResultMatchFixtures(fixturesResult);
+                }
             }
             return result;
         }
@@ -47,17 +53,20 @@ namespace FootieData.Gateway
         {
             IEnumerable<Fixture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
-            var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
-            if (fixturesResult != null)
+            if (idSeason > 0)
             {
-                result = GetResultMatchFixtures(fixturesResult);
+                var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
+                if (fixturesResult != null)
+                {
+                    result = GetResultMatchFixtures(fixturesResult);
+                }
             }
             return result;
         }
 
         private int GetIdSeason(string leagueIdentifier)
         {
-            var league = _soccerSeasonResultSingleton?.SoccerSeasonResult?.Seasons?.Single(x => x.league == leagueIdentifier);
+            var league = _soccerSeasonResultSingleton?.SoccerSeasonResult?.Seasons?.SingleOrDefault(x => x.league == leagueIdentifier);
             return league?.id ?? 0;
         }
 

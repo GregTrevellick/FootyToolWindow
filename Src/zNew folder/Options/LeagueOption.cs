@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using HierarchicalDataTemplate.ReferenceData;
 
-namespace HierarchicalDataTemplate.Options
+namespace HierarchicalDataTemplate
 {
     public class LeagueOption
     {
