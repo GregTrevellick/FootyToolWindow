@@ -5,11 +5,11 @@ namespace HierarchicalDataTemplate
     public enum GridType
     {
         Unknown = 0,
-        [Description("latest league table")]
+        [Description("")]
         Standing,
-        [Description("recent results")]
+        [Description("results")]
         Result,
-        [Description("upcoming fixtures")]
+        [Description("fixtures")]
         Fixture
     }
 }
