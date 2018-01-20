@@ -150,7 +150,7 @@ namespace FootieData.Gateway
                     AwayName = x.awayTeamName,
                     Date = x.date.ToString("d", enGB),//gregt unit test & remove culture
                     HomeName = x.homeTeamName,
-                    Time = x.date.ToString("t", enUS),//gregt unit test & remove culture - to be tested
+                    Time = x.date.ToString("t", enUS),//gregt unit test & remove culture
                 });
             }
         }
