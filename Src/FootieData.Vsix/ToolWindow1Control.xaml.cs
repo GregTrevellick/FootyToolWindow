@@ -9,6 +9,7 @@ namespace FootieData.Vsix
     public partial class ToolWindow1Control : UserControl
     {
         private FootballDataSdkGateway _gateway;
+        private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
 
         private bool _showPl  = true;
         private bool _expandPl  = false;
@@ -21,11 +22,13 @@ namespace FootieData.Vsix
         {
             InitializeComponent();
 
+            _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
+
             var _footDataServices = new FootDataServices
             {
                 AuthToken = "52109775b1584a93854ca187690ed4bb"
             };
-            _gateway = new FootballDataSdkGateway(_footDataServices);
+            _gateway = new FootballDataSdkGateway(_footDataServices, _soccerSeasonResultSingletonInstance);
 
             if (_showPl)
             {
@@ -60,11 +63,11 @@ namespace FootieData.Vsix
 
         private void GetLeagueData(object sender, string leagueIdentifier)
         {
-            var leagueResponse = _gateway.GetLeagueResponse_Standings(leagueIdentifier);
+            var leagueResponse = _gateway.GetFromClientStandings(leagueIdentifier);
 
             var grid = sender as DataGrid;
             //grid.ItemsSource = leagueResponse.Result.Standings;
-            grid.ItemsSource = leagueResponse.Standings;
+            grid.ItemsSource = leagueResponse;//.Standings;
             grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
         }
     }

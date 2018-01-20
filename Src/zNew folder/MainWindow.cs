@@ -24,8 +24,8 @@ namespace HierarchicalDataTemplate
         private readonly SolidColorBrush _color;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
-        private readonly IEnumerable<NullReturn> _nullResults = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
-        private readonly IEnumerable<NullReturn> _nullFixtures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
         private const string Unavailable = "unavailable at this time - try again later";
 
         public MainWindow()
@@ -105,12 +105,12 @@ namespace HierarchicalDataTemplate
                                dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
                                 break;
                             case GridType.Result:
-                                var results = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call finished
-                                dataGrid.ItemsSource = results ?? (IEnumerable)_nullResults;
+                                var results = await GetFixturePastsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call finished
+                                dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
                                 break;
                             case GridType.Fixture:
-                                var fixtures = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call has finished
-                                dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtures;
+                                var fixtures = await GetFixtureFuturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run til web service call has finished
+                                dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
                                 break;
                         }
                     }
@@ -151,13 +151,13 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async Task<IEnumerable<Fixture>> GetResultsAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
+        private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
         {
             try
             {
                 var theTask = Task.Run(() =>
                 {
-                    IEnumerable<Fixture> result = null;
+                    IEnumerable<FixturePast> result = null;
                     if (shouldShowLeague)
                     {
                         var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
@@ -165,7 +165,7 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            result = gateway.GetFromClientResults(externalLeagueCode.ToString(), "p7");
+                            result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
                         }
                     }
                     return result;
@@ -176,17 +176,17 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                return new List<Fixture> { new Fixture { HomeName = "GetResultsAsync internal error" } };
+                return new List<FixturePast> { new FixturePast { HomeName = "GetResultsAsync internal error" } };
             }
         }
 
-        private async Task<IEnumerable<Fixture>> GetFixturesAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
+        private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
         {
             try
             {
                 var theTask = Task.Run(() =>
                 {
-                    IEnumerable<Fixture> result = null;
+                    IEnumerable<FixtureFuture> result = null;
                     if (shouldShowLeague)
                     {
                         var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
@@ -194,7 +194,7 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            result = gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n7");
+                            result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
                         }
                     }
                     return result;
@@ -205,7 +205,7 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                return new List<Fixture> { new Fixture { HomeName = "GetFixturesAsync internal error" } };
+                return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
             }
         }
 

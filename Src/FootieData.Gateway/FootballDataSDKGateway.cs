@@ -36,31 +36,31 @@ namespace FootieData.Gateway
             return result;
         }
 
-        public IEnumerable<Fixture> GetFromClientResults(string leagueIdentifier, string timeFrame)
+        public IEnumerable<FixturePast> GetFromClientFixturePasts(string leagueIdentifier, string timeFrame)
         {
-            IEnumerable<Fixture> result = null;
+            IEnumerable<FixturePast> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
                 var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
                 if (fixturesResult != null)
                 {
-                    result = GetResultMatchFixtures(fixturesResult);
+                    result = GetFixturePasts(fixturesResult);
                 }
             }
             return result;
         }
 
-        public IEnumerable<Fixture> GetFromClientFixtures(string leagueIdentifier, string timeFrame)
+        public IEnumerable<FixtureFuture> GetFromClientFixtureFutures(string leagueIdentifier, string timeFrame)
         {
-            IEnumerable<Fixture> result = null;
+            IEnumerable<FixtureFuture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
                 var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
                 if (fixturesResult != null)
                 {
-                    result = GetResultMatchFixtures(fixturesResult);
+                    result = GetFixtureFutures(fixturesResult);
                 }
             }
             return result;
@@ -100,13 +100,13 @@ namespace FootieData.Gateway
             }
         }
 
-        private static IEnumerable<Fixture> GetResultMatchFixtures(FixturesResult fixturesResult)//fixturesResult.Error = "You reached your request limit. Wait 19 seconds."
+        private static IEnumerable<FixturePast> GetFixturePasts(FixturesResult fixturesResult)
         {
             if (!string.IsNullOrEmpty(fixturesResult?.error))
             {
-                return new List<Fixture>
+                return new List<FixturePast>
                 {
-                    new Fixture
+                    new FixturePast
                     {
                         HomeName = fixturesResult.error
                     }
@@ -120,13 +120,43 @@ namespace FootieData.Gateway
                 //var ci = new CultureInfo("fr-FR");
                 var ci = new CultureInfo("de-DE");
 
-                return fixturesResult?.fixtures?.Select(x => new Fixture
+                return fixturesResult?.fixtures?.Select(x => new FixturePast
                 {
                     AwayName = x.awayTeamName,
                     Date = x.date.ToString("d", ci),
-                    GoalsAway = x.result.goalsAwayTeam,
-                    GoalsHome = x.result.goalsHomeTeam,
                     HomeName = x.homeTeamName,
+                    GoalsAway = x.result?.goalsAwayTeam,
+                    GoalsHome = x.result?.goalsHomeTeam,
+                });
+            }
+        }
+
+        private static IEnumerable<FixtureFuture> GetFixtureFutures(FixturesResult fixturesResult)
+        {
+            if (!string.IsNullOrEmpty(fixturesResult?.error))
+            {
+                return new List<FixtureFuture>
+                {
+                    new FixtureFuture
+                    {
+                        HomeName = fixturesResult.error
+                    }
+                };
+            }
+            else
+            {
+                //gregt for testing
+                //var ci = new CultureInfo("en-US");
+                //var ci = new CultureInfo("en-GB");
+                //var ci = new CultureInfo("fr-FR");
+                var ci = new CultureInfo("de-DE");
+
+                return fixturesResult?.fixtures?.Select(x => new FixtureFuture
+                {
+                    AwayName = x.awayTeamName,
+                    Date = x.date.ToString("d", ci),
+                    HomeName = x.homeTeamName,
+                    Time = x.date.ToString("t", ci),
                 });
             }
         }
