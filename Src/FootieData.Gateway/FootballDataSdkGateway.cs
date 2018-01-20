@@ -76,7 +76,7 @@ namespace FootieData.Gateway
             });
         }
 
-        private static IEnumerable<Fixture> GetResultMatchFixtures(FixturesResult fixturesResult)
+        private static IEnumerable<Fixture> GetResultMatchFixtures(FixturesResult fixturesResult)//fixturesResult.Error = "You reached your request limit. Wait 19 seconds."
         {
             return fixturesResult?.fixtures.Select(x => new Fixture
             {

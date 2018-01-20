@@ -87,9 +87,7 @@ namespace HierarchicalDataTemplate
                     var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
                     var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
                     var result2 = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-
-                    ////////////////////////////////////////////////MyBtn.Content = result2;
-                    
+                   
                     parentExpander.Header = result2;
 
                     try
@@ -108,9 +106,7 @@ namespace HierarchicalDataTemplate
                         }
                     }
                     catch (Exception)
-                    {
-                        ///////////////////////////////////MyBtn.Content = "DataGridLoaded_Any internal error";
-                        
+                    {                       
                         parentExpander.Header = "DataGridLoaded_Any internal error";
                     }
                 }
@@ -249,49 +245,6 @@ namespace HierarchicalDataTemplate
             return Application.Current.Resources[resourceKey];
         }
 
-        #region button
-        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var result = await LoginAsync();
-                //next line wont run til LoginAsync has finished
-                MyBtn.Content = result;
-
-            }
-            catch (Exception)
-            {
-                MyBtn.Content = "internal error";
-            }
-        }
-
-        private async Task<string> LoginAsync()
-        {
-            try
-            {
-                //the next 3 run at same time 
-                var loginTask = Task.Run(() =>
-                {
-                    Thread.Sleep(2000);
-                    return "login successful";
-                });
-
-                var payTask = Task.Delay(2000);
-
-                var purchaseTask = Task.Delay(1000);
-
-                //next line ensures that only when all 3 are done do we return 
-                await Task.WhenAll(loginTask, payTask, purchaseTask);
-
-                //all 3 done before this line runs
-                return loginTask.Result;
-            }
-            catch (Exception)
-            {
-                return "login failed";
-            }
-        }
-        #endregion
 
     }
 }
@@ -693,3 +646,47 @@ namespace HierarchicalDataTemplate
 //////////////    var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
 //////////////    return internalLeagueCode;
 //////////////}
+
+//#region button
+//private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+//{
+//try
+//{
+//var result = await LoginAsync();
+////next line wont run til LoginAsync has finished
+//MyBtn.Content = result;
+
+//}
+//catch (Exception)
+//{
+//MyBtn.Content = "internal error";
+//}
+//}
+
+//private async Task<string> LoginAsync()
+//{
+//try
+//{
+////the next 3 run at same time 
+//var loginTask = Task.Run(() =>
+//{
+//Thread.Sleep(2000);
+//return "login successful";
+//});
+
+//var payTask = Task.Delay(2000);
+
+//var purchaseTask = Task.Delay(1000);
+
+////next line ensures that only when all 3 are done do we return 
+//await Task.WhenAll(loginTask, payTask, purchaseTask);
+
+////all 3 done before this line runs
+//return loginTask.Result;
+//}
+//catch (Exception)
+//{
+//return "login failed";
+//}
+//}
+//#endregion

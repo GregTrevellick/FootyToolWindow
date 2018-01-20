@@ -14,6 +14,7 @@
     <ScrollViewer >
         <StackPanel>
         <StackPanel Orientation="Vertical" Name="StackPanelLeagueMode">
+
             <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -21,8 +22,6 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            
-            <Button Content="abc" Name="MyBtn" Click="ButtonBase_OnClick"/>
 
             <Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" >
                 <local:MyDataGrid x:Name="Standing_Rand0001" Loaded="DataGridLoaded_Any" />
