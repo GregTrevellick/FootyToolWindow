@@ -1,7 +1,9 @@
-﻿using FootballDataSDK.Models.Results;
+﻿using System;
+using FootballDataSDK.Models.Results;
 using FootballDataSDK.Services;
 using FootieData.Entities;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Standing = FootieData.Entities.Standing;
@@ -11,11 +13,13 @@ namespace FootieData.Gateway
     public class FootballDataSdkGateway
     {
         private readonly FootDataServices _footDataServices;
-        private SoccerSeasonResult _soccerSeasonResult;
+        private readonly SiteStructureSingleton _siteStructureSingleton;
 
-        public FootballDataSdkGateway(FootDataServices footDataServices)
+        public FootballDataSdkGateway(FootDataServices footDataServices, SiteStructureSingleton siteStructureSingletonInstance)
         {
             _footDataServices = footDataServices;
+
+            _siteStructureSingleton = siteStructureSingletonInstance;
         }
 
         public LeagueStandings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
@@ -25,7 +29,7 @@ namespace FootieData.Gateway
                 Standings = new List<Standing>(),
             };
 
-            var leagueId = GetLeagueId1a(leagueIdentifier);
+            var leagueId = GetLeagueId5(leagueIdentifier);
 
             if (leagueId != int.MinValue)                       
             {
@@ -59,31 +63,34 @@ namespace FootieData.Gateway
 
         public LeagueMatchesResults GetLeagueResponseFromClient_MatchesResult(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = GetLeagueId1a(leagueIdentifier);
-
-            var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
-
             var result = new LeagueMatchesResults
             {
                 MatchFixtures = new List<Fixture>(),
             };
 
-            if (tbl == null || tbl.fixtures == null)
+            var leagueId = GetLeagueId5(leagueIdentifier);
+
+            if (leagueId != int.MinValue)
             {
-                //error !
-            }
-            else
-            {
-                foreach (var item in tbl.fixtures)
+                var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
+
+                if (tbl == null || tbl.fixtures == null)
                 {
-                    result.MatchFixtures.Add(new Fixture()
+                    //error !
+                }
+                else
+                {
+                    foreach (var item in tbl.fixtures)
                     {
-                        HomeName = item.homeTeamName,
-                        AwayName = item.awayTeamName,
-                        Date = item.date,
-                        GoalsHome = item.result.goalsHomeTeam,
-                        GoalsAway = item.result.goalsAwayTeam,
-                    });
+                        result.MatchFixtures.Add(new Fixture()
+                        {
+                            HomeName = item.homeTeamName,
+                            AwayName = item.awayTeamName,
+                            Date = item.date,
+                            GoalsHome = item.result.goalsHomeTeam,
+                            GoalsAway = item.result.goalsAwayTeam,
+                        });
+                    }
                 }
             }
 
@@ -92,73 +99,101 @@ namespace FootieData.Gateway
 
         public LeagueMatchesFixtures GetLeagueResponseFromClient_MatchesFixture(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = GetLeagueId1a(leagueIdentifier);
-
-            var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
-
             var result = new LeagueMatchesFixtures
             {
                 MatchFixtures = new List<Fixture>(),
             };
 
-            if (tbl == null || tbl.fixtures == null)
+            var leagueId = GetLeagueId5(leagueIdentifier);
+
+            if (leagueId != int.MinValue)
             {
-                //error !
-            }
-            else
-            {
-                foreach (var item in tbl.fixtures)
+                var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
+
+                if (tbl == null || tbl.fixtures == null)
                 {
-                    result.MatchFixtures.Add(new Fixture()
+                    //error !
+                }
+                else
+                {
+                    foreach (var item in tbl.fixtures)
                     {
-                        HomeName = item.homeTeamName,
-                        AwayName = item.awayTeamName,
-                        Date = item.date,
-                        GoalsHome = item.result.goalsHomeTeam,
-                        GoalsAway = item.result.goalsAwayTeam,
-                    });
+                        result.MatchFixtures.Add(new Fixture()
+                        {
+                            HomeName = item.homeTeamName,
+                            AwayName = item.awayTeamName,
+                            Date = item.date,
+                            GoalsHome = item.result.goalsHomeTeam,
+                            GoalsAway = item.result.goalsAwayTeam,
+                        });
+                    }
                 }
             }
 
             return result;
         }
 
-        private int GetLeagueId1a(string leagueIdentifier)
+        private int GetLeagueId5(string leagueIdentifier)
         {
-            if (_soccerSeasonResult == null)
-            {
-                _soccerSeasonResult = GetLeagueId3();
-           }
-
-            if (_soccerSeasonResult == null ||
-                _soccerSeasonResult.Seasons == null||
-                _soccerSeasonResult.Seasons.Length == 0)
-            {
-                //throw new Exception("yep");
-                return int.MinValue;
-            }
-            else
-            {
-                var league = _soccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
-                return league.id;
-            }            
+            var league = _siteStructureSingleton.SoccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
+            return league.id;
         }
-
-        private SoccerSeasonResult GetLeagueId3()
-        {
-            return _footDataServices.SoccerSeasons();
-        }
-
-        //private int GetLeagueId4(string leagueIdentifier)
-        //{
-        //    var soccerSeasonResult = GetLeagueId3();
-        //    var league = soccerSeasonResult?.Seasons?.First(x => x.league == leagueIdentifier);
-        //    return league == null ? 0 : league.id;
-        //}
 
     }
+
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//class SingletonB
+//{
+//    public static readonly SingletonB _instance = new SingletonB();
+
+//    public void Test()
+//    {
+//        // Code runs.
+//        Console.WriteLine(true);
+//    }
+
+//    SingletonB()
+//    {
+//    }
+//}
+
+//class Program
+//{
+//    public static void Main()
+//    {
+//        SingletonB._instance.Test();
+//    }
+//}
 
 
 
@@ -311,4 +346,44 @@ namespace FootieData.Gateway
 //{
 //    var result = GetLeagueResponseFromClient_MatchesFixture(leagueIdentifier, "n7");
 //    return result;
+//}
+
+
+
+
+
+//private int GetLeagueId4(string leagueIdentifier)
+//{
+//    var soccerSeasonResult = GetLeagueId3();
+//    var league = soccerSeasonResult?.Seasons?.First(x => x.league == leagueIdentifier);
+//    return league == null ? 0 : league.id;
+//}
+
+
+
+
+//private int GetLeagueId1a(string leagueIdentifier)
+//{
+//    if (_soccerSeasonResult == null)
+//    {
+//        _soccerSeasonResult = GetLeagueId3();
+//   }
+
+//    if (_soccerSeasonResult == null ||
+//        _soccerSeasonResult.Seasons == null||
+//        _soccerSeasonResult.Seasons.Length == 0)
+//    {
+//        //throw new Exception("yep");
+//        return int.MinValue;
+//    }
+//    else
+//    {
+//        var league = _soccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
+//        return league.id;
+//    }            
+//}
+
+//private SoccerSeasonResult GetLeagueId3()
+//{
+//    return _footDataServices.SoccerSeasons();
 //}

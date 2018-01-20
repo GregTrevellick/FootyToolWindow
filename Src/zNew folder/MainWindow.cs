@@ -19,12 +19,15 @@ namespace HierarchicalDataTemplate
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
         private SolidColorBrush color;
+        private SiteStructureSingleton _siteStructureSingletonInstance;
 
         public MainWindow()
         {
             InitializeComponent();
 
             color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
+
+            _siteStructureSingletonInstance = SiteStructureSingleton.Instance;
 
             //var _footDataServices = new FootDataServices
             //{
@@ -44,7 +47,7 @@ namespace HierarchicalDataTemplate
             {
                 AuthToken = "52109775b1584a93854ca187690ed4bb"
             };
-            var _gateway = new FootballDataSdkGateway(_footDataServices);
+            var _gateway = new FootballDataSdkGateway(_footDataServices, _siteStructureSingletonInstance);
             return _gateway;
         }
 
