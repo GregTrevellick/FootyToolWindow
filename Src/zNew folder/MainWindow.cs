@@ -1,16 +1,16 @@
 ﻿using FootballDataSDK.Services;
+using FootieData.Common;
 using FootieData.Common.Helpers;
 using FootieData.Entities;
 using FootieData.Gateway;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using FootieData.Common;
+using HierarchicalDataTemplate.ReferenceData;
 
 namespace HierarchicalDataTemplate
 {
@@ -76,6 +76,7 @@ namespace HierarchicalDataTemplate
                 {
                     parentExpander.IsExpanded = true;
 
+                    //gregt move these to MyDataGrid ?
                     dataGrid.AlternatingRowBackground = _color;
                     dataGrid.ColumnHeaderHeight = 25;
                     dataGrid.RowHeaderWidth = 0;
@@ -86,10 +87,8 @@ namespace HierarchicalDataTemplate
                     var parentExpanderName = parentExpander.Name;
                     var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
                     var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-                    var result2 = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                    parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
                    
-                    parentExpander.Header = result2;
-
                     try
                     {
                         switch (gridType)
@@ -138,7 +137,7 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                return new List<Standing> { new Standing { Team = "Error1" } };
+                return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
             }
         }
 
@@ -156,7 +155,7 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            result = gateway.GetFromClientResults(externalLeagueCode.ToString(), "p10");
+                            result = gateway.GetFromClientResults(externalLeagueCode.ToString(), "p7");
                         }
                     }
                     return result;
@@ -167,7 +166,7 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                return new List<Fixture> { new Fixture { HomeName = "Error2" } };
+                return new List<Fixture> { new Fixture { HomeName = "GetResultsAsync internal error" } };
             }
         }
 
@@ -185,7 +184,7 @@ namespace HierarchicalDataTemplate
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
-                            result = gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n10");
+                            result = gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n7");
                         }
                     }
                     return result;
@@ -196,7 +195,7 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                return new List<Fixture> { new Fixture { HomeName = "Error3" } };
+                return new List<Fixture> { new Fixture { HomeName = "GetFixturesAsync internal error" } };
             }
         }
 
@@ -244,8 +243,6 @@ namespace HierarchicalDataTemplate
 
             return Application.Current.Resources[resourceKey];
         }
-
-
     }
 }
 

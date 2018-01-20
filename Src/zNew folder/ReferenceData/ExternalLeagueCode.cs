@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace HierarchicalDataTemplate
+namespace HierarchicalDataTemplate.ReferenceData
 {
 
     public enum ExternalLeagueCode
