@@ -3,7 +3,9 @@ using FootballDataSDK.Services;
 using FootieData.Entities;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
@@ -112,10 +114,16 @@ namespace FootieData.Gateway
             }
             else
             {
+                //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+                //Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
+                //Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+                CultureInfo ci = new CultureInfo("de-DE");
+
                 return fixturesResult?.fixtures?.Select(x => new Fixture
                 {
                     AwayName = x.awayTeamName,
-                    Date = x.date,
+                    Date = x.date.ToString("d", ci),//x.date.ToShortDateString() + x.date.ToShortTimeString(),
                     GoalsAway = x.result.goalsAwayTeam,
                     GoalsHome = x.result.goalsHomeTeam,
                     HomeName = x.homeTeamName,

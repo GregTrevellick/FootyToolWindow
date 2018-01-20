@@ -6,7 +6,7 @@ namespace FootieData.Entities
     public class Fixture
     {
         [Description("Date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         [Description("H")]
         public string HomeName { get; set; }
         [Description("")]

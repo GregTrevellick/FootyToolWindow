@@ -15,7 +15,7 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                //gregt error
+                //Do nothing (gregt except log it ?) as simply means no column heading
             }
         }
     }
