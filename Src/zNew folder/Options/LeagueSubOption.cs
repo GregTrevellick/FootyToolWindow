@@ -1,4 +1,4 @@
-﻿namespace HierarchicalDataTemplate
+﻿namespace HierarchicalDataTemplate.Options
 {
     public class LeagueSubOption
     {

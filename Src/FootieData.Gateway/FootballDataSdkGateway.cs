@@ -65,14 +65,14 @@ namespace FootieData.Gateway
         {
             return leagueTableResult?.standing.Select(x => new Standing
             {
+                //CrestURI = x.crestURI,
+                Against = x.goalsAgainst,
+                Diff = x.goalDifference,
+                For = x.goals,
+                Played = x.playedGames,
+                Points = x.points,
                 Rank = x.position,
                 Team = x.teamName,
-                Played = x.playedGames,
-                //CrestURI = x.crestURI,
-                Points = x.points,
-                For = x.goals,
-                Against = x.goalsAgainst,
-                Diff = x.goalDifference
             });
         }
 
@@ -80,11 +80,11 @@ namespace FootieData.Gateway
         {
             return fixturesResult?.fixtures.Select(x => new Fixture
             {
-                HomeName = x.homeTeamName,
                 AwayName = x.awayTeamName,
                 Date = x.date,
-                GoalsHome = x.result.goalsHomeTeam,
                 GoalsAway = x.result.goalsAwayTeam,
+                GoalsHome = x.result.goalsHomeTeam,
+                HomeName = x.homeTeamName,
             });
         }
     }

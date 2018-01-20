@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HierarchicalDataTemplate
+namespace HierarchicalDataTemplate.Options
 {
     public class GeneralOptions
     {
