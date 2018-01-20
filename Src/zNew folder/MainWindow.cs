@@ -46,7 +46,7 @@ namespace HierarchicalDataTemplate
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
         {
             var expander = sender as Expander;
-            var internalLeagueCode = InternalLeagueCode(expander.Name);
+            var internalLeagueCode = GetInternalLeagueCode(expander.Name);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
             if (shouldShowLeague)
             {
@@ -79,14 +79,14 @@ namespace HierarchicalDataTemplate
             parentExpander.IsExpanded = true;
 
             dataGrid.AlternatingRowBackground = _color;
-            dataGrid.ColumnHeaderHeight = 2;
-            dataGrid.RowHeaderWidth = 2;
+            dataGrid.ColumnHeaderHeight = 25;
+            dataGrid.RowHeaderWidth = 0;
             dataGrid.CanUserAddRows = false;
             dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
 
             var gridType = _wpfHelper.GetGridType(dataGrid.Name);
             var parentExpanderName = parentExpander.Name;
-            var internalLeagueCode = InternalLeagueCode(parentExpanderName);
+            var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
             var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
             var result2 = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
             MyBtn.Content = result2;
@@ -256,18 +256,19 @@ namespace HierarchicalDataTemplate
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
 
-        private static InternalLeagueCode InternalLeagueCode(string expanderName)
+        private static InternalLeagueCode GetInternalLeagueCode(string expanderName)
         {
             var internalLeagueCodeString = _wpfHelper.GetInternalLeagueCodeString(expanderName);
-            var internalLeagueCode = GetInternalLeagueCode(internalLeagueCodeString);
-            return internalLeagueCode;
-        }
-
-        private static InternalLeagueCode GetInternalLeagueCode(string internalLeagueCodeString)
-        {
+            ///////////////////////////////var internalLeagueCode = GetInternalLeagueCode(internalLeagueCodeString);
             var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
             return internalLeagueCode;
         }
+
+        //////////////private static InternalLeagueCode GetInternalLeagueCode(string internalLeagueCodeString)
+        //////////////{
+        //////////////    var internalLeagueCode = (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
+        //////////////    return internalLeagueCode;
+        //////////////}
 
         public static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)//gregt make private ?
         {

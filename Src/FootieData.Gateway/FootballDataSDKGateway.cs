@@ -75,7 +75,7 @@ namespace FootieData.Gateway
 
         private static IEnumerable<Standing> GetResultMatchStandings(LeagueTableResult leagueTableResult)
         {
-            return leagueTableResult.standing.Select(x => new Standing
+            return leagueTableResult?.standing.Select(x => new Standing
             {
                 Rank = x.position,
                 Team = x.teamName,
@@ -90,7 +90,7 @@ namespace FootieData.Gateway
 
         private static IEnumerable<Fixture> GetResultMatchFixtures(FixturesResult fixturesResult)
         {
-            return fixturesResult.fixtures.Select(x => new Fixture
+            return fixturesResult?.fixtures.Select(x => new Fixture
             {
                 HomeName = x.homeTeamName,
                 AwayName = x.awayTeamName,
