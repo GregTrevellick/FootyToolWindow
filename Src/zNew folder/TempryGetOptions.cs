@@ -25,10 +25,10 @@ namespace HierarchicalDataTemplate
             AddThem(InternalLeagueCode.FR1);
             AddThem(InternalLeagueCode.FR2);
             ////AddThem(InternalLeagueCode.GR1);
-            //AddThem(InternalLeagueCode.IT1);
-            //AddThem(InternalLeagueCode.IT2);
-            //AddThem(InternalLeagueCode.NL1);
-            //AddThem(InternalLeagueCode.PT1);
+            AddThem(InternalLeagueCode.IT1);
+            AddThem(InternalLeagueCode.IT2);
+            AddThem(InternalLeagueCode.NL1);
+            AddThem(InternalLeagueCode.PT1);
             AddThem(InternalLeagueCode.UK1);
             AddThem(InternalLeagueCode.UK2);
             //AddThem(InternalLeagueCode.UK2);
