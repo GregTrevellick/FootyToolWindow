@@ -1,8 +1,9 @@
-﻿using FootballDataSDK.Services;
+﻿using FootballDataSDK.Models.Results;
+using FootballDataSDK.Services;
 using FootieData.Entities;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using FootballDataSDK.Models.Results;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
@@ -15,16 +16,13 @@ namespace FootieData.Gateway
         public FootballDataSdkGateway(FootDataServices footDataServices, SoccerSeasonResultSingleton soccerSeasonResultSingletonInstance)
         {
             _footDataServices = footDataServices;
-
             _soccerSeasonResultSingleton = soccerSeasonResultSingletonInstance;
         }
 
         public IEnumerable<Standing> GetFromClientStandings(string leagueIdentifier)
         {
             IEnumerable<Standing> result = null;
-            
             var idSeason = GetIdSeason(leagueIdentifier);
-
             var leagueTableResult = _footDataServices.LeagueTable(idSeason);
 
             if (leagueTableResult != null)
@@ -38,9 +36,7 @@ namespace FootieData.Gateway
         public IEnumerable<Fixture> GetFromClientResults(string leagueIdentifier, string timeFrame)
         {
             IEnumerable<Fixture> result = null;
-
             var idSeason = GetIdSeason(leagueIdentifier);
-
             var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
 
             if (fixturesResult != null)
@@ -54,9 +50,7 @@ namespace FootieData.Gateway
         public IEnumerable<Fixture> GetFromClientFixtures(string leagueIdentifier, string timeFrame)
         {
             IEnumerable<Fixture> result = null;
-
             var idSeason = GetIdSeason(leagueIdentifier);
-
             var tbl = _footDataServices.Fixtures(idSeason, timeFrame);
 
             if (tbl != null)
@@ -69,8 +63,8 @@ namespace FootieData.Gateway
 
         private int GetIdSeason(string leagueIdentifier)
         {
-            var league = _soccerSeasonResultSingleton.SoccerSeasonResult.Seasons.Single(x => x.league == leagueIdentifier);
-            return league.id;
+            var league = _soccerSeasonResultSingleton?.SoccerSeasonResult?.Seasons?.Single(x => x.league == leagueIdentifier);
+            return league?.id ?? 0;
         }
 
         private static IEnumerable<Standing> GetResultMatchStandings(LeagueTableResult leagueTableResult)
@@ -99,7 +93,6 @@ namespace FootieData.Gateway
                 GoalsAway = x.result.goalsAwayTeam,
             });
         }
-
     }
 }
 
