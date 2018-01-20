@@ -72,29 +72,55 @@ namespace FootieData.Gateway
 
         private static IEnumerable<Standing> GetResultMatchStandings(LeagueTableResult leagueTableResult)
         {
-            return leagueTableResult?.standing.Select(x => new Standing
+            if (!string.IsNullOrEmpty(leagueTableResult?.error))
             {
-                //CrestURI = x.crestURI,
-                Against = x.goalsAgainst,
-                Diff = x.goalDifference,
-                For = x.goals,
-                Played = x.playedGames,
-                Points = x.points,
-                Rank = x.position,
-                Team = x.teamName,
-            });
+                return new List<Standing>
+                {
+                    new Standing
+                    {
+                        Team = leagueTableResult.error
+                    }
+                };
+            }
+            else
+            {                
+                return leagueTableResult?.standing.Select(x => new Standing
+                {
+                    //CrestURI = x.crestURI,
+                    Against = x.goalsAgainst,
+                    Diff = x.goalDifference,
+                    For = x.goals,
+                    Played = x.playedGames,
+                    Points = x.points,
+                    Rank = x.position,
+                    Team = x.teamName,
+                });
+            }
         }
 
         private static IEnumerable<Fixture> GetResultMatchFixtures(FixturesResult fixturesResult)//fixturesResult.Error = "You reached your request limit. Wait 19 seconds."
         {
-            return fixturesResult?.fixtures.Select(x => new Fixture
+            if (!string.IsNullOrEmpty(fixturesResult?.error))
             {
-                AwayName = x.awayTeamName,
-                Date = x.date,
-                GoalsAway = x.result.goalsAwayTeam,
-                GoalsHome = x.result.goalsHomeTeam,
-                HomeName = x.homeTeamName,
-            });
+                return new List<Fixture>
+                {
+                    new Fixture
+                    {
+                        HomeName = fixturesResult.error
+                    }
+                };
+            }
+            else
+            {
+                return fixturesResult?.fixtures.Select(x => new Fixture
+                {
+                    AwayName = x.awayTeamName,
+                    Date = x.date,
+                    GoalsAway = x.result.goalsAwayTeam,
+                    GoalsHome = x.result.goalsHomeTeam,
+                    HomeName = x.homeTeamName,
+                });
+            }
         }
     }
 }
