@@ -62,9 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataGridFixture2.cs" />
-    <Compile Include="DataGridResult2.cs" />
-    <Compile Include="DataGridStanding2.cs" />
     <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="ReferenceData\LeagueCodeMappings.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
