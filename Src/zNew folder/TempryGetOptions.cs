@@ -20,10 +20,10 @@ namespace HierarchicalDataTemplate
             AddThem(InternalLeagueCode.DE1);
             AddThem(InternalLeagueCode.DE2);
             ////AddThem(InternalLeagueCode.DE3);
-            //AddThem(InternalLeagueCode.ES1);
+            AddThem(InternalLeagueCode.ES1);
             ////AddThem(InternalLeagueCode.ES2);
-            //AddThem(InternalLeagueCode.FR1);
-            //AddThem(InternalLeagueCode.FR2);
+            AddThem(InternalLeagueCode.FR1);
+            AddThem(InternalLeagueCode.FR2);
             ////AddThem(InternalLeagueCode.GR1);
             //AddThem(InternalLeagueCode.IT1);
             //AddThem(InternalLeagueCode.IT2);
@@ -55,23 +55,6 @@ namespace HierarchicalDataTemplate
                         new LeagueSubOption {Expand = false, GridType = GridType.Fixture}
                     }
                 });
-
-            ////////////////////////////////////////////////_generalOptions.LeagueOptions.Add(new LeagueOption
-            ////////////////////////////////////////////////{
-            ////////////////////////////////////////////////    InternalLeagueCode = internalLeagueCode,
-            ////////////////////////////////////////////////    ShowLeague = true,
-            ////////////////////////////////////////////////    LeagueSubOptions = new List<LeagueSubOption>
-            ////////////////////////////////////////////////        {new LeagueSubOption {Expand = false, GridType = GridType.Result}}
-            ////////////////////////////////////////////////});
-
-            ////////////////////////////////////////////////_generalOptions.LeagueOptions.Add(new LeagueOption
-            ////////////////////////////////////////////////{
-            ////////////////////////////////////////////////    InternalLeagueCode = internalLeagueCode,
-            ////////////////////////////////////////////////    ShowLeague = true,
-            ////////////////////////////////////////////////    LeagueSubOptions = new List<LeagueSubOption>
-            ////////////////////////////////////////////////        {new LeagueSubOption {Expand = false, GridType = GridType.Fixture}}
-            ////////////////////////////////////////////////});
         }
-
     }
 }
