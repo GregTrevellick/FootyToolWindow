@@ -18,19 +18,13 @@ namespace HierarchicalDataTemplate
         private static FootballDataSdkGateway _gateway;
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
-        private static List<DataGridStanding2> dataGridStanding2s;
-        private static List<DataGridResult2> dataGridResult2s;
-        private static List<DataGridFixture2> dataGridFixture2s;
-        private static List<Standing> dataGridItemsSourceStanding;
-        private static List<Fixture> dataGridItemsSourceResult;
-        private static List<Fixture> dataGridItemsSourceFixture;
         private SolidColorBrush color;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFF0"));
+            color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
 
             var _footDataServices = new FootDataServices
             {
@@ -43,10 +37,6 @@ namespace HierarchicalDataTemplate
 
             var tempryGetOptions = new TempryGetOptions();
             _generalOptions = tempryGetOptions.GetGeneralOptions();
-
-            dataGridFixture2s = new List<DataGridFixture2>();
-            dataGridResult2s = new List<DataGridResult2>();
-            dataGridStanding2s = new List<DataGridStanding2>();
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
@@ -57,7 +47,7 @@ namespace HierarchicalDataTemplate
             if (shouldShowLeague)
             {
                 expander.Visibility = Visibility.Visible;
-                expander.Style = (Style)TryFindResource("PlusMinusExpander");
+                expander.Style = (Style) TryFindResource("PlusMinusExpander");
             }
             else
             {
@@ -82,8 +72,8 @@ namespace HierarchicalDataTemplate
             var dataGrid = sender as DataGrid;
             Expander parentExpander = dataGrid.Parent as Expander;
 
-      parentExpander.IsExpanded = true;
-           
+            parentExpander.IsExpanded = true;
+
             dataGrid.AlternatingRowBackground = color;
             dataGrid.ColumnHeaderHeight = 2;
             dataGrid.RowHeaderWidth = 2;
@@ -92,100 +82,55 @@ namespace HierarchicalDataTemplate
 
             var gridType = _wpfHelper.GetGridType(dataGrid.Name);
             var parentExpanderName = parentExpander.Name;
+            var internalLeagueCode = InternalLeagueCode(parentExpanderName);
+            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+            var result2 = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+            MyBtn.Content = result2;
+            parentExpander.Header = result2;
 
             try
             {
-                string result="";
-                //next lines wont run til PopulateDataGridAsync above has finished
                 switch (gridType)
                 {
                     case GridType.Unknown:
                         break;
                     case GridType.Standing:
-                        result = await PopulateDataGridAsync(parentExpanderName, gridType);
-                        dataGrid.ItemsSource = dataGridItemsSourceStanding;
+                        var resultStandings = await PopulateDataGridStandingAsync(gridType, shouldShowLeague, internalLeagueCode);
+                        dataGrid.ItemsSource = resultStandings;//wont run web service call has finished
                         break;
                     case GridType.Result:
-                        result = await PopulateDataGridAsync(parentExpanderName, gridType);
-                        dataGrid.ItemsSource = dataGridItemsSourceResult;
+                        var resultResults = await PopulateDataGridResultAsync(gridType, shouldShowLeague, internalLeagueCode);
+                        dataGrid.ItemsSource = resultResults;//wont run web service call has finished
                         break;
                     case GridType.Fixture:
-                        result = await PopulateDataGridAsync(parentExpanderName, gridType);
-                        dataGrid.ItemsSource = dataGridItemsSourceFixture;
+                        var resultFixtures = await PopulateDataGridFixtureAsync(gridType, shouldShowLeague, internalLeagueCode);
+                        dataGrid.ItemsSource = resultFixtures;//wont run web service call has finished
                         break;
                 }
-                MyBtn.Content = result;
-                parentExpander.Header = result;
+
             }
             catch (Exception)
             {
                 MyBtn.Content = "DataGridLoaded_Any internal error";
+                parentExpander.Header = "DataGridLoaded_Any internal error";
             }
         }
 
-        //private static async void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        //{
-        //    await Task.Run(() => LoadShownData(externalLeagueCode, gridType));
-        //}
-        //private static void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        //{
-        //    LoadShownData(externalLeagueCode, gridType);
-        //}
-        
-        //private static async void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        private static void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        {
-            if (gridType == GridType.Standing)
-            {
-                //var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
-                var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
-                dataGridStanding2s.Clear();
-                dataGridStanding2s.Add(new DataGridStanding2
-                {
-                    ExternalLeagueCode = externalLeagueCode,
-                    Standings = (List<Standing>)leagueResponse.Standings
-                });
-            }
-
-            if (gridType == GridType.Result)
-            {
-                //var leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());                
-                var leagueMatchesResults = _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
-                dataGridResult2s.Add(new DataGridResult2
-                {
-                    ExternalLeagueCode = externalLeagueCode,
-                    Results = (List<Fixture>)leagueMatchesResults.MatchFixtures
-                });
-            }
-
-            if (gridType == GridType.Fixture)
-            {
-                //var leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
-                var leagueMatchesFixtures = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
-                dataGridFixture2s.Add(new DataGridFixture2
-                {
-                    ExternalLeagueCode = externalLeagueCode,
-                    Fixtures = (List<Fixture>)leagueMatchesFixtures.MatchFixtures
-                });
-            }
-        }
-
-        private async Task<string> PopulateDataGridAsync(string parentExpanderName, GridType gridType)
+        private async Task<List<Standing>> PopulateDataGridStandingAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
         {
             try
             {
                 var theTask = Task.Run(() =>
                 {
-                    var internalLeagueCode = InternalLeagueCode(parentExpanderName);
-                    var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-                    var result = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                    List<Standing> result = null;
                     if (shouldShowLeague)
                     {
                         var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
                         var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
-                            GetAndPopulateDataGrid(gridType, externalLeagueCode);
+                            var leagueResponse = _gateway.GetLeagueResponseFromClient_Standings(externalLeagueCode.ToString());
+                            result = (List<Standing>)leagueResponse.Standings;
                         }
                     }
                     return result;
@@ -196,68 +141,68 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                return "login failed";
+                //error!
+                return new List<Standing>();
             }
         }
-        
-        private void GetAndPopulateDataGrid(GridType gridType,  ExternalLeagueCode externalLeagueCode)
+
+        private async Task<List<Fixture>> PopulateDataGridResultAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
         {
-            switch (gridType)
+            try
             {
-                case GridType.Unknown:
-                    break;
-                case GridType.Standing:
-                    dataGridItemsSourceStanding = GetLeagueDataStanding(externalLeagueCode, gridType);
-                    break;
-                case GridType.Result:
-                    dataGridItemsSourceResult = GetLeagueDataResult(externalLeagueCode, gridType);
-                    break;
-                case GridType.Fixture:
-                    dataGridItemsSourceFixture = GetLeagueDataFixture(externalLeagueCode, gridType);
-                    break;
+                var theTask = Task.Run(() =>
+                {
+                    List<Fixture> result = null;
+                    if (shouldShowLeague)
+                    {
+                        var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+                        var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
+                        if (shouldExpandGrid && internalToExternalMappingExists)
+                        {
+                            var leagueMatchesResults = _gateway.GetLeagueResponseFromClient_MatchesResult(externalLeagueCode.ToString(), "p20");
+                            result = (List<Fixture>)leagueMatchesResults.MatchFixtures;
+                        }
+                    }
+                    return result;
+                });
+                await Task.WhenAll(theTask);
+
+                return theTask.Result;
+            }
+            catch (Exception)
+            {
+                //error!
+                return new List<Fixture>();
             }
         }
 
-        private List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        private async Task<List<Fixture>> PopulateDataGridFixtureAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode)
         {
-            //if (!dataGridStanding2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Standings.Count > 0))
-            //{
-                LoadShownData(externalLeagueCode, gridType);
-                var dataGridItemsSource = dataGridStanding2s
-                    ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                    .Select(x => x.Standings)
-                    .Last();
-                return dataGridItemsSource;
-            //}
-            //return null;
-        }
+            try
+            {
+                var theTask = Task.Run(() =>
+                {
+                    List<Fixture> result = null;
+                    if (shouldShowLeague)
+                    {
+                        var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+                        var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
+                        if (shouldExpandGrid && internalToExternalMappingExists)
+                        {
+                            var leagueMatchesFixtures = _gateway.GetLeagueResponseFromClient_MatchesFixture(externalLeagueCode.ToString(), "n20");
+                            result = (List<Fixture>)leagueMatchesFixtures.MatchFixtures;}
+                    }
+                    return result;
+                });
+                await Task.WhenAll(theTask);
 
-        private List<Fixture> GetLeagueDataResult(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        {
-            //if (!dataGridResult2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Results.Count > 0))
-            //{
-                LoadShownData(externalLeagueCode, gridType);
-                var dataGridItemsSource = dataGridResult2s
-                    ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                    .Select(x => x.Results)
-                    .Last();
-                return dataGridItemsSource;
-            //}
-            //return null;
-        }
-
-        private List<Fixture> GetLeagueDataFixture(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        {
-            //if (!dataGridFixture2s.Any(x => x.ExternalLeagueCode == externalLeagueCode && x.Fixtures.Count > 0))
-            //{
-                LoadShownData(externalLeagueCode, gridType);
-                var dataGridItemsSource = dataGridFixture2s
-                    ?.Where(x => x.ExternalLeagueCode == externalLeagueCode)
-                    .Select(x => x.Fixtures)
-                    .Last();
-                return dataGridItemsSource;
-            //}
-            //return null;
+                return theTask.Result;
+            }
+            catch (Exception)
+            {
+                //error!
+                return new List<Fixture>();
+            }
         }
 
         private static bool ShouldExpandGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
@@ -632,4 +577,154 @@ namespace HierarchicalDataTemplate
 //            dataGrid.ItemsSource = dataGridItemsSource.First();
 //        }
 //    }
+//}
+
+
+
+
+//private static async void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
+//{
+//    await Task.Run(() => LoadShownData(externalLeagueCode, gridType));
+//}
+//private static void LoadLeagueToShow(ExternalLeagueCode externalLeagueCode, GridType gridType)
+//{
+//    LoadShownData(externalLeagueCode, gridType);
+//}
+
+//private static async void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
+//private static void LoadShownData(ExternalLeagueCode externalLeagueCode, GridType gridType)
+//{
+//    if (gridType == GridType.Standing)
+//    {
+//        //var leagueResponse = await _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+//        var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+//        dataGridStanding2s.Clear();
+//        dataGridStanding2s.Add(new DataGridStanding2
+//        {
+//            ExternalLeagueCode = externalLeagueCode,
+//            Standings = (List<Standing>)leagueResponse.Standings
+//        });
+//    }
+
+//    if (gridType == GridType.Result)
+//    {
+//        //var leagueMatchesResults = await _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());                
+//        var leagueMatchesResults = _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
+//        dataGridResult2s.Add(new DataGridResult2
+//        {
+//            ExternalLeagueCode = externalLeagueCode,
+//            Results = (List<Fixture>)leagueMatchesResults.MatchFixtures
+//        });
+//    }
+
+//    if (gridType == GridType.Fixture)
+//    {
+//        //var leagueMatchesFixtures = await _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+//        var leagueMatchesFixtures = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+//        dataGridFixture2s.Add(new DataGridFixture2
+//        {
+//            ExternalLeagueCode = externalLeagueCode,
+//            Fixtures = (List<Fixture>)leagueMatchesFixtures.MatchFixtures
+//        });
+//    }
+//}
+
+
+//private void GetAndPopulateDataGrid(GridType gridType,  ExternalLeagueCode externalLeagueCode)
+//{
+//    switch (gridType)
+//    {
+//        case GridType.Unknown:
+//            break;
+//        case GridType.Standing:
+//            dataGridItemsSourceStanding = GetLeagueDataStanding(externalLeagueCode);/*oops dataGridItemsSourceStanding is shared but ought to be returned to caller */
+//            break;
+//        case GridType.Result:
+//            dataGridItemsSourceResult = GetLeagueDataResult(externalLeagueCode);/*oops dataGridItemsSourceStanding is shared but ought to be returned to caller */
+//            break;
+//        case GridType.Fixture:
+//            dataGridItemsSourceFixture = GetLeagueDataFixture(externalLeagueCode);/*oops dataGridItemsSourceStanding is shared but ought to be returned to caller */
+//            break;
+//    }
+//}
+
+//private async Task<string> PopulateDataGridAsync(string parentExpanderName, GridType gridType)
+//{
+//    try
+//    {
+//        var theTask = Task.Run(() =>
+//        {
+//            var internalLeagueCode = InternalLeagueCode(parentExpanderName);
+//            var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+//            var result = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+//            if (shouldShowLeague)
+//            {
+//                var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out ExternalLeagueCode externalLeagueCode);
+//                var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
+//                if (shouldExpandGrid && internalToExternalMappingExists)
+//                {
+//                    switch (gridType)
+//                    {
+//                        case GridType.Unknown:
+//                            break;
+//                        case GridType.Standing:
+//                            var dataGridItemsSourceStanding = GetLeagueDataStanding(externalLeagueCode);
+//                            break;
+//                        case GridType.Result:
+//                            var dataGridItemsSourceResult = GetLeagueDataResult(externalLeagueCode);
+//                            break;
+//                        case GridType.Fixture:
+//                            var dataGridItemsSourceFixture = GetLeagueDataFixture(externalLeagueCode);
+//                            break;
+//                    }
+
+//                }
+//            }
+//            return result;
+//        });
+//        await Task.WhenAll(theTask);
+
+//        return theTask.Result;
+//    }
+//    catch (Exception)
+//    {
+//        return "login failed";
+//    }
+//}
+
+
+//private List<Standing> GetLeagueDataStanding(ExternalLeagueCode externalLeagueCode)
+//{
+//    var dataGridItemsSource = LoadShownDataStanding(externalLeagueCode);
+//    return dataGridItemsSource;
+//}
+
+//private List<Fixture> GetLeagueDataResult(ExternalLeagueCode externalLeagueCode)
+//{
+//    var dataGridItemsSource = LoadShownDataResult(externalLeagueCode);
+//    return dataGridItemsSource;
+//}
+
+//private List<Fixture> GetLeagueDataFixture(ExternalLeagueCode externalLeagueCode)
+//{
+//    var dataGridItemsSource = LoadShownDataFixture(externalLeagueCode);
+//    return dataGridItemsSource;
+//}
+
+//private static List<Standing> LoadShownDataStanding(ExternalLeagueCode externalLeagueCode)
+//{
+//    var leagueResponse = _gateway.GetLeagueResponse_Standings(externalLeagueCode.ToString());
+//    return (List<Standing>)leagueResponse.Standings;
+//}
+
+//private static List<Fixture> LoadShownDataResult(ExternalLeagueCode externalLeagueCode)
+//{
+//    var leagueMatchesResults = _gateway.GetLeagueResponse_Results(externalLeagueCode.ToString());
+//    return (List<Fixture>)leagueMatchesResults.MatchFixtures;
+//}
+
+//private static List<Fixture> LoadShownDataFixture(ExternalLeagueCode externalLeagueCode)
+//{
+//    var leagueMatchesFixtures = _gateway.GetLeagueResponse_Fixtures(externalLeagueCode.ToString());
+//    return (List<Fixture>)leagueMatchesFixtures.MatchFixtures;
 //}

@@ -18,24 +18,7 @@ namespace FootieData.Gateway
             _footDataServices = footDataServices;
         }
 
-        public LeagueStandings GetLeagueResponse_Standings(string leagueIdentifier)
-        {
-            var result = GetLeagueResponseFromClient_Standings(leagueIdentifier);
-            return result;
-        }
-        public LeagueMatchesResults GetLeagueResponse_Results(string leagueIdentifier)
-        {
-            var result =  GetLeagueResponseFromClient_MatchesResult(leagueIdentifier, "p7");
-            return result;
-        }
-
-        public LeagueMatchesFixtures GetLeagueResponse_Fixtures(string leagueIdentifier)
-        {
-            var result = GetLeagueResponseFromClient_MatchesFixture(leagueIdentifier, "n7");
-            return result;
-        }
-
-        private LeagueStandings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
+        public LeagueStandings GetLeagueResponseFromClient_Standings(string leagueIdentifier)
         {
             var result = new LeagueStandings
             {
@@ -48,28 +31,35 @@ namespace FootieData.Gateway
             {
                 var tbl = _footDataServices.LeagueTable(leagueId);
 
-                foreach (var sta in tbl.standing)
+                if (tbl == null || tbl.standing == null)
                 {
-                    result.Standings.Add(new Standing
+                    //error !
+                }
+                else
+                {
+                    foreach (var sta in tbl.standing)
                     {
-                        Rank = sta.position,
-                        Team = sta.teamName,
-                        Played = sta.playedGames,
-                        //CrestURI = sta.crestURI,
-                        Points = sta.points,
-                        For = sta.goals,
-                        Against = sta.goalsAgainst,
-                        Diff = sta.goalDifference
-                    });
+                        result.Standings.Add(new Standing
+                        {
+                            Rank = sta.position,
+                            Team = sta.teamName,
+                            Played = sta.playedGames,
+                            //CrestURI = sta.crestURI,
+                            Points = sta.points,
+                            For = sta.goals,
+                            Against = sta.goalsAgainst,
+                            Diff = sta.goalDifference
+                        });
+                    }
                 }
             }
 
             return result;
         }
 
-        private LeagueMatchesResults GetLeagueResponseFromClient_MatchesResult(string leagueIdentifier, string timeFrame)
+        public LeagueMatchesResults GetLeagueResponseFromClient_MatchesResult(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = GetLeagueId4(leagueIdentifier);
+            var leagueId = GetLeagueId1a(leagueIdentifier);
 
             var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
 
@@ -100,9 +90,9 @@ namespace FootieData.Gateway
             return result;
         }
 
-        private LeagueMatchesFixtures GetLeagueResponseFromClient_MatchesFixture(string leagueIdentifier, string timeFrame)
+        public LeagueMatchesFixtures GetLeagueResponseFromClient_MatchesFixture(string leagueIdentifier, string timeFrame)
         {
-            var leagueId = GetLeagueId4(leagueIdentifier);
+            var leagueId = GetLeagueId1a(leagueIdentifier);
 
             var tbl = _footDataServices.Fixtures(leagueId, timeFrame);
 
@@ -154,17 +144,18 @@ namespace FootieData.Gateway
             }            
         }
 
-        private int GetLeagueId4(string leagueIdentifier)
-        {
-            var taskSeasons = GetLeagueId3();
-            var league = taskSeasons?.Seasons?.First(x => x.league == leagueIdentifier);
-            return league == null ? 0 : league.id;
-        }
-
         private SoccerSeasonResult GetLeagueId3()
         {
             return _footDataServices.SoccerSeasons();
         }
+
+        //private int GetLeagueId4(string leagueIdentifier)
+        //{
+        //    var soccerSeasonResult = GetLeagueId3();
+        //    var league = soccerSeasonResult?.Seasons?.First(x => x.league == leagueIdentifier);
+        //    return league == null ? 0 : league.id;
+        //}
+
     }
 }
 
@@ -302,4 +293,22 @@ namespace FootieData.Gateway
 //private SoccerSeasonResult GetLeagueId2fb()
 //{
 //    return GetLeagueId3();//_footDataServices.SoccerSeasons();
+//}
+
+
+//public LeagueStandings GetLeagueResponse_Standings(string leagueIdentifier)
+//{
+//    var result = GetLeagueResponseFromClient_Standings(leagueIdentifier);
+//    return result;
+//}
+//public LeagueMatchesResults GetLeagueResponse_Results(string leagueIdentifier)
+//{
+//    var result =  GetLeagueResponseFromClient_MatchesResult(leagueIdentifier, "p7");
+//    return result;
+//}
+
+//public LeagueMatchesFixtures GetLeagueResponse_Fixtures(string leagueIdentifier)
+//{
+//    var result = GetLeagueResponseFromClient_MatchesFixture(leagueIdentifier, "n7");
+//    return result;
 //}
