@@ -4,7 +4,6 @@ namespace FootieData.Entities
 {
     public class LeagueMatchesResults
     {
-        /////////////////////////////public string LeagueCaption { get; set; }
         public IEnumerable<Fixture> MatchFixtures;
     }
 }

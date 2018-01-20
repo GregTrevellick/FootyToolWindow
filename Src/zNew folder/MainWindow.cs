@@ -136,7 +136,6 @@ namespace HierarchicalDataTemplate
                         {
                             var _gateway = GetGateway();
                             var leagueResponse = _gateway.GetFromClientStandings(externalLeagueCode.ToString());
-                            //result = (List<Standing>)leagueResponse.Standings;
                             result = leagueResponse?.Standings.ToList();
                         }
                     }
@@ -168,7 +167,6 @@ namespace HierarchicalDataTemplate
                         {
                             var _gateway = GetGateway();
                             var leagueMatchesResults = _gateway.GetFromClientResults(externalLeagueCode.ToString(), "p20");
-                            //result = (List<Fixture>)leagueMatchesResults.MatchFixtures;
                             result = leagueMatchesResults?.MatchFixtures.ToList();
                         }
                     }
@@ -200,7 +198,6 @@ namespace HierarchicalDataTemplate
                         {
                             var _gateway = GetGateway();
                             var leagueMatchesFixtures = _gateway.GetFromClientFixtures(externalLeagueCode.ToString(), "n20");
-                            //result = (List<Fixture>)leagueMatchesFixtures.MatchFixtures;}
                             result = leagueMatchesFixtures?.MatchFixtures.ToList();
                         }
                     }
