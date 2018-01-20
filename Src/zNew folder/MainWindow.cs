@@ -20,9 +20,12 @@ namespace HierarchicalDataTemplate
         private static GeneralOptions _generalOptions;
         private readonly SolidColorBrush _color;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
-        private readonly IEnumerable<Standing> _nullStandings = new List<Standing> { new Standing { Team = "no standings" } };
-        private readonly IEnumerable<Fixture> _nullResults = new List<Fixture> { new Fixture { HomeName = "no results" } };
-        private readonly IEnumerable<Fixture> _nullFixtures = new List<Fixture> { new Fixture { HomeName = "no fixtures" } };
+        //private readonly IEnumerable<Standing> _nullStandings = new List<Standing> { new Standing { Team = "no standings" } };
+        //private readonly IEnumerable<Fixture> _nullResults = new List<Fixture> { new Fixture { HomeName = "no results" } };
+        //private readonly IEnumerable<Fixture> _nullFixtures = new List<Fixture> { new Fixture { HomeName = "no fixtures" } };
+        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = "no standings" } };
+        private readonly IEnumerable<NullReturn> _nullResults = new List<NullReturn> { new NullReturn { Error = "no results" } };
+        private readonly IEnumerable<NullReturn> _nullFixtures = new List<NullReturn> { new NullReturn { Error = "no fixtures" } };
 
         public MainWindow()
         {
@@ -81,7 +84,7 @@ namespace HierarchicalDataTemplate
 
                     //gregt move these to MyDataGrid ?
                     dataGrid.AlternatingRowBackground = _color;
-                    dataGrid.ColumnHeaderHeight = 25;
+                    dataGrid.ColumnHeaderHeight = 21;
                     dataGrid.RowHeaderWidth = 0;
                     dataGrid.CanUserAddRows = false;
                     dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
@@ -100,7 +103,8 @@ namespace HierarchicalDataTemplate
                                 var standings = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
                                 if (standings == null)
                                 {
-                                    standings = _nullStandings;
+                                    dataGrid.ItemsSource = _nullStandings;
+                                    break;
                                 }
                                 dataGrid.ItemsSource = standings;
                                 break;
@@ -108,7 +112,8 @@ namespace HierarchicalDataTemplate
                                 var results = await GetResultsAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
                                 if (results == null)
                                 {
-                                    results = _nullResults;
+                                    dataGrid.ItemsSource = _nullResults;
+                                    break;
                                 }
                                 dataGrid.ItemsSource = results;
                                 break;
@@ -116,7 +121,8 @@ namespace HierarchicalDataTemplate
                                 var fixtures = await GetFixturesAsync(gridType, shouldShowLeague, internalLeagueCode); //wont run web service call has finished
                                 if (fixtures == null)
                                 {
-                                    fixtures = _nullFixtures;
+                                    dataGrid.ItemsSource = _nullFixtures;
+                                    break;
                                 }
                                 dataGrid.ItemsSource = fixtures;
                                 break;

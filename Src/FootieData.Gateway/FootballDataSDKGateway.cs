@@ -84,7 +84,7 @@ namespace FootieData.Gateway
             }
             else
             {                
-                return leagueTableResult?.standing.Select(x => new Standing
+                return leagueTableResult?.standing?.Select(x => new Standing
                 {
                     //CrestURI = x.crestURI,
                     Against = x.goalsAgainst,
@@ -112,7 +112,7 @@ namespace FootieData.Gateway
             }
             else
             {
-                return fixturesResult?.fixtures.Select(x => new Fixture
+                return fixturesResult?.fixtures?.Select(x => new Fixture
                 {
                     AwayName = x.awayTeamName,
                     Date = x.date,
