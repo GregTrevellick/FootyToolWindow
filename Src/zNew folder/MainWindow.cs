@@ -15,7 +15,6 @@ namespace HierarchicalDataTemplate
 {
     public partial class MainWindow : Window
     {
-        //private static FootballDataSdkGateway _gateway;
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
         private SolidColorBrush color;
@@ -28,12 +27,6 @@ namespace HierarchicalDataTemplate
             color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
 
             _siteStructureSingletonInstance = SiteStructureSingleton.Instance;
-
-            //var _footDataServices = new FootDataServices
-            //{
-            //    AuthToken = "52109775b1584a93854ca187690ed4bb"
-            //};
-            //var _gateway = new FootballDataSdkGateway(_footDataServices);
 
             _wpfHelper = new WpfHelper();
 

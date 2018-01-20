@@ -22,14 +22,7 @@ namespace FootieData.Gateway
             {
                 AuthToken = "52109775b1584a93854ca187690ed4bb"
             };
-            if (SoccerSeasonResult == null)
-            {
-                SoccerSeasonResult = footDataServices.SoccerSeasons();
-            }
-            else
-            {
-                //nothing
-            }
+            SoccerSeasonResult = footDataServices.SoccerSeasons();
         }
     }
 }
