@@ -36,3 +36,8 @@ https://github.com/Microsoft/WPF-Samples
 
 
 http://www.c-sharpcorner.com/UploadFile/mahesh/master-wpf-datagrid-in-24-hrs-hour-1/
+
+
+
+
+I do not guarantee the provided data to be accurate, up-to-date or correct in any way - though this of course is my intention. I also cannot guarantee any level of availability.

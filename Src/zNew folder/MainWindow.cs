@@ -19,7 +19,6 @@ namespace HierarchicalDataTemplate
     {
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
-        private readonly SolidColorBrush _color;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
@@ -31,7 +30,6 @@ namespace HierarchicalDataTemplate
         {
             InitializeComponent();
 
-            _color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#FFFFF0"));
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00FFFF"));
             _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
             _wpfHelper = new WpfHelper();
@@ -86,21 +84,13 @@ namespace HierarchicalDataTemplate
             {
                 if (dataGrid.Parent is Expander parentExpander)
                 {
-                    parentExpander.IsExpanded = true;
-
-                    //gregt move these to MyDataGrid ?
-                    dataGrid.AlternatingRowBackground = _color;
-                    dataGrid.ColumnHeaderHeight = 21;
-                    dataGrid.RowHeaderWidth = 0;
-                    dataGrid.CanUserAddRows = false;
-                    dataGrid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-
                     var gridType = _wpfHelper.GetGridType(dataGrid.Name);
                     var parentExpanderName = parentExpander.Name;
                     var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
                     var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
                     parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-                   
+                    parentExpander.IsExpanded = true;
+
                     try
                     {
                         switch (gridType)
@@ -283,8 +273,7 @@ namespace HierarchicalDataTemplate
         /// <typeparam name="T">The type of the queried item.</typeparam>
         /// <param name="childName">x:Name or Name of child. </param>
         /// <returns>The first parent item that matches the submitted type parameter. 
-        /// If not matching item can be found, 
-        /// a null parent is being returned.</returns>
+        /// If not matching item can be found, a null parent is being returned.</returns>
         public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
         {
             // Confirm parent and childName are valid. 
