@@ -1,19 +1,7 @@
 right align numbers ?
 
-collapse all ?
-
 add country flags ?
 
 put auth key into gen options
-
-gregt templates
-
-
-
-
-
-
-
-
 
 allowed 1 every 1.2 secs

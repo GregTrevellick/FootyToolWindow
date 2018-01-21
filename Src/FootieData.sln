@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Gateway", "FootieData.Gateway\FootieData.Gateway.csproj", "{296F4CC7-491D-47E3-8CAF-E88DD3223C6C}"
 EndProject
@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\LICENSE.txt = ..\LICENSE.txt
 		..\README.md = ..\README.md
+		todo.txt = todo.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Vsix", "FootieData.Vsix\FootieData.Vsix.csproj", "{CEF49E5C-E22C-45F1-B67F-768C77E3F4CF}"
