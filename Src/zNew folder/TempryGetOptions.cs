@@ -53,8 +53,8 @@ namespace HierarchicalDataTemplate
                     ShowLeague = true,
                     LeagueSubOptions = new List<LeagueSubOption>
                     {
-                        new LeagueSubOption {Expand = true, GridType = GridType.Standing},
-                        new LeagueSubOption {Expand = true, GridType = GridType.Result},
+                        new LeagueSubOption {Expand = false, GridType = GridType.Standing},
+                        new LeagueSubOption {Expand = false, GridType = GridType.Result},
                         new LeagueSubOption {Expand = true, GridType = GridType.Fixture}
                     }
                 });
