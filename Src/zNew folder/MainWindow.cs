@@ -127,7 +127,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<Standing> result = null;
-                    if (shouldShowLeague && shouldExpandGrid && internalToExternalMappingExists)
+                    if (shouldShowLeague && internalToExternalMappingExists)// && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
@@ -151,7 +151,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixturePast> result = null;
-                    if (shouldShowLeague && shouldExpandGrid && internalToExternalMappingExists)
+                    if (shouldShowLeague && internalToExternalMappingExists)// && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
@@ -175,7 +175,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixtureFuture> result = null;
-                    if (shouldShowLeague && shouldExpandGrid && internalToExternalMappingExists)
+                    if (shouldShowLeague && internalToExternalMappingExists)// && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
