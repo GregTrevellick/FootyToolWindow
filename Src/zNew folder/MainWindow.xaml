@@ -13,15 +13,38 @@
     
     <ScrollViewer >
         <StackPanel>
-        <StackPanel Orientation="Vertical" Name="StackPanelLeagueMode">
 
-            <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right">
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <ContentPresenter />
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Hardcoded refresh" Click="Click_HandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0"/>
+                <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right" Name="StackPanelLeagueMode"/>
+                <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right" Name="StackPanelBossMode" Visibility="Collapsed" />
+                <TextBlock Name="TextBlockBossMode" />
+            </StackPanel>
+
+            <!--<StackPanel Orientation="Horizontal">
+                <Button Content="Refresh" Click="Click_HandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right" Name="StackPanelLeagueMode">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right" Name="StackPanelBossMode" Visibility="Collapsed" >
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <TextBlock Name="TextBlockBossMode" />
+            </StackPanel>-->
 
             <Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" >
                 <local:MyDataGrid x:Name="Standing_Rand0001" Loaded="DataGridLoaded_Any" />
@@ -193,7 +216,6 @@
                 <local:MyDataGrid x:Name="Fixtures_Rand0051" Loaded="DataGridLoaded_Any" />
             </Expander>
 
-
             <Expander Name="UEFA1_Rand0001" Loaded="ExpanderLoaded_Any" >
                 <local:MyDataGrid x:Name="Standing_Rand0007" Loaded="DataGridLoaded_Any" />
             </Expander>
@@ -231,18 +253,8 @@
             <Expander Name="FIFA1_Rand0003" Loaded="ExpanderLoaded_Any" >
                 <local:MyDataGrid x:Name="Fixtures_Rand0009" Loaded="DataGridLoaded_Any" />
             </Expander>
+
         </StackPanel>
-        <StackPanel Orientation="Vertical" Name="StackPanelBossMode" Visibility="Collapsed">
-            <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right">
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <ContentPresenter />
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <TextBlock Name="TextBlockBossMode" />
-        </StackPanel>
-      </StackPanel>
     </ScrollViewer >
 
 </Window>
