@@ -69,7 +69,7 @@ namespace HierarchicalDataTemplate
             }
             else
             {
-                //gregt error
+                Logger.Log("Internal error gregt");
             }
         }
 
@@ -231,7 +231,7 @@ namespace HierarchicalDataTemplate
             return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
         }
 
-        public static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)//gregt make private ?
+        private static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)
         {
             var currentElement = frameworkElement;
 

@@ -26,7 +26,7 @@ namespace HierarchicalDataTemplate
             }
             catch (Exception)
             {
-                //Do nothing (gregt except log it ?) as simply means no column heading
+                Logger.Log("gregt Do nothing as simply means no column heading");
             }
         }
     }
