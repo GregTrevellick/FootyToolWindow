@@ -92,7 +92,6 @@ namespace HierarchicalDataTemplate
 
                     var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
                     var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
-                    ///////////////////////////////////////////////////parentExpander.IsExpanded = true;
                     parentExpander.IsExpanded = shouldExpandGrid;
 
                     try
@@ -100,15 +99,15 @@ namespace HierarchicalDataTemplate
                         switch (gridType)
                         {
                             case GridType.Standing:
-                                var standings = await GetStandingsAsync(gridType, shouldShowLeague, internalLeagueCode, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call has finished
+                                var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call has finished
                                 dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
                                 break;
                             case GridType.Result:
-                                var results = await GetFixturePastsAsync(gridType, shouldShowLeague, internalLeagueCode, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call finished
+                                var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call finished
                                 dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
                                 break;
                             case GridType.Fixture:
-                                var fixtures = await GetFixtureFuturesAsync(gridType, shouldShowLeague, internalLeagueCode, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call has finished
+                                var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call has finished
                                 dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
                                 break;
                         }
@@ -121,7 +120,7 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async Task<IEnumerable<Standing>> GetStandingsAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode, bool internalToExternalMappingExists, bool shouldExpandGrid, ExternalLeagueCode externalLeagueCode)
+        private async Task<IEnumerable<Standing>> GetStandingsAsync(bool shouldShowLeague, bool internalToExternalMappingExists, bool shouldExpandGrid, ExternalLeagueCode externalLeagueCode)
         {
             try
             {
@@ -130,8 +129,6 @@ namespace HierarchicalDataTemplate
                     IEnumerable<Standing> result = null;
                     if (shouldShowLeague)
                     {
-                        //var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
-                        //var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
@@ -150,7 +147,7 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode, bool internalToExternalMappingExists, bool shouldExpandGrid, ExternalLeagueCode externalLeagueCode)
+        private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(bool shouldShowLeague, bool internalToExternalMappingExists, bool shouldExpandGrid, ExternalLeagueCode externalLeagueCode)
         {
             try
             {
@@ -159,8 +156,6 @@ namespace HierarchicalDataTemplate
                     IEnumerable<FixturePast> result = null;
                     if (shouldShowLeague)
                     {
-                        //var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
-                        //var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
@@ -179,7 +174,7 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(GridType gridType, bool shouldShowLeague, InternalLeagueCode internalLeagueCode, bool internalToExternalMappingExists, bool shouldExpandGrid, ExternalLeagueCode externalLeagueCode)
+        private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(bool shouldShowLeague, bool internalToExternalMappingExists, bool shouldExpandGrid, ExternalLeagueCode externalLeagueCode)
         {
             try
             {
@@ -188,8 +183,6 @@ namespace HierarchicalDataTemplate
                     IEnumerable<FixtureFuture> result = null;
                     if (shouldShowLeague)
                     {
-                        //var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
-                        //var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
                         if (shouldExpandGrid && internalToExternalMappingExists)
                         {
                             var gateway = GetGateway();
