@@ -20,6 +20,7 @@ namespace HierarchicalDataTemplate
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
         private readonly SolidColorBrush _colorRefreshed;
+        private readonly SolidColorBrush _colorDataGridExpanded;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
@@ -30,7 +31,8 @@ namespace HierarchicalDataTemplate
         {
             InitializeComponent();
 
-            _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00FFFF"));
+            _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
+            _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
             _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
             _wpfHelper = new WpfHelper();
 
@@ -127,7 +129,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<Standing> result = null;
-                    if (shouldShowLeague && internalToExternalMappingExists)// && shouldExpandGrid)
+                    if (shouldShowLeague && internalToExternalMappingExists && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
@@ -151,7 +153,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixturePast> result = null;
-                    if (shouldShowLeague && internalToExternalMappingExists)// && shouldExpandGrid)
+                    if (shouldShowLeague && internalToExternalMappingExists && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
@@ -175,7 +177,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixtureFuture> result = null;
-                    if (shouldShowLeague && internalToExternalMappingExists)// && shouldExpandGrid)
+                    if (shouldShowLeague && internalToExternalMappingExists && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
@@ -241,17 +243,26 @@ namespace HierarchicalDataTemplate
         {
             GetOptions();
 
-            var dataGrid = FindChild<DataGrid>(Application.Current.MainWindow, "Standing_Rand0001");
-            DataGridLoaded_Any(dataGrid, null);
-            dataGrid.AlternatingRowBackground = _colorRefreshed;
+            var dataGridStanding = FindChild<DataGrid>(Application.Current.MainWindow, "Standing_Rand0001");
+            if (dataGridStanding != null && dataGridStanding.IsVisible)
+            {
+                DataGridLoaded_Any(dataGridStanding, null);
+                dataGridStanding.AlternatingRowBackground = _colorRefreshed;
+            }
 
-            dataGrid = FindChild<DataGrid>(Application.Current.MainWindow, "Results1_Rand0001");
-            DataGridLoaded_Any(dataGrid, null);
-            dataGrid.AlternatingRowBackground = _colorRefreshed;
+            var dataGridResult = FindChild<DataGrid>(Application.Current.MainWindow, "Results1_Rand0001");
+            if (dataGridResult != null && dataGridResult.IsVisible)
+            {
+                DataGridLoaded_Any(dataGridResult, null);
+                dataGridResult.AlternatingRowBackground = _colorRefreshed;
+            }            
 
-            dataGrid = FindChild<DataGrid>(Application.Current.MainWindow, "Fixtures_Rand0001");
-            DataGridLoaded_Any(dataGrid, null);
-            dataGrid.AlternatingRowBackground = _colorRefreshed;
+            var dataGridFixture = FindChild<DataGrid>(Application.Current.MainWindow, "Fixtures_Rand0001");
+            if (dataGridFixture != null && dataGridFixture.IsVisible)
+            {
+                DataGridLoaded_Any(dataGridFixture, null);
+                dataGridFixture.AlternatingRowBackground = _colorRefreshed;
+            }            
         }
 
         /// <summary>
@@ -313,6 +324,41 @@ namespace HierarchicalDataTemplate
             }
 
             return foundChild;
+        }
+
+        private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            if (sender is Expander expander)
+            {
+                if (expander.Content is DataGrid dataGrid)
+                {
+                    var getDataFromClient = false;
+
+                    if (dataGrid.Items.Count == 0)
+                    {
+                        getDataFromClient = true;
+                    }
+
+                    if (dataGrid.Items.Count == 1)
+                    {
+                        var firstItem = dataGrid.Items.GetItemAt(0);
+                        if (firstItem.GetType() == typeof(NullReturn))
+                        {
+                            getDataFromClient = true;
+                        }
+                    }
+                
+                    if (getDataFromClient)
+                    {
+                        DataGridLoaded_Any(dataGrid, null);
+                        dataGrid.AlternatingRowBackground = _colorDataGridExpanded;
+                    }
+                }                             
+            }
+            else
+            {
+                Logger.Log("Internal error2 gregt");
+            }
         }
     }
 }
