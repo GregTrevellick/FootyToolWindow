@@ -127,14 +127,11 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<Standing> result = null;
-                    if (shouldShowLeague)
+                    if (shouldShowLeague && shouldExpandGrid && internalToExternalMappingExists)
                     {
-                        if (shouldExpandGrid && internalToExternalMappingExists)
-                        {
-                            var gateway = GetGateway();
-                            result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
-                        }
-                    }
+                        var gateway = GetGateway();
+                        result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+                    }                    
                     return result;
                 });
                 await Task.WhenAll(theTask);
@@ -154,14 +151,11 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixturePast> result = null;
-                    if (shouldShowLeague)
+                    if (shouldShowLeague && shouldExpandGrid && internalToExternalMappingExists)
                     {
-                        if (shouldExpandGrid && internalToExternalMappingExists)
-                        {
-                            var gateway = GetGateway();
-                            result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
-                        }
-                    }
+                        var gateway = GetGateway();
+                        result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
+                    }                   
                     return result;
                 });
                 await Task.WhenAll(theTask);
@@ -181,13 +175,10 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixtureFuture> result = null;
-                    if (shouldShowLeague)
+                    if (shouldShowLeague && shouldExpandGrid && internalToExternalMappingExists)
                     {
-                        if (shouldExpandGrid && internalToExternalMappingExists)
-                        {
-                            var gateway = GetGateway();
-                            result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
-                        }
+                        var gateway = GetGateway();
+                        result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
                     }
                     return result;
                 });
