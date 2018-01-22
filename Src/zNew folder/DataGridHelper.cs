@@ -12,14 +12,42 @@ namespace HierarchicalDataTemplate
 {
     public class DataGridHelper
     {
+        public static bool GetDataFromClient(DataGrid dataGrid)
+        {
+            var getDataFromClient = false;
+
+            if (dataGrid.Items.Count == 0)
+            {
+                getDataFromClient = true;
+            }
+            else
+            {
+                if (dataGrid.Items.Count == 1)
+                {
+                    var noDataToShow = IsNoDataToShow(dataGrid);
+                    if (noDataToShow)
+                    {
+                        getDataFromClient = true;
+                    }
+                }
+            }
+
+            return getDataFromClient;
+        }
+
         public static void HideHeaderIfNoDataToShow(DataGrid dataGrid)
         {
-            var firstItem = dataGrid.Items.GetItemAt(0); //gregt dupe
-            var noDataToShow = firstItem.GetType() == typeof(NullReturn); //gregt dupe
+            var noDataToShow = IsNoDataToShow(dataGrid);
             if (noDataToShow)
             {
                 dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
             }
+        }
+
+        private static bool IsNoDataToShow(DataGrid dataGrid)
+        {
+            var firstItem = dataGrid.Items.GetItemAt(0);
+            return firstItem.GetType() == typeof(NullReturn);
         }
 
         public static InternalLeagueCode GetInternalLeagueCode(WpfHelper wpfHelper, string expanderName)
@@ -39,27 +67,6 @@ namespace HierarchicalDataTemplate
                                           && x.ShowLeague
                                           && x.LeagueSubOptions.Any(y => y.GridType == gridType
                                                                          && y.Expand));
-        }
-
-        public static bool GetDataFromClient(DataGrid dataGrid)
-        {
-            var getDataFromClient = false;
-
-            if (dataGrid.Items.Count == 0)
-            {
-                getDataFromClient = true;
-            }
-
-            if (dataGrid.Items.Count == 1)
-            {
-                var firstItem = dataGrid.Items.GetItemAt(0);
-                if (firstItem.GetType() == typeof(NullReturn))
-                {
-                    getDataFromClient = true;
-                }
-            }
-
-            return getDataFromClient;
         }
 
         /// <summary>
