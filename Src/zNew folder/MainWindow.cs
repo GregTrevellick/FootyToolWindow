@@ -80,43 +80,66 @@ namespace HierarchicalDataTemplate
             return _generalOptions.LeagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague);
         }
 
-        private async void DataGridLoaded_Any(object sender, RoutedEventArgs e)
+        private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
         {
             if (sender is DataGrid dataGrid)
             {
-                if (dataGrid.Parent is Expander parentExpander)
+                DataGridLoaded_Any2(dataGrid, false);
+            }
+        }
+
+        private async void DataGridLoaded_Any2(DataGrid dataGrid, bool manuallyExpanded)
+        {
+            if (dataGrid.Parent is Expander parentExpander)
+            {
+                var gridType = _wpfHelper.GetGridType(dataGrid.Name);
+                var parentExpanderName = parentExpander.Name;
+                var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
+                var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
+                parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+
+                var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
+                var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
+
+                if (shouldExpandGrid || manuallyExpanded)
                 {
-                    var gridType = _wpfHelper.GetGridType(dataGrid.Name);
-                    var parentExpanderName = parentExpander.Name;
-                    var internalLeagueCode = GetInternalLeagueCode(parentExpanderName);
-                    var shouldShowLeague = ShouldShowLeague(internalLeagueCode);
-                    parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                    parentExpander.IsExpanded = true;
 
-                    var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
-                    var shouldExpandGrid = ShouldExpandGrid(internalLeagueCode, gridType);
-                    parentExpander.IsExpanded = shouldExpandGrid;
+                    var getDataFromClient = GetDataFromClient(dataGrid);
 
-                    try
+                    if (getDataFromClient)
                     {
-                        switch (gridType)
+                        try
                         {
-                            case GridType.Standing:
-                                var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call has finished
-                                dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-                                break;
-                            case GridType.Result:
-                                var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call finished
-                                dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
-                                break;
-                            case GridType.Fixture:
-                                var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, shouldExpandGrid, externalLeagueCode); //wont run til web service call has finished
-                                dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
-                                break;
+                            switch (gridType)
+                            {
+                                case GridType.Standing:
+                                    var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, parentExpander.IsExpanded, externalLeagueCode); //wont run til web service call has finished
+                                    dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+                                    break;
+                                case GridType.Result:
+                                    var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, parentExpander.IsExpanded, externalLeagueCode); //wont run til web service call finished
+                                    dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
+                                    break;
+                                case GridType.Fixture:
+                                    var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, parentExpander.IsExpanded, externalLeagueCode); //wont run til web service call has finished
+                                    dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
+                                    break;
+                            }
+
+                            #region hide header if no data to show
+                            var firstItem = dataGrid.Items.GetItemAt(0);//gregt dupe
+                            var noDataToShow = firstItem.GetType() == typeof(NullReturn);//gregt dupe
+                            if (noDataToShow)
+                            {
+                                dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                            }
+                            #endregion
                         }
-                    }
-                    catch (Exception)
-                    {                       
-                        parentExpander.Header = "DataGridLoaded_Any internal error";
+                        catch (Exception)
+                        {
+                            parentExpander.Header = "DataGridLoaded_Any internal error";
+                        }
                     }
                 }
             }
@@ -129,7 +152,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<Standing> result = null;
-                    if (shouldShowLeague && internalToExternalMappingExists && shouldExpandGrid)
+                    if (shouldShowLeague && internalToExternalMappingExists)////////////////////////////////////////////////////////////////////// && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
@@ -153,7 +176,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixturePast> result = null;
-                    if (shouldShowLeague && internalToExternalMappingExists && shouldExpandGrid)
+                    if (shouldShowLeague && internalToExternalMappingExists)/////////////////////////////////////////////////////////////// && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
@@ -177,7 +200,7 @@ namespace HierarchicalDataTemplate
                 var theTask = Task.Run(() =>
                 {
                     IEnumerable<FixtureFuture> result = null;
-                    if (shouldShowLeague && internalToExternalMappingExists && shouldExpandGrid)
+                    if (shouldShowLeague && internalToExternalMappingExists)//////////////////////////////////////////////////////////////// && shouldExpandGrid)
                     {
                         var gateway = GetGateway();
                         result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
@@ -332,25 +355,13 @@ namespace HierarchicalDataTemplate
             {
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    var getDataFromClient = false;
+                    var gregtTemp = expander.Name;
 
-                    if (dataGrid.Items.Count == 0)
-                    {
-                        getDataFromClient = true;
-                    }
+                    var getDataFromClient = GetDataFromClient(dataGrid);
 
-                    if (dataGrid.Items.Count == 1)
-                    {
-                        var firstItem = dataGrid.Items.GetItemAt(0);
-                        if (firstItem.GetType() == typeof(NullReturn))
-                        {
-                            getDataFromClient = true;
-                        }
-                    }
-                
                     if (getDataFromClient)
                     {
-                        DataGridLoaded_Any(dataGrid, null);
+                        DataGridLoaded_Any2(dataGrid, true);
                         dataGrid.AlternatingRowBackground = _colorDataGridExpanded;
                     }
                 }                             
@@ -359,6 +370,27 @@ namespace HierarchicalDataTemplate
             {
                 Logger.Log("Internal error2 gregt");
             }
+        }
+
+        private static bool GetDataFromClient(DataGrid dataGrid)
+        {
+            var getDataFromClient = false;
+
+            if (dataGrid.Items.Count == 0)
+            {
+                getDataFromClient = true;
+            }
+
+            if (dataGrid.Items.Count == 1)
+            {
+                var firstItem = dataGrid.Items.GetItemAt(0);
+                if (firstItem.GetType() == typeof(NullReturn))
+                {
+                    getDataFromClient = true;
+                }
+            }
+
+            return getDataFromClient;
         }
     }
 }
