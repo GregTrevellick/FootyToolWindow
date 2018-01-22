@@ -12,6 +12,16 @@ namespace HierarchicalDataTemplate
 {
     public class DataGridHelper
     {
+        public static void HideHeaderIfNoDataToShow(DataGrid dataGrid)
+        {
+            var firstItem = dataGrid.Items.GetItemAt(0); //gregt dupe
+            var noDataToShow = firstItem.GetType() == typeof(NullReturn); //gregt dupe
+            if (noDataToShow)
+            {
+                dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+            }
+        }
+
         public static InternalLeagueCode GetInternalLeagueCode(WpfHelper wpfHelper, string expanderName)
         {
             var internalLeagueCodeString = wpfHelper.GetInternalLeagueCodeString(expanderName);
@@ -113,7 +123,19 @@ namespace HierarchicalDataTemplate
             return foundChild;
         }
 
-
-
+        //private static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)
+        //{
+        //    var currentElement = frameworkElement;
+        //    while (currentElement != null)
+        //    {
+        //        var resource = currentElement.Resources[resourceKey];
+        //        if (resource != null)
+        //        {
+        //            return resource;
+        //        }
+        //        currentElement = currentElement.Parent as FrameworkElement;
+        //    }
+        //    return Application.Current.Resources[resourceKey];
+        //}
     }
 }
