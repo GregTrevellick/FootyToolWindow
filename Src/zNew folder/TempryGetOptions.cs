@@ -14,28 +14,28 @@ namespace HierarchicalDataTemplate
                 LeagueOptions = new List<LeagueOption>()
             };
 
-            //AddThem(InternalLeagueCode.DE1);
-            //AddThem(InternalLeagueCode.DE2);
-            //AddThem(InternalLeagueCode.DE3);
-            //AddThem(InternalLeagueCode.DE4);
-            //AddThem(InternalLeagueCode.ES1);
-            //AddThem(InternalLeagueCode.ES2);
-            //AddThem(InternalLeagueCode.ES3);
+            AddThem(InternalLeagueCode.DE1);
+            AddThem(InternalLeagueCode.DE2);
+            //AddThem(InternalLeagueCode.DE3);//always no data ?
+            //////////////////////////////////////////////////////////////////////////AddThem(InternalLeagueCode.DE4);
+            AddThem(InternalLeagueCode.ES1);
+            //AddThem(InternalLeagueCode.ES2);//always no data ?
+            //AddThem(InternalLeagueCode.ES3);//always no data ?
             AddThem(InternalLeagueCode.FR1);
-            //AddThem(InternalLeagueCode.FR2);
-            AddThem(InternalLeagueCode.GR1);
-            //AddThem(InternalLeagueCode.IT1);
-            //AddThem(InternalLeagueCode.IT2);
-            //AddThem(InternalLeagueCode.NL1);
-            //AddThem(InternalLeagueCode.PT1);
-            //AddThem(InternalLeagueCode.UK1);
-            //AddThem(InternalLeagueCode.UK2);
-            //AddThem(InternalLeagueCode.UK3);
-            //AddThem(InternalLeagueCode.UK4);
-            //AddThem(InternalLeagueCode.UEFA1);
-            //AddThem(InternalLeagueCode.UEFA2);
-            //AddThem(InternalLeagueCode.UEFA3);
-            //AddThem(InternalLeagueCode.FIFA1);
+            AddThem(InternalLeagueCode.FR2);
+            //////////////////////////////////////////////////////////////////////////AddThem(InternalLeagueCode.GR1);
+            AddThem(InternalLeagueCode.IT1);
+            AddThem(InternalLeagueCode.IT2);
+            AddThem(InternalLeagueCode.NL1);
+            AddThem(InternalLeagueCode.PT1);
+            AddThem(InternalLeagueCode.UK1);
+            AddThem(InternalLeagueCode.UK2);
+            AddThem(InternalLeagueCode.UK3);
+            //AddThem(InternalLeagueCode.UK4);//f.a.cup no data
+            //AddThem(InternalLeagueCode.UEFA1);//always no data ?
+            //AddThem(InternalLeagueCode.UEFA2);//always no data ?
+            //AddThem(InternalLeagueCode.UEFA3);//always no data ?
+            //AddThem(InternalLeagueCode.FIFA1);//always no data ?
 
             return _generalOptions;
         }
@@ -50,8 +50,8 @@ namespace HierarchicalDataTemplate
                     LeagueSubOptions = new List<LeagueSubOption>
                     {
                         new LeagueSubOption {Expand = true, GridType = GridType.Standing},
-                        new LeagueSubOption {Expand = true, GridType = GridType.Result},
-                        new LeagueSubOption {Expand = true, GridType = GridType.Fixture}
+                        new LeagueSubOption {Expand = false, GridType = GridType.Result},
+                        new LeagueSubOption {Expand = false, GridType = GridType.Fixture}
                     }
                 });
         }
