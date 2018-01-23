@@ -21,15 +21,15 @@ namespace HierarchicalDataTemplate
             //AddThem(InternalLeagueCode.ES1);
             //AddThem(InternalLeagueCode.ES2);
             //AddThem(InternalLeagueCode.ES3);
-            //AddThem(InternalLeagueCode.FR1);
+            AddThem(InternalLeagueCode.FR1);
             //AddThem(InternalLeagueCode.FR2);
-            //AddThem(InternalLeagueCode.GR1);
+            AddThem(InternalLeagueCode.GR1);
             //AddThem(InternalLeagueCode.IT1);
             //AddThem(InternalLeagueCode.IT2);
             //AddThem(InternalLeagueCode.NL1);
             //AddThem(InternalLeagueCode.PT1);
-            AddThem(InternalLeagueCode.UK1);
-            AddThem(InternalLeagueCode.UK2);
+            //AddThem(InternalLeagueCode.UK1);
+            //AddThem(InternalLeagueCode.UK2);
             //AddThem(InternalLeagueCode.UK3);
             //AddThem(InternalLeagueCode.UK4);
             //AddThem(InternalLeagueCode.UEFA1);
@@ -50,8 +50,8 @@ namespace HierarchicalDataTemplate
                     LeagueSubOptions = new List<LeagueSubOption>
                     {
                         new LeagueSubOption {Expand = true, GridType = GridType.Standing},
-                        new LeagueSubOption {Expand = false, GridType = GridType.Result},
-                        new LeagueSubOption {Expand = false, GridType = GridType.Fixture}
+                        new LeagueSubOption {Expand = true, GridType = GridType.Result},
+                        new LeagueSubOption {Expand = true, GridType = GridType.Fixture}
                     }
                 });
         }

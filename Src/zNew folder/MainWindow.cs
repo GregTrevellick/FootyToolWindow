@@ -18,6 +18,7 @@ namespace HierarchicalDataTemplate
     {
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
+        private readonly LeagueCodeMappingsSingleton _leagueCodeMappingsSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;
         private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
@@ -25,17 +26,18 @@ namespace HierarchicalDataTemplate
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
         private const string Unavailable = "unavailable at this time - try again later";
-
+        
         public MainWindow()
         {
             InitializeComponent();
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
             _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
+            _leagueCodeMappingsSingletonInstance = LeagueCodeMappingsSingleton.Instance;
             _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
             _wpfHelper = new WpfHelper();
             GetOptions();
         }
-
+        
         private static void GetOptions()
         {
             _generalOptions = new TempryGetOptions().GetGeneralOptions();
@@ -89,7 +91,7 @@ namespace HierarchicalDataTemplate
                 var internalLeagueCode = DataGridHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
                 var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
                 parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-                var internalToExternalMappingExists = LeagueCodeMappings.Mappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
+                var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
                 var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions.LeagueOptions, internalLeagueCode, gridType);
 
                 if (shouldExpandGrid || manuallyExpanded)
