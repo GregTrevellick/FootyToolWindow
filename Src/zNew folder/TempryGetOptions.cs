@@ -16,14 +16,9 @@ namespace HierarchicalDataTemplate
 
             AddThem(InternalLeagueCode.DE1);
             AddThem(InternalLeagueCode.DE2);
-            //AddThem(InternalLeagueCode.DE3);//always no data ?
-            //////////////////////////////////////////////////////////////////////////AddThem(InternalLeagueCode.DE4);
             AddThem(InternalLeagueCode.ES1);
-            //AddThem(InternalLeagueCode.ES2);//always no data ?
-            //AddThem(InternalLeagueCode.ES3);//always no data ?
             AddThem(InternalLeagueCode.FR1);
             AddThem(InternalLeagueCode.FR2);
-            //////////////////////////////////////////////////////////////////////////AddThem(InternalLeagueCode.GR1);
             AddThem(InternalLeagueCode.IT1);
             AddThem(InternalLeagueCode.IT2);
             AddThem(InternalLeagueCode.NL1);
@@ -31,7 +26,14 @@ namespace HierarchicalDataTemplate
             AddThem(InternalLeagueCode.UK1);
             AddThem(InternalLeagueCode.UK2);
             AddThem(InternalLeagueCode.UK3);
-            //AddThem(InternalLeagueCode.UK4);//f.a.cup no data
+
+            //////////////////////////////////////////////////////////////////////////AddThem(InternalLeagueCode.DE4);
+            //////////////////////////////////////////////////////////////////////////AddThem(InternalLeagueCode.GR1);
+
+            //AddThem(InternalLeagueCode.UK4);//always no data ? (f.a.cup)
+            //AddThem(InternalLeagueCode.DE3);//always no data ?
+            //AddThem(InternalLeagueCode.ES2);//always no data ?
+            //AddThem(InternalLeagueCode.ES3);//always no data ?
             //AddThem(InternalLeagueCode.UEFA1);//always no data ?
             //AddThem(InternalLeagueCode.UEFA2);//always no data ?
             //AddThem(InternalLeagueCode.UEFA3);//always no data ?
