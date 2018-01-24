@@ -70,7 +70,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataGridHelper.cs" />
-    <Compile Include="LeagueCodeMappingsSingleton.cs" />
     <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="Options\GeneralOptions.cs" />
     <Compile Include="TempryGetOptions.cs" />
