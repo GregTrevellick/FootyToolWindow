@@ -25,9 +25,10 @@ namespace HierarchicalDataTemplate
 
         private static IDictionary<InternalLeagueCode, ExternalLeagueCode> GetValidMappings()
         {
-            var validMappings = (from k in AllLeagueCodes.AllMappings
-                where !BadLeagueCodes.BadDataExternalLeagueCodes.Contains(k.Value)
-                select k).ToDictionary(x => x.Key, x => x.Value);
+            //var validMappings = (from k in AllLeagueCodes.AllMappings
+            //                     where !BadLeagueCodes.BadDataExternalLeagueCodes.Contains(k.Value)
+            //                     select k).ToDictionary(x => x.Key, x => x.Value);
+            var validMappings = AllLeagueCodes.AllMappings;
             return validMappings;
         }
     }

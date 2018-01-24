@@ -252,8 +252,6 @@ namespace HierarchicalDataTemplate
             {
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    var gregtTemp = expander.Name;
-
                     var getDataFromClient = DataGridHelper.GetDataFromClient(dataGrid);
 
                     if (getDataFromClient)

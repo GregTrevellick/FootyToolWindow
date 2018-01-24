@@ -2,52 +2,75 @@
 
 namespace HierarchicalDataTemplate.ReferenceData
 {
-
     public enum ExternalLeagueCode
     {
+        //"league": "AAL",
+        //"league": "BL1",
+        //"league": "BL2",
+        //"league": "BSA",
+        //"league": "CL",
+        //"league": "DED",
+        //"league": "DFB",
+        //"league": "EL1",
+        //"league": "EL2",
+        //"league": "ELC",
+        //"league": "FL1",
+        //"league": "FL2",
+        //"league": "PD",
+        //"league": "PL",
+        //"league": "PPL",
+        //"league": "SA",
+        //"league": "SB",
+
+        [Description("Australian A-League")]
+        AAL,
+
         [Description("Germany 1. Bundesliga")]
         BL1,
+
         [Description("Germany 2. Bundesliga")]
         BL2,
-        [Description("Germany 3. Bundesliga")]
-        BL3,
-        [Description("Germany Dfb-Cup")]
-        DFB,
-        [Description("England Premiere League")]
-        PL,
-        [Description("England League One")]
-        EL1,
-        [Description("England Championship")]
-        ELC,
-        [Description("England FA-Cup")]
-        FAC,
-        [Description("Italy Serie A")]
-        SA,
-        [Description("Italy Serie B")]
-        SB,
-        [Description("Spain Primera Division")]
-        PD,
-        [Description("Spain Segunda Division")]
-        SD,
-        [Description("Spain Copa del Rey")]
-        CDR,
-        [Description("France Ligue 1")]
-        FL1,
-        [Description("France Ligue 2")]
-        FL2,
-        [Description("Netherlands Eredivisie")]
-        DED,
-        [Description("Portugal Primeira Liga")]
-        PPL,
-        [Description("Greece Super League")]
-        GSL,
+
+        [Description("Campeonato Brasileiro da Série A")]
+        BSA,
+        
         [Description("Europe Champions-League")]
         CL,
-        [Description("Europe UEFA-Cup")]
-        EL,
-        [Description("Europe European-Cup of Nations")]
-        EC,
-        [Description("World World-Cup")]
-        WC,
+
+        [Description("Netherlands Eredivisie")]
+        DED,
+
+        [Description("DFB-Pokal 2017/18")]
+        DFB,
+        
+        [Description("England League One")]
+        EL1,
+
+        [Description("League Two 2017/18")]
+        EL2,      
+
+        [Description("England Championship")]
+        ELC,
+      
+        [Description("France Ligue 1")]
+        FL1,
+
+        [Description("France Ligue 2")]
+        FL2,
+
+        [Description("Spain Primera Division")]
+        PD,
+
+        [Description("England Premiere League")]
+        PL,
+
+        [Description("Portugal Primeira Liga")]
+        PPL,
+
+        [Description("Italy Serie A")]
+        SA,
+
+        [Description("Italy Serie B")]
+        SB,        
     }
 }
