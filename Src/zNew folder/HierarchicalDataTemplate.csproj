@@ -72,11 +72,7 @@
     <Compile Include="DataGridHelper.cs" />
     <Compile Include="LeagueCodeMappingsSingleton.cs" />
     <Compile Include="Options\LeagueOption.cs" />
-    <Compile Include="ReferenceData\AllLeagueCodes.cs" />
-    <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
-    <Compile Include="ReferenceData\InternalLeagueCode.cs" />
     <Compile Include="Options\GeneralOptions.cs" />
-    <Compile Include="ReferenceData\BadLeagueCodes.cs" />
     <Compile Include="TempryGetOptions.cs" />
     <Page Include="Assets\PlusMinusExpanderStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
