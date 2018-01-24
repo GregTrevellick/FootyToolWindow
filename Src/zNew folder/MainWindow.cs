@@ -207,13 +207,17 @@ namespace HierarchicalDataTemplate
         {
             TextBlockBossMode.Text = CommonConstants.TheBossIsCommingText;
             StackPanelLeagueMode.Visibility = Visibility.Collapsed;
+            StackPanelLeagueMode2.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Visible;
+            StackPanelBossMode2.Visibility = Visibility.Visible;
         }
 
         private void Click_Handler2(object sender, RoutedEventArgs e)
         {
             StackPanelLeagueMode.Visibility = Visibility.Visible;
+            StackPanelLeagueMode2.Visibility = Visibility.Visible;
             StackPanelBossMode.Visibility = Visibility.Collapsed;
+            StackPanelBossMode2.Visibility = Visibility.Collapsed;
         }
 
         private void Click_HardcodedHandlerRefresh(object sender, RoutedEventArgs e)

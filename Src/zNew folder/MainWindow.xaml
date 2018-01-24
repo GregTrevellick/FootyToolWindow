@@ -18,6 +18,9 @@
                 <Button Content="Hardcoded refresh" Click="Click_HardcodedHandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0"/>
                 <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right" Name="StackPanelLeagueMode"/>
                 <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right" Name="StackPanelBossMode" Visibility="Collapsed" />
+            </StackPanel>
+
+            <StackPanel Name="StackPanelBossMode2">
                 <TextBlock Name="TextBlockBossMode" />
             </StackPanel>
 
@@ -45,6 +48,8 @@
                 </Button>
                 <TextBlock Name="TextBlockBossMode" />
             </StackPanel>-->
+
+            <StackPanel Name="StackPanelLeagueMode2">
 
             <Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
                 <local:MyDataGrid x:Name="Standing_Rand0001" Loaded="DataGridLoaded_Any" />
@@ -253,6 +258,8 @@
             <Expander Name="FIFA1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
                 <local:MyDataGrid x:Name="Fixtures_Rand0009" Loaded="DataGridLoaded_Any" />
             </Expander>
+
+            </StackPanel>
 
         </StackPanel>
     </ScrollViewer >
