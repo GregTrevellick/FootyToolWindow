@@ -1,4 +1,8 @@
-﻿using HierarchicalDataTemplate;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using HierarchicalDataTemplate;
+using HierarchicalDataTemplate.ReferenceData;
 
 namespace FootieData.Common.Helpers
 {
@@ -35,6 +39,12 @@ namespace FootieData.Common.Helpers
             }
 
             return gridType;
+        }
+
+        public static InternalLeagueCode GetInternalLeagueCode(WpfHelper wpfHelper, string expanderName)
+        {
+            var internalLeagueCodeString = wpfHelper.GetInternalLeagueCodeString(expanderName);
+            return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace HierarchicalDataTemplate
         {
             if (sender is Expander expander)
             {
-                var internalLeagueCode = DataGridHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
+                var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
                 var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
                 if (shouldShowLeague)
                 {
@@ -88,7 +88,7 @@ namespace HierarchicalDataTemplate
             {
                 var gridType = _wpfHelper.GetGridType(dataGrid.Name);
                 var parentExpanderName = parentExpander.Name;
-                var internalLeagueCode = DataGridHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
+                var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
                 var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
                 parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
                 var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);

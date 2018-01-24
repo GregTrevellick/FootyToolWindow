@@ -46,5 +46,11 @@
     <Compile Include="Helpers\WpfHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FootyData.Entities\FootieData.Entities.csproj">
+      <Project>{7689BD11-C3BE-43A1-983E-A66E9F22AF7C}</Project>
+      <Name>FootieData.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -50,12 +50,6 @@ namespace HierarchicalDataTemplate
             return firstItem.GetType() == typeof(NullReturn);
         }
 
-        public static InternalLeagueCode GetInternalLeagueCode(WpfHelper wpfHelper, string expanderName)
-        {
-            var internalLeagueCodeString = wpfHelper.GetInternalLeagueCodeString(expanderName);
-            return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
-        }
-
         public static bool ShouldShowLeague(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode)
         {
             return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague);
@@ -129,20 +123,5 @@ namespace HierarchicalDataTemplate
 
             return foundChild;
         }
-
-        //private static object TryFindResource(FrameworkElement frameworkElement, object resourceKey)
-        //{
-        //    var currentElement = frameworkElement;
-        //    while (currentElement != null)
-        //    {
-        //        var resource = currentElement.Resources[resourceKey];
-        //        if (resource != null)
-        //        {
-        //            return resource;
-        //        }
-        //        currentElement = currentElement.Parent as FrameworkElement;
-        //    }
-        //    return Application.Current.Resources[resourceKey];
-        //}
     }
 }
