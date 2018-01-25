@@ -3,14 +3,15 @@ using FootieData.Common;
 using FootieData.Common.Helpers;
 using FootieData.Entities;
 using FootieData.Gateway;
-using HierarchicalDataTemplate.ReferenceData;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootieData.Entities.ReferenceData;
 
 namespace HierarchicalDataTemplate
 {
@@ -91,7 +92,11 @@ namespace HierarchicalDataTemplate
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
                 var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
                 parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
-                var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
+                //var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
+                var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.Any(x => x.InternalLeagueCode == internalLeagueCode);
+                var externalLeagueCode = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings
+                    .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
+
                 var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions.LeagueOptions, internalLeagueCode, gridType);
 
                 if (shouldExpandGrid || manuallyExpanded)

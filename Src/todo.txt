@@ -5,3 +5,7 @@ add country flags ?
 put auth key into gen options
 
 allowed 1 every 1.2 secs
+
+endpoint down / timeouts
+
+throw misc errors - vsix ???

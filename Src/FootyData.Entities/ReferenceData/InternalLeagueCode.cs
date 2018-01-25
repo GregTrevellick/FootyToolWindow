@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel;
 
-namespace HierarchicalDataTemplate.ReferenceData
+namespace FootieData.Entities.ReferenceData
 {
     public enum InternalLeagueCode
     {
+
+        //gregt delete descriptions
+        //gregt sort alpha
+
         [Description("Australian A-League")]
         AU1,
 

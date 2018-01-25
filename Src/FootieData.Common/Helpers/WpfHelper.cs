@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FootieData.Entities.ReferenceData;
 using HierarchicalDataTemplate;
-using HierarchicalDataTemplate.ReferenceData;
 
 namespace FootieData.Common.Helpers
 {

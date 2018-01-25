@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using FootieData.Common.Helpers;
 using FootieData.Entities;
-using HierarchicalDataTemplate.ReferenceData;
+using FootieData.Entities.ReferenceData;
 
 namespace HierarchicalDataTemplate
 {

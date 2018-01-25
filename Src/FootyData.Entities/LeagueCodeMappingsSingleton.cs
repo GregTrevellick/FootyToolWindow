@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using HierarchicalDataTemplate.ReferenceData;
+using FootieData.Entities.ReferenceData;
 
-namespace HierarchicalDataTemplate
+namespace FootieData.Entities
 {
     public sealed class LeagueCodeMappingsSingleton
     {
-        public IDictionary<InternalLeagueCode, ExternalLeagueCode> LeagueCodeMappings;
+        //public IDictionary<InternalLeagueCode, ExternalLeagueCode> LeagueCodeMappings;
+        public IEnumerable<OneMap> LeagueCodeMappings;
 
         private static readonly LeagueCodeMappingsSingleton _instance = new LeagueCodeMappingsSingleton();
 
@@ -23,7 +23,15 @@ namespace HierarchicalDataTemplate
             LeagueCodeMappings = GetValidMappings();
         }
 
-        private static IDictionary<InternalLeagueCode, ExternalLeagueCode> GetValidMappings()
+        //private static IDictionary<InternalLeagueCode, ExternalLeagueCode> GetValidMappings()
+        //{
+        //    //var validMappings = (from k in AllLeagueCodes.AllMappings
+        //    //                     where !BadLeagueCodes.BadDataExternalLeagueCodes.Contains(k.Value)
+        //    //                     select k).ToDictionary(x => x.Key, x => x.Value);
+        //    var validMappings = AllLeagueCodes.AllMappings;
+        //    return validMappings;
+        //}
+        private static IEnumerable<OneMap> GetValidMappings()
         {
             //var validMappings = (from k in AllLeagueCodes.AllMappings
             //                     where !BadLeagueCodes.BadDataExternalLeagueCodes.Contains(k.Value)

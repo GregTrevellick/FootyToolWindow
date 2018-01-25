@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace HierarchicalDataTemplate.ReferenceData
+namespace FootieData.Entities.ReferenceData
 {
     public enum ExternalLeagueCode
     {
@@ -21,6 +21,9 @@ namespace HierarchicalDataTemplate.ReferenceData
         //"league": "PPL",
         //"league": "SA",
         //"league": "SB",
+
+        //gregt delete descriptions
+        //gregt sort alpha
 
         [Description("Australian A-League")]
         AAL,

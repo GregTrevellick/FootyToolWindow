@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using HierarchicalDataTemplate.ReferenceData;
+using FootieData.Entities.ReferenceData;
 
 namespace HierarchicalDataTemplate
 {
