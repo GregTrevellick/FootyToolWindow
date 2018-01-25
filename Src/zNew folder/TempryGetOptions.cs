@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FootieData.Entities.ReferenceData;
+using HierarchicalDataTemplate.Options;
 
 namespace HierarchicalDataTemplate
 {
@@ -14,6 +15,7 @@ namespace HierarchicalDataTemplate
                 LeagueOptions = new List<LeagueOption>()
             };
 
+            //gregt sort alpha (once proven)
             AddThem(InternalLeagueCode.AU1);
             AddThem(InternalLeagueCode.DE1);
             AddThem(InternalLeagueCode.DE2);

@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FootieData.Entities.ReferenceData;
+using HierarchicalDataTemplate.Options;
 
 namespace HierarchicalDataTemplate
 {

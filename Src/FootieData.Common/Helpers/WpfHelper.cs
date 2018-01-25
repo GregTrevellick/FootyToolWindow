@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FootieData.Entities.ReferenceData;
+﻿using FootieData.Entities.ReferenceData;
 using HierarchicalDataTemplate;
+using System;
 
 namespace FootieData.Common.Helpers
 {
