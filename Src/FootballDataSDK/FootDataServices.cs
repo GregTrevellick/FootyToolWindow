@@ -6,12 +6,12 @@ using FootballDataSDK.Models;
 using FootballDataSDK.Models.Common;
 using FootballDataSDK.Models.Enums;
 using FootballDataSDK.Models.Results;
-using FootballDataSDK.Services.Interface;
+//using FootballDataSDK.Services.Interface;
 using Newtonsoft.Json;
 
 namespace FootballDataSDK.Services
 {
-    public class FootDataServices : ISoccerSeasonsServices//, IFixtureServices,// ITeamServices
+    public class FootDataServices // : ISoccerSeasonsServices//, IFixtureServices,// ITeamServices
     {
         public string AuthToken { get; set; }
 
