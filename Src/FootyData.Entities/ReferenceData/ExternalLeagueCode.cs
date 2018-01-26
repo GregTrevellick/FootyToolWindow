@@ -4,24 +4,6 @@ namespace FootieData.Entities.ReferenceData
 {
     public enum ExternalLeagueCode
     {
-        //"league": "AAL",
-        //"league": "BL1",
-        //"league": "BL2",
-        //"league": "BSA",
-        //"league": "CL",
-        //"league": "DED",
-        //"league": "DFB",
-        //"league": "EL1",
-        //"league": "EL2",
-        //"league": "ELC",
-        //"league": "FL1",
-        //"league": "FL2",
-        //"league": "PD",
-        //"league": "PL",
-        //"league": "PPL",
-        //"league": "SA",
-        //"league": "SB",
-
         //gregt delete descriptions
         //gregt sort alpha
 
@@ -42,10 +24,7 @@ namespace FootieData.Entities.ReferenceData
 
         [Description("Netherlands Eredivisie")]
         DED,
-
-        [Description("DFB-Pokal 2017/18")]
-        DFB,
-        
+       
         [Description("England League One")]
         EL1,
 

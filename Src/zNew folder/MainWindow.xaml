@@ -120,17 +120,7 @@
                 <Expander Name="DE2_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
                     <local:MyDataGrid x:Name="Fixtures_Rand0006" Loaded="DataGridLoaded_Any" />
                 </Expander>
-                
-                <Expander Name="DE3_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0026" Loaded="DataGridLoaded_Any" />
-                </Expander>
-                <Expander Name="DE3_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0026" Loaded="DataGridLoaded_Any" />
-                </Expander>
-                <Expander Name="DE3_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0026" Loaded="DataGridLoaded_Any" />
-                </Expander>
-
+              
                 <Expander Name="ES1_Rand001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
                     <local:MyDataGrid x:Name="Standing_Rand0014" Loaded="DataGridLoaded_Any" />
                 </Expander>

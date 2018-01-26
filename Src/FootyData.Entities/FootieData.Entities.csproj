@@ -46,7 +46,6 @@
     <Compile Include="FixtureFuture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReferenceData\AllLeagueCodes.cs" />
-    <Compile Include="ReferenceData\zzzBadLeagueCodes.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
     <Compile Include="Standing.cs" />

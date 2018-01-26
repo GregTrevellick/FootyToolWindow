@@ -4,7 +4,6 @@ namespace FootieData.Entities.ReferenceData
 {
     public enum InternalLeagueCode
     {
-
         //gregt delete descriptions
         //gregt sort alpha
 
@@ -25,9 +24,6 @@ namespace FootieData.Entities.ReferenceData
 
         [Description("Eredivisie")]
         NL1,
-
-        [Description("DFB-Pokal")]
-        DE3,
 
         [Description("English League One")]
         UK2,

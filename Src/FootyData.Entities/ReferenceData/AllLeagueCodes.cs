@@ -66,14 +66,6 @@ namespace FootieData.Entities.ReferenceData
                 },
                 new OneMap
                 {
-                    ClientLeagueId = 458,
-                    InternalLeagueCode = InternalLeagueCode.DE3,
-                    InternalLeagueCodeDescription = "DFB-Pokal",
-                    ExternalLeagueCode = ExternalLeagueCode.DFB,
-                    ExternalLeagueCodeDescription = "DFB-Pokal 2017/18"
-                },
-                new OneMap
-                {
                     ClientLeagueId = 447,
                     InternalLeagueCode = InternalLeagueCode.UK2,
                     InternalLeagueCodeDescription = "English League One",
