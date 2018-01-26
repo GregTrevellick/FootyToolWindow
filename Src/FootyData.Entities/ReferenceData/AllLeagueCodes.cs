@@ -16,135 +16,40 @@ namespace FootieData.Entities.ReferenceData
         public static readonly IEnumerable<OneMap> AllMappings =
             new List<OneMap>
             {
-                new OneMap
-                {
-                    ClientLeagueId = 466,
-                    InternalLeagueCode = InternalLeagueCode.AU1,
-                    InternalLeagueCodeDescription = "Australian A-League",
-                    ExternalLeagueCode = ExternalLeagueCode.AAL,
-                    ExternalLeagueCodeDescription = "Australian A-League"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 452,
-                    InternalLeagueCode = InternalLeagueCode.DE1,
-                    InternalLeagueCodeDescription = "Bundesliga 1",
-                    ExternalLeagueCode = ExternalLeagueCode.BL1,
-                    ExternalLeagueCodeDescription = "Germany 1. Bundesliga"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 453,
-                    InternalLeagueCode = InternalLeagueCode.DE2,
-                    InternalLeagueCodeDescription = "Bundesliga 2",
-                    ExternalLeagueCode = ExternalLeagueCode.BL2,
-                    ExternalLeagueCodeDescription = "Germany 2. Bundesliga"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 444,
-                    InternalLeagueCode = InternalLeagueCode.BR1,
-                    InternalLeagueCodeDescription = "Brasileiro da Série A",
-                    ExternalLeagueCode = ExternalLeagueCode.BSA,
-                    ExternalLeagueCodeDescription = "Campeonato Brasileiro da Série A"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 464,
-                    InternalLeagueCode = InternalLeagueCode.UEFA1,
-                    InternalLeagueCodeDescription = "UEFA Champions League",
-                    ExternalLeagueCode = ExternalLeagueCode.CL,
-                    ExternalLeagueCodeDescription = "Europe Champions-League"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 449,
-                    InternalLeagueCode = InternalLeagueCode.NL1,
-                    InternalLeagueCodeDescription = "Eredivisie",
-                    ExternalLeagueCode = ExternalLeagueCode.DED,
-                    ExternalLeagueCodeDescription = "Netherlands Eredivisie"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 447,
-                    InternalLeagueCode = InternalLeagueCode.UK3,
-                    InternalLeagueCodeDescription = "English League One",
-                    ExternalLeagueCode = ExternalLeagueCode.EL1,
-                    ExternalLeagueCodeDescription = "England League One"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 448,
-                    InternalLeagueCode = InternalLeagueCode.UK4,
-                    InternalLeagueCodeDescription = "English League Two",
-                    ExternalLeagueCode = ExternalLeagueCode.EL2,
-                    ExternalLeagueCodeDescription = "League Two 2017/18"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 446,
-                    InternalLeagueCode = InternalLeagueCode.UK2,
-                    InternalLeagueCodeDescription = "English Championship",
-                    ExternalLeagueCode = ExternalLeagueCode.ELC,
-                    ExternalLeagueCodeDescription = "England Championship"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 450,
-                    InternalLeagueCode = InternalLeagueCode.FR1,
-                    InternalLeagueCodeDescription = "Ligue 1",
-                    ExternalLeagueCode = ExternalLeagueCode.FL1,
-                    ExternalLeagueCodeDescription = "France Ligue 1"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 451,
-                    InternalLeagueCode = InternalLeagueCode.FR2,
-                    InternalLeagueCodeDescription = "Ligue 2",
-                    ExternalLeagueCode = ExternalLeagueCode.FL2,
-                    ExternalLeagueCodeDescription = "France Ligue 2"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 455,
-                    InternalLeagueCode = InternalLeagueCode.ES1,
-                    InternalLeagueCodeDescription = "La Liga Primera Division",
-                    ExternalLeagueCode = ExternalLeagueCode.PD,
-                    ExternalLeagueCodeDescription = "Spain Primera Division"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 445,
-                    InternalLeagueCode = InternalLeagueCode.UK1,
-                    InternalLeagueCodeDescription = "English Premiership",
-                    ExternalLeagueCode = ExternalLeagueCode.PL,
-                    ExternalLeagueCodeDescription = "England Premiere League"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 457,
-                    InternalLeagueCode = InternalLeagueCode.PT1,
-                    InternalLeagueCodeDescription = "Primeira Liga",
-                    ExternalLeagueCode = ExternalLeagueCode.PPL,
-                    ExternalLeagueCodeDescription = "Portugal Primeira Liga"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 456,
-                    InternalLeagueCode = InternalLeagueCode.IT1,
-                    InternalLeagueCodeDescription = "Serie A",
-                    ExternalLeagueCode = ExternalLeagueCode.SA,
-                    ExternalLeagueCodeDescription = "Italy Serie A"
-                },
-                new OneMap
-                {
-                    ClientLeagueId = 459,
-                    InternalLeagueCode = InternalLeagueCode.IT2,
-                    InternalLeagueCodeDescription = "Serie B",
-                    ExternalLeagueCode = ExternalLeagueCode.SB,
-                    ExternalLeagueCodeDescription = "Italy Serie B"
-                },                
+                GetOneMap(InternalLeagueCode.AU1,"Australian A-League",ExternalLeagueCode.AAL,"Australian A-League",466),
+                GetOneMap(InternalLeagueCode.BR1,"Brasileiro da Série A",ExternalLeagueCode.BSA,"Campeonato Brasileiro da Série A",444),
+                GetOneMap(InternalLeagueCode.DE1,"Bundesliga 1",ExternalLeagueCode.BL1,"Germany 1. Bundesliga",452),
+                GetOneMap(InternalLeagueCode.DE2,"Bundesliga 2",ExternalLeagueCode.BL2,"Germany 2. Bundesliga",453),
+                GetOneMap(InternalLeagueCode.ES1,"La Liga Primera Division",ExternalLeagueCode.PD,"Spain Primera Division",455),
+                GetOneMap(InternalLeagueCode.FR1,"Ligue 1",ExternalLeagueCode.FL1,"France Ligue 1",450),
+                GetOneMap(InternalLeagueCode.FR2,"Ligue 2",ExternalLeagueCode.FL2,"France Ligue 2",451),
+                GetOneMap(InternalLeagueCode.IT1,"Serie A",ExternalLeagueCode.SA,"Italy Serie A",456),
+                GetOneMap(InternalLeagueCode.IT2,"Serie B",ExternalLeagueCode.SB,"Italy Serie B",459),                
+                GetOneMap(InternalLeagueCode.NL1,"Eredivisie",ExternalLeagueCode.DED,"Netherlands Eredivisie",449),
+                GetOneMap(InternalLeagueCode.PT1,"Primeira Liga",ExternalLeagueCode.PPL,"Portugal Primeira Liga",457),
+                GetOneMap(InternalLeagueCode.UEFA1,"UEFA Champions League",ExternalLeagueCode.CL,"Europe Champions-League",464),
+                GetOneMap(InternalLeagueCode.UK1,"English Premiership",ExternalLeagueCode.PL,"England Premiere League",445),
+                GetOneMap(InternalLeagueCode.UK2,"English Championship",ExternalLeagueCode.ELC,"England Championship",446),
+                GetOneMap(InternalLeagueCode.UK3,"English League One",ExternalLeagueCode.EL1,"England League One",447),
+                GetOneMap(InternalLeagueCode.UK4,"English League Two",ExternalLeagueCode.EL2,"League Two 2017/18",448),
             };
+
+        private static OneMap GetOneMap(
+            InternalLeagueCode internalLeagueCode,
+            string internalLeagueCodeDescription,
+            ExternalLeagueCode externalLeagueCode,
+            string externalLeagueCodeDescription,
+            int clientLeagueId)
+        {
+            return new OneMap
+            {
+                ClientLeagueId = clientLeagueId,
+                InternalLeagueCode   = internalLeagueCode,
+                InternalLeagueCodeDescription = internalLeagueCodeDescription,
+                ExternalLeagueCode = externalLeagueCode,
+                ExternalLeagueCodeDescription = externalLeagueCodeDescription
+            };
+        }
     }
 
 

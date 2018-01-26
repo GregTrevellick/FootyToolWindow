@@ -42,8 +42,8 @@
   <ItemGroup>
     <Compile Include="CommonConstants.cs" />
     <Compile Include="Dtos\GridType.cs" />
-    <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Helpers\WpfHelper.cs" />
+    <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
