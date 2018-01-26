@@ -32,7 +32,7 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var leagueTableResult = _footDataServices.LeagueTable(idSeason);
+                var leagueTableResult = _footDataServices.GetLeagueTableResult(idSeason);
                 if (leagueTableResult != null)
                 {
                     result = GetResultMatchStandings(leagueTableResult);
@@ -47,7 +47,7 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
+                var fixturesResult = _footDataServices.GetFixturesResult(idSeason, timeFrame);
                 if (fixturesResult != null)
                 {
                     result = GetFixturePasts(fixturesResult);
@@ -62,7 +62,7 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var fixturesResult = _footDataServices.Fixtures(idSeason, timeFrame);
+                var fixturesResult = _footDataServices.GetFixturesResult(idSeason, timeFrame);
                 if (fixturesResult != null)
                 {
                     result = GetFixtureFutures(fixturesResult);
