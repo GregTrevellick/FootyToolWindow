@@ -2,7 +2,6 @@
 {
     public class Standing
     {
-        public LinksStanding _links { get; set; }
         public int position { get; set; }
         public string teamName { get; set; }
         public string crestURI { get; set; }

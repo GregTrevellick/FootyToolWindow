@@ -52,9 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FootDataHttpClient.cs" />
-    <Compile Include="Common\Link.cs" />
     <Compile Include="Common\ErrorResult.cs" />
-    <Compile Include="Common\Links.cs" />
     <Compile Include="Common\VenueEnum.cs" />
     <Compile Include="Results\Away.cs" />
     <Compile Include="Results\FixtureDetailsResult.cs" />
@@ -63,7 +61,6 @@
     <Compile Include="Results\Home.cs" />
     <Compile Include="Results\LeagueTableResult.cs" />
     <Compile Include="Models\ResultMatch.cs" />
-    <Compile Include="Results\LinksSeason.cs" />
     <Compile Include="Results\LinksStanding.cs" />
     <Compile Include="Results\Competition.cs" />
     <Compile Include="Results\CompetitionResult.cs" />
