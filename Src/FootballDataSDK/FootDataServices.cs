@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using FootballDataSDK.Common;
@@ -31,7 +32,7 @@ namespace FootballDataSDK
                     return new CompetitionResult { error = err.error };
                 }
 
-                var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
+                var response = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
                 return new CompetitionResult
                 {
                     Competitions = response
@@ -53,7 +54,7 @@ namespace FootballDataSDK
                     return new CompetitionResult { error = err.error };
                 }
 
-                var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
+                var response = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
                 return new CompetitionResult
                 {
                     Competitions = response
