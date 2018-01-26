@@ -22,7 +22,7 @@ namespace HierarchicalDataTemplate
             AddThem(InternalLeagueCode.FR1);
             AddThem(InternalLeagueCode.FR2);
             AddThem(InternalLeagueCode.IT1);
-            AddThem(InternalLeagueCode.IT2);       
+            AddThem(InternalLeagueCode.IT2);
             AddThem(InternalLeagueCode.NL1);
             AddThem(InternalLeagueCode.PT1);
             AddThem(InternalLeagueCode.UEFA1);
