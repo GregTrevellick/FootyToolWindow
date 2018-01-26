@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FootDataHttpClient.cs" />
-    <Compile Include="Common\ErrorResult.cs" />
+    <Compile Include="Results\ErrorResult.cs" />
     <Compile Include="Results\Away.cs" />
     <Compile Include="Results\FixtureDetailsResult.cs" />
     <Compile Include="Models\Fixture.cs" />

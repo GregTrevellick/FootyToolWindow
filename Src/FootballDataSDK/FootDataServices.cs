@@ -11,13 +11,13 @@ namespace FootballDataSDK
     {
         public string AuthToken { get; set; }
 
-        public FootDataServices()
-        {
-        }
+        //public FootDataServices()
+        //{
+        //}
 
         public FootDataServices(string token)
         {
-            AuthToken = token;
+            AuthToken = token + "b";
         }
 
         public CompetitionResult SoccerSeasons()

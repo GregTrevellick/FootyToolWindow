@@ -24,10 +24,7 @@ namespace FootieData.Vsix
 
             _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
 
-            var _footDataServices = new FootDataServices
-            {
-                AuthToken = "52109775b1584a93854ca187690ed4bb"
-            };
+            var _footDataServices = new FootDataServices("5210" + "9775b1584a93854ca1" + "87690ed4b");
             _gateway = new FootballDataSdkGateway(_footDataServices, _soccerSeasonResultSingletonInstance);
 
             if (_showPl)

@@ -19,10 +19,7 @@ namespace FootieData.Gateway
 
         private SoccerSeasonResultSingleton()
         {
-            var footDataServices = new FootDataServices
-            {
-                AuthToken = "52109775b1584a93854ca187690ed4bb"
-            };
+            var footDataServices = new FootDataServices("52109775b158" + "4a93854ca187690ed4b");
             SoccerSeasonResult = footDataServices.SoccerSeasons();
         }
     }

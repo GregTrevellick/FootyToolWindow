@@ -47,10 +47,7 @@ namespace HierarchicalDataTemplate
 
         private FootballDataSdkGateway GetGateway()
         {
-            var footDataServices = new FootDataServices
-            {
-                AuthToken = "52109775b1584a93854ca187690ed4bb"
-            };
+            var footDataServices = new FootDataServices("521" +"09775b"+"1584a93854ca187690e"+"d4b");
             return new FootballDataSdkGateway(footDataServices, _soccerSeasonResultSingletonInstance);
         }
 
