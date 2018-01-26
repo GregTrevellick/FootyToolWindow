@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using FootballDataSDK.Client;
-using FootballDataSDK.Models;
-using FootballDataSDK.Models.Common;
-using FootballDataSDK.Models.Enums;
-using FootballDataSDK.Models.Results;
-//using FootballDataSDK.Services.Interface;
+using FootballDataSDK.Common;
+using FootballDataSDK.Results;
 using Newtonsoft.Json;
 
-namespace FootballDataSDK.Services
+namespace FootballDataSDK
 {
-    public class FootDataServices // : ISoccerSeasonsServices//, IFixtureServices,// ITeamServices
+    public class FootDataServices 
     {
         public string AuthToken { get; set; }
 
@@ -24,15 +20,9 @@ namespace FootballDataSDK.Services
             AuthToken = token;
         }
 
-        //#region Soccer service 
-
-        /// <summary>
-        /// List all available soccer seasons.	
-        /// </summary>
-        /// <returns></returns>
         public SoccerSeasonResult SoccerSeasons()
         {
-            string url = "http://api.football-data.org/v1/competitions";
+            var url = "http://api.football-data.org/v1/competitions";
             
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -40,7 +30,7 @@ namespace FootballDataSDK.Services
                 {
                     var res = client.GetAsync(new Uri(url)).Result;
 
-                    string responseString = res.Content.ReadAsStringAsync().Result;
+                    var responseString = res.Content.ReadAsStringAsync().Result;
 
                     // Sanity Check
                     if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
@@ -69,7 +59,7 @@ namespace FootballDataSDK.Services
 
         public async Task<SoccerSeasonResult> SoccerSeasonsAsync()
         {
-            string url = "http://api.football-data.org/v1/competitions";
+            var url = "http://api.football-data.org/v1/competitions";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -77,7 +67,7 @@ namespace FootballDataSDK.Services
                 {
                     var res =await  client.GetAsync(new Uri(url));
 
-                    string responseString = await res.Content.ReadAsStringAsync();
+                    var responseString = await res.Content.ReadAsStringAsync();
 
                     // Sanity Check
                     if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
@@ -104,77 +94,6 @@ namespace FootballDataSDK.Services
             return null;
         }
 
-
-        //public TeamsResult Teams(int idSeason)
-        //{
-        //    string url = $"http://api.football-data.org/v1/competitions/{idSeason}/teams";
-
-        //    using (var client = new FootDataHttpClient(AuthToken))
-        //    {
-        //        try
-        //        {
-        //            var res = client.GetAsync(new Uri(url)).Result;
-
-        //            string responseString = res.Content.ReadAsStringAsync().Result;
-
-        //            // Sanity Check
-        //            if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-        //            {
-        //                var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-
-        //                return new TeamsResult {error = err.error};
-        //            }
-
-
-        //            var response = JsonConvert.DeserializeObject<TeamsResult>(responseString);
-
-        //            return response;
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            //Ignore..
-        //        }
-        //    }
-
-        //    return null;
-        //}
-
-        //public async Task<TeamsResult> TeamsAsync(int idSeason)
-        //{
-        //    string url = $"http://api.football-data.org/v1/competitions/{idSeason}/teams";
-
-        //    using (var client = new FootDataHttpClient(AuthToken))
-        //    {
-        //        try
-        //        {
-        //            var res = await client.GetAsync(new Uri(url));
-
-        //            string responseString = await res.Content.ReadAsStringAsync();
-
-        //            // Sanity Check
-        //            if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-        //            {
-        //                var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-
-        //                return new TeamsResult { error = err.error };
-        //            }
-
-
-        //            var response = JsonConvert.DeserializeObject<TeamsResult>(responseString);
-
-        //            return response;
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            //Ignore..
-        //        }
-        //    }
-
-        //    return null;
-        //}
-
         public LeagueTableResult LeagueTable(int idSeason)
         {
             return LeagueTable(idSeason, -1);
@@ -189,22 +108,22 @@ namespace FootballDataSDK.Services
         {
             return Fixtures(idSeason, -1, null);
         }
+
         public async Task<FixturesResult> FixturesAsync(int idSeason)
         {
             return await FixturesAsync(idSeason, -1, null);
         }
 
-
         public LeagueTableResult LeagueTable(int idSeason, int matchday)
         {
-            string mDay = "";
+            var mDay = "";
 
             if (matchday > 0)
             {
                 mDay = matchday + "";
             }
-            //http://api.football-data.org/v1/competitions/424
-            string url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable?matchday={mDay}";
+ 
+            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable?matchday={mDay}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -212,7 +131,7 @@ namespace FootballDataSDK.Services
                 {
                     var res = client.GetAsync(new Uri(url)).Result;
 
-                    string responseString = res.Content.ReadAsStringAsync().Result;
+                    var responseString = res.Content.ReadAsStringAsync().Result;
 
                     // Sanity Check
                     if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
@@ -238,14 +157,14 @@ namespace FootballDataSDK.Services
 
         public async Task<LeagueTableResult> LeagueTableAsync(int idSeason, int matchday)
         {
-            string mDay = "";
+            var mDay = "";
 
             if (matchday > 0)
             {
                 mDay = matchday + "";
             }
 
-            string url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable?matchday={mDay}";
+            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable?matchday={mDay}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -253,7 +172,7 @@ namespace FootballDataSDK.Services
                 {
                     var res = await client.GetAsync(new Uri(url));
 
-                    string responseString = await res.Content.ReadAsStringAsync();
+                    var responseString = await res.Content.ReadAsStringAsync();
 
                     // Sanity Check
                     if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
@@ -262,7 +181,6 @@ namespace FootballDataSDK.Services
 
                         return new LeagueTableResult { error = err.error };
                     }
-
 
                     var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
 
@@ -280,12 +198,14 @@ namespace FootballDataSDK.Services
 
         public FixturesResult Fixtures(int idSeason, int matchday, string timeFrame)
         {
-            string p1 = "";
-            if (matchday > 0)
-                p1 = matchday + "";
+            var p1 = "";
 
-            string url =
-                $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
+            if (matchday > 0)
+            {
+                p1 = matchday + "";
+            }
+
+            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -293,7 +213,7 @@ namespace FootballDataSDK.Services
                 {
                     var res = client.GetAsync(new Uri(url)).Result;
 
-                    string responseString = res.Content.ReadAsStringAsync().Result;
+                    var responseString = res.Content.ReadAsStringAsync().Result;
 
                     // Sanity Check
                     if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
@@ -319,12 +239,14 @@ namespace FootballDataSDK.Services
 
         public async Task<FixturesResult> FixturesAsync(int idSeason, int matchday, string timeFrame)
         {
-            string p1 = "";
-            if (matchday > 0)
-                p1 = matchday + "";
+            var p1 = "";
 
-            string url =
-                $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
+            if (matchday > 0)
+            {
+                p1 = matchday + "";
+            }
+
+            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -332,7 +254,7 @@ namespace FootballDataSDK.Services
                 {
                     var res = await client.GetAsync(new Uri(url));
 
-                    string responseString = await res.Content.ReadAsStringAsync();
+                    var responseString = await res.Content.ReadAsStringAsync();
 
                     // Sanity Check
                     if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
@@ -377,15 +299,15 @@ namespace FootballDataSDK.Services
             return await FixturesAsync(idSeason, -1, timeFrame);
         }
 
-//        #endregion
+        //        #endregion
 
 
-  //      #region Fixtures
+        //      #region Fixtures
 
         /// <summary>
         /// List fixtures across a set of soccerseasons.
         /// </summary>
-        /// <returns></returns>
+        /// <returns></.returns>
         //public FixturesResult Fixtures()
         //{
         //    return Fixtures("", "");
@@ -747,6 +669,77 @@ namespace FootballDataSDK.Services
 
 
         //            var response = JsonConvert.DeserializeObject<PlayersResult>(responseString);
+
+        //            return response;
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //Ignore..
+        //        }
+        //    }
+
+        //    return null;
+        //}
+
+
+        //public TeamsResult Teams(int idSeason)
+        //{
+        //    string url = $"http://api.football-data.org/v1/competitions/{idSeason}/teams";
+
+        //    using (var client = new FootDataHttpClient(AuthToken))
+        //    {
+        //        try
+        //        {
+        //            var res = client.GetAsync(new Uri(url)).Result;
+
+        //            string responseString = res.Content.ReadAsStringAsync().Result;
+
+        //            // Sanity Check
+        //            if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+        //            {
+        //                var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+
+        //                return new TeamsResult {error = err.error};
+        //            }
+
+
+        //            var response = JsonConvert.DeserializeObject<TeamsResult>(responseString);
+
+        //            return response;
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //Ignore..
+        //        }
+        //    }
+
+        //    return null;
+        //}
+
+        //public async Task<TeamsResult> TeamsAsync(int idSeason)
+        //{
+        //    string url = $"http://api.football-data.org/v1/competitions/{idSeason}/teams";
+
+        //    using (var client = new FootDataHttpClient(AuthToken))
+        //    {
+        //        try
+        //        {
+        //            var res = await client.GetAsync(new Uri(url));
+
+        //            string responseString = await res.Content.ReadAsStringAsync();
+
+        //            // Sanity Check
+        //            if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+        //            {
+        //                var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+
+        //                return new TeamsResult { error = err.error };
+        //            }
+
+
+        //            var response = JsonConvert.DeserializeObject<TeamsResult>(responseString);
 
         //            return response;
 

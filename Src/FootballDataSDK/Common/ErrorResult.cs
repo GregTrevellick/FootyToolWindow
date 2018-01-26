@@ -1,4 +1,4 @@
-﻿namespace FootballDataSDK.Models.Common
+﻿namespace FootballDataSDK.Common
 {
     public class ErrorResult
     {

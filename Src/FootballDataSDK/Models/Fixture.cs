@@ -1,5 +1,5 @@
 ﻿using System;
-using FootballDataSDK.Models.Common;
+using FootballDataSDK.Common;
 
 namespace FootballDataSDK.Models
 {

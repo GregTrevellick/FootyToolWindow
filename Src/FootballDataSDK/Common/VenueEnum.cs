@@ -1,4 +1,4 @@
-﻿namespace FootballDataSDK.Models.Enums
+﻿namespace FootballDataSDK.Common
 {
     public enum VenueEnum
     {

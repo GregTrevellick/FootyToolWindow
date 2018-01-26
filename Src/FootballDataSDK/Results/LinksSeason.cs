@@ -1,6 +1,6 @@
-﻿using FootballDataSDK.Models.Common;
+﻿using FootballDataSDK.Common;
 
-namespace FootballDataSDK.Models.Results
+namespace FootballDataSDK.Results
 {
     public class LinksSeason
     {

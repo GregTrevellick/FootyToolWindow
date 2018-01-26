@@ -1,5 +1,5 @@
-﻿using FootballDataSDK.Models.Results;
-using FootballDataSDK.Services;
+﻿using FootballDataSDK;
+using FootballDataSDK.Results;
 
 namespace FootieData.Gateway
 {

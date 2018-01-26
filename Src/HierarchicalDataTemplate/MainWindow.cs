@@ -1,5 +1,4 @@
-﻿using FootballDataSDK.Services;
-using FootieData.Common;
+﻿using FootieData.Common;
 using FootieData.Common.Helpers;
 using FootieData.Entities;
 using FootieData.Gateway;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootballDataSDK;
 using FootieData.Entities.ReferenceData;
 using HierarchicalDataTemplate.Options;
 

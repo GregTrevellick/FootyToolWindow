@@ -1,4 +1,4 @@
-﻿namespace FootballDataSDK.Models.Results
+﻿namespace FootballDataSDK.Results
 {
     public class Home
     {

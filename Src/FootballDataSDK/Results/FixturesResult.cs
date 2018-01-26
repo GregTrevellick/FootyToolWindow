@@ -1,6 +1,7 @@
-﻿using FootballDataSDK.Models.Common;
+﻿using FootballDataSDK.Common;
+using FootballDataSDK.Models;
 
-namespace FootballDataSDK.Models.Results
+namespace FootballDataSDK.Results
 {
     public class FixturesResult
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataSDK.Models.Results
+namespace FootballDataSDK.Results
 {
     public class SoccerSeason
     {

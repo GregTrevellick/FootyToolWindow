@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace FootballDataSDK.Client
+namespace FootballDataSDK
 {
     class FootDataHttpClient : HttpClient
     {

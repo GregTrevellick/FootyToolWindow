@@ -2,7 +2,7 @@
 using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
-using FootballDataSDK.Services;
+using FootballDataSDK;
 
 namespace FootieData.Vsix
 {
