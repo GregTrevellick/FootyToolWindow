@@ -26,13 +26,13 @@ namespace FootieData.Entities.ReferenceData
         NL1,
 
         [Description("English League One")]
-        UK2,
+        UK3,
 
         [Description("League Two 2017/18")]
         UK4,
 
         [Description("English Championship")]
-        UK3,
+        UK2,
 
         [Description("Ligue 1")]
         FR1,

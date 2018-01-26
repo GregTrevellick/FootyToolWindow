@@ -67,7 +67,7 @@ namespace FootieData.Entities.ReferenceData
                 new OneMap
                 {
                     ClientLeagueId = 447,
-                    InternalLeagueCode = InternalLeagueCode.UK2,
+                    InternalLeagueCode = InternalLeagueCode.UK3,
                     InternalLeagueCodeDescription = "English League One",
                     ExternalLeagueCode = ExternalLeagueCode.EL1,
                     ExternalLeagueCodeDescription = "England League One"
@@ -83,7 +83,7 @@ namespace FootieData.Entities.ReferenceData
                 new OneMap
                 {
                     ClientLeagueId = 446,
-                    InternalLeagueCode = InternalLeagueCode.UK3,
+                    InternalLeagueCode = InternalLeagueCode.UK2,
                     InternalLeagueCodeDescription = "English Championship",
                     ExternalLeagueCode = ExternalLeagueCode.ELC,
                     ExternalLeagueCodeDescription = "England Championship"
