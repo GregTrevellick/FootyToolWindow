@@ -278,17 +278,6 @@ namespace FootballDataSDK
             return null;
         }
 
-
-        //public FixturesResult Fixtures(int idSeason, int matchday)
-        //{
-        //    return Fixtures(idSeason, matchday, null);
-        //}
-
-        //public async Task<FixturesResult> FixturesAsync(int idSeason, int matchday)
-        //{
-        //    return await FixturesAsync(idSeason, matchday, null);
-        //}
-
         public FixturesResult Fixtures(int idSeason, string timeFrame)
         {
             return Fixtures(idSeason, -1, timeFrame);
@@ -300,8 +289,15 @@ namespace FootballDataSDK
         }
 
         //        #endregion
+        //public FixturesResult Fixtures(int idSeason, int matchday)
+        //{
+        //    return Fixtures(idSeason, matchday, null);
+        //}
 
-
+        //public async Task<FixturesResult> FixturesAsync(int idSeason, int matchday)
+        //{
+        //    return await FixturesAsync(idSeason, matchday, null);
+        //}
         //      #region Fixtures
 
         /// <summary>
