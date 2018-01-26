@@ -68,11 +68,9 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Results\PlayersResult.cs" />
-    <Compile Include="Services\Interface\IFixtureServices.cs" />
     <Compile Include="Services\FootDataServices.cs" />
     <Compile Include="Models\Results\TeamsResult.cs" />
     <Compile Include="Services\Interface\ISoccerSeasonsServices.cs" />
-    <Compile Include="Services\Interface\ITeamServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
