@@ -1,8 +1,8 @@
-﻿namespace FootballDataSDK.Common
-{
-    public enum VenueEnum
-    {
-        home,
-        away
-    }
-}
+﻿//namespace FootballDataSDK.Common
+//{
+//    public enum VenueEnum
+//    {
+//        home,
+//        away
+//    }
+//}

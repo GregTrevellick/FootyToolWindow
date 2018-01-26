@@ -39,7 +39,7 @@ namespace FootballDataSDK
                     var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
                     return new CompetitionResult
                     {
-                        Seasons = response
+                        Competitions = response
                     };
             }
         }
@@ -63,7 +63,7 @@ namespace FootballDataSDK
                     var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
                     return new CompetitionResult
                     {
-                        Seasons = response
+                        Competitions = response
                     };
                 }
         }

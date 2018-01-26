@@ -2,7 +2,7 @@
 {
     public class CompetitionResult
     {
-        public Competition[] Seasons { get; set; }
+        public Competition[] Competitions { get; set; }
         public string error { get; set; }
     }
 }
