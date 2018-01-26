@@ -93,7 +93,6 @@ namespace HierarchicalDataTemplate
                 var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.Any(x => x.InternalLeagueCode == internalLeagueCode);
                 var externalLeagueCode = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings
                     .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-
                 var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions.LeagueOptions, internalLeagueCode, gridType);
 
                 if (shouldExpandGrid || manuallyExpanded)
@@ -124,9 +123,9 @@ namespace HierarchicalDataTemplate
 
                             DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-                            parentExpander.Header = "DataGridLoaded_Any internal error";
+                            parentExpander.Header = "DataGridLoaded_Any internal error " +  gridType;
                         }
                     }
                 }
