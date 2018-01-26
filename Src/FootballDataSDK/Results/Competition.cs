@@ -2,7 +2,7 @@
 
 namespace FootballDataSDK.Results
 {
-    public class SoccerSeason
+    public class Competition
     {
         public LinksSeason _links { get; set; }
         public int id { get; set; }

@@ -4,7 +4,5 @@ namespace FootballDataSDK.Models
     {
         public int? goalsHomeTeam { get; set; }
         public int? goalsAwayTeam { get; set; }
-
-        public Halftime halfTime { get; set; }
     }
 }

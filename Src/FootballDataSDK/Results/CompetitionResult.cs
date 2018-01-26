@@ -1,8 +1,8 @@
 ﻿namespace FootballDataSDK.Results
 {
-    public class SoccerSeasonResult
+    public class CompetitionResult
     {
-        public SoccerSeason[] Seasons { get; set; }
+        public Competition[] Seasons { get; set; }
 
         public string error { get; set; }
     }
