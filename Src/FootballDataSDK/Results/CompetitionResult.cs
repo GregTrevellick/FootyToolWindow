@@ -1,8 +1,10 @@
-﻿namespace FootballDataSDK.Results
+﻿using System.Collections.Generic;
+
+namespace FootballDataSDK.Results
 {
     public class CompetitionResult
     {
-        public Competition[] Competitions { get; set; }
+        public IEnumerable<Competition> Competitions { get; set; }
         public string error { get; set; }
     }
 }
