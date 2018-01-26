@@ -8,6 +8,6 @@ namespace FootballDataSDK.Models
         public string status { get; set; }
         public string homeTeamName { get; set; }
         public string awayTeamName { get; set; }
-        public ResultMatch ResultMatch { get; set; }
+        public ResultMatch result { get; set; }
     }
 }
