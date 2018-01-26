@@ -23,7 +23,7 @@ namespace HierarchicalDataTemplate
         private readonly LeagueCodeMappingsSingleton _leagueCodeMappingsSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;
-        private readonly CompetitionResultSingleton _soccerSeasonResultSingletonInstance;
+        private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
@@ -35,7 +35,7 @@ namespace HierarchicalDataTemplate
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
             _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
             _leagueCodeMappingsSingletonInstance = LeagueCodeMappingsSingleton.Instance;
-            _soccerSeasonResultSingletonInstance = CompetitionResultSingleton.Instance;
+            _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
             _wpfHelper = new WpfHelper();
             GetOptions();
         }
@@ -45,10 +45,10 @@ namespace HierarchicalDataTemplate
             _generalOptions = new TempryGetOptions().GetGeneralOptions();
         }
 
-        private FootballDataSdkGateway GetGateway()
+        private FootballDataSdkGateway GetFootballDataSdkGateway()
         {
             var footDataServices = new FootDataServices("521" +"09775b"+"1584a93854ca187690e"+"d4b");
-            return new FootballDataSdkGateway(footDataServices, _soccerSeasonResultSingletonInstance);
+            return new FootballDataSdkGateway(footDataServices, _competitionResultSingletonInstance);
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
@@ -88,10 +88,8 @@ namespace HierarchicalDataTemplate
                 var gridType = _wpfHelper.GetGridType(dataGrid.Name);
                 var parentExpanderName = parentExpander.Name;
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
-                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
-                //parentExpander.Header = internalLeagueCode.GetDescription() + " " + gridType.GetDescription();
+                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);            
                 parentExpander.Header = AllLeagueCodes.AllMappings.First(x=>x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
-                //var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.TryGetValue(internalLeagueCode, out var externalLeagueCode);
                 var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.Any(x => x.InternalLeagueCode == internalLeagueCode);
                 var externalLeagueCode = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings
                     .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
@@ -144,7 +142,7 @@ namespace HierarchicalDataTemplate
                     IEnumerable<Standing> result = null;
                     if (shouldShowLeague && internalToExternalMappingExists)
                     {
-                        var gateway = GetGateway();
+                        var gateway = GetFootballDataSdkGateway();
                         result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
                     }                    
                     return result;
@@ -168,7 +166,7 @@ namespace HierarchicalDataTemplate
                     IEnumerable<FixturePast> result = null;
                     if (shouldShowLeague && internalToExternalMappingExists)                        
                     {
-                        var gateway = GetGateway();
+                        var gateway = GetFootballDataSdkGateway();
                         result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
                     }                   
                     return result;
@@ -192,7 +190,7 @@ namespace HierarchicalDataTemplate
                     IEnumerable<FixtureFuture> result = null;
                     if (shouldShowLeague && internalToExternalMappingExists)                        
                     {
-                        var gateway = GetGateway();
+                        var gateway = GetFootballDataSdkGateway();
                         result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
                     }
                     return result;
