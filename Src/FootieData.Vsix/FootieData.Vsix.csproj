@@ -122,9 +122,6 @@
     <Reference Include="EnvDTE90, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="FootballDataSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FootballDataSDK.1.0.7\lib\net45\FootballDataSDK.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.CommandBars, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -221,6 +218,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FootballDataSDK\FootballDataSDK.csproj">
+      <Project>{e03d39b9-4fad-4108-8d17-a9f9af2d6a9e}</Project>
+      <Name>FootballDataSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootieData.Gateway\FootieData.Gateway.csproj">
       <Project>{296f4cc7-491d-47e3-8caf-e88dd3223c6c}</Project>
       <Name>FootieData.Gateway</Name>

@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FootballDataSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FootballDataSDK.1.0.7\lib\net45\FootballDataSDK.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -121,6 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FootballDataSDK\FootballDataSDK.csproj">
+      <Project>{e03d39b9-4fad-4108-8d17-a9f9af2d6a9e}</Project>
+      <Name>FootballDataSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FootieData.Common\FootieData.Common.csproj">
       <Project>{d2a60350-d05c-4005-a3f7-f8f66527e793}</Project>
       <Name>FootieData.Common</Name>
@@ -142,7 +143,9 @@
     <Resource Include="Assets\open_neonglow.png" />
     <Resource Include="Assets\open_plasticwrap.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
