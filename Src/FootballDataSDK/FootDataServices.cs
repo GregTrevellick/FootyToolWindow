@@ -44,7 +44,7 @@ namespace FootballDataSDK
         {
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res =await  client.GetAsync(new Uri(url1));
+                    var res = await client.GetAsync(new Uri(url1));
                     var responseString = await res.Content.ReadAsStringAsync();
 
                     // Sanity Check
