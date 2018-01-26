@@ -7,10 +7,9 @@ using Newtonsoft.Json;
 
 namespace FootballDataSDK
 {
-    public class FootDataServices 
+    public class FootDataServices
     {
         private string url1 = "http://api.football-data.org/v1/competitions";
-
         private string AuthToken { get; set; }
 
         public FootDataServices(string token)
@@ -22,21 +21,21 @@ namespace FootballDataSDK
         {
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res = client.GetAsync(new Uri(url1)).Result;
-                    var responseString = res.Content.ReadAsStringAsync().Result;
+                var res = client.GetAsync(new Uri(url1)).Result;
+                var responseString = res.Content.ReadAsStringAsync().Result;
 
-                    // Sanity Check
-                    if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                    {
-                        var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                        return new CompetitionResult { error = err.error };
-                    }
+                // Sanity Check
+                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                {
+                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+                    return new CompetitionResult { error = err.error };
+                }
 
-                    var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
-                    return new CompetitionResult
-                    {
-                        Competitions = response
-                    };
+                var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
+                return new CompetitionResult
+                {
+                    Competitions = response
+                };
             }
         }
 
@@ -44,22 +43,22 @@ namespace FootballDataSDK
         {
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res = await client.GetAsync(new Uri(url1));
-                    var responseString = await res.Content.ReadAsStringAsync();
+                var res = await client.GetAsync(new Uri(url1));
+                var responseString = await res.Content.ReadAsStringAsync();
 
-                    // Sanity Check
-                    if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                    {
-                        var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                        return new CompetitionResult { error = err.error };
-                    }
-
-                    var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
-                    return new CompetitionResult
-                    {
-                        Competitions = response
-                    };
+                // Sanity Check
+                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                {
+                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+                    return new CompetitionResult { error = err.error };
                 }
+
+                var response = JsonConvert.DeserializeObject<Competition[]>(responseString);
+                return new CompetitionResult
+                {
+                    Competitions = response
+                };
+            }
         }
 
         public LeagueTableResult LeagueTable(int idSeason)
@@ -68,18 +67,18 @@ namespace FootballDataSDK
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res = client.GetAsync(new Uri(url)).Result;
-                    var responseString = res.Content.ReadAsStringAsync().Result;
+                var res = client.GetAsync(new Uri(url)).Result;
+                var responseString = res.Content.ReadAsStringAsync().Result;
 
-                    // Sanity Check
-                    if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                    {
-                        var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                        return new LeagueTableResult { error = err.error };
-                    }
+                // Sanity Check
+                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                {
+                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+                    return new LeagueTableResult { error = err.error };
+                }
 
-                    var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
-                    return response;
+                var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
+                return response;
             }
         }
 
@@ -89,18 +88,18 @@ namespace FootballDataSDK
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res = await client.GetAsync(new Uri(url));
-                    var responseString = await res.Content.ReadAsStringAsync();
+                var res = await client.GetAsync(new Uri(url));
+                var responseString = await res.Content.ReadAsStringAsync();
 
-                    // Sanity Check
-                    if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                    {
-                        var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                        return new LeagueTableResult { error = err.error };
-                    }
+                // Sanity Check
+                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                {
+                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+                    return new LeagueTableResult { error = err.error };
+                }
 
-                    var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
-                    return response;
+                var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
+                return response;
             }
         }
 
@@ -110,39 +109,39 @@ namespace FootballDataSDK
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res = client.GetAsync(new Uri(url)).Result;
-                    var responseString = res.Content.ReadAsStringAsync().Result;
+                var res = client.GetAsync(new Uri(url)).Result;
+                var responseString = res.Content.ReadAsStringAsync().Result;
 
-                    // Sanity Check
-                    if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                    {
-                        var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                        return new FixturesResult { error = err.error };
-                    }
+                // Sanity Check
+                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                {
+                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+                    return new FixturesResult { error = err.error };
+                }
 
-                    var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
-                    return response;
+                var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
+                return response;
             }
         }
 
         public async Task<FixturesResult> FixturesAsync(int idSeason, string timeFrame)
-        {           
+        {
             var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
-            {                
-                    var res = await client.GetAsync(new Uri(url));
-                    var responseString = await res.Content.ReadAsStringAsync();
+            {
+                var res = await client.GetAsync(new Uri(url));
+                var responseString = await res.Content.ReadAsStringAsync();
 
-                    // Sanity Check
-                    if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                    {
-                        var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                        return new FixturesResult { error = err.error };
-                    }
+                // Sanity Check
+                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                {
+                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+                    return new FixturesResult { error = err.error };
+                }
 
-                    var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
-                    return response;                
+                var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
+                return response;
             }
         }
     }
