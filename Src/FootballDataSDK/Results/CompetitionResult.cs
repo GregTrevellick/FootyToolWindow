@@ -4,7 +4,7 @@ namespace FootballDataSDK.Results
 {
     public class CompetitionResult
     {
-        public IEnumerable<Competition> Competitions { get; set; }
+        public IEnumerable<Competition> competitions { get; set; }
         public string error { get; set; }
     }
 }

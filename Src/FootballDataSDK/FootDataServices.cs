@@ -35,7 +35,7 @@ namespace FootballDataSDK
                 var response = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
                 return new CompetitionResult
                 {
-                    Competitions = response
+                    competitions = response
                 };
             }
         }
@@ -57,7 +57,7 @@ namespace FootballDataSDK
                 var response = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
                 return new CompetitionResult
                 {
-                    Competitions = response
+                    competitions = response
                 };
             }
         }

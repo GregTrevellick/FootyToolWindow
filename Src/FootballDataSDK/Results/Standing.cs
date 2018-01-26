@@ -4,7 +4,7 @@
     {
         public int position { get; set; }
         public string teamName { get; set; }
-        public string crestURI { get; set; }
+        //public string crestURI { get; set; }
         public int playedGames { get; set; }
         public int points { get; set; }
         public int goals { get; set; }
