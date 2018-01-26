@@ -17,7 +17,7 @@ namespace FootballDataSDK
             AuthToken = token + "b";
         }
 
-        public CompetitionResult SoccerSeasons()
+        public CompetitionResult GetCompetitionResult()
         {
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -39,7 +39,7 @@ namespace FootballDataSDK
             }
         }
 
-        public async Task<CompetitionResult> SoccerSeasonsAsync()
+        public async Task<CompetitionResult> GetCompetitionResultAsync()
         {
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -61,7 +61,7 @@ namespace FootballDataSDK
             }
         }
 
-        public LeagueTableResult LeagueTable(int idSeason)
+        public LeagueTableResult GetLeagueTableResult(int idSeason)
         {
             var url = $"{url1}/{idSeason}/leagueTable";
 
@@ -82,7 +82,7 @@ namespace FootballDataSDK
             }
         }
 
-        public async Task<LeagueTableResult> LeagueTableAsync(int idSeason)
+        public async Task<LeagueTableResult> GetLeagueTableResultAsync(int idSeason)
         {
             var url = $"{url1}/{idSeason}/leagueTable";
 
@@ -103,7 +103,7 @@ namespace FootballDataSDK
             }
         }
 
-        public FixturesResult Fixtures(int idSeason, string timeFrame)
+        public FixturesResult GetFixturesResult(int idSeason, string timeFrame)
         {
             var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 
@@ -124,7 +124,7 @@ namespace FootballDataSDK
             }
         }
 
-        public async Task<FixturesResult> FixturesAsync(int idSeason, string timeFrame)
+        public async Task<FixturesResult> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
             var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 

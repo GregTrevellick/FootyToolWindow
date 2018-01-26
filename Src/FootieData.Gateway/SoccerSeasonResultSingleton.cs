@@ -20,7 +20,7 @@ namespace FootieData.Gateway
         private SoccerSeasonResultSingleton()
         {
             var footDataServices = new FootDataServices("52109775b158" + "4a93854ca187690ed4b");
-            SoccerSeasonResult = footDataServices.SoccerSeasons();
+            SoccerSeasonResult = footDataServices.GetCompetitionResult();
         }
     }
 }
