@@ -1,0 +1,70 @@
+﻿<Window x:Class="HierarchicalDataTemplate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HierarchicalDataTemplate"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <DockPanel>
+        <DockPanel.Resources>
+            <local:ListLeagueList x:Key="MyListLeagueList"/>
+            <HierarchicalDataTemplate x:Key="key_s"  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataStandings}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <DataGrid   Loaded="DataGridLoaded_Standings"/>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate x:Key="key_r" DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataResults}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <DataGrid Loaded="DataGridLoaded_Results"/>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate  x:Key="key_f"  DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=ActualDataFixtures}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <DataTemplate>
+                        <DataGrid  Loaded="DataGridLoaded_Fixtures"/>
+                    </DataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+        </DockPanel.Resources>
+        <TreeView>
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" IsExpanded="True" />
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_s}"/>
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_r}"/>
+            <TreeViewItem ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" ItemTemplate="{StaticResource key_f}"/>
+        </TreeView>
+    </DockPanel>
+
+
+    <!--<DockPanel>
+        <DockPanel.Resources>
+            <local:ListLeagueList x:Key="MyListLeagueList"/>
+            <HierarchicalDataTemplate DataType = "{x:Type local:League2}" ItemsSource = "{Binding Path=DataArtefacts}">
+                <TextBlock Text="{Binding Path=LeagueName}"/>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <HierarchicalDataTemplate DataType = "{x:Type local:DataArtefact}" ItemsSource = "{Binding Path=ActualData}">
+                        <TextBlock Text="{Binding Path=SubName}"/>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:DataArtefact}">
+                                --><!--<DataGrid ItemsSource="{Binding Path=ActualData}" Loaded="DataGridLoaded_BL1"/>--><!--
+                                <DataGrid Loaded="DataGridLoaded_Standings"/>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+        </DockPanel.Resources>
+        <TreeView>
+            <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource MyListLeagueList}}" Header="My Soccer Leagues" />
+        </TreeView>
+    </DockPanel>-->
+
+</Window>
