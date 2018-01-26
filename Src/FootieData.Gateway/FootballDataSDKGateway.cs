@@ -74,7 +74,7 @@ namespace FootieData.Gateway
         private int GetIdSeason(string leagueIdentifier)
         {
             //gregt get from new entity here =========================================================================================
-            var league = _soccerSeasonResultSingleton?.SoccerSeasonResult?.Seasons?.SingleOrDefault(x => x.league == leagueIdentifier);
+            var league = _soccerSeasonResultSingleton?.SoccerSeasonResult?.Competitions?.SingleOrDefault(x => x.league == leagueIdentifier);
             return league?.id ?? 0;
         }
 
