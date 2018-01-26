@@ -1,10 +1,10 @@
-﻿using FootieData.Entities;
+﻿using FootballDataSDK;
+using FootballDataSDK.Results;
+using FootieData.Entities;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using FootballDataSDK;
-using FootballDataSDK.Results;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
@@ -18,12 +18,12 @@ namespace FootieData.Gateway
         private static CultureInfo deDE = new CultureInfo("de-DE");
 
         private readonly FootDataServices _footDataServices;
-        private readonly CompetitionResultSingleton _soccerSeasonResultSingleton;
+        private readonly CompetitionResultSingleton _competitionResultSingleton;
 
-        public FootballDataSdkGateway(FootDataServices footDataServices, CompetitionResultSingleton soccerSeasonResultSingletonInstance)
+        public FootballDataSdkGateway(FootDataServices footDataServices, CompetitionResultSingleton competitionResultSingletonInstance)
         {
             _footDataServices = footDataServices;
-            _soccerSeasonResultSingleton = soccerSeasonResultSingletonInstance;
+            _competitionResultSingleton = competitionResultSingletonInstance;
         }
 
         public IEnumerable<Standing> GetFromClientStandings(string leagueIdentifier)
@@ -74,7 +74,7 @@ namespace FootieData.Gateway
         private int GetIdSeason(string leagueIdentifier)
         {
             //gregt get from new entity here =========================================================================================
-            var league = _soccerSeasonResultSingleton?.CompetitionResult?.Competitions?.SingleOrDefault(x => x.league == leagueIdentifier);
+            var league = _competitionResultSingleton?.CompetitionResult?.Competitions?.SingleOrDefault(x => x.league == leagueIdentifier);
             return league?.id ?? 0;
         }
 
@@ -157,220 +157,7 @@ namespace FootieData.Gateway
     }
 }
 
-
 //https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
 //2009-06-15T13:45:30 -> 1:45 PM(en-US)
 //2009-06-15T13:45:30 -> 13:45 (hr-HR)
 //2009-06-15T13:45:30 -> 01:45 م(ar-EG)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//public async Task<LeagueStandings> GetLeagueResponse_Standings(string leagueIdentifier)
-//{
-//    var result = await GetLeagueResponseFromClient_Standings(leagueIdentifier);
-//    return result;
-//}
-
-//public async Task<LeagueMatchesResults> GetLeagueResponse_Results(string leagueIdentifier)
-//{
-//    var result = await GetLeagueResponseFromClient_MatchesResult(leagueIdentifier, "p7");
-//    return result;
-//}
-
-//public async Task<LeagueMatchesFixtures> GetLeagueResponse_Fixtures(string leagueIdentifier)
-//{
-//    var result = await GetLeagueResponseFromClient_MatchesFixture(leagueIdentifier, "n7");
-//    return result;
-//}
-
-//private async Task<int> GetLeagueIdResult(string leagueIdentifier)
-//{
-//    var taskSeasons = await GetLeagueId2r(leagueIdentifier);
-//    return taskSeasons;
-//}
-//private int GetLeagueIdResult(string leagueIdentifier)
-//{
-//    var taskSeasons = GetLeagueId4(leagueIdentifier);
-//    return taskSeasons;
-//}
-
-//private async Task<int> GetLeagueIdFixture(string leagueIdentifier)
-//{
-//    var taskSeasons = await GetLeagueId2f(leagueIdentifier);
-//    return taskSeasons;
-//}
-//private int GetLeagueIdFixture(string leagueIdentifier)
-//{
-//    var taskSeasons = GetLeagueId4(leagueIdentifier);
-//    return taskSeasons;
-//}
-
-//private int GetLeagueId5(string leagueIdentifier)
-//{
-//    var taskSeasons = GetLeagueId4(leagueIdentifier);
-//    return taskSeasons;
-//}
-//private async Task<SoccerSeasonResult> GetLeagueId1b()
-//{
-//    var result = await _footDataServices.SoccerSeasonsAsync();
-//    return result;
-//}
-//private SoccerSeasonResult GetLeagueId1b()
-//{
-//    var result = GetLeagueId3();//_footDataServices.SoccerSeasons();
-//    return result;
-//}
-
-//private async Task<int> GetLeagueId2r(string leagueIdentifier)
-//{
-//    var taskSeasons = await GetLeagueId2rb();
-//    var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
-//    return league.id;
-//}
-//private int GetLeagueId2r(string leagueIdentifier)
-//{
-//    var taskSeasons = GetLeagueId3();
-//    var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
-//    return league.id;
-//}
-
-//private async Task<SoccerSeasonResult> GetLeagueId2rb()
-//{
-//    return await _footDataServices.SoccerSeasonsAsync();
-//}
-//private SoccerSeasonResult GetLeagueId2rb()
-//{
-//    return GetLeagueId3();//_footDataServices.SoccerSeasons();
-//}
-
-//private async Task<int> GetLeagueId2f(string leagueIdentifier)
-//{
-//    var taskSeasons = await GetLeagueId2fb();
-//    var league = taskSeasons.Seasons.First(x => x.league == leagueIdentifier);
-//    return league.id;
-//}
-//private int GetLeagueId2f(string leagueIdentifier)
-//{
-//    var taskSeasons = GetLeagueId3();
-//    var league = taskSeasons?.Seasons?.First(x => x.league == leagueIdentifier);
-//    return league == null ? 0 : league.id;
-//}
-
-//private async Task<SoccerSeasonResult> GetLeagueId2fb()
-//{
-//    return await _footDataServices.SoccerSeasonsAsync();
-//}
-//private SoccerSeasonResult GetLeagueId2fb()
-//{
-//    return GetLeagueId3();//_footDataServices.SoccerSeasons();
-//}
-
-
-//public LeagueStandings GetLeagueResponse_Standings(string leagueIdentifier)
-//{
-//    var result = GetLeagueResponseFromClient_Standings(leagueIdentifier);
-//    return result;
-//}
-//public LeagueMatchesResults GetLeagueResponse_Results(string leagueIdentifier)
-//{
-//    var result =  GetLeagueResponseFromClient_MatchesResult(leagueIdentifier, "p7");
-//    return result;
-//}
-
-//public LeagueMatchesFixtures GetLeagueResponse_Fixtures(string leagueIdentifier)
-//{
-//    var result = GetLeagueResponseFromClient_MatchesFixture(leagueIdentifier, "n7");
-//    return result;
-//}
-
-
-
-
-
-//private int GetLeagueId4(string leagueIdentifier)
-//{
-//    var soccerSeasonResult = GetLeagueId3();
-//    var league = soccerSeasonResult?.Seasons?.First(x => x.league == leagueIdentifier);
-//    return league == null ? 0 : league.id;
-//}
-
-
-
-
-//private int GetLeagueId1a(string leagueIdentifier)
-//{
-//    if (_soccerSeasonResult == null)
-//    {
-//        _soccerSeasonResult = GetLeagueId3();
-//   }
-
-//    if (_soccerSeasonResult == null ||
-//        _soccerSeasonResult.Seasons == null||
-//        _soccerSeasonResult.Seasons.Length == 0)
-//    {
-//        //throw new Exception("yep");
-//        return int.MinValue;
-//    }
-//    else
-//    {
-//        var league = _soccerSeasonResult.Seasons.First(x => x.league == leagueIdentifier);
-//        return league.id;
-//    }            
-//}
-
-//private SoccerSeasonResult GetLeagueId3()
-//{
-//    return _footDataServices.SoccerSeasons();
-//}
