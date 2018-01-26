@@ -9,7 +9,9 @@ namespace FootballDataSDK
 {
     public class FootDataServices 
     {
-        public string AuthToken { get; set; }
+        private string url1 = "http://api.football-data.org/v1/competitions";
+
+        private string AuthToken { get; set; }
 
         public FootDataServices(string token)
         {
@@ -18,11 +20,9 @@ namespace FootballDataSDK
 
         public CompetitionResult SoccerSeasons()
         {
-            var url = "http://api.football-data.org/v1/competitions";
-            
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res = client.GetAsync(new Uri(url)).Result;
+                    var res = client.GetAsync(new Uri(url1)).Result;
                     var responseString = res.Content.ReadAsStringAsync().Result;
 
                     // Sanity Check
@@ -42,11 +42,9 @@ namespace FootballDataSDK
 
         public async Task<CompetitionResult> SoccerSeasonsAsync()
         {
-            var url = "http://api.football-data.org/v1/competitions";
-
             using (var client = new FootDataHttpClient(AuthToken))
             {
-                    var res =await  client.GetAsync(new Uri(url));
+                    var res =await  client.GetAsync(new Uri(url1));
                     var responseString = await res.Content.ReadAsStringAsync();
 
                     // Sanity Check
@@ -64,19 +62,9 @@ namespace FootballDataSDK
                 }
         }
 
-        public FixturesResult Fixtures(int idSeason)
-        {
-            return Fixtures(idSeason, null);
-        }
-
-        public async Task<FixturesResult> FixturesAsync(int idSeason)
-        {
-            return await FixturesAsync(idSeason, null);
-        }
-
         public LeagueTableResult LeagueTable(int idSeason)
         {
-            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable";
+            var url = $"{url1}/{idSeason}/leagueTable";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -97,7 +85,7 @@ namespace FootballDataSDK
 
         public async Task<LeagueTableResult> LeagueTableAsync(int idSeason)
         {
-            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable";
+            var url = $"{url1}/{idSeason}/leagueTable";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -118,7 +106,7 @@ namespace FootballDataSDK
 
         public FixturesResult Fixtures(int idSeason, string timeFrame)
         {
-            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?timeFrame={timeFrame}";
+            var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -139,7 +127,7 @@ namespace FootballDataSDK
 
         public async Task<FixturesResult> FixturesAsync(int idSeason, string timeFrame)
         {           
-            var url = $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?timeFrame={timeFrame}";
+            var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {                
