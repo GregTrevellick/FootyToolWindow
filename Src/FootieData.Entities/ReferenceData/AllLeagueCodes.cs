@@ -16,7 +16,6 @@ namespace FootieData.Entities.ReferenceData
         public static readonly IEnumerable<OneMap> AllMappings =
             new List<OneMap>
             {
-                GetOneMap(InternalLeagueCode.AU1,"Australian A-League",ExternalLeagueCode.AAL,"Australian A-League",466),
                 GetOneMap(InternalLeagueCode.BR1,"Brasileiro da Série A",ExternalLeagueCode.BSA,"Campeonato Brasileiro da Série A",444),
                 GetOneMap(InternalLeagueCode.DE1,"Bundesliga 1",ExternalLeagueCode.BL1,"Germany 1. Bundesliga",452),
                 GetOneMap(InternalLeagueCode.DE2,"Bundesliga 2",ExternalLeagueCode.BL2,"Germany 2. Bundesliga",453),
@@ -50,31 +49,5 @@ namespace FootieData.Entities.ReferenceData
                 ExternalLeagueCodeDescription = externalLeagueCodeDescription
             };
         }
-    }
-
-
-    //public static class AllLeagueCodes
-    //{
-    //    public static readonly IDictionary<InternalLeagueCode, ExternalLeagueCode> AllMappings =
-    //        new Dictionary<InternalLeagueCode, ExternalLeagueCode>
-    //        {
-    //            {InternalLeagueCode.AU1, ExternalLeagueCode.AAL},
-    //            {InternalLeagueCode.DE1, ExternalLeagueCode.BL1},
-    //            {InternalLeagueCode, ExternalLeagueCode.BL2},
-    //            {InternalLeagueCode.BR1, ExternalLeagueCode.BSA},
-    //            {InternalLeagueCode.UEFA1, ExternalLeagueCode.CL},
-    //            {InternalLeagueCode.NL1, ExternalLeagueCode.DED},
-    //            {InternalLeagueCode.DE3, ExternalLeagueCode.DFB},
-    //            {InternalLeagueCode.UK2, ExternalLeagueCode.EL1},
-    //            {InternalLeagueCode.UK4, ExternalLeagueCode.EL2},
-    //            {InternalLeagueCode.UK3, ExternalLeagueCode.ELC},
-    //            {InternalLeagueCode.FR1, ExternalLeagueCode.FL1},
-    //            {InternalLeagueCode.FR2, ExternalLeagueCode.FL2},
-    //            {InternalLeagueCode.ES1, ExternalLeagueCode.PD},
-    //            {InternalLeagueCode.UK1, ExternalLeagueCode.PL},
-    //            {InternalLeagueCode.PT1, ExternalLeagueCode.PPL},
-    //            {InternalLeagueCode.IT1, ExternalLeagueCode.SA},
-    //            {InternalLeagueCode.IT2, ExternalLeagueCode.SB},
-    //        };
-    //}
+    }   
 }

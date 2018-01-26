@@ -15,8 +15,6 @@ namespace HierarchicalDataTemplate
                 LeagueOptions = new List<LeagueOption>()
             };
 
-            //gregt sort alpha (once proven)
-            AddThem(InternalLeagueCode.AU1);
             AddThem(InternalLeagueCode.BR1);
             AddThem(InternalLeagueCode.DE1);
             AddThem(InternalLeagueCode.DE2);
