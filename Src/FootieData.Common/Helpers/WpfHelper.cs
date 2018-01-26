@@ -6,6 +6,23 @@ namespace FootieData.Common.Helpers
 {
     public class WpfHelper
     {
+        public static string GetDescription(GridType gridType)
+        {
+            switch (gridType)
+            {
+                case GridType.Unknown:
+                    return "Error000";
+                case GridType.Standing:
+                    return "";
+                case GridType.Result:
+                    return "results";
+                case GridType.Fixture:
+                    return "fixtures";
+            }
+            return "Error001";
+
+        }
+
         public string GetInternalLeagueCodeString(string expanderName)
         {
             var underscorePosition = expanderName.IndexOf('_');
@@ -43,6 +60,6 @@ namespace FootieData.Common.Helpers
         {
             var internalLeagueCodeString = wpfHelper.GetInternalLeagueCodeString(expanderName);
             return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
-        }
+        }        
     }
 }
