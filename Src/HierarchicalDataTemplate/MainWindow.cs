@@ -23,7 +23,7 @@ namespace HierarchicalDataTemplate
         private readonly LeagueCodeMappingsSingleton _leagueCodeMappingsSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;
-        private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
+        private readonly CompetitionResultSingleton _soccerSeasonResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
@@ -35,7 +35,7 @@ namespace HierarchicalDataTemplate
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
             _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
             _leagueCodeMappingsSingletonInstance = LeagueCodeMappingsSingleton.Instance;
-            _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
+            _soccerSeasonResultSingletonInstance = CompetitionResultSingleton.Instance;
             _wpfHelper = new WpfHelper();
             GetOptions();
         }

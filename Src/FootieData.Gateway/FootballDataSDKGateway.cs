@@ -18,9 +18,9 @@ namespace FootieData.Gateway
         private static CultureInfo deDE = new CultureInfo("de-DE");
 
         private readonly FootDataServices _footDataServices;
-        private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingleton;
+        private readonly CompetitionResultSingleton _soccerSeasonResultSingleton;
 
-        public FootballDataSdkGateway(FootDataServices footDataServices, SoccerSeasonResultSingleton soccerSeasonResultSingletonInstance)
+        public FootballDataSdkGateway(FootDataServices footDataServices, CompetitionResultSingleton soccerSeasonResultSingletonInstance)
         {
             _footDataServices = footDataServices;
             _soccerSeasonResultSingleton = soccerSeasonResultSingletonInstance;
@@ -74,7 +74,7 @@ namespace FootieData.Gateway
         private int GetIdSeason(string leagueIdentifier)
         {
             //gregt get from new entity here =========================================================================================
-            var league = _soccerSeasonResultSingleton?.SoccerSeasonResult?.Competitions?.SingleOrDefault(x => x.league == leagueIdentifier);
+            var league = _soccerSeasonResultSingleton?.CompetitionResult?.Competitions?.SingleOrDefault(x => x.league == leagueIdentifier);
             return league?.id ?? 0;
         }
 

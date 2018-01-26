@@ -9,7 +9,7 @@ namespace FootieData.Vsix
     public partial class ToolWindow1Control : UserControl
     {
         private FootballDataSdkGateway _gateway;
-        private readonly SoccerSeasonResultSingleton _soccerSeasonResultSingletonInstance;
+        private readonly CompetitionResultSingleton _soccerSeasonResultSingletonInstance;
 
         private bool _showPl  = true;
         private bool _expandPl  = false;
@@ -22,7 +22,7 @@ namespace FootieData.Vsix
         {
             InitializeComponent();
 
-            _soccerSeasonResultSingletonInstance = SoccerSeasonResultSingleton.Instance;
+            _soccerSeasonResultSingletonInstance = CompetitionResultSingleton.Instance;
 
             var _footDataServices = new FootDataServices("5210" + "9775b1584a93854ca1" + "87690ed4b");
             _gateway = new FootballDataSdkGateway(_footDataServices, _soccerSeasonResultSingletonInstance);
