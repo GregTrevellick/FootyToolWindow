@@ -54,7 +54,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FootyData.Entities\FootieData.Entities.csproj">
+    <ProjectReference Include="..\FootieData.Entities\FootieData.Entities.csproj">
       <Project>{7689bd11-c3be-43a1-983e-a66e9f22af7c}</Project>
       <Name>FootieData.Entities</Name>
     </ProjectReference>

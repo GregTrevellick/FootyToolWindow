@@ -20,7 +20,6 @@ namespace FootieData.Common.Helpers
                     return "fixtures";
             }
             return "Error001";
-
         }
 
         public string GetInternalLeagueCodeString(string expanderName)
