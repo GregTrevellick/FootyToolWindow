@@ -57,12 +57,15 @@
     <Compile Include="Common\Links.cs" />
     <Compile Include="Common\VenueEnum.cs" />
     <Compile Include="Models\Halftime.cs" />
+    <Compile Include="Results\Away.cs" />
     <Compile Include="Results\FixtureDetailsResult.cs" />
     <Compile Include="Models\Fixture.cs" />
     <Compile Include="Results\FixturesResult.cs" />
+    <Compile Include="Results\Home.cs" />
     <Compile Include="Results\LeagueTableResult.cs" />
     <Compile Include="Models\ResultMatch.cs" />
     <Compile Include="Results\LinksSeason.cs" />
+    <Compile Include="Results\LinksStanding.cs" />
     <Compile Include="Results\SoccerSeason.cs" />
     <Compile Include="Results\SoccerSeasonResult.cs" />
     <Compile Include="Results\Standing.cs" />

@@ -12,31 +12,5 @@ namespace FootballDataSDK.Models.Results
 
         public string error { get; set; }
     }
-
-
-    public class LinksStanding
-    {
-        public Link team { get; set; }
-    }
-
-    
-
-    public class Home
-    {
-        public int goals { get; set; }
-        public int goalsAgainst { get; set; }
-        public int wins { get; set; }
-        public int draws { get; set; }
-        public int losses { get; set; }
-    }
-
-    public class Away
-    {
-        public int goals { get; set; }
-        public int goalsAgainst { get; set; }
-        public int wins { get; set; }
-        public int draws { get; set; }
-        public int losses { get; set; }
-    }
     
 }

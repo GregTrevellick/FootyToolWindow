@@ -5,6 +5,7 @@ namespace FootballDataSDK.Models.Common
     public class Link
     {
         private string _href;
+         
         public string href {
             get { return _href; }
             set
@@ -23,12 +24,7 @@ namespace FootballDataSDK.Models.Common
             {
 
                 int id;
-                bool parsed =
-                    int.TryParse(
-                        link.Substring(
-                            link.LastIndexOf("/",
-                                StringComparison.InvariantCultureIgnoreCase) + 1),
-                        out id);
+                bool parsed = int.TryParse(link.Substring(link.LastIndexOf("/", StringComparison.InvariantCultureIgnoreCase) + 1), out id);
 
                 if (parsed)
                 {
@@ -37,8 +33,7 @@ namespace FootballDataSDK.Models.Common
                 else
                 {
                     
-                    string str = link.Substring(0,
-                        link.LastIndexOf("/", StringComparison.InvariantCultureIgnoreCase));
+                    string str = link.Substring(0, link.LastIndexOf("/", StringComparison.InvariantCultureIgnoreCase));
 
                     return GetId(str);
                 }

@@ -32,7 +32,7 @@ namespace FootballDataSDK.Services
         /// <returns></returns>
         public SoccerSeasonResult SoccerSeasons()
         {
-            string url = "http://api.football-data.org/v1/soccerseasons";
+            string url = "http://api.football-data.org/v1/competitions";
             
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -69,7 +69,7 @@ namespace FootballDataSDK.Services
 
         public async Task<SoccerSeasonResult> SoccerSeasonsAsync()
         {
-            string url = "http://api.football-data.org/v1/soccerseasons";
+            string url = "http://api.football-data.org/v1/competitions";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -107,7 +107,7 @@ namespace FootballDataSDK.Services
 
         //public TeamsResult Teams(int idSeason)
         //{
-        //    string url = $"http://api.football-data.org/v1/soccerseasons/{idSeason}/teams";
+        //    string url = $"http://api.football-data.org/v1/competitions/{idSeason}/teams";
 
         //    using (var client = new FootDataHttpClient(AuthToken))
         //    {
@@ -142,7 +142,7 @@ namespace FootballDataSDK.Services
 
         //public async Task<TeamsResult> TeamsAsync(int idSeason)
         //{
-        //    string url = $"http://api.football-data.org/v1/soccerseasons/{idSeason}/teams";
+        //    string url = $"http://api.football-data.org/v1/competitions/{idSeason}/teams";
 
         //    using (var client = new FootDataHttpClient(AuthToken))
         //    {
@@ -203,8 +203,8 @@ namespace FootballDataSDK.Services
             {
                 mDay = matchday + "";
             }
-
-            string url = $"http://api.football-data.org/v1/soccerseasons/{idSeason}/leagueTable?matchday={mDay}";
+            //http://api.football-data.org/v1/competitions/424
+            string url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable?matchday={mDay}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -245,7 +245,7 @@ namespace FootballDataSDK.Services
                 mDay = matchday + "";
             }
 
-            string url = $"http://api.football-data.org/v1/soccerseasons/{idSeason}/leagueTable?matchday={mDay}";
+            string url = $"http://api.football-data.org/v1/competitions/{idSeason}/leagueTable?matchday={mDay}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -285,7 +285,7 @@ namespace FootballDataSDK.Services
                 p1 = matchday + "";
 
             string url =
-                $"http://api.football-data.org/v1/soccerseasons/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
+                $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
@@ -324,7 +324,7 @@ namespace FootballDataSDK.Services
                 p1 = matchday + "";
 
             string url =
-                $"http://api.football-data.org/v1/soccerseasons/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
+                $"http://api.football-data.org/v1/competitions/{idSeason}/fixtures?matchday={p1}&timeFrame={timeFrame}";
 
             using (var client = new FootDataHttpClient(AuthToken))
             {
