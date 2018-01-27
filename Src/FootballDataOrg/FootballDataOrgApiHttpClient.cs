@@ -7,7 +7,10 @@ namespace FootballDataOrg
     {
         public FootballDataOrgApiHttpClient()
         {
-            Timeout = TimeSpan.FromSeconds(5);//gregt ????
+            Timeout = TimeSpan.FromSeconds(25);//gregt ????
+            //This value, if exceeded on the http call, gives rise to this error:
+            //TaskCanceledException: A task was canceled.
+            //https://stackoverflow.com/questions/29179848/httpclient-a-task-was-cancelled
         }
 
         public FootballDataOrgApiHttpClient(string token) : this()
@@ -16,6 +19,12 @@ namespace FootballDataOrg
             {
                 DefaultRequestHeaders.Add("X-Auth-Token", token);
             }
+
+            //Control the appearance of the response
+            // "full" is default
+            // "minified" will lack some (meta) information and thus be much smaller
+            // "compressed" is currently only supported by the fixture resource
+            DefaultRequestHeaders.Add("X-Response-Control", "minified");
         }
     }
 }

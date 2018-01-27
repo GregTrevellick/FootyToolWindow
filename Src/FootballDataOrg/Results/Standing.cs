@@ -2,8 +2,8 @@
 {
     public class Standing
     {
-        public int position { get; set; }
-        public string teamName { get; set; }
+        public int rank { get; set; }//position
+        public string team { get; set; }//teamName
         //public string crestURI { get; set; }
         public int playedGames { get; set; }
         public int points { get; set; }

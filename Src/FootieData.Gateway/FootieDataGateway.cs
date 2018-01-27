@@ -100,8 +100,8 @@ namespace FootieData.Gateway
                     For = x.goals,
                     Played = x.playedGames,
                     Points = x.points,
-                    Rank = x.position,
-                    Team = x.teamName,
+                    Rank = x.rank,//x.position,
+                    Team = x.team,//x.teamName,
                 });
             }
         }
