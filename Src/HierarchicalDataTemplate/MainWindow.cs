@@ -21,7 +21,7 @@ namespace HierarchicalDataTemplate
     {
         private static WpfHelper _wpfHelper;
         private static GeneralOptions _generalOptions;
-        private readonly LeagueCodeMappingsSingleton _leagueCodeMappingsSingletonInstance;
+        private readonly LeagueDtosSingleton _leagueCodeMappingsSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
@@ -35,7 +35,7 @@ namespace HierarchicalDataTemplate
             InitializeComponent();
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
             _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
-            _leagueCodeMappingsSingletonInstance = LeagueCodeMappingsSingleton.Instance;
+            _leagueCodeMappingsSingletonInstance = LeagueDtosSingleton.Instance;
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
             _wpfHelper = new WpfHelper();
             GetOptions();
@@ -91,8 +91,8 @@ namespace HierarchicalDataTemplate
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
                 var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);            
                 parentExpander.Header = LeagueMapping.LeagueDtos.First(x=>x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
-                var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings.Any(x => x.InternalLeagueCode == internalLeagueCode);
-                var externalLeagueCode = _leagueCodeMappingsSingletonInstance.LeagueCodeMappings
+                var internalToExternalMappingExists = _leagueCodeMappingsSingletonInstance.LeagueDtos.Any(x => x.InternalLeagueCode == internalLeagueCode);
+                var externalLeagueCode = _leagueCodeMappingsSingletonInstance.LeagueDtos
                     .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
                 var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions.LeagueOptions, internalLeagueCode, gridType);
 

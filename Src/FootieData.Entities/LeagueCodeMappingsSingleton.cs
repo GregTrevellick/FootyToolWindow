@@ -3,13 +3,13 @@ using FootieData.Entities.ReferenceData;
 
 namespace FootieData.Entities
 {
-    public sealed class LeagueCodeMappingsSingleton
+    public sealed class LeagueDtosSingleton
     {
-        public IEnumerable<LeagueDto> LeagueCodeMappings;
+        public IEnumerable<LeagueDto> LeagueDtos;
 
-        private static readonly LeagueCodeMappingsSingleton _instance = new LeagueCodeMappingsSingleton();
+        private static readonly LeagueDtosSingleton _instance = new LeagueDtosSingleton();
 
-        public static LeagueCodeMappingsSingleton Instance
+        public static LeagueDtosSingleton Instance
         {
             get
             {
@@ -17,12 +17,12 @@ namespace FootieData.Entities
             }
         }
 
-        private LeagueCodeMappingsSingleton()
+        private LeagueDtosSingleton()
         {
-            LeagueCodeMappings = GetValidMappings();
+            LeagueDtos = GetLeagueDtos();
         }
 
-        private static IEnumerable<LeagueDto> GetValidMappings()
+        private static IEnumerable<LeagueDto> GetLeagueDtos()
         {
             var validMappings = LeagueMapping.LeagueDtos;
             return validMappings;
