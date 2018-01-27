@@ -8,5 +8,4 @@
         public int draws { get; set; }
         public int losses { get; set; }
     }
-    
 }

@@ -218,7 +218,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FootballDataSDK\FootballDataOrg.csproj">
+    <ProjectReference Include="..\FootballDataOrg\FootballDataOrg.csproj">
       <Project>{e03d39b9-4fad-4108-8d17-a9f9af2d6a9e}</Project>
       <Name>FootballDataOrg</Name>
     </ProjectReference>

@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDataTemplate", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Common", "FootieData.Common\FootieData.Common.csproj", "{D2A60350-D05C-4005-A3F7-F8F66527E793}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballDataOrg", "FootballDataSDK\FootballDataOrg.csproj", "{E03D39B9-4FAD-4108-8D17-A9F9AF2D6A9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballDataOrg", "FootballDataOrg\FootballDataOrg.csproj", "{E03D39B9-4FAD-4108-8D17-A9F9AF2D6A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
