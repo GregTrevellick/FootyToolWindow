@@ -83,27 +83,6 @@ namespace FootballDataSDK
             }
         }
 
-        //public FixturesResult GetFixturesResult(int idSeason, string timeFrame)
-        //{
-        //    var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
-
-        //    using (var client = new FootDataHttpClient(AuthToken))
-        //    {
-        //        var res = client.GetAsync(new Uri(url)).Result;
-        //        var responseString = res.Content.ReadAsStringAsync().Result;
-
-        //        // Sanity Check
-        //        if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-        //        {
-        //            var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-        //            return new FixturesResult { error = err.error };
-        //        }
-
-        //        var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
-        //        return response;
-        //    }
-        //}
-
         public async Task<FixturesResult> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
             var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
