@@ -5,7 +5,7 @@ namespace FootieData.Entities
 {
     public sealed class LeagueCodeMappingsSingleton
     {
-        public IEnumerable<OneMap> LeagueCodeMappings;
+        public IEnumerable<LeagueDto> LeagueCodeMappings;
 
         private static readonly LeagueCodeMappingsSingleton _instance = new LeagueCodeMappingsSingleton();
 
@@ -22,9 +22,9 @@ namespace FootieData.Entities
             LeagueCodeMappings = GetValidMappings();
         }
 
-        private static IEnumerable<OneMap> GetValidMappings()
+        private static IEnumerable<LeagueDto> GetValidMappings()
         {
-            var validMappings = AllLeagueCodes.AllMappings;
+            var validMappings = LeagueMapping.LeagueDtos;
             return validMappings;
         }
     }

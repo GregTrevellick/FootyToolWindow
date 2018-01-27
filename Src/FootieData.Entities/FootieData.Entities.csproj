@@ -45,10 +45,10 @@
     <Compile Include="NullReturn.cs" />
     <Compile Include="FixtureFuture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReferenceData\AllLeagueCodes.cs" />
+    <Compile Include="ReferenceData\LeagueMapping.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
-    <Compile Include="ReferenceData\OneMap.cs" />
+    <Compile Include="ReferenceData\LeagueDto.cs" />
     <Compile Include="Standing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
