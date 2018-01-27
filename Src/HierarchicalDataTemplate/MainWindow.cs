@@ -78,11 +78,11 @@ namespace HierarchicalDataTemplate
         {
             if (sender is DataGrid dataGrid)
             {
-                DataGridLoaded_Any2(dataGrid, false);
+                DataGridLoadedAsync(dataGrid, false);
             }
         }
 
-        private async void DataGridLoaded_Any2(DataGrid dataGrid, bool manuallyExpanded)
+        private async void DataGridLoadedAsync(DataGrid dataGrid, bool manuallyExpanded)
         {
             if (dataGrid.Parent is Expander parentExpander)
             {
@@ -258,7 +258,7 @@ namespace HierarchicalDataTemplate
 
                     if (getDataFromClient)
                     {
-                        DataGridLoaded_Any2(dataGrid, true);
+                        DataGridLoadedAsync(dataGrid, true);
                         dataGrid.AlternatingRowBackground = _colorDataGridExpanded;
                     }
                 }                             
