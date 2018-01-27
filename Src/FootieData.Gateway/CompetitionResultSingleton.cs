@@ -23,20 +23,5 @@ namespace FootieData.Gateway
             var footDataServices = new FootDataServices("52109775b158" + "4a93854ca187690ed4b");
             CompetitionResult = footDataServices.GetCompetitionResult();
         }
-
-        //private CompetitionResultSingleton()
-        //{
-        //    CompetitionResult = GetCompetitionResultSingletonAsync().Result;
-        //}
-
-        //private async Task<CompetitionResult> GetCompetitionResultSingletonAsync()
-        //{
-        //    var footDataServices = new FootDataServices("52109775b158" + "4a93854ca187690ed4b");
-        //    var competitionResult = await footDataServices.GetCompetitionResultAsync();
-        //    return competitionResult;
-        //}
-
-       
-
     }
 }
