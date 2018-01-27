@@ -12,6 +12,10 @@ throw misc errors - vsix ???
 
 template for expander....
 
+league names as per papers e.g. vanarama league 1
+
+check status/score of match whilst part way thru a live match
+
 
 
 

@@ -1,14 +1,12 @@
-﻿using System;
+﻿using FootieData.Common.Dtos;
+using FootieData.Entities;
+using FootieData.Entities.ReferenceData;
+using HierarchicalDataTemplate.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using FootieData.Common.Dtos;
-using FootieData.Common.Helpers;
-using FootieData.Entities;
-using FootieData.Entities.ReferenceData;
-using HierarchicalDataTemplate.Options;
 
 namespace HierarchicalDataTemplate
 {

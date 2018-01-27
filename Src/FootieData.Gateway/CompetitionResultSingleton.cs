@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using FootballDataOrg;
+﻿using FootballDataOrg;
 using FootballDataOrg.Results;
 
 namespace FootieData.Gateway
