@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FootballDataSDK.Common;
 using FootballDataSDK.Results;
@@ -20,45 +21,51 @@ namespace FootballDataSDK
 
         public CompetitionResult GetCompetitionResult()
         {
-            using (var client = new FootDataHttpClient(AuthToken))
+            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
             {
-                var res = client.GetAsync(new Uri(url1)).Result;
-                var responseString = res.Content.ReadAsStringAsync().Result;
+                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(new Uri(url1)).Result;
+                var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
-                // Sanity Check
-                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
                 {
-                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                    return new CompetitionResult { error = err.error };
+                    return new CompetitionResult
+                    {
+                        error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error
+                    };
                 }
-
-                var response = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
-                return new CompetitionResult
+                else
                 {
-                    competitions = response
-                };
+                    return new CompetitionResult
+                    {
+                        competitions = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString)
+                    };
+                }
             }
         }
 
         public async Task<CompetitionResult> GetCompetitionResultAsync()
         {
-            using (var client = new FootDataHttpClient(AuthToken))
+            var url = $"{url1}";
+
+            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
             {
-                var res = await client.GetAsync(new Uri(url1));
-                var responseString = await res.Content.ReadAsStringAsync();
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(new Uri(url));
+                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                // Sanity Check
-                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
                 {
-                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                    return new CompetitionResult { error = err.error };
+                    return new CompetitionResult
+                    {
+                        error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error
+                    };
                 }
-
-                var response = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
-                return new CompetitionResult
+                else
                 {
-                    competitions = response
-                };
+                    return new CompetitionResult
+                    {
+                        competitions = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString)
+                    };
+                }
             }
         }
 
@@ -66,20 +73,19 @@ namespace FootballDataSDK
         {
             var url = $"{url1}/{idSeason}/leagueTable";
 
-            using (var client = new FootDataHttpClient(AuthToken))
+            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
             {
-                var res = await client.GetAsync(new Uri(url));
-                var responseString = await res.Content.ReadAsStringAsync();
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(new Uri(url));
+                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                // Sanity Check
-                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
                 {
-                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                    return new LeagueTableResult { error = err.error };
+                    return new LeagueTableResult { error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error };
                 }
-
-                var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
-                return response;
+                else
+                {
+                    return JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
+                }
             }
         }
 
@@ -87,20 +93,22 @@ namespace FootballDataSDK
         {
             var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 
-            using (var client = new FootDataHttpClient(AuthToken))
+            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
             {
-                var res = await client.GetAsync(new Uri(url));
-                var responseString = await res.Content.ReadAsStringAsync();
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(new Uri(url));
+                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                // Sanity Check
-                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
                 {
-                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                    return new FixturesResult { error = err.error };
+                    return new FixturesResult
+                    {
+                        error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error
+                    };
                 }
-
-                var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
-                return response;
+                else
+                {
+                    return JsonConvert.DeserializeObject<FixturesResult>(responseString);
+                }
             }
         }
     }

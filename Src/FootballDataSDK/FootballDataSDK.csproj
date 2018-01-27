@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FootDataHttpClient.cs" />
+    <Compile Include="FootballDataOrgApiHttpClient.cs" />
     <Compile Include="Results\ErrorResult.cs" />
     <Compile Include="Results\Away.cs" />
     <Compile Include="Results\FixtureDetailsResult.cs" />
