@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using FootballDataSDK;
-using FootballDataSDK.Results;
+using FootballDataOrg;
+using FootballDataOrg.Results;
 
 namespace FootieData.Gateway
 {

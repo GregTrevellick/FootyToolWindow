@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace FootballDataSDK
+namespace FootballDataOrg
 {
     class FootballDataOrgApiHttpClient : HttpClient
     {

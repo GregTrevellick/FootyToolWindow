@@ -1,15 +1,15 @@
-﻿using FootballDataSDK;
-using FootballDataSDK.Results;
-using FootieData.Entities;
+﻿using FootieData.Entities;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using FootballDataOrg;
+using FootballDataOrg.Results;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
 {
-    public class FootballDataSdkGateway
+    public class FootieDataGateway
     {
         //gregt for testing
         private static CultureInfo enUS = new CultureInfo("en-US");
@@ -20,9 +20,9 @@ namespace FootieData.Gateway
         private readonly FootballDataOrgApiGateway _footballDataOrgApiGateway;
         private readonly CompetitionResultSingleton _competitionResultSingleton;
 
-        public FootballDataSdkGateway(FootballDataOrgApiGateway footDataServices, CompetitionResultSingleton competitionResultSingletonInstance)
+        public FootieDataGateway(FootballDataOrgApiGateway footballDataOrgApiGateway, CompetitionResultSingleton competitionResultSingletonInstance)
         {
-            _footballDataOrgApiGateway = footDataServices;
+            _footballDataOrgApiGateway = footballDataOrgApiGateway;
             _competitionResultSingleton = competitionResultSingletonInstance;
         }
 

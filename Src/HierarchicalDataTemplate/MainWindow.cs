@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using FootballDataSDK;
+using FootballDataOrg;
 using FootieData.Entities.ReferenceData;
 using HierarchicalDataTemplate.Options;
 
@@ -45,10 +45,10 @@ namespace HierarchicalDataTemplate
             _generalOptions = new TempryGetOptions().GetGeneralOptions();
         }
 
-        private FootballDataSdkGateway GetFootballDataSdkGateway()
+        private FootieDataGateway GetFootieDataGateway()
         {
             var footballDataOrgApiGateway = new FootballDataOrgApiGateway("521" +"09775b"+"1584a93854ca187690e"+"d4b");
-            return new FootballDataSdkGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
+            return new FootieDataGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
@@ -141,7 +141,7 @@ namespace HierarchicalDataTemplate
                     IEnumerable<Standing> result = null;
                     if (shouldShowLeague && internalToExternalMappingExists)
                     {
-                        var gateway = GetFootballDataSdkGateway();
+                        var gateway = GetFootieDataGateway();
                         result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
                     }                    
                     return result;
@@ -165,7 +165,7 @@ namespace HierarchicalDataTemplate
                     IEnumerable<FixturePast> result = null;
                     if (shouldShowLeague && internalToExternalMappingExists)                        
                     {
-                        var gateway = GetFootballDataSdkGateway();
+                        var gateway = GetFootieDataGateway();
                         result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");
                     }                   
                     return result;
@@ -189,7 +189,7 @@ namespace HierarchicalDataTemplate
                     IEnumerable<FixtureFuture> result = null;
                     if (shouldShowLeague && internalToExternalMappingExists)                        
                     {
-                        var gateway = GetFootballDataSdkGateway();
+                        var gateway = GetFootieDataGateway();
                         result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
                     }
                     return result;

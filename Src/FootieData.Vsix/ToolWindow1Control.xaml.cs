@@ -2,13 +2,13 @@
 using FootieData.Gateway;
 using System.Windows;
 using System.Windows.Controls;
-using FootballDataSDK;
+using FootballDataOrg;
 
 namespace FootieData.Vsix
 {
     public partial class ToolWindow1Control : UserControl
     {
-        private FootballDataSdkGateway _gateway;
+        private FootieDataGateway _gateway;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
 
         private bool _showPl  = true;
@@ -25,7 +25,7 @@ namespace FootieData.Vsix
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
 
             var footballDataOrgApiGateway = new FootballDataOrgApiGateway("5210" + "9775b1584a93854ca1" + "87690ed4b");
-            _gateway = new FootballDataSdkGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
+            _gateway = new FootieDataGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
 
             if (_showPl)
             {

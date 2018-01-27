@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FootballDataSDK.Results
+namespace FootballDataOrg.Results
 {
     public class CompetitionResult
     {

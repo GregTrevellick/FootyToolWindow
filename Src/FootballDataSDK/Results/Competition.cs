@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataSDK.Results
+namespace FootballDataOrg.Results
 {
     public class Competition
     {

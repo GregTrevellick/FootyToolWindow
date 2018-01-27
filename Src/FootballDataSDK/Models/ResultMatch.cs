@@ -1,4 +1,4 @@
-namespace FootballDataSDK.Models
+namespace FootballDataOrg.Models
 {
     public class ResultMatch
     {

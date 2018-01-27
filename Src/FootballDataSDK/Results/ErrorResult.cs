@@ -1,4 +1,4 @@
-﻿namespace FootballDataSDK.Common
+﻿namespace FootballDataOrg.Results
 {
     public class ErrorResult
     {

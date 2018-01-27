@@ -1,4 +1,4 @@
-﻿namespace FootballDataSDK.Results
+﻿namespace FootballDataOrg.Results
 {
     public class Standing
     {

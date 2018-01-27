@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FootballDataSDK.Common;
-using FootballDataSDK.Results;
+using FootballDataOrg.Results;
 using Newtonsoft.Json;
 
-namespace FootballDataSDK
+namespace FootballDataOrg
 {
     public class FootballDataOrgApiGateway
     {

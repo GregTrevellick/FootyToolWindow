@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataSDK.Models
+namespace FootballDataOrg.Models
 {
     public class Fixture
     {

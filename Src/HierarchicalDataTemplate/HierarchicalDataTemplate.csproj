@@ -118,9 +118,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FootballDataSDK\FootballDataSDK.csproj">
+    <ProjectReference Include="..\FootballDataSDK\FootballDataOrg.csproj">
       <Project>{e03d39b9-4fad-4108-8d17-a9f9af2d6a9e}</Project>
-      <Name>FootballDataSDK</Name>
+      <Name>FootballDataOrg</Name>
     </ProjectReference>
     <ProjectReference Include="..\FootieData.Common\FootieData.Common.csproj">
       <Project>{d2a60350-d05c-4005-a3f7-f8f66527e793}</Project>
