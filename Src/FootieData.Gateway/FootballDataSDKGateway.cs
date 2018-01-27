@@ -20,9 +20,9 @@ namespace FootieData.Gateway
         private readonly FootballDataOrgApiGateway _footballDataOrgApiGateway;
         private readonly CompetitionResultSingleton _competitionResultSingleton;
 
-        public FootballDataSdkGateway(FootballDataOrgApiGateway footDataServices, CompetitionResultSingleton competitionResultSingletonInstance)
+        public FootballDataSdkGateway(FootballDataOrgApiGateway footballDataOrgApiGateway, CompetitionResultSingleton competitionResultSingletonInstance)
         {
-            _footballDataOrgApiGateway = footDataServices;
+            _footballDataOrgApiGateway = footballDataOrgApiGateway;
             _competitionResultSingleton = competitionResultSingletonInstance;
         }
 

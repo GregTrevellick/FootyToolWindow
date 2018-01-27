@@ -9,9 +9,6 @@ using Newtonsoft.Json;
 
 namespace FootballDataSDK
 {
-
-    //FootDataServices
-
     public class FootballDataOrgApiGateway
     {
         private string baseUri = "http://api.football-data.org/v1/competitions";
