@@ -7,7 +7,7 @@ namespace FootballDataOrg
     {
         public FootballDataOrgApiHttpClient()
         {
-            Timeout = TimeSpan.FromSeconds(25);//gregt ????
+            Timeout = TimeSpan.FromSeconds(30);//gregt put into VS options
             //This value, if exceeded on the http call, gives rise to this error:
             //TaskCanceledException: A task was canceled.
             //https://stackoverflow.com/questions/29179848/httpclient-a-task-was-cancelled

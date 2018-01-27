@@ -16,7 +16,9 @@ league names as per papers e.g. vanarama league 1
 
 check status/score of match whilst part way thru a live match
 
+promo / relegation dotted border lines (if lots of downloads)
 
+replace foxes with burnley etc
 
 
 
