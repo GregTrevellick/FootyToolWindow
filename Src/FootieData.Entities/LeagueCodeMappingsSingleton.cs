@@ -19,13 +19,7 @@ namespace FootieData.Entities
 
         private LeagueDtosSingleton()
         {
-            LeagueDtos = GetLeagueDtos();
-        }
-
-        private static IEnumerable<LeagueDto> GetLeagueDtos()
-        {
-            var validMappings = LeagueMapping.LeagueDtos;
-            return validMappings;
+            LeagueDtos = LeagueMapping.LeagueDtos;
         }
     }
 }
