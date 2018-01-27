@@ -1,4 +1,6 @@
-﻿namespace HierarchicalDataTemplate.Options
+﻿using FootieData.Common.Dtos;
+
+namespace HierarchicalDataTemplate.Options
 {
     public class LeagueSubOption
     {

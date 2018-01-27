@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FootballDataOrg;
+using FootieData.Common.Dtos;
 using FootieData.Entities.ReferenceData;
 using HierarchicalDataTemplate.Options;
 

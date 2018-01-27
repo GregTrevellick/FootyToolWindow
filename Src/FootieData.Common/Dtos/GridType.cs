@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace HierarchicalDataTemplate
+﻿namespace FootieData.Common.Dtos
 {
     public enum GridType
     {

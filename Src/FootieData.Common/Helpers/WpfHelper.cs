@@ -1,6 +1,6 @@
 ﻿using FootieData.Entities.ReferenceData;
-using HierarchicalDataTemplate;
 using System;
+using FootieData.Common.Dtos;
 
 namespace FootieData.Common.Helpers
 {
