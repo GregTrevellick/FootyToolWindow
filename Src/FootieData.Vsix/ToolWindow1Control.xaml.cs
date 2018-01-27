@@ -24,8 +24,8 @@ namespace FootieData.Vsix
 
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
 
-            var _footDataServices = new FootDataServices("5210" + "9775b1584a93854ca1" + "87690ed4b");
-            _gateway = new FootballDataSdkGateway(_footDataServices, _competitionResultSingletonInstance);
+            var footballDataOrgApiGateway = new FootballDataOrgApiGateway("5210" + "9775b1584a93854ca1" + "87690ed4b");
+            _gateway = new FootballDataSdkGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
 
             if (_showPl)
             {

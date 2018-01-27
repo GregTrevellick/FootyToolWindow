@@ -20,8 +20,8 @@ namespace FootieData.Gateway
 
         private CompetitionResultSingleton()
         {
-            var footDataServices = new FootDataServices("52109775b158" + "4a93854ca187690ed4b");
-            CompetitionResult = footDataServices.GetCompetitionResult();
+            var footballDataOrgApiGateway = new FootballDataOrgApiGateway("52109775b158" + "4a93854ca187690ed4b");
+            CompetitionResult = footballDataOrgApiGateway.GetCompetitionResult();
         }
     }
 }

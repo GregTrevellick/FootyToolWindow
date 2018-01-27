@@ -64,7 +64,7 @@
     <Compile Include="Results\CompetitionResult.cs" />
     <Compile Include="Results\Standing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FootDataServices.cs" />
+    <Compile Include="FootballDataOrgApiGateway.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -17,12 +17,12 @@ namespace FootieData.Gateway
         private static CultureInfo frFR = new CultureInfo("fr-FR");
         private static CultureInfo deDE = new CultureInfo("de-DE");
 
-        private readonly FootDataServices _footDataServices;
+        private readonly FootballDataOrgApiGateway _footballDataOrgApiGateway;
         private readonly CompetitionResultSingleton _competitionResultSingleton;
 
-        public FootballDataSdkGateway(FootDataServices footDataServices, CompetitionResultSingleton competitionResultSingletonInstance)
+        public FootballDataSdkGateway(FootballDataOrgApiGateway footDataServices, CompetitionResultSingleton competitionResultSingletonInstance)
         {
-            _footDataServices = footDataServices;
+            _footballDataOrgApiGateway = footDataServices;
             _competitionResultSingleton = competitionResultSingletonInstance;
         }
 
@@ -32,7 +32,7 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var leagueTableResult = _footDataServices.GetLeagueTableResultAsync(idSeason).Result;
+                var leagueTableResult = _footballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
                 if (leagueTableResult != null)
                 {
                     result = GetResultMatchStandings(leagueTableResult);
@@ -47,7 +47,7 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var fixturesResult = _footDataServices.GetFixturesResultAsync(idSeason, timeFrame).Result;
+                var fixturesResult = _footballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
                 if (fixturesResult != null)
                 {
                     result = GetFixturePasts(fixturesResult);
@@ -62,7 +62,7 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var fixturesResult = _footDataServices.GetFixturesResultAsync(idSeason, timeFrame).Result;
+                var fixturesResult = _footballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
                 if (fixturesResult != null)
                 {
                     result = GetFixtureFutures(fixturesResult);

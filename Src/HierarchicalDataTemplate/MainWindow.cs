@@ -47,8 +47,8 @@ namespace HierarchicalDataTemplate
 
         private FootballDataSdkGateway GetFootballDataSdkGateway()
         {
-            var footDataServices = new FootDataServices("521" +"09775b"+"1584a93854ca187690e"+"d4b");
-            return new FootballDataSdkGateway(footDataServices, _competitionResultSingletonInstance);
+            var footballDataOrgApiGateway = new FootballDataOrgApiGateway("521" +"09775b"+"1584a93854ca187690e"+"d4b");
+            return new FootballDataSdkGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)

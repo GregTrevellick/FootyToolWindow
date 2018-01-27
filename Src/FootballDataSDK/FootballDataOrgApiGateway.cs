@@ -9,12 +9,15 @@ using Newtonsoft.Json;
 
 namespace FootballDataSDK
 {
-    public class FootDataServices
+
+    //FootDataServices
+
+    public class FootballDataOrgApiGateway
     {
         private string baseUri = "http://api.football-data.org/v1/competitions";
         private string AuthToken { get; set; }
 
-        public FootDataServices(string token)
+        public FootballDataOrgApiGateway(string token)
         {
             AuthToken = token + "b";
         }
