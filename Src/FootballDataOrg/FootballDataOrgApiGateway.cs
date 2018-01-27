@@ -38,25 +38,23 @@ namespace FootballDataOrg
             }
         }
 
-        public async Task<CompetitionResult> GetCompetitionResultAsync()
-        {
-            var uri = new Uri(baseUri);
-
-            using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
-            {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
-                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                if (BadResponse(responseString, httpResponseMessage))
-                {
-                    return new CompetitionResult { error = GetError(responseString) };
-                }
-                else
-                {
-                    return new CompetitionResult { competitions = DeserializeCompetitions(responseString) };
-                }
-            }
-        }
+        //public async Task<CompetitionResult> GetCompetitionResultAsync()
+        //{
+        //    var uri = new Uri(baseUri);
+        //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
+        //    {
+        //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
+        //        var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+        //        if (BadResponse(responseString, httpResponseMessage))
+        //        {
+        //            return new CompetitionResult { error = GetError(responseString) };
+        //        }
+        //        else
+        //        {
+        //            return new CompetitionResult { competitions = DeserializeCompetitions(responseString) };
+        //        }
+        //    }
+        //}
 
         public async Task<LeagueTableResult> GetLeagueTableResultAsync(int idSeason)
         {
@@ -66,9 +64,6 @@ namespace FootballDataOrg
             {
                 var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                //{ "rank":1,"team":"ManCity","teamId":65,"playedGames":24,"crestURI":"https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg","points":65,"goals":70,"goalsAgainst":18,"goalDifference":52},
-                //{ "rank":2,"team":"ManU","teamId":66,"playedGames":24,"crestURI":"http://upload.wikimedia.org/wikipedia/de/d/da/Manchester_United_FC.svg","points":53,"goals":49,"goalsAgainst":16,"goalDifference":33},
 
                 if (BadResponse(responseString, httpResponseMessage))
                 {

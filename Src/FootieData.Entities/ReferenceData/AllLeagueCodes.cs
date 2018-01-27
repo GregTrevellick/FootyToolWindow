@@ -2,15 +2,6 @@
 
 namespace FootieData.Entities.ReferenceData
 {
-    public class OneMap
-    {
-        public int ClientLeagueId { get; set; }
-        public ExternalLeagueCode ExternalLeagueCode { get; set; }
-        public string ExternalLeagueCodeDescription { get; set; }
-        public InternalLeagueCode InternalLeagueCode { get; set; }
-        public string InternalLeagueCodeDescription { get; set; }
-    }
-
     public static class AllLeagueCodes
     {
         public static readonly IEnumerable<OneMap> AllMappings =
@@ -29,7 +20,7 @@ namespace FootieData.Entities.ReferenceData
                 GetOneMap(InternalLeagueCode.UEFA1,"UEFA Champions League",ExternalLeagueCode.CL,"Europe Champions-League",464),
                 GetOneMap(InternalLeagueCode.UK1,"English Premiership",ExternalLeagueCode.PL,"England Premiere League",445),
                 GetOneMap(InternalLeagueCode.UK2,"English Championship",ExternalLeagueCode.ELC,"England Championship",446),
-                GetOneMap(InternalLeagueCode.UK3,"English League One",ExternalLeagueCode.EL1,"England League One",447),
+                GetOneMap(InternalLeagueCode.UK3,"English League One Vanarama",ExternalLeagueCode.EL1,"England League One",447),
                 GetOneMap(InternalLeagueCode.UK4,"English League Two",ExternalLeagueCode.EL2,"League Two 2017/18",448),
             };
 

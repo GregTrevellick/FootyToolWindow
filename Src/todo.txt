@@ -10,7 +10,7 @@ endpoint down / timeouts
 
 throw misc errors - vsix ???
 
-template for expander....
+template for expander
 
 league names as per papers e.g. vanarama league 1
 
@@ -25,11 +25,6 @@ replace foxes with burnley etc
 
 
 
-
-X-Response-Control
-full (default)|minified|compressed
-Control the appearance of the response. 'minified' will lack some (meta) information and thus be much smaller. 
-However, 'compressed' is currently only supported by the fixture resource.
 
 X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
 

@@ -48,6 +48,7 @@
     <Compile Include="ReferenceData\AllLeagueCodes.cs" />
     <Compile Include="ReferenceData\ExternalLeagueCode.cs" />
     <Compile Include="ReferenceData\InternalLeagueCode.cs" />
+    <Compile Include="ReferenceData\OneMap.cs" />
     <Compile Include="Standing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
