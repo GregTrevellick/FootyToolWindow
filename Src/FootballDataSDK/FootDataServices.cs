@@ -11,7 +11,7 @@ namespace FootballDataSDK
 {
     public class FootDataServices
     {
-        private string url1 = "http://api.football-data.org/v1/competitions";
+        private string baseUri = "http://api.football-data.org/v1/competitions";
         private string AuthToken { get; set; }
 
         public FootDataServices(string token)
@@ -21,66 +21,56 @@ namespace FootballDataSDK
 
         public CompetitionResult GetCompetitionResult()
         {
-            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
+            var uri = new Uri(baseUri);
+
+            using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(new Uri(url1)).Result;
+                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
                 var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
-                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
+                if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new CompetitionResult
-                    {
-                        error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error
-                    };
+                    return new CompetitionResult { error = GetError(responseString) };
                 }
                 else
                 {
-                    return new CompetitionResult
-                    {
-                        competitions = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString)
-                    };
+                    return new CompetitionResult { competitions = DeserializeCompetitions(responseString) };
                 }
             }
         }
 
         public async Task<CompetitionResult> GetCompetitionResultAsync()
         {
-            var url = $"{url1}";
+            var uri = new Uri(baseUri);
 
-            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
+            using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(new Uri(url));
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
+                if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new CompetitionResult
-                    {
-                        error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error
-                    };
+                    return new CompetitionResult { error = GetError(responseString) };
                 }
                 else
                 {
-                    return new CompetitionResult
-                    {
-                        competitions = JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString)
-                    };
+                    return new CompetitionResult { competitions = DeserializeCompetitions(responseString) };
                 }
             }
         }
 
         public async Task<LeagueTableResult> GetLeagueTableResultAsync(int idSeason)
         {
-            var url = $"{url1}/{idSeason}/leagueTable";
+            var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
 
-            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
+            using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(new Uri(url));
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
+                if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new LeagueTableResult { error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error };
+                    return new LeagueTableResult { error = GetError(responseString) };
                 }
                 else
                 {
@@ -91,25 +81,42 @@ namespace FootballDataSDK
 
         public async Task<FixturesResult> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
-            var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
+            var uri = new Uri($"{baseUri}/{idSeason}/fixtures?timeFrame={timeFrame}");
 
-            using (var footballDataOrgApiHttpClient = new FootballDataOrgApiHttpClient(AuthToken))
+            using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(new Uri(url));
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                if (string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK)
+                if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new FixturesResult
-                    {
-                        error = JsonConvert.DeserializeObject<ErrorResult>(responseString).error
-                    };
+                    return new FixturesResult { error = GetError(responseString) };
                 }
                 else
                 {
                     return JsonConvert.DeserializeObject<FixturesResult>(responseString);
                 }
             }
+        }
+        
+        private FootballDataOrgApiHttpClient GetFootballDataOrgApiHttpClient()
+        {
+            return new FootballDataOrgApiHttpClient(AuthToken);
+        }
+
+        private static IEnumerable<Competition> DeserializeCompetitions(string responseString)
+        {
+            return JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
+        }
+
+        private static string GetError(string responseString)
+        {
+            return JsonConvert.DeserializeObject<ErrorResult>(responseString).error;
+        }
+
+        private static bool BadResponse(string responseString, HttpResponseMessage httpResponseMessage)
+        {
+            return string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK;
         }
     }
 }
