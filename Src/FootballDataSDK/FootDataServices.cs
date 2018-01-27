@@ -62,27 +62,6 @@ namespace FootballDataSDK
             }
         }
 
-        public LeagueTableResult GetLeagueTableResult(int idSeason)
-        {
-            var url = $"{url1}/{idSeason}/leagueTable";
-
-            using (var client = new FootDataHttpClient(AuthToken))
-            {
-                var res = client.GetAsync(new Uri(url)).Result;
-                var responseString = res.Content.ReadAsStringAsync().Result;
-
-                // Sanity Check
-                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                {
-                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                    return new LeagueTableResult { error = err.error };
-                }
-
-                var response = JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
-                return response;
-            }
-        }
-
         public async Task<LeagueTableResult> GetLeagueTableResultAsync(int idSeason)
         {
             var url = $"{url1}/{idSeason}/leagueTable";
@@ -104,26 +83,26 @@ namespace FootballDataSDK
             }
         }
 
-        public FixturesResult GetFixturesResult(int idSeason, string timeFrame)
-        {
-            var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
+        //public FixturesResult GetFixturesResult(int idSeason, string timeFrame)
+        //{
+        //    var url = $"{url1}/{idSeason}/fixtures?timeFrame={timeFrame}";
 
-            using (var client = new FootDataHttpClient(AuthToken))
-            {
-                var res = client.GetAsync(new Uri(url)).Result;
-                var responseString = res.Content.ReadAsStringAsync().Result;
+        //    using (var client = new FootDataHttpClient(AuthToken))
+        //    {
+        //        var res = client.GetAsync(new Uri(url)).Result;
+        //        var responseString = res.Content.ReadAsStringAsync().Result;
 
-                // Sanity Check
-                if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
-                {
-                    var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
-                    return new FixturesResult { error = err.error };
-                }
+        //        // Sanity Check
+        //        if (string.IsNullOrEmpty(responseString) || res.StatusCode != HttpStatusCode.OK)
+        //        {
+        //            var err = JsonConvert.DeserializeObject<ErrorResult>(responseString);
+        //            return new FixturesResult { error = err.error };
+        //        }
 
-                var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
-                return response;
-            }
-        }
+        //        var response = JsonConvert.DeserializeObject<FixturesResult>(responseString);
+        //        return response;
+        //    }
+        //}
 
         public async Task<FixturesResult> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
