@@ -9,7 +9,6 @@ testing - endpoint down / timeouts
 testing - random errors
 testing-  status/score of match whilst part way thru a live match
 
-
 future if becomes popular - add league country flags/hyperlinks
 future if becomes popular - add club crests/hyperlinks
 future if becomes popular - promotion/relegation zone dotted border lines

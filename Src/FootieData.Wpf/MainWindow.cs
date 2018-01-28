@@ -1,11 +1,8 @@
 ﻿using FootballDataOrg;
 using FootieData.Common;
-using FootieData.Common.Dtos;
-using FootieData.Common.Helpers;
 using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using FootieData.Gateway;
-using FootieData.Wpf.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootieData.Common.Options;
 
 namespace FootieData.Wpf
 {

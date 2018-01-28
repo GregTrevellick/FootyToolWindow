@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="CommonConstants.cs" />
     <Compile Include="DataGridHelper.cs" />
-    <Compile Include="Dtos\GridType.cs" />
-    <Compile Include="Helpers\WpfHelper.cs" />
+    <Compile Include="GridType.cs" />
+    <Compile Include="WpfHelper.cs" />
     <Compile Include="Options\GeneralOptions.cs" />
     <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="Options\LeagueSubOption.cs" />

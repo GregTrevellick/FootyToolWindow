@@ -1,12 +1,11 @@
-﻿using FootieData.Entities.ReferenceData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using FootieData.Common.Dtos;
+using FootieData.Entities.ReferenceData;
 
-namespace FootieData.Common.Helpers
+namespace FootieData.Common
 {
     public class WpfHelper
     {

@@ -1,4 +1,4 @@
-﻿namespace FootieData.Common.Dtos
+﻿namespace FootieData.Common
 {
     public enum GridType
     {

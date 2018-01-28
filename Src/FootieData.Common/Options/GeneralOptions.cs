@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FootieData.Wpf.Options
+namespace FootieData.Common.Options
 {
     public class GeneralOptions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FootieData.Entities.ReferenceData;
 
-namespace FootieData.Wpf.Options
+namespace FootieData.Common.Options
 {
     public class LeagueOption
     {

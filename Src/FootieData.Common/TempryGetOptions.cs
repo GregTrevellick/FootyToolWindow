@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using FootieData.Common.Dtos;
+using FootieData.Common.Options;
 using FootieData.Entities.ReferenceData;
-using FootieData.Wpf.Options;
 
 namespace FootieData.Common
 {
