@@ -1,10 +1,10 @@
-﻿using FootieData.Entities;
+﻿using FootballDataOrg;
+using FootballDataOrg.ResponseEntities;
+using FootieData.Entities;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using FootballDataOrg;
-using FootballDataOrg.ResponseEntities;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
@@ -94,14 +94,14 @@ namespace FootieData.Gateway
             {                
                 return leagueTableResult?.Standing?.Select(x => new Standing
                 {
-                    //CrestURI = x.crestURI,
+                    //CrestURI = x.CrestURI,
                     Against = x.GoalsAgainst,
                     Diff = x.GoalDifference,
                     For = x.Goals,
                     Played = x.PlayedGames,
                     Points = x.Points,
-                    Rank = x.Rank,//x.position,
-                    Team = x.Team,//x.teamName,
+                    Rank = x.Rank,//x.Position,
+                    Team = x.Team,//x.TeamName,
                 });
             }
         }

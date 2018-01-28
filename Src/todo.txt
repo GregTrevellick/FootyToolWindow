@@ -1,4 +1,3 @@
-*** ErrorResult.cs ????
 *** implement GetCompetitionResultAsync
 
 performance - separate DLLs less performant than single ?
