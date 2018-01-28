@@ -1,15 +1,14 @@
 *** implement GetCompetitionResultAsync
 
-performance - separate DLLs less performant than single ?
-performance - combine FootballDataOrg with FootieData.Gateway
+vsix - put auth key into gen options
+vsix - record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
 
+testing - performance
 testing - compare to sunday papers (e.g. vanarama league 1, replace foxes with leicester, etc)
 testing - endpoint down / timeouts
 testing - random errors
 testing-  status/score of match whilst part way thru a live match
 
-vsix - put auth key into gen options
-vsix - record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
 
 future if becomes popular - add league country flags/hyperlinks
 future if becomes popular - add club crests/hyperlinks
