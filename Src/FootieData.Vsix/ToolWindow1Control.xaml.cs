@@ -21,11 +21,8 @@ namespace FootieData.Vsix
         public ToolWindow1Control()
         {
             InitializeComponent();
-
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
-
-            var footballDataOrgApiGateway = new FootballDataOrgApiGateway("5210" + "9775b1584a93854ca1" + "87690ed4b");
-            _gateway = new FootieDataGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
+            _gateway = new FootieDataGateway(_competitionResultSingletonInstance);
 
             if (_showPl)
             {
