@@ -27,7 +27,7 @@ namespace FootieData.Wpf
             }
             catch (Exception)
             {
-                //Logger.Log("gregt Do nothing as simply means no column heading");
+                Logger.Log("No data grid column heading found");
             }
         }
     }
