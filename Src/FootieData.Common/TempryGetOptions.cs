@@ -3,7 +3,7 @@ using FootieData.Common.Dtos;
 using FootieData.Entities.ReferenceData;
 using FootieData.Wpf.Options;
 
-namespace FootieData.Wpf
+namespace FootieData.Common
 {
     public class TempryGetOptions
     {
