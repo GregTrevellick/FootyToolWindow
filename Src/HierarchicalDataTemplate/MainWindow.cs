@@ -111,14 +111,30 @@ namespace HierarchicalDataTemplate
                                 case GridType.Standing:
                                     var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
                                     dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+
+                                    RightAlignDataGridColumn(dataGrid.Columns[0]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[2]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[3]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[4]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[5]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[6]);
+
                                     break;
                                 case GridType.Result:
                                     var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call finished
                                     dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
+
+                                    RightAlignDataGridColumn(dataGrid.Columns[0]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[2]);
+
                                     break;
                                 case GridType.Fixture:
                                     var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
                                     dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
+
+                                    RightAlignDataGridColumn(dataGrid.Columns[0]);
+                                    RightAlignDataGridColumn(dataGrid.Columns[1]);
+
                                     break;
                             }
 
@@ -267,6 +283,13 @@ namespace HierarchicalDataTemplate
             {
                 Logger.Log("Internal error2 gregt");
             }
+        }
+
+        public void RightAlignDataGridColumn(DataGridColumn dataGridColumn)
+        {
+            var style = new Style();
+            style.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
+            dataGridColumn.CellStyle = style;
         }
     }
 }
