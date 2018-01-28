@@ -1,22 +1,20 @@
-﻿using FootballDataOrg;
-using FootballDataOrg.ResponseEntities;
+﻿using FootballDataOrg.ResponseEntities;
 using FootieData.Entities;
+using FootieData.Entities.ReferenceData;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
-using FootieData.Entities.ReferenceData;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
 {
     public class FootieDataGateway
     {
-        //gregt for testing
-        private static CultureInfo enUS = new CultureInfo("en-US");
-        private static CultureInfo enGB = new CultureInfo("en-GB");
-        private static CultureInfo frFR = new CultureInfo("fr-FR");
-        private static CultureInfo deDE = new CultureInfo("de-DE");
+        //For for testing
+        //private static CultureInfo enUS = new CultureInfo("en-US");
+        //private static CultureInfo enGB = new CultureInfo("en-GB");
+        //private static CultureInfo frFR = new CultureInfo("fr-FR");
+        //private static CultureInfo deDE = new CultureInfo("de-DE");
 
         private readonly CompetitionResultSingleton _competitionResultSingleton;
 
@@ -133,7 +131,8 @@ namespace FootieData.Gateway
                 return fixturesResult?.Fixtures?.Select(x => new FixturePast
                 {
                     AwayName = x.AwayTeamName,
-                    Date = x.Date.ToString("d", enGB),//gregt unit test & remove culture
+                    //Date = x.Date.ToString("d", enGB),//gregt unit test & remove culture
+                    Date = x.Date.ToString("d"),
                     HomeName = x.HomeTeamName,
                     GoalsAway = x.Result?.GoalsAwayTeam,
                     GoalsHome = x.Result?.GoalsHomeTeam,
@@ -158,9 +157,9 @@ namespace FootieData.Gateway
                 return fixturesResult?.Fixtures?.Select(x => new FixtureFuture
                 {
                     AwayName = x.AwayTeamName,
-                    Date = x.Date.ToString("d", enGB),//gregt unit test & remove culture
+                    Date = x.Date.ToString("d"),
                     HomeName = x.HomeTeamName,
-                    Time = x.Date.ToString("t", enUS),//gregt unit test & remove culture
+                    Time = x.Date.ToString("t"),
                 });
             }
         }

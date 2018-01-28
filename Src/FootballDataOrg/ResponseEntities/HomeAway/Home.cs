@@ -1,6 +1,6 @@
 ﻿namespace FootballDataOrg.ResponseEntities.HomeAway
 {
-    public class Home//gregt not reqd ?
+    public class Home
     {
         public int Goals { get; set; }
         public int GoalsAgainst { get; set; }
