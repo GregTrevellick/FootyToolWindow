@@ -74,83 +74,83 @@ namespace FootieData.Gateway
         private int GetIdSeason(string leagueIdentifier)
         {
             //gregt get from new entity here =========================================================================================
-            var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.league == leagueIdentifier);
-            return league?.id ?? 0;
+            var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier);
+            return league?.Id ?? 0;
         }
 
         private static IEnumerable<Standing> GetResultMatchStandings(StandingsResponse leagueTableResult)
         {
-            if (!string.IsNullOrEmpty(leagueTableResult?.error))
+            if (!string.IsNullOrEmpty(leagueTableResult?.Error))
             {
                 return new List<Standing>
                 {
                     new Standing
                     {
-                        Team = leagueTableResult.error
+                        Team = leagueTableResult.Error
                     }
                 };
             }
             else
             {                
-                return leagueTableResult?.standing?.Select(x => new Standing
+                return leagueTableResult?.Standing?.Select(x => new Standing
                 {
                     //CrestURI = x.crestURI,
-                    Against = x.goalsAgainst,
-                    Diff = x.goalDifference,
-                    For = x.goals,
-                    Played = x.playedGames,
-                    Points = x.points,
-                    Rank = x.rank,//x.position,
-                    Team = x.team,//x.teamName,
+                    Against = x.GoalsAgainst,
+                    Diff = x.GoalDifference,
+                    For = x.Goals,
+                    Played = x.PlayedGames,
+                    Points = x.Points,
+                    Rank = x.Rank,//x.position,
+                    Team = x.Team,//x.teamName,
                 });
             }
         }
 
         private static IEnumerable<FixturePast> GetFixturePasts(FixturesResponse fixturesResult)
         {
-            if (!string.IsNullOrEmpty(fixturesResult?.error))
+            if (!string.IsNullOrEmpty(fixturesResult?.Error))
             {
                 return new List<FixturePast>
                 {
                     new FixturePast
                     {
-                        HomeName = fixturesResult.error
+                        HomeName = fixturesResult.Error
                     }
                 };
             }
             else
             {
-                return fixturesResult?.fixtures?.Select(x => new FixturePast
+                return fixturesResult?.Fixtures?.Select(x => new FixturePast
                 {
-                    AwayName = x.awayTeamName,
-                    Date = x.date.ToString("d", enGB),//gregt unit test & remove culture
-                    HomeName = x.homeTeamName,
-                    GoalsAway = x.result?.goalsAwayTeam,
-                    GoalsHome = x.result?.goalsHomeTeam,
+                    AwayName = x.AwayTeamName,
+                    Date = x.Date.ToString("d", enGB),//gregt unit test & remove culture
+                    HomeName = x.HomeTeamName,
+                    GoalsAway = x.Result?.GoalsAwayTeam,
+                    GoalsHome = x.Result?.GoalsHomeTeam,
                 });
             }
         }
 
         private static IEnumerable<FixtureFuture> GetFixtureFutures(FixturesResponse fixturesResult)
         {
-            if (!string.IsNullOrEmpty(fixturesResult?.error))
+            if (!string.IsNullOrEmpty(fixturesResult?.Error))
             {
                 return new List<FixtureFuture>
                 {
                     new FixtureFuture
                     {
-                        HomeName = fixturesResult.error
+                        HomeName = fixturesResult.Error
                     }
                 };
             }
             else
             {
-                return fixturesResult?.fixtures?.Select(x => new FixtureFuture
+                return fixturesResult?.Fixtures?.Select(x => new FixtureFuture
                 {
-                    AwayName = x.awayTeamName,
-                    Date = x.date.ToString("d", enGB),//gregt unit test & remove culture
-                    HomeName = x.homeTeamName,
-                    Time = x.date.ToString("t", enUS),//gregt unit test & remove culture
+                    AwayName = x.AwayTeamName,
+                    Date = x.Date.ToString("d", enGB),//gregt unit test & remove culture
+                    HomeName = x.HomeTeamName,
+                    Time = x.Date.ToString("t", enUS),//gregt unit test & remove culture
                 });
             }
         }

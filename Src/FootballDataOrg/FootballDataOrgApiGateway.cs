@@ -68,7 +68,7 @@ namespace FootballDataOrg
 
                 if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new StandingsResponse { error = GetError(responseString) };
+                    return new StandingsResponse { Error = GetError(responseString) };
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace FootballDataOrg
 
                 if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new FixturesResponse { error = GetError(responseString) };
+                    return new FixturesResponse { Error = GetError(responseString) };
                 }
                 else
                 {
@@ -109,7 +109,7 @@ namespace FootballDataOrg
 
         private static string GetError(string responseString)
         {
-            return JsonConvert.DeserializeObject<ErrorResponse>(responseString).error;
+            return JsonConvert.DeserializeObject<ErrorResponse>(responseString).Error;
         }
 
         private static bool BadResponse(string responseString, HttpResponseMessage httpResponseMessage)
