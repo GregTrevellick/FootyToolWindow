@@ -1,6 +1,6 @@
 ﻿namespace FootballDataOrg.ResponseEntities
 {
-    public class ErrorResult
+    public class ErrorResponse
     {
         public string error { get; set; }
     }

@@ -57,7 +57,7 @@ namespace FootballDataOrg
         //    }
         //}
 
-        public async Task<LeagueTableResult> GetLeagueTableResultAsync(int idSeason)
+        public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
         {
             var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
 
@@ -68,16 +68,16 @@ namespace FootballDataOrg
 
                 if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new LeagueTableResult { error = GetError(responseString) };
+                    return new StandingsResponse { error = GetError(responseString) };
                 }
                 else
                 {
-                    return JsonConvert.DeserializeObject<LeagueTableResult>(responseString);
+                    return JsonConvert.DeserializeObject<StandingsResponse>(responseString);
                 }
             }
         }
 
-        public async Task<FixturesResult> GetFixturesResultAsync(int idSeason, string timeFrame)
+        public async Task<FixturesResponse> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
             var uri = new Uri($"{baseUri}/{idSeason}/fixtures?timeFrame={timeFrame}");
 
@@ -88,11 +88,11 @@ namespace FootballDataOrg
 
                 if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new FixturesResult { error = GetError(responseString) };
+                    return new FixturesResponse { error = GetError(responseString) };
                 }
                 else
                 {
-                    return JsonConvert.DeserializeObject<FixturesResult>(responseString);
+                    return JsonConvert.DeserializeObject<FixturesResponse>(responseString);
                 }
             }
         }
@@ -102,14 +102,14 @@ namespace FootballDataOrg
             return new FootballDataOrgApiHttpClient(AuthToken);
         }
 
-        private static IEnumerable<Competition> DeserializeCompetitions(string responseString)
+        private static IEnumerable<CompetitionResponse> DeserializeCompetitions(string responseString)
         {
-            return JsonConvert.DeserializeObject<IEnumerable<Competition>>(responseString);
+            return JsonConvert.DeserializeObject<IEnumerable<CompetitionResponse>>(responseString);
         }
 
         private static string GetError(string responseString)
         {
-            return JsonConvert.DeserializeObject<ErrorResult>(responseString).error;
+            return JsonConvert.DeserializeObject<ErrorResponse>(responseString).error;
         }
 
         private static bool BadResponse(string responseString, HttpResponseMessage httpResponseMessage)

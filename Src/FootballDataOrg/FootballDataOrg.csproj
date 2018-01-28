@@ -52,17 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FootballDataOrgApiHttpClient.cs" />
-    <Compile Include="ResponseEntities\ErrorResult.cs" />
-    <Compile Include="ResponseEntities\Children\Away.cs" />
+    <Compile Include="ResponseEntities\ErrorResponse.cs" />
+    <Compile Include="ResponseEntities\HomeAway\Away.cs" />
     <Compile Include="FixtureResponseDto.cs" />
-    <Compile Include="ResponseEntities\Children\Fixture.cs" />
-    <Compile Include="ResponseEntities\FixturesResult.cs" />
-    <Compile Include="ResponseEntities\Children\Home.cs" />
-    <Compile Include="ResponseEntities\LeagueTableResult.cs" />
-    <Compile Include="ResponseEntities\Children\HomeAwayGoals.cs" />
-    <Compile Include="ResponseEntities\Competition.cs" />
+    <Compile Include="ResponseEntities\Fixture.cs" />
+    <Compile Include="ResponseEntities\FixturesResponse.cs" />
+    <Compile Include="ResponseEntities\HomeAway\Home.cs" />
+    <Compile Include="ResponseEntities\StandingsResponse.cs" />
+    <Compile Include="ResponseEntities\HomeAway\HomeAwayGoals.cs" />
+    <Compile Include="ResponseEntities\CompetitionResponse.cs" />
     <Compile Include="CompetitionResponseDto.cs" />
-    <Compile Include="ResponseEntities\Children\Standing.cs" />
+    <Compile Include="ResponseEntities\Standing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FootballDataOrgApiGateway.cs" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace FootballDataOrg.ResponseEntities
 {
-    public class LeagueTableResult
+    public class StandingsResponse
     {
         //public string leagueCaption { get; set; }
         public IEnumerable<Standing> standing { get; set; }

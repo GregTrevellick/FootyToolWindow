@@ -78,7 +78,7 @@ namespace FootieData.Gateway
             return league?.id ?? 0;
         }
 
-        private static IEnumerable<Standing> GetResultMatchStandings(LeagueTableResult leagueTableResult)
+        private static IEnumerable<Standing> GetResultMatchStandings(StandingsResponse leagueTableResult)
         {
             if (!string.IsNullOrEmpty(leagueTableResult?.error))
             {
@@ -106,7 +106,7 @@ namespace FootieData.Gateway
             }
         }
 
-        private static IEnumerable<FixturePast> GetFixturePasts(FixturesResult fixturesResult)
+        private static IEnumerable<FixturePast> GetFixturePasts(FixturesResponse fixturesResult)
         {
             if (!string.IsNullOrEmpty(fixturesResult?.error))
             {
@@ -131,7 +131,7 @@ namespace FootieData.Gateway
             }
         }
 
-        private static IEnumerable<FixtureFuture> GetFixtureFutures(FixturesResult fixturesResult)
+        private static IEnumerable<FixtureFuture> GetFixtureFutures(FixturesResponse fixturesResult)
         {
             if (!string.IsNullOrEmpty(fixturesResult?.error))
             {

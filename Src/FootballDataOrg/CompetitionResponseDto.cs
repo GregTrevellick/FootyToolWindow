@@ -4,7 +4,7 @@ namespace FootballDataOrg.ResponseEntities
 {
     public class CompetitionResponseDto
     {
-        public IEnumerable<Competition> competitions { get; set; }
+        public IEnumerable<CompetitionResponse> competitions { get; set; }
         public string error { get; set; }
     }
 }
