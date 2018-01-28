@@ -1,4 +1,5 @@
-ErrorResult.cs ????
+*** ErrorResult.cs ????
+*** implement GetCompetitionResultAsync
 
 performance - separate DLLs less performant than single ?
 performance - combine FootballDataOrg with FootieData.Gateway

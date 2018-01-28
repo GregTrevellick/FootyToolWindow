@@ -38,6 +38,7 @@ namespace FootballDataOrg
             }
         }
 
+        //gregt implement this !!!
         //public async Task<CompetitionResult> GetCompetitionResultAsync()
         //{
         //    var uri = new Uri(baseUri);
@@ -96,13 +97,6 @@ namespace FootballDataOrg
             }
         }
         
-
-
-
-
-
-
-
         private FootballDataOrgApiHttpClient GetFootballDataOrgApiHttpClient()
         {
             return new FootballDataOrgApiHttpClient(AuthToken);
