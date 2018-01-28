@@ -15,7 +15,7 @@ namespace FootballDataOrg.ResponseEntities
         public int Wins { get; set; }
         public int Draws { get; set; }
         public int Losses { get; set; }
-        public Home Home { get; set; }
-        public Away Away { get; set; }
+        public Home Home { get; set; }//gregt implement in ui
+        public Away Away { get; set; }//gregt implement in ui
     }
 }
