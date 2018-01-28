@@ -1,4 +1,5 @@
 ﻿using System;
+using FootballDataOrg.ResponseEntities.HomeAway;
 
 namespace FootballDataOrg.ResponseEntities
 {

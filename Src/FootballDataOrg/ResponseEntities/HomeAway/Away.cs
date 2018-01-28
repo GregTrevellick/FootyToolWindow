@@ -1,4 +1,4 @@
-﻿namespace FootballDataOrg.ResponseEntities
+﻿namespace FootballDataOrg.ResponseEntities.HomeAway
 {
     public class Away
     {

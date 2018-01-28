@@ -1,4 +1,6 @@
-﻿namespace FootballDataOrg.ResponseEntities
+﻿using FootballDataOrg.ResponseEntities.HomeAway;
+
+namespace FootballDataOrg.ResponseEntities
 {
     public class Standing
     {

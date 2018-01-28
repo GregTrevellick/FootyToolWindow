@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using FootballDataOrg.ResponseEntities;
 
-namespace FootballDataOrg.ResponseEntities
+namespace FootballDataOrg
 {
     public class CompetitionResponseDto
     {

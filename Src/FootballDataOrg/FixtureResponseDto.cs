@@ -1,4 +1,6 @@
-﻿namespace FootballDataOrg.ResponseEntities
+﻿using FootballDataOrg.ResponseEntities;
+
+namespace FootballDataOrg
 {
     public class FixtureResponseDto
     {
