@@ -8,6 +8,6 @@ namespace FootballDataOrg.ResponseEntities
         public string status { get; set; }
         public string homeTeamName { get; set; }
         public string awayTeamName { get; set; }
-        public ResultMatch result { get; set; }
+        public HomeAwayGoals result { get; set; }
     }
 }

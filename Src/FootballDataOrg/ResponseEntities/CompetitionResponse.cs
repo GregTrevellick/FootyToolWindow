@@ -2,7 +2,7 @@
 
 namespace FootballDataOrg.ResponseEntities
 {
-    public class CompetitionResult
+    public class CompetitionResponse
     {
         public IEnumerable<Competition> competitions { get; set; }
         public string error { get; set; }

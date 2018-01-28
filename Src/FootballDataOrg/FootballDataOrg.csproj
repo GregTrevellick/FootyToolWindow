@@ -52,16 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FootballDataOrgApiHttpClient.cs" />
-    <Compile Include="ResponseEntities\ErrorResult.cs" />
+    <Compile Include="Deserialized\ErrorResult.cs" />
     <Compile Include="ResponseEntities\Away.cs" />
-    <Compile Include="ResponseEntities\FixtureDetailsResult.cs" />
+    <Compile Include="ResponseEntities\FixtureResponse.cs" />
     <Compile Include="ResponseEntities\Fixture.cs" />
-    <Compile Include="ResponseEntities\FixturesResult.cs" />
+    <Compile Include="Deserialized\FixturesResult.cs" />
     <Compile Include="ResponseEntities\Home.cs" />
-    <Compile Include="ResponseEntities\LeagueTableResult.cs" />
-    <Compile Include="ResponseEntities\ResultMatch.cs" />
-    <Compile Include="ResponseEntities\Competition.cs" />
-    <Compile Include="ResponseEntities\CompetitionResult.cs" />
+    <Compile Include="Deserialized\LeagueTableResult.cs" />
+    <Compile Include="ResponseEntities\HomeAwayGoals.cs" />
+    <Compile Include="Deserialized\Competition.cs" />
+    <Compile Include="ResponseEntities\CompetitionResponse.cs" />
     <Compile Include="ResponseEntities\Standing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FootballDataOrgApiGateway.cs" />
