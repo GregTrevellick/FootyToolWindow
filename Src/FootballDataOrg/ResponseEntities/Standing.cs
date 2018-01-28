@@ -4,9 +4,9 @@ namespace FootballDataOrg.ResponseEntities
 {
     public class Standing
     {
-        public int Rank { get; set; }//'position' if using non-minified request
-        public string Team { get; set; }//'teamName' if using non-minified request
-        //public string crestURI { get; set; }
+        public int Rank { get; set; }//'Position' if using non-minified request
+        public string Team { get; set; }//'TeamName' if using non-minified request
+        //public string CrestURI { get; set; }TODO optionally implement in ui (subject to performance)
         public int PlayedGames { get; set; }
         public int Points { get; set; }
         public int Goals { get; set; }
@@ -15,7 +15,7 @@ namespace FootballDataOrg.ResponseEntities
         public int Wins { get; set; }
         public int Draws { get; set; }
         public int Losses { get; set; }
-        public Home Home { get; set; }//gregt implement in ui
-        public Away Away { get; set; }//gregt implement in ui
+        public Home Home { get; set; }//TODO optionally implement in ui (subject to performance)
+        public Away Away { get; set; }//TODO optionally implement in ui (subject to performance)
     }
 }
