@@ -116,17 +116,17 @@ namespace FootieData.Wpf
                                 case GridType.Standing:
                                     var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
                                     dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-                                    RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 });
+                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
                                     break;
                                 case GridType.Result:
                                     var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call finished
                                     dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
-                                    RightAlignDataGridColumns(dataGrid.Columns, new List<int> {0, 2});
+                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> {0, 2}, _rightAlignStyle);
                                     break;
                                 case GridType.Fixture:
                                     var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
                                     dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
-                                    RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 });
+                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
                                     break;
                             }
 
@@ -274,14 +274,6 @@ namespace FootieData.Wpf
             else
             {
                 Logger.Log("Internal error2 gregt");
-            }
-        }
-
-        public void RightAlignDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes)
-        {
-            foreach (var index in indexes)
-            {
-                dataGridColumns[index].CellStyle = _rightAlignStyle;
             }
         }
     }

@@ -1,11 +1,23 @@
 ﻿using FootieData.Entities.ReferenceData;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 using FootieData.Common.Dtos;
 
 namespace FootieData.Common.Helpers
 {
     public class WpfHelper
     {
+        public static void RightAlignDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style rightAlignStyle)
+        {
+            foreach (var index in indexes)
+            {
+                dataGridColumns[index].CellStyle = rightAlignStyle;
+            }
+        }
+
         public static string GetDescription(GridType gridType)
         {
             switch (gridType)
