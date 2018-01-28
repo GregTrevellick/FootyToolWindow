@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using FootieData.Entities.ReferenceData;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
@@ -69,11 +70,22 @@ namespace FootieData.Gateway
             return result;
         }
 
-        private int GetIdSeason(string leagueIdentifier)
+        private int GetIdSeason(string leagueIdentifier, bool getViaHttpRequest = false)
         {
-            //gregt get from new entity here =========================================================================================
-            var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier);
-            return league?.Id ?? 0;
+            int result;
+
+            if (getViaHttpRequest)
+            {
+                var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier);
+                result = league?.Id ?? 0;
+            }
+            else
+            {
+                var leagueDto = LeagueMapping.LeagueDtos.FirstOrDefault(x => x.ExternalLeagueCode.ToString() == leagueIdentifier);
+                result = leagueDto?.ClientLeagueId ?? 0;
+            }
+
+            return result;
         }
 
         private static IEnumerable<Standing> GetResultMatchStandings(StandingsResponse leagueTableResult)
