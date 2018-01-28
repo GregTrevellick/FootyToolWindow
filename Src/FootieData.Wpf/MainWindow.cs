@@ -70,7 +70,7 @@ namespace FootieData.Wpf
             }
             else
             {
-                Logger.Log("Internal error gregt");
+                Logger.Log("Internal error 1001 - sender is not Expander");
             }
         }
         
@@ -268,7 +268,7 @@ namespace FootieData.Wpf
             }
             else
             {
-                Logger.Log("Internal error2 gregt");
+                Logger.Log("Internal error 1002 - sender is not Expander");
             }
         }
     }

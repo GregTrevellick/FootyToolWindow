@@ -131,8 +131,7 @@ namespace FootieData.Gateway
                 return fixturesResult?.Fixtures?.Select(x => new FixturePast
                 {
                     AwayName = x.AwayTeamName,
-                    //Date = x.Date.ToString("d", enGB),//gregt unit test & remove culture
-                    Date = x.Date.ToString("d"),
+                    Date = x.Date.ToString("d", enGB),//gregt unit test & replace with current culture
                     HomeName = x.HomeTeamName,
                     GoalsAway = x.Result?.GoalsAwayTeam,
                     GoalsHome = x.Result?.GoalsHomeTeam,
