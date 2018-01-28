@@ -8,7 +8,7 @@ using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using FootieData.Wpf.Options;
 
-namespace FootieData.Wpf
+namespace FootieData.Common
 {
     public class DataGridHelper
     {
