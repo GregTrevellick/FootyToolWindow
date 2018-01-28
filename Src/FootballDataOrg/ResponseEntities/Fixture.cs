@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataOrg.Models
+namespace FootballDataOrg.ResponseEntities
 {
     public class Fixture
     {

@@ -4,7 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using FootballDataOrg;
-using FootballDataOrg.Results;
+using FootballDataOrg.ResponseEntities;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway

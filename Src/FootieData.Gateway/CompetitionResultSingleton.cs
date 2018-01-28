@@ -1,5 +1,5 @@
 ﻿using FootballDataOrg;
-using FootballDataOrg.Results;
+using FootballDataOrg.ResponseEntities;
 
 namespace FootieData.Gateway
 {

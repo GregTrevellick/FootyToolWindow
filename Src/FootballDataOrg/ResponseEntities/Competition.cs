@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataOrg.Results
+namespace FootballDataOrg.ResponseEntities
 {
     public class Competition
     {

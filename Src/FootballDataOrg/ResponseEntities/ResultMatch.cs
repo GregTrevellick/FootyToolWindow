@@ -1,4 +1,4 @@
-namespace FootballDataOrg.Models
+namespace FootballDataOrg.ResponseEntities
 {
     public class ResultMatch
     {

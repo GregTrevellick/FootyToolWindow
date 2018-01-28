@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FootballDataOrg.Results;
+using FootballDataOrg.ResponseEntities;
 using Newtonsoft.Json;
 
 namespace FootballDataOrg

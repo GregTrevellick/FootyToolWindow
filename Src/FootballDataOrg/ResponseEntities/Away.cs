@@ -1,6 +1,6 @@
-﻿namespace FootballDataOrg.Results
+﻿namespace FootballDataOrg.ResponseEntities
 {
-    public class Home
+    public class Away
     {
         public int goals { get; set; }
         public int goalsAgainst { get; set; }

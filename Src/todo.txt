@@ -1,5 +1,7 @@
-X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
-X-RequestsAvailable 50 Shows the remaining requests before being blocked.
+ErrorResult.cs ????
+
+performance - separate DLLs less performant than single ?
+performance - combine FootballDataOrg with FootieData.Gateway
 
 testing - compare to sunday papers (e.g. vanarama league 1, replace foxes with leicester, etc)
 testing - endpoint down / timeouts
@@ -12,3 +14,6 @@ vsix - record last update & only re-update after 30 seconds (caters for allowed 
 future if becomes popular - add league country flags/hyperlinks
 future if becomes popular - add club crests/hyperlinks
 future if becomes popular - promotion/relegation zone dotted border lines
+
+X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
+X-RequestsAvailable 50 Shows the remaining requests before being blocked.

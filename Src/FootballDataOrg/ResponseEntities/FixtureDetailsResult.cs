@@ -1,6 +1,4 @@
-﻿using FootballDataOrg.Models;
-
-namespace FootballDataOrg.Results
+﻿namespace FootballDataOrg.ResponseEntities
 {
     public class FixtureDetailsResult
     {

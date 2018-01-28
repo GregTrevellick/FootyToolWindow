@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using FootballDataOrg.Models;
 
-namespace FootballDataOrg.Results
+namespace FootballDataOrg.ResponseEntities
 {
     public class FixturesResult
     {
