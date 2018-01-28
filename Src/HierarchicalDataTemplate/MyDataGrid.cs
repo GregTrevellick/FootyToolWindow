@@ -11,7 +11,7 @@ namespace HierarchicalDataTemplate
         {
             var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFF0"));
             AlternatingRowBackground = color;
-            ColumnHeaderHeight = 23;
+            ColumnHeaderHeight = 24;
             RowHeaderWidth = 0;
             CanUserAddRows = false;
             GridLinesVisibility = DataGridGridLinesVisibility.None;
