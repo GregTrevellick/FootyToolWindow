@@ -1,25 +1,14 @@
-allowed 1 every 1.2 secs
-replace foxes with leicester etc
 X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
 X-RequestsAvailable 50 Shows the remaining requests before being blocked.
 
-put auth key into gen options
-endpoint down / timeouts
-misc errors
-league names as per papers e.g. vanarama league 1
-check status/score of match whilst part way thru a live match
+testing - compare to sunday papers (e.g. vanarama league 1, replace foxes with leicester, etc)
+testing - endpoint down / timeouts
+testing - random errors
+testing-  status/score of match whilst part way thru a live match
 
+vsix - put auth key into gen options
+vsix - record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
 
-
-
-
-
-
-
-IF GOOD TAKE UP...
-add country flags ?
-promo / relegation dotted border lines
-
-
-
-
+future if becomes popular - add league country flags/hyperlinks
+future if becomes popular - add club crests/hyperlinks
+future if becomes popular - promotion/relegation zone dotted border lines
