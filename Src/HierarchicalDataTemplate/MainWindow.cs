@@ -5,6 +5,7 @@ using FootieData.Gateway;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,16 +30,20 @@ namespace HierarchicalDataTemplate
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
         private const string Unavailable = "unavailable at this time - try again later";
-        
+        private readonly Style _rightAlignStyle;
+
         public MainWindow()
         {
             InitializeComponent();
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
             _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
-            _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+            _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
+            _rightAlignStyle = new Style();
+            _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
             _wpfHelper = new WpfHelper();
             GetOptions();
+
         }
         
         private static void GetOptions()
@@ -111,30 +116,17 @@ namespace HierarchicalDataTemplate
                                 case GridType.Standing:
                                     var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
                                     dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-
-                                    RightAlignDataGridColumn(dataGrid.Columns[0]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[2]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[3]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[4]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[5]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[6]);
-
+                                    RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 });
                                     break;
                                 case GridType.Result:
                                     var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call finished
                                     dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
-
-                                    RightAlignDataGridColumn(dataGrid.Columns[0]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[2]);
-
+                                    RightAlignDataGridColumns(dataGrid.Columns, new List<int> {0, 2});
                                     break;
                                 case GridType.Fixture:
                                     var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
                                     dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
-
-                                    RightAlignDataGridColumn(dataGrid.Columns[0]);
-                                    RightAlignDataGridColumn(dataGrid.Columns[1]);
-
+                                    RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 });
                                     break;
                             }
 
@@ -285,11 +277,12 @@ namespace HierarchicalDataTemplate
             }
         }
 
-        public void RightAlignDataGridColumn(DataGridColumn dataGridColumn)
+        public void RightAlignDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes)
         {
-            var style = new Style();
-            style.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
-            dataGridColumn.CellStyle = style;
+            foreach (var index in indexes)
+            {
+                dataGridColumns[index].CellStyle = _rightAlignStyle;
+            }
         }
     }
 }
