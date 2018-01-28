@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Vsix", "FootieData.Vsix\FootieData.Vsix.csproj", "{CEF49E5C-E22C-45F1-B67F-768C77E3F4CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HierarchicalDataTemplate", "HierarchicalDataTemplate\HierarchicalDataTemplate.csproj", "{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Wpf", "HierarchicalDataTemplate\FootieData.Wpf.csproj", "{94BC79FC-D70E-4FD9-8FD5-D2994CB09FDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Common", "FootieData.Common\FootieData.Common.csproj", "{D2A60350-D05C-4005-A3F7-F8F66527E793}"
 EndProject

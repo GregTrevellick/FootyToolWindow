@@ -1,14 +1,14 @@
-﻿using FootieData.Common.Dtos;
-using FootieData.Entities;
-using FootieData.Entities.ReferenceData;
-using HierarchicalDataTemplate.Options;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FootieData.Common.Dtos;
+using FootieData.Entities;
+using FootieData.Entities.ReferenceData;
+using FootieData.Wpf.Options;
 
-namespace HierarchicalDataTemplate
+namespace FootieData.Wpf
 {
     public class DataGridHelper
     {

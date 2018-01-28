@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace HierarchicalDataTemplate
+namespace FootieData.Wpf
 {
     public class MyDataGrid : DataGrid
     {

@@ -1,6 +1,6 @@
 ﻿using FootieData.Common.Dtos;
 
-namespace HierarchicalDataTemplate.Options
+namespace FootieData.Wpf.Options
 {
     public class LeagueSubOption
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HierarchicalDataTemplate.Options
+namespace FootieData.Wpf.Options
 {
     public class GeneralOptions
     {

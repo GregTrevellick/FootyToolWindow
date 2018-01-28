@@ -1,8 +1,4 @@
-﻿using FootieData.Common;
-using FootieData.Common.Helpers;
-using FootieData.Entities;
-using FootieData.Gateway;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +8,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FootballDataOrg;
+using FootieData.Common;
 using FootieData.Common.Dtos;
+using FootieData.Common.Helpers;
+using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
-using HierarchicalDataTemplate.Options;
+using FootieData.Gateway;
+using FootieData.Wpf.Options;
 
-namespace HierarchicalDataTemplate
+namespace FootieData.Wpf
 {
     public partial class MainWindow : Window
     {

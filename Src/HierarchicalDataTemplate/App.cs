@@ -3,7 +3,7 @@
 
 using System.Windows;
 
-namespace HierarchicalDataTemplate
+namespace FootieData.Wpf
 {
     /// <summary>
     ///     Interaction logic for App.xaml
