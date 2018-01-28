@@ -18,7 +18,7 @@ namespace FootballDataOrg
             AuthToken = token + "b";
         }
 
-        public CompetitionResponse GetCompetitionResult()
+        public CompetitionResponseDto GetCompetitionResult()
         {
             var uri = new Uri(baseUri);
 
@@ -29,11 +29,11 @@ namespace FootballDataOrg
 
                 if (BadResponse(responseString, httpResponseMessage))
                 {
-                    return new CompetitionResponse { error = GetError(responseString) };
+                    return new CompetitionResponseDto { error = GetError(responseString) };
                 }
                 else
                 {
-                    return new CompetitionResponse { competitions = DeserializeCompetitions(responseString) };
+                    return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
                 }
             }
         }

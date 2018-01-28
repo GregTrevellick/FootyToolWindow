@@ -5,7 +5,7 @@ namespace FootieData.Gateway
 {
     public sealed class CompetitionResultSingleton
     {
-        public CompetitionResponse CompetitionResult;
+        public CompetitionResponseDto CompetitionResult;
 
         private static readonly CompetitionResultSingleton _instance = new CompetitionResultSingleton();
 
