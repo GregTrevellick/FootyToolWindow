@@ -16,10 +16,10 @@ namespace FootieData.Common
                 LeagueOptions = new List<LeagueOption>()
             };
 
-            //AddThem(InternalLeagueCode.BR1);
+            AddThem(InternalLeagueCode.BR1);
             //AddThem(InternalLeagueCode.DE1);
             //AddThem(InternalLeagueCode.DE2);
-            //AddThem(InternalLeagueCode.ES1);
+            AddThem(InternalLeagueCode.ES1);
             //AddThem(InternalLeagueCode.FR1);
             //AddThem(InternalLeagueCode.FR2);
             //AddThem(InternalLeagueCode.IT1);

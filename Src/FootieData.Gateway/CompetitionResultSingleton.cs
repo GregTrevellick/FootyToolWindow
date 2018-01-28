@@ -6,6 +6,7 @@ namespace FootieData.Gateway
     public sealed class CompetitionResultSingleton
     {
         public CompetitionResponseDto CompetitionResult;
+        public FootballDataOrgApiGateway FootballDataOrgApiGateway;
 
         private static readonly CompetitionResultSingleton _instance = new CompetitionResultSingleton();
 
@@ -19,8 +20,8 @@ namespace FootieData.Gateway
 
         private CompetitionResultSingleton()
         {
-            var footballDataOrgApiGateway = new FootballDataOrgApiGateway("52109775b158" + "4a93854ca187690ed4b");
-            CompetitionResult = footballDataOrgApiGateway.GetCompetitionResult();
+            FootballDataOrgApiGateway = new FootballDataOrgApiGateway("52109775b158" + "4a93854ca187690ed4b");
+            CompetitionResult = FootballDataOrgApiGateway.GetCompetitionResult();
         }
     }
 }

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using FootballDataOrg;
+﻿using FootballDataOrg;
 using FootieData.Common;
 using FootieData.Common.Dtos;
 using FootieData.Common.Helpers;
@@ -15,6 +6,14 @@ using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using FootieData.Gateway;
 using FootieData.Wpf.Options;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace FootieData.Wpf
 {
@@ -43,7 +42,6 @@ namespace FootieData.Wpf
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
             _wpfHelper = new WpfHelper();
             GetOptions();
-
         }
         
         private static void GetOptions()
@@ -53,8 +51,7 @@ namespace FootieData.Wpf
 
         private FootieDataGateway GetFootieDataGateway()
         {
-            var footballDataOrgApiGateway = new FootballDataOrgApiGateway("521" +"09775b"+"1584a93854ca187690e"+"d4b");
-            return new FootieDataGateway(footballDataOrgApiGateway, _competitionResultSingletonInstance);
+            return new FootieDataGateway(_competitionResultSingletonInstance);
         }
 
         private void ExpanderLoaded_Any(object sender, RoutedEventArgs e)
