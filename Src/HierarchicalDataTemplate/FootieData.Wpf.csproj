@@ -66,7 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Assets\PlusMinusExpanderStyles.xaml">
+    <Page Include="..\FootieData.Vsix\Assets\PlusMinusExpanderStyles.xaml">
+      <Link>Assets\PlusMinusExpanderStyles.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -131,15 +132,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\closed.png" />
-    <Resource Include="Assets\closed_neonglow.png" />
-    <Resource Include="Assets\closed_plasticwrap.png" />
-    <Resource Include="Assets\open.png" />
-    <Resource Include="Assets\open_neonglow.png" />
-    <Resource Include="Assets\open_plasticwrap.png" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <Resource Include="..\FootieData.Vsix\Assets\closed.png">
+      <Link>Assets\closed.png</Link>
+    </Resource>
+    <Resource Include="..\FootieData.Vsix\Assets\closed_neonglow.png">
+      <Link>Assets\closed_neonglow.png</Link>
+    </Resource>
+    <Resource Include="..\FootieData.Vsix\Assets\closed_plasticwrap.png">
+      <Link>Assets\closed_plasticwrap.png</Link>
+    </Resource>
+    <Resource Include="..\FootieData.Vsix\Assets\open.png">
+      <Link>Assets\open.png</Link>
+    </Resource>
+    <Resource Include="..\FootieData.Vsix\Assets\open_neonglow.png">
+      <Link>Assets\open_neonglow.png</Link>
+    </Resource>
+    <Resource Include="..\FootieData.Vsix\Assets\open_plasticwrap.png">
+      <Link>Assets\open_plasticwrap.png</Link>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
