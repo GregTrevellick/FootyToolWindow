@@ -3,6 +3,7 @@ using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using Standing = FootieData.Entities.Standing;
 
@@ -12,7 +13,7 @@ namespace FootieData.Gateway
     {
         //For for testing
         //private static CultureInfo enUS = new CultureInfo("en-US");
-        //private static CultureInfo enGB = new CultureInfo("en-GB");
+        private static CultureInfo enGB = new CultureInfo("en-GB");//gregt
         //private static CultureInfo frFR = new CultureInfo("fr-FR");
         //private static CultureInfo deDE = new CultureInfo("de-DE");
 
