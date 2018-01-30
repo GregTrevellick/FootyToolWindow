@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.Shell;
 using System.ComponentModel;
+using System.Linq;
+using FootieData.Entities.ReferenceData;
 using FootieData.Vsix.Helpers;
 
 namespace FootieData.Vsix.Options
@@ -7,33 +9,79 @@ namespace FootieData.Vsix.Options
     public class GeneralOptions : DialogPage
     {
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show premier league")]
-        [Description("todo")]
-        public bool ShowPL { get; set; } = true;
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionUk1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInUk1 { get; set; } = true;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Expand premier league")]
-        [Description("todo")]
-        public bool ExpandPL { get; set; } = false;
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionUk2)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInUk2 { get; set; } = false;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show budesliga 1")]
-        [Description("todo")]
-        public bool ShowBL1 { get; set; } = true;
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionUk3)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInUk3 { get; set; } = false;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Expand budesliga 1")]
-        [Description("todo")]
-        public bool ExpandL1 { get; set; } = false;
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionUk4)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInUk4 { get; set; } = false;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show budesliga 2")]
-        [Description("todo")]
-        public bool ShowBL2 { get; set; } = false;
-        
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionBr1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInBr1 { get; set; } = false;
+
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Expand budesliga 2")]
-        [Description("todo")]
-        public bool ExpandBL2 { get; set; } = false;
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionDe1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInDe1 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionDe2)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInDe2 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionEs1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInEs1 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionFr1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInFr1 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionFr2)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInFr2 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionIt1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInIt1 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionIt2)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInIt2 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionNl1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInNl1 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionPt1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInPt1 { get; set; } = false;
+
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName(LeagueMapping.InternalLeagueCodeDescriptionUefa1)]
+        [Description(CommonConstants.InterestedInLeague)]
+        public bool InterestedInUefa1 { get; set; } = false;
+
     }
 }
