@@ -88,12 +88,24 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\closed.png" />
-    <Content Include="Assets\closed_neonglow.png" />
-    <Content Include="Assets\closed_plasticwrap.png" />
-    <Content Include="Assets\open.png" />
-    <Content Include="Assets\open_neonglow.png" />
-    <Content Include="Assets\open_plasticwrap.png" />
+    <Resource Include="Assets\closed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\closed_neonglow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\closed_plasticwrap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\open.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\open_neonglow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\open_plasticwrap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\ToolWindow1Command.png" />
     <Content Include="Resources\ToolWindow1Package.ico" />
     <VSCTCompile Include="ToolWindow1Package.vsct">
@@ -230,6 +242,10 @@
     <ProjectReference Include="..\FootballDataOrg\FootballDataOrg.csproj">
       <Project>{e03d39b9-4fad-4108-8d17-a9f9af2d6a9e}</Project>
       <Name>FootballDataOrg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FootieData.Common\FootieData.Common.csproj">
+      <Project>{D2A60350-D05C-4005-A3F7-F8F66527E793}</Project>
+      <Name>FootieData.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FootieData.Gateway\FootieData.Gateway.csproj">
       <Project>{296f4cc7-491d-47e3-8caf-e88dd3223c6c}</Project>
