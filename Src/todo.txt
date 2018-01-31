@@ -1,3 +1,11 @@
+zip file of screen shots in one drive e.g. async package start up
+https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/
+https://gist.github.com/oz-code/76446034c493685bfaabdd5aecc43180
+https://github.com/oz-code/VSExplorationTests
+https://github.com/oz-code/BDDfyVSIntegrationTestSample
+https://github.com/Microsoft/VisualStudio-TestHost
+https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
+ 
 *** implement GetCompetitionResultAsync
 
 vsix - put auth key into gen options
