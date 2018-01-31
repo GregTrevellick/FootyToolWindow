@@ -2,7 +2,7 @@
 
 namespace FootieData.Common.Options
 {
-    public class GeneralOptions
+    public class GeneralOptions2
     {
         public List<LeagueOption> LeagueOptions;
     }

@@ -18,7 +18,7 @@ namespace FootieData.Wpf
     public partial class MainWindow : Window
     {
         private static WpfHelper _wpfHelper;
-        private static GeneralOptions _generalOptions;
+        private static GeneralOptions2 _generalOptions;
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;

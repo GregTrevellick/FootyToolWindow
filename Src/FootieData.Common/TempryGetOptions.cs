@@ -6,11 +6,11 @@ namespace FootieData.Common
 {
     public class TempryGetOptions
     {
-        private static GeneralOptions _generalOptions;
+        private static GeneralOptions2 _generalOptions;
 
-        public GeneralOptions GetGeneralOptions()
+        public GeneralOptions2 GetGeneralOptions()
         {
-            _generalOptions = new GeneralOptions
+            _generalOptions = new GeneralOptions2
             {
                 LeagueOptions = new List<LeagueOption>()
             };

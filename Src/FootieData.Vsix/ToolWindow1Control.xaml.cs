@@ -1,6 +1,4 @@
-﻿using FootballDataOrg;
-using FootieData.Common.Options;
-using FootieData.Common;
+﻿using FootieData.Common;
 using FootieData.Entities.ReferenceData;
 using FootieData.Entities;
 using FootieData.Gateway;
@@ -13,13 +11,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
 using System;
+using FootieData.Common.Options;
 
 namespace FootieData.Vsix
 {
     public partial class ToolWindow1Control : UserControl
     {
         private static WpfHelper _wpfHelper;
-        private static Common.Options.GeneralOptions _generalOptions;
+        private static Common.Options.GeneralOptions2 _generalOptions2;
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;
@@ -30,7 +29,7 @@ namespace FootieData.Vsix
         private const string Unavailable = "unavailable at this time - try again later";
         private readonly Style _rightAlignStyle;
 
-        public ToolWindow1Control()
+        public ToolWindow1Control(GeneralOptions generalOptions)
         {
             InitializeComponent();
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
@@ -40,12 +39,64 @@ namespace FootieData.Vsix
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
             _wpfHelper = new WpfHelper();
-            GetOptions();
+            GetOptions(generalOptions);
         }
 
-        private static void GetOptions()
+        private void GetOptions(GeneralOptions generalOptions)
         {
-            _generalOptions = new TempryGetOptions().GetGeneralOptions();
+            _generalOptions2 = new GeneralOptions2
+            {
+                LeagueOptions = new List<LeagueOption>
+                {
+                    GetLeagueOption(generalOptions.InterestedInBr1, InternalLeagueCode.BR1),
+                    GetLeagueOption(generalOptions.InterestedInDe1, InternalLeagueCode.DE1),
+                    GetLeagueOption(generalOptions.InterestedInDe2, InternalLeagueCode.DE2),
+                    GetLeagueOption(generalOptions.InterestedInEs1, InternalLeagueCode.ES1),
+                    GetLeagueOption(generalOptions.InterestedInFr1, InternalLeagueCode.FR1),
+                    GetLeagueOption(generalOptions.InterestedInFr2, InternalLeagueCode.FR2),
+                    GetLeagueOption(generalOptions.InterestedInIt1, InternalLeagueCode.IT1),
+                    GetLeagueOption(generalOptions.InterestedInIt2, InternalLeagueCode.IT2),
+                    GetLeagueOption(generalOptions.InterestedInNl1, InternalLeagueCode.NL1),
+                    GetLeagueOption(generalOptions.InterestedInPt1, InternalLeagueCode.PT1),
+                    GetLeagueOption(generalOptions.InterestedInUefa1, InternalLeagueCode.UEFA1),
+                    GetLeagueOption(generalOptions.InterestedInUk1, InternalLeagueCode.UK1),
+                    GetLeagueOption(generalOptions.InterestedInUk2, InternalLeagueCode.UK2),
+                    GetLeagueOption(generalOptions.InterestedInUk3, InternalLeagueCode.UK3),
+                    GetLeagueOption(generalOptions.InterestedInUk4, InternalLeagueCode.UK4),                
+                }
+            };
+        }
+
+        private static LeagueOption GetLeagueOption(bool interestedIn, InternalLeagueCode internalLeagueCode)
+        {
+            return new LeagueOption
+            {
+                InternalLeagueCode = internalLeagueCode,
+                ShowLeague = interestedIn,
+                LeagueSubOptions = GetLeagueSubOptions()                           
+            };
+        }
+
+        private static List<LeagueSubOption> GetLeagueSubOptions()
+        {
+            return new List<LeagueSubOption>
+            {
+                new LeagueSubOption
+                {
+                    GridType = GridType.Standing,
+                    Expand = true
+                },
+                new LeagueSubOption
+                {
+                    GridType = GridType.Result,
+                    Expand = false
+                },
+                new LeagueSubOption
+                {
+                    GridType = GridType.Fixture,
+                    Expand = false
+                }
+            };
         }
 
         private FootieDataGateway GetFootieDataGateway()
@@ -58,7 +109,7 @@ namespace FootieData.Vsix
             if (sender is Expander expander)
             {
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
-                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
+                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions2.LeagueOptions, internalLeagueCode);
                 if (shouldShowLeague)
                 {
                     expander.Visibility = Visibility.Visible;
@@ -90,12 +141,12 @@ namespace FootieData.Vsix
                 var gridType = _wpfHelper.GetGridType(dataGrid.Name);
                 var parentExpanderName = parentExpander.Name;
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
-                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions.LeagueOptions, internalLeagueCode);
+                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions2.LeagueOptions, internalLeagueCode);
                 parentExpander.Header = LeagueMapping.LeagueDtos.First(x => x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
                 var internalToExternalMappingExists = _leagueDtosSingletonInstance.LeagueDtos.Any(x => x.InternalLeagueCode == internalLeagueCode);
                 var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
                     .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-                var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions.LeagueOptions, internalLeagueCode, gridType);
+                var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions2.LeagueOptions, internalLeagueCode, gridType);
 
                 if (shouldExpandGrid || manuallyExpanded)
                 {
@@ -262,7 +313,7 @@ namespace FootieData.Vsix
 
         private void Click_HardcodedHandlerRefresh(object sender, RoutedEventArgs e)
         {
-            GetOptions();
+            //gregt GetOptions();
 
             var dataGridStanding = DataGridHelper.FindChild<DataGrid>(Application.Current.MainWindow, "Standing_Rand0001");
             if (dataGridStanding != null && dataGridStanding.IsVisible)

@@ -1,4 +1,6 @@
-﻿namespace FootieData.Vsix
+﻿using FootieData.Vsix.Options;
+
+namespace FootieData.Vsix
 {
     using System;
     using System.Runtime.InteropServices;
@@ -16,19 +18,21 @@
     /// </para>
     /// </remarks>
     [Guid("c53b01a9-7130-4b7f-957d-cdc8672fa6de")]
-    public class ToolWindow1 : ToolWindowPane
+    public class ToolWindow1b : ToolWindowPane
     {
+        public static GeneralOptions GeneralOptions { get; set; }
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolWindow1"/> class.
+        /// Initializes a new instance of the <see cref="ToolWindow1b"/> class.
         /// </summary>
-        public ToolWindow1() : base(null)
+        public ToolWindow1b() : base(null)
         {
             Caption = "League Tables";
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
-            Content = new ToolWindow1Control();
+            Content = new ToolWindow1Control(GeneralOptions);
         }
     }
 }
