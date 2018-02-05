@@ -14,7 +14,6 @@ namespace FootieData.Vsix
             RowHeaderWidth = 0;
             CanUserAddRows = false;
             GridLinesVisibility = DataGridGridLinesVisibility.None;
-            /////////VerticalAlignment = VerticalAlignment.Stretch;
         }
 
         protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)

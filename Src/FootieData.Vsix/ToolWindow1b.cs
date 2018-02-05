@@ -1,6 +1,4 @@
 ﻿using System;
-//using FootieData.Common.Options;
-//using FootieData.Vsix.Options;
 
 namespace FootieData.Vsix
 {
