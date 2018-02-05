@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-             xmlns:local="clr-namespace:FootieData.Wpf"
+             xmlns:vsix="clr-namespace:FootieData.Vsix"
              mc:Ignorable="d">
 
     <!--<StackPanel Orientation="Vertical">
@@ -64,153 +64,153 @@
             <StackPanel Name="StackPanelLeagueMode">
 
                 <Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0001" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_UK1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0001" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_UK1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0001" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_UK1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="UK2_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0012" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_UK2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK2_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0012" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_UK2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK2_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0012" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_UK2" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="UK3_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0002" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_UK3" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK3_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0002" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_UK3" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK3_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0002" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_UK3" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="UK4_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0003" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_UK4" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK4_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0003" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_UK4" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK4_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0003" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_UK4" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="UEFA1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0007" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_UEFA1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UEFA1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0007" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_UEFA1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UEFA1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0007" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_UEFA1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="DE1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0005" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_DE1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="DE1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0005" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_DE1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="DE1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0005" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_DE1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="DE2_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0006" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_DE2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="DE2_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0006" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_DE2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="DE2_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0006" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_DE2" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
-                <Expander Name="ES1_Rand001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0014" Loaded="DataGridLoaded_Any" />
+                <Expander Name="ES1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
+                    <vsix:MyDataGrid x:Name="Standing_ES1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="ES1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0014" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_ES1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="ES1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0014" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_ES1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="FR1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0054" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_FR1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="FR1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0054" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_FR1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="FR1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0054" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_FR1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="FR2_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0064" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_FR2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="FR2_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0064" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_FR2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="FR2_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0064" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_FR2" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="NL1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0053" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_NL1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="NL1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0053" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_NL1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="NL1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0053" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_NL1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="PT1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0052" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_PT1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="PT1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0052" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_PT1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="PT1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0052" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_PT1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="IT1_Rand001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0034" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_IT1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="IT1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0034" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_IT1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="IT1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0034" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_IT1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="IT2_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0044" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_IT2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="IT2_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0044" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_IT2" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="IT2_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0044" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_IT2" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
                 <Expander Name="BR1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Standing_Rand0081" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Standing_BR1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="BR1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Results1_Rand0081" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Results1_BR1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="BR1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
-                    <local:MyDataGrid x:Name="Fixtures_Rand0081" Loaded="DataGridLoaded_Any" />
+                    <vsix:MyDataGrid x:Name="Fixtures_BR1" Loaded="DataGridLoaded_Any" />
                 </Expander>
 
             </StackPanel>

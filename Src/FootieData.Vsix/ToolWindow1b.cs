@@ -1,4 +1,6 @@
-﻿using FootieData.Vsix.Options;
+﻿using System;
+//using FootieData.Common.Options;
+//using FootieData.Vsix.Options;
 
 namespace FootieData.Vsix
 {
@@ -20,7 +22,7 @@ namespace FootieData.Vsix
     [Guid("c53b01a9-7130-4b7f-957d-cdc8672fa6de")]
     public class ToolWindow1b : ToolWindowPane
     {
-        public static GeneralOptions GeneralOptions { get; set; }
+        public static Func<string, string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindow1b"/> class.
@@ -32,7 +34,7 @@ namespace FootieData.Vsix
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
-            Content = new ToolWindow1Control(GeneralOptions);
+            Content = new ToolWindow1Control(GetOptionsFromStoreAndMapToInternalFormatMethod);
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace FootieData.Wpf
+namespace FootieData.Vsix
 {
     public class MyDataGrid : DataGrid
     {
@@ -15,6 +14,7 @@ namespace FootieData.Wpf
             RowHeaderWidth = 0;
             CanUserAddRows = false;
             GridLinesVisibility = DataGridGridLinesVisibility.None;
+            /////////VerticalAlignment = VerticalAlignment.Stretch;
         }
 
         protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)

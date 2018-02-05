@@ -29,6 +29,10 @@ namespace FootieData.Common
                         getDataFromClient = true;
                     }
                 }
+                else
+                {
+                    getDataFromClient = true;
+                }
             }
 
             return getDataFromClient;

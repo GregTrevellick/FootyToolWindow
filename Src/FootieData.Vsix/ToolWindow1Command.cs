@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.Globalization;
-using FootieData.Vsix.Options;
+//using System.Globalization;
+//using FootieData.Vsix.Options;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 

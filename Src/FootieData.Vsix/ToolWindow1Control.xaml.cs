@@ -2,7 +2,6 @@
 using FootieData.Entities.ReferenceData;
 using FootieData.Entities;
 using FootieData.Gateway;
-using FootieData.Vsix.Options;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -17,8 +16,9 @@ namespace FootieData.Vsix
 {
     public partial class ToolWindow1Control : UserControl
     {
+        private int expanderHeight = 150;
         private static WpfHelper _wpfHelper;
-        private static Common.Options.GeneralOptions2 _generalOptions2;
+        public static GeneralOptions2 GeneralOptions2 { get; set; }
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
         private readonly SolidColorBrush _colorDataGridExpanded;
@@ -29,76 +29,24 @@ namespace FootieData.Vsix
         private const string Unavailable = "unavailable at this time - try again later";
         private readonly Style _rightAlignStyle;
 
-        public ToolWindow1Control(GeneralOptions generalOptions)
+        private static Func<string, string> _getOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+
+        public ToolWindow1Control(Func<string, string> getOptionsFromStoreAndMapToInternalFormatMethod)
         {
             InitializeComponent();
-            _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF00"));
+
+            _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00FF00"));
             _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+            _getOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
-            _wpfHelper = new WpfHelper();
-            GetOptions(generalOptions);
-        }
+            _wpfHelper = new WpfHelper();            
 
-        private void GetOptions(GeneralOptions generalOptions)
-        {
-            _generalOptions2 = new GeneralOptions2
-            {
-                LeagueOptions = new List<LeagueOption>
-                {
-                    GetLeagueOption(generalOptions.InterestedInBr1, InternalLeagueCode.BR1),
-                    GetLeagueOption(generalOptions.InterestedInDe1, InternalLeagueCode.DE1),
-                    GetLeagueOption(generalOptions.InterestedInDe2, InternalLeagueCode.DE2),
-                    GetLeagueOption(generalOptions.InterestedInEs1, InternalLeagueCode.ES1),
-                    GetLeagueOption(generalOptions.InterestedInFr1, InternalLeagueCode.FR1),
-                    GetLeagueOption(generalOptions.InterestedInFr2, InternalLeagueCode.FR2),
-                    GetLeagueOption(generalOptions.InterestedInIt1, InternalLeagueCode.IT1),
-                    GetLeagueOption(generalOptions.InterestedInIt2, InternalLeagueCode.IT2),
-                    GetLeagueOption(generalOptions.InterestedInNl1, InternalLeagueCode.NL1),
-                    GetLeagueOption(generalOptions.InterestedInPt1, InternalLeagueCode.PT1),
-                    GetLeagueOption(generalOptions.InterestedInUefa1, InternalLeagueCode.UEFA1),
-                    GetLeagueOption(generalOptions.InterestedInUk1, InternalLeagueCode.UK1),
-                    GetLeagueOption(generalOptions.InterestedInUk2, InternalLeagueCode.UK2),
-                    GetLeagueOption(generalOptions.InterestedInUk3, InternalLeagueCode.UK3),
-                    GetLeagueOption(generalOptions.InterestedInUk4, InternalLeagueCode.UK4),                
-                }
-            };
+            _getOptionsFromStoreAndMapToInternalFormatMethod("not needed - change Func to Action");       
         }
-
-        private static LeagueOption GetLeagueOption(bool interestedIn, InternalLeagueCode internalLeagueCode)
-        {
-            return new LeagueOption
-            {
-                InternalLeagueCode = internalLeagueCode,
-                ShowLeague = interestedIn,
-                LeagueSubOptions = GetLeagueSubOptions()                           
-            };
-        }
-
-        private static List<LeagueSubOption> GetLeagueSubOptions()
-        {
-            return new List<LeagueSubOption>
-            {
-                new LeagueSubOption
-                {
-                    GridType = GridType.Standing,
-                    Expand = true
-                },
-                new LeagueSubOption
-                {
-                    GridType = GridType.Result,
-                    Expand = false
-                },
-                new LeagueSubOption
-                {
-                    GridType = GridType.Fixture,
-                    Expand = false
-                }
-            };
-        }
-
+        
         private FootieDataGateway GetFootieDataGateway()
         {
             return new FootieDataGateway(_competitionResultSingletonInstance);
@@ -109,15 +57,15 @@ namespace FootieData.Vsix
             if (sender is Expander expander)
             {
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
-                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions2.LeagueOptions, internalLeagueCode);
+                var shouldShowLeague = DataGridHelper.ShouldShowLeague(GeneralOptions2.LeagueOptions, internalLeagueCode);
                 if (shouldShowLeague)
                 {
                     expander.Visibility = Visibility.Visible;
-                    expander.Style = (Style)TryFindResource("PlusMinusExpander");
+                    expander.Style = GetExpanderStandingStyle();
                 }
                 else
                 {
-                    expander.Visibility = Visibility.Collapsed;
+                    HideExpander(expander);
                 }
             }
             else
@@ -141,12 +89,12 @@ namespace FootieData.Vsix
                 var gridType = _wpfHelper.GetGridType(dataGrid.Name);
                 var parentExpanderName = parentExpander.Name;
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
-                var shouldShowLeague = DataGridHelper.ShouldShowLeague(_generalOptions2.LeagueOptions, internalLeagueCode);
+                var shouldShowLeague = DataGridHelper.ShouldShowLeague(GeneralOptions2.LeagueOptions, internalLeagueCode);
                 parentExpander.Header = LeagueMapping.LeagueDtos.First(x => x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
                 var internalToExternalMappingExists = _leagueDtosSingletonInstance.LeagueDtos.Any(x => x.InternalLeagueCode == internalLeagueCode);
                 var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
                     .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-                var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(_generalOptions2.LeagueOptions, internalLeagueCode, gridType);
+                var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
 
                 if (shouldExpandGrid || manuallyExpanded)
                 {
@@ -311,32 +259,6 @@ namespace FootieData.Vsix
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
 
-        private void Click_HardcodedHandlerRefresh(object sender, RoutedEventArgs e)
-        {
-            //gregt GetOptions();
-
-            var dataGridStanding = DataGridHelper.FindChild<DataGrid>(Application.Current.MainWindow, "Standing_Rand0001");
-            if (dataGridStanding != null && dataGridStanding.IsVisible)
-            {
-                DataGridLoaded_Any(dataGridStanding, null);
-                dataGridStanding.AlternatingRowBackground = _colorRefreshed;
-            }
-
-            var dataGridResult = DataGridHelper.FindChild<DataGrid>(Application.Current.MainWindow, "Results1_Rand0001");
-            if (dataGridResult != null && dataGridResult.IsVisible)
-            {
-                DataGridLoaded_Any(dataGridResult, null);
-                dataGridResult.AlternatingRowBackground = _colorRefreshed;
-            }
-
-            var dataGridFixture = DataGridHelper.FindChild<DataGrid>(Application.Current.MainWindow, "Fixtures_Rand0001");
-            if (dataGridFixture != null && dataGridFixture.IsVisible)
-            {
-                DataGridLoaded_Any(dataGridFixture, null);
-                dataGridFixture.AlternatingRowBackground = _colorRefreshed;
-            }
-        }
-
         private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
         {
             if (sender is Expander expander)
@@ -358,30 +280,118 @@ namespace FootieData.Vsix
             }
         }
 
+        private void Click_HardcodedHandlerRefresh(object sender, RoutedEventArgs e)
+        {
+            _getOptionsFromStoreAndMapToInternalFormatMethod("not needed - change Func to Action");
 
-        //private void DataGridLoaded_BL1(object sender, RoutedEventArgs e)
-        //{
-        //    GetLeagueData(sender, "BL1");
-        //}
+            foreach (var leagueOption in GeneralOptions2.LeagueOptions)
+            {
+                var expanderStanding = DataGridHelper.FindChild<Expander>(Application.Current.MainWindow, leagueOption.InternalLeagueCode + "_Rand0001");
+                var expanderResult = DataGridHelper.FindChild<Expander>(Application.Current.MainWindow, leagueOption.InternalLeagueCode + "_Rand0002");
+                var expanderFixture = DataGridHelper.FindChild<Expander>(Application.Current.MainWindow, leagueOption.InternalLeagueCode + "_Rand0003");
 
-        //private void DataGridLoaded_BL2(object sender, RoutedEventArgs e)
-        //{
-        //    GetLeagueData(sender, "BL2");
-        //}
+                if (leagueOption.ShowLeague)
+                {                    
+                    PrepareExpander(expanderStanding);
+                    PrepareExpander(expanderResult);
+                    PrepareExpander(expanderFixture);
+                    
+                    expanderStanding.IsExpanded = true;
 
-        //private void DataGridLoaded_PL(object sender, RoutedEventArgs e)
-        //{
-        //    GetLeagueData(sender, "PL");
-        //}
+                    var dataGridStanding = GetDataGrid(leagueOption, "Standing_");
+                    var dataGridResult = GetDataGrid(leagueOption, "Results1_");
+                    var dataGridFixture = GetDataGrid(leagueOption, "Fixtures_");
 
-        //private void GetLeagueData(object sender, string leagueIdentifier)
-        //{
-        //    var leagueResponse = _gateway.GetFromClientStandings(leagueIdentifier);
+                    if (dataGridStanding == null)
+                    {
+                        dataGridStanding = GetMyDataGrid(leagueOption, "Standing_");
+                    }
+                    if (dataGridResult == null)
+                    {
+                        dataGridResult = GetMyDataGrid(leagueOption, "Results1_");
+                    }
+                    if (dataGridFixture == null)
+                    {
+                        dataGridFixture = GetMyDataGrid(leagueOption, "Fixtures_");
+                    }
 
-        //    var grid = sender as DataGrid;
-        //    //grid.ItemsSource = leagueResponse.Result.Standings;
-        //    grid.ItemsSource = leagueResponse;//.Standings;
-        //    grid.GridLinesVisibility = DataGridGridLinesVisibility.None;
-        //}
+                    PrepareDataGrid(dataGridStanding);
+                    PrepareDataGrid(dataGridResult);
+                    PrepareDataGrid(dataGridFixture);
+                 
+                    //ADD DATAGRID TO EXPANDER
+                    expanderStanding.Content = dataGridStanding;
+                    expanderResult.Content = dataGridResult;
+                    expanderFixture.Content = dataGridFixture;
+                }
+                else
+                {
+                    if (expanderStanding != null)
+                    {
+                        HideExpander(expanderStanding);
+                    }
+                    if (expanderResult != null)
+                    {
+                        HideExpander(expanderResult);
+                    }
+                    if (expanderFixture != null)
+                    {
+                        HideExpander(expanderFixture);
+                    }
+                }
+            }
+        }
+
+        private void PrepareExpander(Expander expander)
+        {
+            expander.Visibility = Visibility.Visible;
+            expander.Style = GetExpanderStandingStyle();            
+            expander.Height = expanderHeight;
+        }
+
+        private void PrepareDataGrid(DataGrid dataGrid)
+        {
+            SetDataGridLoadedEventHandler(dataGrid);
+            DataGridLoaded_Any(dataGrid, null);
+            SetAlternatingRowBackground(dataGrid);
+        }
+
+        private void SetDataGridLoadedEventHandler(DataGrid dataGrid)
+        {
+            dataGrid.Loaded += DataGridLoaded_Any;
+        }
+
+        private void SetAlternatingRowBackground(DataGrid dataGrid)
+        {
+            dataGrid.AlternatingRowBackground = _colorRefreshed;
+        }
+
+        private static void HideExpander(Expander expander)
+        {
+            expander.Visibility = Visibility.Hidden;
+            expander.Height = 0;
+        }
+
+        private static MyDataGrid GetMyDataGrid(LeagueOption leagueOption, string dataGridPrefix)
+        {
+            var dataGridStanding = new MyDataGrid
+            {
+                Height = 250,
+                Name = dataGridPrefix + leagueOption.InternalLeagueCode,
+                Visibility = Visibility.Visible,
+            };
+            return dataGridStanding;
+        }
+
+        private static MyDataGrid GetDataGrid(LeagueOption leagueOption, string dataGridPrefix)
+        {
+            var dataGridStanding = DataGridHelper.FindChild<MyDataGrid>(Application.Current.MainWindow, dataGridPrefix + leagueOption.InternalLeagueCode);
+            return dataGridStanding;
+        }
+
+        private Style GetExpanderStandingStyle()
+        {
+            return (Style)TryFindResource("PlusMinusExpander");
+        }
     }
 }

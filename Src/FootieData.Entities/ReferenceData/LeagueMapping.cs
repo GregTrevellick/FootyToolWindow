@@ -23,7 +23,7 @@ namespace FootieData.Entities.ReferenceData
         public static readonly IEnumerable<LeagueDto> LeagueDtos =
             new List<LeagueDto>
             {
-                GetLeagueDto(InternalLeagueCode.BR1,InternalLeagueCodeDescriptionUk1,ExternalLeagueCode.BSA,"Campeonato Brasileiro da Série A",444),
+                GetLeagueDto(InternalLeagueCode.BR1,InternalLeagueCodeDescriptionBr1,ExternalLeagueCode.BSA,"Campeonato Brasileiro da Série A",444),
                 GetLeagueDto(InternalLeagueCode.DE1,InternalLeagueCodeDescriptionDe1,ExternalLeagueCode.BL1,"Germany 1. Bundesliga",452),
                 GetLeagueDto(InternalLeagueCode.DE2,InternalLeagueCodeDescriptionDe2,ExternalLeagueCode.BL2,"Germany 2. Bundesliga",453),
                 GetLeagueDto(InternalLeagueCode.ES1,InternalLeagueCodeDescriptionEs1,ExternalLeagueCode.PD,"Spain Primera Division",455),
