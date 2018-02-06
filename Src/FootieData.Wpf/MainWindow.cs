@@ -225,7 +225,7 @@ namespace FootieData.Wpf
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
 
-        private void Click_HardcodedHandlerRefresh(object sender, RoutedEventArgs e)
+        private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
         {
             GetOptions();
 

@@ -16,7 +16,7 @@
         <StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Button Content="Hardcoded refresh" Click="Click_HardcodedHandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0"/>
+                <Button Content="Refresh" Click="Click_HandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0"/>
                 <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right" Name="BtnLeagueMode"/>
                 <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right" Name="BtnBossMode" Visibility="Collapsed" />
             </StackPanel>
