@@ -52,74 +52,8 @@ namespace FootieData.Vsix
             return new FootieDataGateway(_competitionResultSingletonInstance);
         }
 
-        ////////////////////private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
-        ////////////////////{
-        ////////////////////    if (sender is DataGrid dataGrid)
-        ////////////////////    {
-        ////////////////////        DataGridLoadedAsync(dataGrid, false);
-        ////////////////////    }
-        ////////////////////}
-        //private async void DataGridLoadedAsync(DataGrid dataGrid, bool manuallyExpanded)
-        //{
-        //    if (dataGrid.Parent is Expander parentExpander)
-        //    {
-        //        var gridType = _wpfHelper.GetGridType(dataGrid.Name);
-        //        var parentExpanderName = parentExpander.Name;
-        //        var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
-        //        var shouldShowLeague = DataGridHelper.ShouldShowLeague(GeneralOptions2.LeagueOptions, internalLeagueCode);
-        //        parentExpander.Header = LeagueMapping.LeagueDtos.First(x => x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
-        //        var internalToExternalMappingExists = _leagueDtosSingletonInstance.LeagueDtos.Any(x => x.InternalLeagueCode == internalLeagueCode);
-        //        var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
-        //            .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-        //        var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
-        //        if (shouldExpandGrid || manuallyExpanded)
-        //        {
-        //            parentExpander.IsExpanded = true;
-        //            var getDataFromClient = DataGridHelper.GetDataFromClient(dataGrid);
-        //            if (getDataFromClient)
-        //            {
-        //                try
-        //                {
-        //                    switch (gridType)
-        //                    {
-        //                        case GridType.Standing:
-        //                            var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
-        //                            /////////////var standings = GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode);
-        //                            dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-        //                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
-        //                            break;
-        //                        case GridType.Result:
-        //                            var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call finished
-        //                            /////////////var results = GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode);
-        //                            dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
-        //                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
-        //                            break;
-        //                        case GridType.Fixture:
-        //                            var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
-        //                            /////////////var fixtures = GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode);
-        //                            dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
-        //                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
-        //                            break;
-        //                    }
-        //                    DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    parentExpander.Header = "DataGridLoaded_Any internal error " + gridType;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         private async void DataGridLoadedAsync(DataGrid dataGrid, bool manuallyExpanded, InternalLeagueCode internalLeagueCode, GridType gridType)
         {         
-            ////////////////////////////////////////var gridType = _wpfHelper.GetGridType(dataGrid.Name);
-            ///////////////var parentExpanderName = parentExpander.Name;
-            ///////////////var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
-            //var shouldShowLeague = DataGridHelper.ShouldShowLeague(GeneralOptions2.LeagueOptions, internalLeagueCode);
-            ///////////////parentExpander.Header = LeagueMapping.LeagueDtos.First(x => x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
-            //var internalToExternalMappingExists = _leagueDtosSingletonInstance.LeagueDtos.Any(x => x.InternalLeagueCode == internalLeagueCode);
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
                 .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
             var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
@@ -238,28 +172,6 @@ namespace FootieData.Vsix
             StackPanelBossMode.Visibility = Visibility.Collapsed;
         }
 
-        private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
-        {
-            if (sender is Expander expander)
-            {
-                if (expander.Content is DataGrid dataGrid)
-                {
-                    var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
-
-                    if (shouldGetDataFromClient)
-                    {
-                        var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
-                        DataGridLoadedAsync(dataGrid, true, internalLeagueCode, GridType.Standing);//gregt GridType.Standing
-                        dataGrid.AlternatingRowBackground = _colorDataGridExpanded;
-                    }
-                }
-            }
-            else
-            {
-                Logger.Log("Internal error 1002 - sender is not Expander");
-            }
-        }
-
         private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
         {
             PopulateUi();
@@ -309,6 +221,32 @@ namespace FootieData.Vsix
             expander.Header = expanderName;
             //gregt expander.IsExpanded =
             expander.Expanded += ExpanderAny_OnExpanded;
+        }
+
+        private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            if (sender is Expander expander)
+            {
+                if (expander.Content is DataGrid dataGrid)
+                {
+                    var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
+
+                    if (shouldGetDataFromClient)
+                    {
+                        var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
+                        DataGridLoadedAsync(dataGrid, true, internalLeagueCode, GridType.Standing);//gregt GridType.Standing
+                        dataGrid.AlternatingRowBackground = _colorDataGridExpanded;
+                    }
+                }
+                else
+                {
+                    //gregt create a data grid ???
+                }
+            }
+            else
+            {
+                Logger.Log("Internal error 1002 - sender is not Expander");
+            }
         }
 
         private MyDataGrid GetMyDataGrid(LeagueOption leagueOption, GridType gridType)
@@ -440,3 +378,64 @@ namespace FootieData.Vsix
 //////////////////////////////////////////////////        HideExpander(expanderFixture);
 //////////////////////////////////////////////////    }
 //////////////////////////////////////////////////}
+
+
+////////////////////private void DataGridLoaded_Any(object sender, RoutedEventArgs e)
+////////////////////{
+////////////////////    if (sender is DataGrid dataGrid)
+////////////////////    {
+////////////////////        DataGridLoadedAsync(dataGrid, false);
+////////////////////    }
+////////////////////}
+//private async void DataGridLoadedAsync(DataGrid dataGrid, bool manuallyExpanded)
+//{
+//    if (dataGrid.Parent is Expander parentExpander)
+//    {
+//        var gridType = _wpfHelper.GetGridType(dataGrid.Name);
+//        var parentExpanderName = parentExpander.Name;
+//        var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, parentExpanderName);
+//        var shouldShowLeague = DataGridHelper.ShouldShowLeague(GeneralOptions2.LeagueOptions, internalLeagueCode);
+//        parentExpander.Header = LeagueMapping.LeagueDtos.First(x => x.InternalLeagueCode == internalLeagueCode).InternalLeagueCodeDescription + " " + WpfHelper.GetDescription(gridType);
+//        var internalToExternalMappingExists = _leagueDtosSingletonInstance.LeagueDtos.Any(x => x.InternalLeagueCode == internalLeagueCode);
+//        var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
+//            .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
+//        var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
+//        if (shouldExpandGrid || manuallyExpanded)
+//        {
+//            parentExpander.IsExpanded = true;
+//            var getDataFromClient = DataGridHelper.GetDataFromClient(dataGrid);
+//            if (getDataFromClient)
+//            {
+//                try
+//                {
+//                    switch (gridType)
+//                    {
+//                        case GridType.Standing:
+//                            var standings = await GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
+//                            /////////////var standings = GetStandingsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode);
+//                            dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+//                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
+//                            break;
+//                        case GridType.Result:
+//                            var results = await GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call finished
+//                            /////////////var results = GetFixturePastsAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode);
+//                            dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
+//                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+//                            break;
+//                        case GridType.Fixture:
+//                            var fixtures = await GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode); //wont run til web service call has finished
+//                            /////////////var fixtures = GetFixtureFuturesAsync(shouldShowLeague, internalToExternalMappingExists, externalLeagueCode);
+//                            dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
+//                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+//                            break;
+//                    }
+//                    DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
+//                }
+//                catch (Exception ex)
+//                {
+//                    parentExpander.Header = "DataGridLoaded_Any internal error " + gridType;
+//                }
+//            }
+//        }
+//    }
+//}
