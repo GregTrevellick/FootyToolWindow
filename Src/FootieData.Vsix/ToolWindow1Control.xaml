@@ -63,7 +63,7 @@
 
             <StackPanel Name="StackPanelLeagueMode">
 
-                <Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
+                <!--<Expander Name="UK1_Rand0001" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
                     <vsix:MyDataGrid x:Name="Standing_UK1" Loaded="DataGridLoaded_Any" />
                 </Expander>
                 <Expander Name="UK1_Rand0002" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
@@ -211,7 +211,7 @@
                 </Expander>
                 <Expander Name="BR1_Rand0003" Loaded="ExpanderLoaded_Any" Expanded="ExpanderAny_OnExpanded" >
                     <vsix:MyDataGrid x:Name="Fixtures_BR1" Loaded="DataGridLoaded_Any" />
-                </Expander>
+                </Expander>-->
 
             </StackPanel>
 
