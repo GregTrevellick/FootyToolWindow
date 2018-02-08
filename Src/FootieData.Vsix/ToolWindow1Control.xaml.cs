@@ -6,6 +6,7 @@ using FootieData.Gateway;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,11 +18,9 @@ namespace FootieData.Vsix
     public partial class ToolWindow1Control : UserControl
     {
         private int expanderHeight = 100;
-        private static WpfHelper _wpfHelper;
         public static GeneralOptions2 GeneralOptions2 { get; set; }
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly SolidColorBrush _colorRefreshed;
-        private readonly SolidColorBrush _colorDataGridExpanded;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
@@ -36,13 +35,11 @@ namespace FootieData.Vsix
             InitializeComponent();
 
             _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00FF00"));
-            _colorDataGridExpanded = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF000"));
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
             GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
-            _wpfHelper = new WpfHelper();
 
             PopulateUi();
         }
@@ -52,45 +49,84 @@ namespace FootieData.Vsix
             return new FootieDataGateway(_competitionResultSingletonInstance);
         }
 
-        private async void DataGridLoadedAsync(DataGrid dataGrid, bool manuallyExpanded, InternalLeagueCode internalLeagueCode, GridType gridType)
+        private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            if (sender is Expander expander)
+            {
+
+
+
+
+                //gregt 
+                //gregt 
+                //gregt 
+                var gridType = GridType.Standing;
+                var internalLeagueCode = InternalLeagueCode.BR1;// = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
+                //gregt 
+                //gregt 
+                //gregt 
+
+
+
+
+
+                if (expander.Content is DataGrid dataGrid)
+                {
+                    var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
+
+                    if (shouldGetDataFromClient)
+                    {
+                        DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
+                    }
+                }
+                else
+                {
+                    dataGrid = GetMyDataGrid(internalLeagueCode, gridType);
+                    expander.Content = dataGrid;
+                }
+            }
+            else
+            {
+                Logger.Log("Internal error 1002 - sender is not Expander");
+            }
+        }
+
+        private async void DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)//bool manuallyExpanded
         {         
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
                 .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-            var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
+           //var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
 
-            if (shouldExpandGrid || manuallyExpanded)
+            var getDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
+
+            if (getDataFromClient)
             {
-                var getDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
-
-                if (getDataFromClient)
+                try
                 {
-                    try
+                    switch (gridType)
                     {
-                        switch (gridType)
-                        {
-                            case GridType.Standing:
-                                var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
-                                dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
-                                break;
-                            case GridType.Result:
-                                var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
-                                dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
-                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
-                                break;
-                            case GridType.Fixture:
-                                var fixtures = await GetFixtureFuturesAsync(externalLeagueCode); //wont run til web service call has finished
-                                dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
-                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
-                                break;
-                        }
+                        case GridType.Standing:
+                            var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
+                            dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
+                            break;
+                        case GridType.Result:
+                            var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
+                            dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
+                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                            break;
+                        case GridType.Fixture:
+                            var fixtures = await GetFixtureFuturesAsync(externalLeagueCode); //wont run til web service call has finished
+                            dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
+                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                            break;
+                    }
 
-                        DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
-                    }
-                    catch (Exception ex)
-                    {
-                        //gregt   parentExpander.Header = "DataGridLoaded_Any internal error " + gridType;
-                    }
+                    DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
+                }
+                catch (Exception ex)
+                {
+                    //gregt   parentExpander.Header = "DataGridLoaded_Any internal error " + gridType;
                 }
             }
         }
@@ -187,28 +223,21 @@ namespace FootieData.Vsix
             {
                 if (leagueOption.ShowLeague)
                 {
-                    var expanderStanding = new Expander { Name = leagueOption.InternalLeagueCode + "_Rand0001" };
-                    var expanderResult = new Expander { Name = leagueOption.InternalLeagueCode + "_Rand0002" };
-                    var expanderFixture = new Expander { Name = leagueOption.InternalLeagueCode + "_Rand0003" };
+                    foreach (var leagueSubOption in leagueOption.LeagueSubOptions)
+                    {
+                        var expander = new Expander();
 
-                    PrepareExpander(expanderStanding, leagueOption.InternalLeagueCode.ToString() + "");
-                    PrepareExpander(expanderResult, leagueOption.InternalLeagueCode + " results");
-                    PrepareExpander(expanderFixture, leagueOption.InternalLeagueCode + " fixtures");
+                        PrepareExpander(expander, leagueOption.InternalLeagueCode + " " + leagueSubOption.GridType);
 
-                    expanderStanding.IsExpanded = true;
+                        if (leagueSubOption.Expand)
+                        {
+                            expander.IsExpanded = true;
+                            var dataGrid = GetMyDataGrid(leagueOption.InternalLeagueCode, leagueSubOption.GridType);
+                            expander.Content = dataGrid;
+                        }
 
-                    var dataGridStanding = GetMyDataGrid(leagueOption, GridType.Standing);
-                    var dataGridResult = GetMyDataGrid(leagueOption, GridType.Result);
-                    var dataGridFixture = GetMyDataGrid(leagueOption, GridType.Fixture);
-
-                    //ADD DATAGRID TO EXPANDER
-                    expanderStanding.Content = dataGridStanding;
-                    expanderResult.Content = dataGridResult;
-                    expanderFixture.Content = dataGridFixture;
-
-                    StackPanelLeagueMode.Children.Add(expanderStanding);
-                    StackPanelLeagueMode.Children.Add(expanderResult);
-                    StackPanelLeagueMode.Children.Add(expanderFixture);
+                        StackPanelLeagueMode.Children.Add(expander);
+                    }                                        
                 }
             }
         }
@@ -219,52 +248,26 @@ namespace FootieData.Vsix
             expander.Style = (Style)TryFindResource("PlusMinusExpander");            
             expander.Height = expanderHeight;
             expander.Header = expanderName;
-            //gregt expander.IsExpanded =
             expander.Expanded += ExpanderAny_OnExpanded;
         }
 
-        private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
-        {
-            if (sender is Expander expander)
-            {
-                if (expander.Content is DataGrid dataGrid)
-                {
-                    var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
-
-                    if (shouldGetDataFromClient)
-                    {
-                        var internalLeagueCode = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
-                        DataGridLoadedAsync(dataGrid, true, internalLeagueCode, GridType.Standing);//gregt GridType.Standing
-                        dataGrid.AlternatingRowBackground = _colorDataGridExpanded;
-                    }
-                }
-                else
-                {
-                    //gregt create a data grid ???
-                }
-            }
-            else
-            {
-                Logger.Log("Internal error 1002 - sender is not Expander");
-            }
-        }
-
-        private MyDataGrid GetMyDataGrid(LeagueOption leagueOption, GridType gridType)
+        private MyDataGrid GetMyDataGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
         {
             var dataGrid = new MyDataGrid
             {
                 Height = 150,
-                Name = leagueOption.InternalLeagueCode + gridType.ToString(),
+                Name = internalLeagueCode + gridType.ToString(),
                 Visibility = Visibility.Visible,
                 AlternatingRowBackground = _colorRefreshed
             };
 
-            DataGridLoadedAsync(dataGrid, false, leagueOption.InternalLeagueCode, gridType);
+            DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
 
             return dataGrid;
         }
     }
 }
+
 
 
 
