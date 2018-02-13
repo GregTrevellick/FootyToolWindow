@@ -6,21 +6,17 @@ using FootieData.Gateway;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace FootieData.Vsix
 {
     public partial class ToolWindow1Control : UserControl
     {
-        private int expanderHeight = 100;
         public static GeneralOptions2 GeneralOptions2 { get; set; }
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
-        private readonly SolidColorBrush _colorRefreshed;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
@@ -34,7 +30,6 @@ namespace FootieData.Vsix
         {
             InitializeComponent();
 
-            _colorRefreshed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00FF00"));
             _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
             GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
@@ -234,7 +229,6 @@ namespace FootieData.Vsix
             expander.Name = internalLeagueCode + "_" + gridType;
             expander.Visibility = Visibility.Visible;
             expander.Style = (Style)TryFindResource("PlusMinusExpander");            
-            expander.Height = expanderHeight;
             expander.Header = internalLeagueCode + "_" + gridType;
             expander.Expanded += ExpanderAny_OnExpanded;
         }
@@ -243,10 +237,8 @@ namespace FootieData.Vsix
         {
             var dataGrid = new MyDataGrid
             {
-                Height = 150,
                 Name = internalLeagueCode + gridType.ToString(),
                 Visibility = Visibility.Visible,
-                AlternatingRowBackground = _colorRefreshed
             };
 
             DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
