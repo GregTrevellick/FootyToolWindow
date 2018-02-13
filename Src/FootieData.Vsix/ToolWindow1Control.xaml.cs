@@ -58,8 +58,8 @@ namespace FootieData.Vsix
                 //gregt 
                 //gregt 
                 //gregt 
-                var gridType = GridType.Standing;
                 var wpfHelper = new WpfHelper();
+                var gridType = WpfHelper.GetGridType(wpfHelper, expander.Name);
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(wpfHelper, expander.Name);
                 //gregt 
                 //gregt 

@@ -40,6 +40,13 @@ namespace FootieData.Common
             return internalLeagueCodeString;
         }
 
+        public string GetGridTypeString(string expanderName)
+        {
+            var underscorePosition = expanderName.IndexOf('_');
+            var gridTypeString = expanderName.Substring(underscorePosition, expanderName.Length - underscorePosition).Replace("_", "");
+            return gridTypeString;
+        }
+
         public GridType GetGridType(string gridName)
         {
             GridType gridType = 0;
@@ -70,6 +77,13 @@ namespace FootieData.Common
         {
             var internalLeagueCodeString = wpfHelper.GetInternalLeagueCodeString(expanderName);
             return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
-        }        
+        }
+
+
+        public static GridType GetGridType(WpfHelper wpfHelper, string expanderName)
+        {
+            var gridTypeString = wpfHelper.GetGridTypeString(expanderName);
+            return (GridType)Enum.Parse(typeof(GridType), gridTypeString);
+        }
     }
 }
