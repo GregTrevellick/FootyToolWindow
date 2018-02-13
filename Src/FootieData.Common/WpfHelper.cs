@@ -79,7 +79,6 @@ namespace FootieData.Common
             return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
         }
 
-
         public static GridType GetGridType(WpfHelper wpfHelper, string expanderName)
         {
             var gridTypeString = wpfHelper.GetGridTypeString(expanderName);
