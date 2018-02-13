@@ -55,13 +55,12 @@ namespace FootieData.Vsix
             {
 
 
-
-
                 //gregt 
                 //gregt 
                 //gregt 
                 var gridType = GridType.Standing;
-                var internalLeagueCode = InternalLeagueCode.BR1;// = WpfHelper.GetInternalLeagueCode(_wpfHelper, expander.Name);
+                var wpfHelper = new WpfHelper();
+                var internalLeagueCode = WpfHelper.GetInternalLeagueCode(wpfHelper, expander.Name);
                 //gregt 
                 //gregt 
                 //gregt 
@@ -227,7 +226,7 @@ namespace FootieData.Vsix
                     {
                         var expander = new Expander();
 
-                        PrepareExpander(expander, leagueOption.InternalLeagueCode + " " + leagueSubOption.GridType);
+                        PrepareExpander(expander, leagueOption.InternalLeagueCode, leagueSubOption.GridType);
 
                         if (leagueSubOption.Expand)
                         {
@@ -242,12 +241,13 @@ namespace FootieData.Vsix
             }
         }
 
-        private void PrepareExpander(Expander expander, string expanderName)
+        private void PrepareExpander(Expander expander, InternalLeagueCode internalLeagueCode, GridType gridType)
         {
+            expander.Name = internalLeagueCode + "_" + gridType;
             expander.Visibility = Visibility.Visible;
             expander.Style = (Style)TryFindResource("PlusMinusExpander");            
             expander.Height = expanderHeight;
-            expander.Header = expanderName;
+            expander.Header = internalLeagueCode + "_" + gridType;
             expander.Expanded += ExpanderAny_OnExpanded;
         }
 
