@@ -48,9 +48,8 @@ namespace FootieData.Vsix
         {
             if (sender is Expander expander)
             {
-                var wpfHelper = new WpfHelper();
-                var gridType = WpfHelper.GetGridType(wpfHelper, expander.Name);
-                var internalLeagueCode = WpfHelper.GetInternalLeagueCode(wpfHelper, expander.Name);
+                var gridType = WpfHelper.GetGridType(expander.Name);
+                var internalLeagueCode = WpfHelper.GetInternalLeagueCode(expander.Name);
 
                 if (expander.Content is DataGrid dataGrid)
                 {

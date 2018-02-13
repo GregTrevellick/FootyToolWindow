@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using FootieData.Common.Options;
+﻿using FootieData.Common.Options;
 using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace FootieData.Common
 {

@@ -33,55 +33,55 @@ namespace FootieData.Common
             return "Error001";
         }
 
-        public string GetInternalLeagueCodeString(string expanderName)
+        private static string GetInternalLeagueCodeString(string expanderName)
         {
             var underscorePosition = expanderName.IndexOf('_');
             var internalLeagueCodeString = expanderName.Substring(0, underscorePosition).Replace("_", "");
             return internalLeagueCodeString;
         }
 
-        public string GetGridTypeString(string expanderName)
+        private static string GetGridTypeString(string expanderName)
         {
             var underscorePosition = expanderName.IndexOf('_');
             var gridTypeString = expanderName.Substring(underscorePosition, expanderName.Length - underscorePosition).Replace("_", "");
             return gridTypeString;
         }
 
-        public GridType GetGridType(string gridName)
+        //public GridType GetGridType(string gridName)
+        //{
+        //    GridType gridType = 0;
+
+        //    if (gridName.StartsWith("Standing"))
+        //    {
+        //        gridType = GridType.Standing;
+        //    }
+        //    else
+        //    {
+        //        if (gridName.StartsWith("Results1"))
+        //        {
+        //            gridType = GridType.Result;
+        //        }
+        //        else
+        //        {
+        //            if (gridName.StartsWith("Fixtures"))
+        //            {
+        //                gridType = GridType.Fixture;
+        //            }
+        //        }
+        //    }
+
+        //    return gridType;
+        //}
+
+        public static InternalLeagueCode GetInternalLeagueCode(string expanderName)
         {
-            GridType gridType = 0;
-
-            if (gridName.StartsWith("Standing"))
-            {
-                gridType = GridType.Standing;
-            }
-            else
-            {
-                if (gridName.StartsWith("Results1"))
-                {
-                    gridType = GridType.Result;
-                }
-                else
-                {
-                    if (gridName.StartsWith("Fixtures"))
-                    {
-                        gridType = GridType.Fixture;
-                    }
-                }
-            }
-
-            return gridType;
-        }
-
-        public static InternalLeagueCode GetInternalLeagueCode(WpfHelper wpfHelper, string expanderName)
-        {
-            var internalLeagueCodeString = wpfHelper.GetInternalLeagueCodeString(expanderName);
+            var internalLeagueCodeString = GetInternalLeagueCodeString(expanderName);
             return (InternalLeagueCode)Enum.Parse(typeof(InternalLeagueCode), internalLeagueCodeString);
         }
 
-        public static GridType GetGridType(WpfHelper wpfHelper, string expanderName)
+        public static GridType GetGridType(string expanderName)
         {
-            var gridTypeString = wpfHelper.GetGridTypeString(expanderName);
+            var gridTypeString = GetGridTypeString(expanderName);
             return (GridType)Enum.Parse(typeof(GridType), gridTypeString);
         }
     }
