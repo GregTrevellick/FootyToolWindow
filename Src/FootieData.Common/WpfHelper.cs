@@ -47,32 +47,6 @@ namespace FootieData.Common
             return gridTypeString;
         }
 
-        //public GridType GetGridType(string gridName)
-        //{
-        //    GridType gridType = 0;
-
-        //    if (gridName.StartsWith("Standing"))
-        //    {
-        //        gridType = GridType.Standing;
-        //    }
-        //    else
-        //    {
-        //        if (gridName.StartsWith("Results1"))
-        //        {
-        //            gridType = GridType.Result;
-        //        }
-        //        else
-        //        {
-        //            if (gridName.StartsWith("Fixtures"))
-        //            {
-        //                gridType = GridType.Fixture;
-        //            }
-        //        }
-        //    }
-
-        //    return gridType;
-        //}
-
         public static InternalLeagueCode GetInternalLeagueCode(string expanderName)
         {
             var internalLeagueCodeString = GetInternalLeagueCodeString(expanderName);
