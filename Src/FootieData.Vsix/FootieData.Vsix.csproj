@@ -88,6 +88,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\VsixExtensionPreview_16x16.png" />
+    <Content Include="Resources\VsixExtensionPreview_175x175.png" />
+    <Content Include="Resources\VsixExtensionPreview_90x90.png" />
     <Resource Include="Assets\closed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

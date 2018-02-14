@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using FootieData.Common.Options;
 using FootieData.Entities.ReferenceData;
 
 namespace FootieData.Common
@@ -57,6 +58,38 @@ namespace FootieData.Common
         {
             var gridTypeString = GetGridTypeString(expanderName);
             return (GridType)Enum.Parse(typeof(GridType), gridTypeString);
+        }
+
+        public static LeagueOption GetLeagueOption(bool interestedIn, InternalLeagueCode internalLeagueCode)
+        {
+            return new LeagueOption
+            {
+                InternalLeagueCode = internalLeagueCode,
+                ShowLeague = interestedIn,
+                LeagueSubOptions = WpfHelper.GetLeagueSubOptions()
+            };
+        }
+
+        private static List<LeagueSubOption> GetLeagueSubOptions()
+        {
+            return new List<LeagueSubOption>
+            {
+                new LeagueSubOption
+                {
+                    GridType = GridType.Standing,
+                    Expand = true
+                },
+                new LeagueSubOption
+                {
+                    GridType = GridType.Result,
+                    Expand = false
+                },
+                new LeagueSubOption
+                {
+                    GridType = GridType.Fixture,
+                    Expand = false
+                }
+            };
         }
     }
 }

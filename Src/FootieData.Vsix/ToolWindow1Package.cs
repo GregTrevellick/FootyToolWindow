@@ -47,53 +47,21 @@ namespace FootieData.Vsix
             {
                 LeagueOptions = new List<LeagueOption>
                 {
-                    GetLeagueOption(generalOptions.InterestedInBr1, InternalLeagueCode.BR1),
-                    GetLeagueOption(generalOptions.InterestedInDe1, InternalLeagueCode.DE1),
-                    GetLeagueOption(generalOptions.InterestedInDe2, InternalLeagueCode.DE2),
-                    GetLeagueOption(generalOptions.InterestedInEs1, InternalLeagueCode.ES1),
-                    GetLeagueOption(generalOptions.InterestedInFr1, InternalLeagueCode.FR1),
-                    GetLeagueOption(generalOptions.InterestedInFr2, InternalLeagueCode.FR2),
-                    GetLeagueOption(generalOptions.InterestedInIt1, InternalLeagueCode.IT1),
-                    GetLeagueOption(generalOptions.InterestedInIt2, InternalLeagueCode.IT2),
-                    GetLeagueOption(generalOptions.InterestedInNl1, InternalLeagueCode.NL1),
-                    GetLeagueOption(generalOptions.InterestedInPt1, InternalLeagueCode.PT1),
-                    GetLeagueOption(generalOptions.InterestedInUefa1, InternalLeagueCode.UEFA1),
-                    GetLeagueOption(generalOptions.InterestedInUk1, InternalLeagueCode.UK1),
-                    GetLeagueOption(generalOptions.InterestedInUk2, InternalLeagueCode.UK2),
-                    GetLeagueOption(generalOptions.InterestedInUk3, InternalLeagueCode.UK3),
-                    GetLeagueOption(generalOptions.InterestedInUk4, InternalLeagueCode.UK4),
-                }
-            };
-        }
-
-        private static LeagueOption GetLeagueOption(bool interestedIn, InternalLeagueCode internalLeagueCode)
-        {
-            return new LeagueOption
-            {
-                InternalLeagueCode = internalLeagueCode,
-                ShowLeague = interestedIn,
-                LeagueSubOptions = GetLeagueSubOptions()
-            };
-        }
-
-        private static List<LeagueSubOption> GetLeagueSubOptions()
-        {
-            return new List<LeagueSubOption>
-            {
-                new LeagueSubOption
-                {
-                    GridType = GridType.Standing,
-                    Expand = true
-                },
-                new LeagueSubOption
-                {
-                    GridType = GridType.Result,
-                    Expand = false
-                },
-                new LeagueSubOption
-                {
-                    GridType = GridType.Fixture,
-                    Expand = false
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInBr1, InternalLeagueCode.BR1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInDe1, InternalLeagueCode.DE1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInDe2, InternalLeagueCode.DE2),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInEs1, InternalLeagueCode.ES1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInFr1, InternalLeagueCode.FR1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInFr2, InternalLeagueCode.FR2),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInIt1, InternalLeagueCode.IT1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInIt2, InternalLeagueCode.IT2),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInNl1, InternalLeagueCode.NL1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInPt1, InternalLeagueCode.PT1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUefa1, InternalLeagueCode.UEFA1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUk1, InternalLeagueCode.UK1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUk2, InternalLeagueCode.UK2),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUk3, InternalLeagueCode.UK3),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUk4, InternalLeagueCode.UK4),
                 }
             };
         }
