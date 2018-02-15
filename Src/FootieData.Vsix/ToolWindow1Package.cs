@@ -14,7 +14,7 @@ namespace FootieData.Vsix
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]//[ProvideMenuResource(1000, 1)]
-    [ProvideToolWindow(typeof(ToolWindow1b), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
+    [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
     [Guid(ToolWindow1Package.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed class ToolWindow1Package : Package
@@ -31,19 +31,19 @@ namespace FootieData.Vsix
             ToolWindow1Command.Initialize(this);
             base.Initialize();
 
-            ToolWindow1b.GetOptionsFromStoreAndMapToInternalFormatMethod =
+            VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
                 (string any)
                     => 
                 {
                     var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-                    ToolWindow1Control.GeneralOptions2 = GetGeneralOptions2(generalOptions);
+                    ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
                     return "also not needed - change Func to Action";
                 };
         }
 
-        private GeneralOptions2 GetGeneralOptions2(GeneralOptions generalOptions)
+        private LeagueGeneralOptions GetLeagueGeneralOptions(GeneralOptions generalOptions)
         {
-            return new GeneralOptions2
+            return new LeagueGeneralOptions
             {
                 LeagueOptions = new List<LeagueOption>
                 {

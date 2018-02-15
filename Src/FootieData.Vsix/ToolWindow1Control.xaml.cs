@@ -15,7 +15,7 @@ namespace FootieData.Vsix
 {
     public partial class ToolWindow1Control : UserControl
     {
-        public static GeneralOptions2 GeneralOptions2 { get; set; }//gregt rename
+        public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
@@ -208,7 +208,7 @@ namespace FootieData.Vsix
 
             GetOptionsFromStoreAndMapToInternalFormatMethod("not needed - change Func to Action");
 
-            foreach (var leagueOption in GeneralOptions2.LeagueOptions)
+            foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
             {
                 if (leagueOption.ShowLeague)
                 {

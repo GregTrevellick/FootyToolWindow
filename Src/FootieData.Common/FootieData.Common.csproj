@@ -47,7 +47,7 @@
     <Compile Include="DataGridHelper.cs" />
     <Compile Include="GridType.cs" />
     <Compile Include="WpfHelper.cs" />
-    <Compile Include="Options\GeneralOptions2.cs" />
+    <Compile Include="Options\LeagueGeneralOptions.cs" />
     <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="Options\LeagueSubOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

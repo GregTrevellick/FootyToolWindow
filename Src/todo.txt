@@ -16,7 +16,8 @@ vsix - record last update & only re-update after 30 seconds (caters for allowed 
 
 testing - performance
 testing - compare to sunday papers (e.g. vanarama league 1, replace foxes with leicester, etc)
-testing - endpoint down / timeouts
+testing - DONE endpoint down 
+testing - timeouts
 testing - random errors
 testing-  status/score of match whilst part way thru a live match
 
