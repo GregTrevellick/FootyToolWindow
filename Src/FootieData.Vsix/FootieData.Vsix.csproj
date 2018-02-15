@@ -110,7 +110,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\ToolWindow1Command.png" />
-    <Content Include="Resources\ToolWindow1Package.ico" />
     <VSCTCompile Include="ToolWindow1Package.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <Generator>VsctGenerator</Generator>
