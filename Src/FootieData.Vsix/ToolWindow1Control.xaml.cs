@@ -18,6 +18,7 @@ namespace FootieData.Vsix
         public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
+        //private readonly IEnumerable<NullReturn> _error;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
@@ -92,7 +93,7 @@ namespace FootieData.Vsix
             if (getDataFromClient)
             {
                 try
-                {
+                {                    
                     switch (gridType)
                     {
                         case GridType.Standing:
@@ -116,7 +117,8 @@ namespace FootieData.Vsix
                 }
                 catch (Exception ex)
                 {
-                    //gregt   parentExpander.Header = "DataGridLoaded_Any internal error " + gridType;
+                    //gregt log ex
+                    dataGrid.ItemsSource = new List<NullReturn> {new NullReturn {Error = "Internal error loading data ERR0542"}};
                 }
             }
         }
