@@ -18,6 +18,25 @@ namespace FootieData.Common
             }
         }
 
+        public static string HeaderSuffix(GridType gridType)
+        {
+            string headerSuffix;
+            switch (gridType)
+            {
+                case GridType.Result:
+                    headerSuffix = "Results";
+                    break;
+                case GridType.Fixture:
+                    headerSuffix = "Fixtures";
+                    break;
+                default:
+                    headerSuffix = string.Empty;
+                    break;
+            }
+
+            return headerSuffix;
+        }
+
         public static string GetDescription(GridType gridType)
         {
             switch (gridType)

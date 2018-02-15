@@ -235,8 +235,11 @@ namespace FootieData.Vsix
         {
             expander.Name = internalLeagueCode + "_" + gridType;
             expander.Visibility = Visibility.Visible;
-            expander.Style = (Style)TryFindResource("PlusMinusExpander");            
-            expander.Header = internalLeagueCode.GetDescription() + "_" + gridType;
+            expander.Style = (Style)TryFindResource("PlusMinusExpander");
+
+            var headerSuffix = WpfHelper.HeaderSuffix(gridType);
+            expander.Header = $"{internalLeagueCode.GetDescription()} {headerSuffix}";
+
             expander.Expanded += ExpanderAny_OnExpanded;
         }
 
