@@ -15,7 +15,7 @@ namespace FootieData.Vsix
 {
     public partial class ToolWindow1Control : UserControl
     {
-        public static GeneralOptions2 GeneralOptions2 { get; set; }
+        public static GeneralOptions2 GeneralOptions2 { get; set; }//gregt rename
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
@@ -30,7 +30,15 @@ namespace FootieData.Vsix
         {
             InitializeComponent();
 
-            _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+            try
+            {
+                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+            }
+            catch (Exception)
+            {
+                //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+            }
+
             GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
             _rightAlignStyle = new Style();
@@ -240,7 +248,14 @@ namespace FootieData.Vsix
                 Visibility = Visibility.Visible,
             };
 
-            DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
+            if (_competitionResultSingletonInstance == null)
+            {
+                dataGrid.ItemsSource = _nullStandings;
+            }
+            else
+            {
+                DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
+            }
 
             return dataGrid;
         }
