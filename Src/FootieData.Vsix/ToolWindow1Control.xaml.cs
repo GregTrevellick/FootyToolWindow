@@ -23,10 +23,11 @@ namespace FootieData.Vsix
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
         private const string Unavailable = "unavailable at this time - try again later";
         private readonly Style _rightAlignStyle;
+        //private static Func<string, string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
 
-        private static Func<string, string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
-
-        public ToolWindow1Control(Func<string, string> getOptionsFromStoreAndMapToInternalFormatMethod)
+        //public ToolWindow1Control(Func<string, string> getOptionsFromStoreAndMapToInternalFormatMethod)
+        public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod)
         {
             InitializeComponent();
 

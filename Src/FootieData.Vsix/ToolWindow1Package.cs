@@ -25,7 +25,6 @@ namespace FootieData.Vsix
         {
         }
 
-        //gregt The Action<> types are simply Func<> with no return type e.g. Action<string> output = x => Console.WriteLine(x);
         protected override void Initialize()
         {
             VsixToolWindowCommand.Initialize(this);
@@ -37,7 +36,7 @@ namespace FootieData.Vsix
                 {
                     var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
                     ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
-                    return "also not needed - change Func to Action";
+                    //return string.Empty;
                 };
         }
 

@@ -11,7 +11,8 @@
     [Guid("c53b01a9-7130-4b7f-957d-cdc8672fa6de")]
     public class VsixToolWindowPane : ToolWindowPane
     {
-        public static Func<string, string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        //public static Func<string, string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        public static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
 
         public VsixToolWindowPane() : base(null)
         {
