@@ -12,7 +12,7 @@ namespace FootieData.Common
             if (e is Enum)
             {
                 Type type = e.GetType();
-                Array values = System.Enum.GetValues(type);
+                Array values = Enum.GetValues(type);
                 foreach (int val in values)
                 {
                     if (val == e.ToInt32(CultureInfo.InvariantCulture))

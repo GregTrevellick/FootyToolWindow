@@ -52,7 +52,6 @@
     <Compile Include="Options\LeagueOption.cs" />
     <Compile Include="Options\LeagueSubOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TempryGetOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FootieData.Entities\FootieData.Entities.csproj">
