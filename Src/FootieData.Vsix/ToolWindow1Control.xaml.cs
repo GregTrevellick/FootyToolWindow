@@ -18,16 +18,13 @@ namespace FootieData.Vsix
         public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
-        //private readonly IEnumerable<NullReturn> _error;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
-        private const string Unavailable = "unavailable at this time - try again later";
+        private const string Unavailable = "unavailable at this time - please try again later";
         private readonly Style _rightAlignStyle;
-        //private static Func<string, string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
 
-        //public ToolWindow1Control(Func<string, string> getOptionsFromStoreAndMapToInternalFormatMethod)
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod)
         {
             InitializeComponent();
@@ -209,7 +206,7 @@ namespace FootieData.Vsix
         {
             StackPanelLeagueMode.Children.RemoveRange(0, StackPanelLeagueMode.Children.Count);
 
-            GetOptionsFromStoreAndMapToInternalFormatMethod("not needed - change Func to Action");
+            GetOptionsFromStoreAndMapToInternalFormatMethod(null);
 
             foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
             {

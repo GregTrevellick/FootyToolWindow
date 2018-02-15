@@ -31,12 +31,11 @@ namespace FootieData.Vsix
             base.Initialize();
 
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
-                (string any)
+                any
                     => 
                 {
                     var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
                     ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
-                    //return string.Empty;
                 };
         }
 
