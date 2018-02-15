@@ -8,18 +8,18 @@ namespace FootieData.Vsix
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class ToolWindow1Command
+    internal sealed class VsixToolWindowCommand
     {
         public const int CommandId = 0x0100;
         public static readonly Guid CommandSet = new Guid("4d2eb9da-e750-4c37-b048-d8a9269e5431");
         private readonly Package _package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolWindow1Command"/> class.
+        /// Initializes a new instance of the <see cref="VsixToolWindowCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private ToolWindow1Command(Package package)
+        private VsixToolWindowCommand(Package package)
         {
             if (package == null)
             {
@@ -38,7 +38,7 @@ namespace FootieData.Vsix
             }
         }
 
-        public static ToolWindow1Command Instance
+        public static VsixToolWindowCommand Instance
         {
             get;
             private set;
@@ -55,7 +55,7 @@ namespace FootieData.Vsix
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-            Instance = new ToolWindow1Command(package);
+            Instance = new VsixToolWindowCommand(package);
         }
 
         /// <summary>

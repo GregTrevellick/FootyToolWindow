@@ -28,7 +28,7 @@ namespace FootieData.Vsix
         //gregt The Action<> types are simply Func<> with no return type e.g. Action<string> output = x => Console.WriteLine(x);
         protected override void Initialize()
         {
-            ToolWindow1Command.Initialize(this);
+            VsixToolWindowCommand.Initialize(this);
             base.Initialize();
 
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =

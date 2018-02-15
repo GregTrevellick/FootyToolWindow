@@ -65,7 +65,7 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="VsixToolWindowPane.cs" />
-    <Compile Include="ToolWindow1Command.cs" />
+    <Compile Include="VsixToolWindowCommand.cs" />
     <Compile Include="ToolWindow1Control.xaml.cs">
       <DependentUpon>ToolWindow1Control.xaml</DependentUpon>
     </Compile>
