@@ -10,20 +10,9 @@ namespace FootieData.Vsix
     /// </summary>
     internal sealed class ToolWindow1Command
     {
-        /// <summary>
-        /// Command ID.
-        /// </summary>
         public const int CommandId = 0x0100;
-
-        /// <summary>
-        /// Command menu group (command set GUID).
-        /// </summary>
         public static readonly Guid CommandSet = new Guid("4d2eb9da-e750-4c37-b048-d8a9269e5431");
-
-        /// <summary>
-        /// VS Package that provides this command, not null.
-        /// </summary>
-        private readonly Package package;
+        private readonly Package _package;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindow1Command"/> class.
@@ -37,20 +26,18 @@ namespace FootieData.Vsix
                 throw new ArgumentNullException("package");
             }
 
-            this.package = package;
+            _package = package;
 
             OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
             if (commandService != null)
             {
-                var menuCommandID = new CommandID(CommandSet, CommandId);
-                var menuItem = new MenuCommand(this.ShowToolWindow, menuCommandID);
+                var menuCommandId = new CommandID(CommandSet, CommandId);
+                var menuItem = new MenuCommand(ShowToolWindow, menuCommandId);
                 commandService.AddCommand(menuItem);
             }
         }
 
-        /// <summary>
-        /// Gets the instance of the command.
-        /// </summary>
         public static ToolWindow1Command Instance
         {
             get;
@@ -60,13 +47,7 @@ namespace FootieData.Vsix
         /// <summary>
         /// Gets the service provider from the owner package.
         /// </summary>
-        private IServiceProvider ServiceProvider
-        {
-            get
-            {
-                return this.package;
-            }
-        }
+        private IServiceProvider ServiceProvider => _package;
 
         /// <summary>
         /// Initializes the singleton instance of the command.
@@ -80,20 +61,17 @@ namespace FootieData.Vsix
         /// <summary>
         /// Shows the tool window when the menu item is clicked.
         /// </summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event args.</param>
         private void ShowToolWindow(object sender, EventArgs e)
         {
-            // Get the instance number 0 of this tool window. This window is single instance so this instance
-            // is actually the only one.
+            // Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.
-            ToolWindowPane window = this.package.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
-            if ((null == window) || (null == window.Frame))
+            var window = _package.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
+            if (window?.Frame == null)
             {
                 throw new NotSupportedException("Cannot create tool window");
             }
 
-            IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
+            var windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
         }
     }
