@@ -1,29 +1,65 @@
-zip file of screen shots in one drive e.g. async package start up
-https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/
-https://gist.github.com/oz-code/76446034c493685bfaabdd5aecc43180
-https://github.com/oz-code/VSExplorationTests
-https://github.com/oz-code/BDDfyVSIntegrationTestSample
-https://github.com/Microsoft/VisualStudio-TestHost
-https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
+record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
+ X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
+ X-RequestsAvailable 50 Shows the remaining requests before being blocked.
  
-*** implement GetCompetitionResultAsync
+implement GetCompetitionResultAsync
+ zip file of screen shots in one drive e.g. async package start up
+ https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/
+ https://gist.github.com/oz-code/76446034c493685bfaabdd5aecc43180
+ https://github.com/oz-code/VSExplorationTests
+ https://github.com/oz-code/BDDfyVSIntegrationTestSample
+ https://github.com/Microsoft/VisualStudio-TestHost
+ https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
+ 
 
-gregt - use restsharp ?
-gregt - use system.collections.immutable ?
 
-vsix - put auth key into gen options
-vsix - record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
 
+
+put auth key into gen options ?
 testing - performance
 testing - compare to sunday papers (e.g. vanarama league 1, replace foxes with leicester, etc)
-testing - DONE endpoint down 
-testing - DONE timeouts
-testing - random errors
 testing-  status/score of match whilst part way thru a live match
 
-future if becomes popular - add league country flags/hyperlinks
-future if becomes popular - add club crests/hyperlinks
-future if becomes popular - promotion/relegation zone dotted border lines
 
-X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
-X-RequestsAvailable 50 Shows the remaining requests before being blocked.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Future if becomes popular
+=========================
+add league country flags/hyperlinks
+add club crests/hyperlinks
+promotion/relegation zone dotted border lines

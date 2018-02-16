@@ -114,8 +114,9 @@ namespace FootieData.Vsix
                 }
                 catch (Exception ex)
                 {
-                    //gregt log ex
-                    dataGrid.ItemsSource = new List<NullReturn> {new NullReturn {Error = "Internal error loading data ERR0542"}};
+                    var errorText = $"Internal error loading data ERR0542 {internalLeagueCode} {gridType}";
+                    Logger.Log($"{errorText} {ex.Message}");
+                    dataGrid.ItemsSource = new List<NullReturn> {new NullReturn {Error = errorText } };
                 }
             }
         }
