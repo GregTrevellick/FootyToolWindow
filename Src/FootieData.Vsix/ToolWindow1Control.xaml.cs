@@ -19,8 +19,8 @@ namespace FootieData.Vsix
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
-        private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"Results {Unavailable}" } };
-        private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"Fixtures {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = "No results available for the past 7 days" } };
+        private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = "No fixtures available for the next 7 days" } };
         private const string Unavailable = "unavailable at this time - please try again later";
         private readonly Style _rightAlignStyle;
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
@@ -79,11 +79,9 @@ namespace FootieData.Vsix
             }
         }
 
-        private async void DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)//bool manuallyExpanded
+        private async void DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
         {         
-            var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos
-                .Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-           //var shouldExpandGrid = DataGridHelper.ShouldExpandGrid(GeneralOptions2.LeagueOptions, internalLeagueCode, gridType);
+            var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
             var getDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
 
@@ -100,13 +98,29 @@ namespace FootieData.Vsix
                             break;
                         case GridType.Result:
                             var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
-                            dataGrid.ItemsSource = results ?? (IEnumerable)_nullFixturePasts;
-                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                            var resultsList = results.ToList();
+                            if (resultsList.Any())
+                            {
+                                dataGrid.ItemsSource = resultsList;
+                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                            }
+                            else
+                            {
+                                dataGrid.ItemsSource = _zeroFixturePasts;
+                            }
                             break;
                         case GridType.Fixture:
                             var fixtures = await GetFixtureFuturesAsync(externalLeagueCode); //wont run til web service call has finished
-                            dataGrid.ItemsSource = fixtures ?? (IEnumerable)_nullFixtureFutures;
-                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                            var fixturesList = fixtures.ToList();
+                            if (fixturesList.Any())
+                            {
+                                dataGrid.ItemsSource = fixturesList;
+                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                            }
+                            else
+                            {
+                                dataGrid.ItemsSource = _zeroFixtureFutures;
+                            }
                             break;
                     }
 
