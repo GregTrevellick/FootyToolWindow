@@ -1,3 +1,5 @@
+ensure expanding, collapsing, re-expanding doesn't re-perform lookup
+
 record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
  X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
  X-RequestsAvailable 50 Shows the remaining requests before being blocked.
