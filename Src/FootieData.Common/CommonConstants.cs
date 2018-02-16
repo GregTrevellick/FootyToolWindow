@@ -4,6 +4,25 @@ namespace FootieData.Common
 {
     public static class CommonConstants
     {
+        public const string CategorySubLevel = "General";
+        public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
+
+        public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
+        public const string InternalLeagueCodeDescriptionDe1 = "1. Bundesliga";
+        public const string InternalLeagueCodeDescriptionDe2 = "2. Bundesliga";
+        public const string InternalLeagueCodeDescriptionEs1 = "La Liga Primera Division";
+        public const string InternalLeagueCodeDescriptionFr1 = "Ligue 1";
+        public const string InternalLeagueCodeDescriptionFr2 = "Ligue 2";
+        public const string InternalLeagueCodeDescriptionIt1 = "Serie A";
+        public const string InternalLeagueCodeDescriptionIt2 = "Serie B";
+        public const string InternalLeagueCodeDescriptionNl1 = "Eredivisie";
+        public const string InternalLeagueCodeDescriptionPt1 = "Primeira Liga";
+        public const string InternalLeagueCodeDescriptionUefa1 = "UEFA Champions League";
+        public const string InternalLeagueCodeDescriptionUk1 = "English Premier League";
+        public const string InternalLeagueCodeDescriptionUk2 = "EFL Championship";
+        public const string InternalLeagueCodeDescriptionUk3 = "EFL League One";
+        public const string InternalLeagueCodeDescriptionUk4 = "EFL League Two";
+
         public static string TheBossIsCommingText =
             @"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             + Environment.NewLine +

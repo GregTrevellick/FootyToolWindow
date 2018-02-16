@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="CommonConstants.cs" />
     <Compile Include="DataGridHelper.cs" />
-    <Compile Include="EnumExtensions.cs" />
     <Compile Include="GridType.cs" />
     <Compile Include="WpfHelper.cs" />
     <Compile Include="Options\LeagueGeneralOptions.cs" />

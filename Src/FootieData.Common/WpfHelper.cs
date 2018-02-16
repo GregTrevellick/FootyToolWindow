@@ -18,7 +18,46 @@ namespace FootieData.Common
             }
         }
 
-        public static string HeaderSuffix(GridType gridType)
+        public static string GetHeaderPrefix(InternalLeagueCode internalLeagueCode)
+        {
+            switch (internalLeagueCode)
+            {
+                case InternalLeagueCode.BR1:
+                    return CommonConstants.InternalLeagueCodeDescriptionBr1;
+                case InternalLeagueCode.DE1:
+                    return CommonConstants.InternalLeagueCodeDescriptionDe1;
+                case InternalLeagueCode.DE2:
+                    return CommonConstants.InternalLeagueCodeDescriptionDe2;
+                case InternalLeagueCode.ES1:
+                    return CommonConstants.InternalLeagueCodeDescriptionEs1;
+                case InternalLeagueCode.FR1:
+                    return CommonConstants.InternalLeagueCodeDescriptionFr1;
+                case InternalLeagueCode.FR2:
+                    return CommonConstants.InternalLeagueCodeDescriptionFr2;
+                case InternalLeagueCode.IT1:
+                    return CommonConstants.InternalLeagueCodeDescriptionIt1;
+                case InternalLeagueCode.IT2:
+                    return CommonConstants.InternalLeagueCodeDescriptionIt2;
+                case InternalLeagueCode.NL1:
+                    return CommonConstants.InternalLeagueCodeDescriptionNl1;
+                case InternalLeagueCode.PT1:
+                    return CommonConstants.InternalLeagueCodeDescriptionPt1;
+                case InternalLeagueCode.UEFA1:
+                    return CommonConstants.InternalLeagueCodeDescriptionUefa1;
+                case InternalLeagueCode.UK1:
+                    return CommonConstants.InternalLeagueCodeDescriptionUk1;
+                case InternalLeagueCode.UK2:
+                    return CommonConstants.InternalLeagueCodeDescriptionUk2;
+                case InternalLeagueCode.UK3:
+                    return CommonConstants.InternalLeagueCodeDescriptionUk3;
+                case InternalLeagueCode.UK4:
+                    return CommonConstants.InternalLeagueCodeDescriptionUk4;
+                default:
+                    return $"League {internalLeagueCode}";
+            }
+        }
+
+        public static string GetHeaderSuffix(GridType gridType)
         {
             string headerSuffix;
             switch (gridType)
