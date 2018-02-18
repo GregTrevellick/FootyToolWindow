@@ -2,7 +2,7 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="28693b18-0c2c-4e86-adf2-adce836b749e" Version="1.0" Language="en-US" Publisher="Greg Trevellick" />
-        <DisplayName>The Beautiful Game</DisplayName>
+        <DisplayName>IDE Sports Desk</DisplayName>
         <Description xml:space="preserve">A Visual Studio window displaying international soccer league tables, results and fixtures.</Description>
         <MoreInfo>https://github.com/GregTrevellick/VsixFootie</MoreInfo>
         <License>LICENSE.txt</License>

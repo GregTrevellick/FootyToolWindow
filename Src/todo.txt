@@ -1,8 +1,3 @@
-
-add vsix rating chaser
-
-rename to "ide score desk" / "world of sport"
-
 ensure expanding, collapsing, re-expanding doesn't re-perform lookup
 
 record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
@@ -19,6 +14,8 @@ implement GetCompetitionResultAsync
  https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
 
 status/score of match whilst part way thru a live match
+
+add vsix rating chaser
 
 put auth key into gen options ?
 
