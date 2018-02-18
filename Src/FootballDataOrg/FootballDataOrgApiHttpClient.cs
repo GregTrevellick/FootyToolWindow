@@ -28,3 +28,5 @@ namespace FootballDataOrg
         }
     }
 }
+//X-RequestsAvailable 50 Shows the remaining requests before being blocked.
+//X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.

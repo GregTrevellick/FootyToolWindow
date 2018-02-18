@@ -1,7 +1,15 @@
-record last update & only re-update after 30 seconds (caters for allowed 1 every 1.2 seconds)
- X-RequestCounter-Reset 23 Defines the seconds left to reset your request counter.
- X-RequestsAvailable 50 Shows the remaining requests before being blocked.
- 
+when refresh or initial load performed
+ if fails due to being blocked display a message saying 'please wait X-RequestCounter-Reset secs'
+  
+update the 'last update date/time' per team when
+ (a) initially loaded
+ (b) auto-refreshed when options changed
+ (c) manually refreshed using 'refresh' button
+
+when 'refresh' button pressed
+ if any team updated more than 30 secs ago proceed with refresh (only refreshing those teams updated more than 30 secs ago)
+ else display a message saying 'please wait now-30 secs and re-try'
+
 implement GetCompetitionResultAsync
  zip file of screen shots in one drive e.g. async package start up
  https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/
