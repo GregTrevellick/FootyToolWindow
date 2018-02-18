@@ -1,3 +1,10 @@
+
+
+Why ? Because I can.
+
+What more do u want from Ur IDE than the latest soccer scores ? Apart from knowing that it can ? And if it can, what opportunities does that open for your company and any internal http APIs  ! 
+
+
 https://api.football-data.org/docs/v1/index.html#_team
 
 https://api.football-data.org/documentation
