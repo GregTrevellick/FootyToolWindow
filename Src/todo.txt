@@ -69,3 +69,4 @@ Future if becomes popular
 add league country flags/hyperlinks
 add club crests/hyperlinks
 promotion/relegation zone dotted border lines
+collapse all / expand all

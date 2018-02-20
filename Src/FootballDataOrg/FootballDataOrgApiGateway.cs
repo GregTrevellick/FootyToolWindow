@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FootballDataOrg.ResponseEntities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FootballDataOrg.ResponseEntities;
-using Newtonsoft.Json;
 
 namespace FootballDataOrg
 {
@@ -24,10 +24,10 @@ namespace FootballDataOrg
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
+                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;                
                 var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
-                if (BadResponse(responseString, httpResponseMessage))
+                if (IsInvalidResponse(responseString, httpResponseMessage))
                 {
                     return new CompetitionResponseDto { error = GetError(responseString) };
                 }
@@ -44,9 +44,10 @@ namespace FootballDataOrg
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-                if (BadResponse(responseString, httpResponseMessage))
+
+                if (IsInvalidResponse(responseString, httpResponseMessage))
                 {
                     return new CompetitionResponseDto { error = GetError(responseString) };
                 }
@@ -63,10 +64,10 @@ namespace FootballDataOrg
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                if (BadResponse(responseString, httpResponseMessage))
+                if (IsInvalidResponse(responseString, httpResponseMessage))
                 {
                     return new StandingsResponse { Error = GetError(responseString) };
                 }
@@ -83,10 +84,10 @@ namespace FootballDataOrg
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);        
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                if (BadResponse(responseString, httpResponseMessage))
+                if (IsInvalidResponse(responseString, httpResponseMessage))
                 {
                     return new FixturesResponse { Error = GetError(responseString) };
                 }
@@ -112,9 +113,28 @@ namespace FootballDataOrg
             return JsonConvert.DeserializeObject<ErrorResponse>(responseString).Error;
         }
 
-        private static bool BadResponse(string responseString, HttpResponseMessage httpResponseMessage)
+        private static bool IsInvalidResponse(string responseString, HttpResponseMessage httpResponseMessage)
         {
             return string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK;
         }
     }
 }
+
+
+//private static void HandleResponseHeaders(HttpResponseMessage httpResponseMessage, string tempGregtResponseStringError)//gregt unit test required
+//{
+//    //You reached your request limit. Wait 52 seconds.
+//    //You reached your request limit {X-RequestsAvailable}. Wait {X-RequestCounter-Reset} seconds.
+//    IEnumerable<string> values;
+//    if (httpResponseMessage.Headers.TryGetValues("X-RequestCounter-Reset", out values))
+//    {
+//        var secondsLeftToResetRequestCounter = values.First();
+//        int.TryParse(secondsLeftToResetRequestCounter, out _secondsLeftToResetRequestCounter);
+//    }
+//    if (httpResponseMessage.Headers.TryGetValues("X-RequestsAvailable", out values))
+//    {
+//        //var remainingRequestsBeforeBeingBlocked = values.First();
+//        var requestsAvailable = values.First();
+//        int.TryParse(requestsAvailable, out _requestsAvailable);
+//    }
+//}

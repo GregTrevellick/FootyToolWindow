@@ -21,6 +21,8 @@ namespace FootieData.Vsix
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = "No results available for the past 7 days" } };
         private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = "No fixtures available for the next 7 days" } };
+        private const string PoliteRequestLimitReached = "The free request limit has been reached - please w";
+        private const string RequestLimitReached = "You reached your request limit. W";
         private const string Unavailable = "unavailable at this time - please try again later";
         private readonly Style _rightAlignStyle;
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
@@ -93,16 +95,33 @@ namespace FootieData.Vsix
                     {
                         case GridType.Standing:
                             var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
-                            dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-                            WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
+                            var standingsList = standings.ToList();
+                            if (standingsList.Any(x=>x.Team.StartsWith(RequestLimitReached)))
+                            {
+                                dataGrid.ItemsSource = new List<NullReturn> { new NullReturn {Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+                                dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                            }
+                            else
+                            {
+                                dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
+                            }
                             break;
                         case GridType.Result:
                             var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
                             var resultsList = results.ToList();
                             if (resultsList.Any())
                             {
-                                dataGrid.ItemsSource = resultsList;
-                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                                if (resultsList.Any(x => x.HomeName.StartsWith(RequestLimitReached)))
+                                {
+                                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+                                    dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                }
+                                else
+                                {
+                                    dataGrid.ItemsSource = resultsList;
+                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                                }
                             }
                             else
                             {
@@ -114,8 +133,16 @@ namespace FootieData.Vsix
                             var fixturesList = fixtures.ToList();
                             if (fixturesList.Any())
                             {
-                                dataGrid.ItemsSource = fixturesList;
-                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                                if (fixturesList.Any(x => x.HomeName.StartsWith(RequestLimitReached)))
+                                {
+                                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+                                    dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                }
+                                else
+                                {
+                                    dataGrid.ItemsSource = fixturesList;
+                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                                }
                             }
                             else
                             {
