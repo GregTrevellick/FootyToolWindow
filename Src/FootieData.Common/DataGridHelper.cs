@@ -1,4 +1,5 @@
-﻿using FootieData.Common.Options;
+﻿using System;
+using FootieData.Common.Options;
 using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using System.Collections.Generic;
@@ -9,9 +10,10 @@ namespace FootieData.Common
 {
     public class DataGridHelper
     {
-        public static bool ShouldGetDataFromClient(DataGrid dataGrid)
+        public static Tuple<bool, string> ShouldGetDataFromClient(DataGrid dataGrid, DateTime lastUpdatedDate)//gregt unit test
         {
             var getDataFromClient = false;
+            string reason = null;
 
             if (dataGrid.Items.Count == 0)
             {
@@ -29,7 +31,17 @@ namespace FootieData.Common
                 }                
             }
 
-            return getDataFromClient;
+            if (getDataFromClient)
+            {
+                //If updated within last X seconds don't repeat 
+                if (lastUpdatedDate > DateTime.Now.AddSeconds(-30))//gregt unit test
+                {
+                    getDataFromClient = false;
+                    reason = "No refresh as was updated within last X seconds";
+                }
+            }
+
+            return new Tuple<bool, string>(getDataFromClient, reason);
         }
 
         public static void HideHeaderIfNoDataToShow(DataGrid dataGrid)

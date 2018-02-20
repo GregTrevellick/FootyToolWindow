@@ -56,6 +56,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MyDataGrid.cs" />
+    <Compile Include="Options\HiddenOptions.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Options\GeneralOptions.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -1,13 +1,13 @@
 DONE - IF when refresh or initial load performed THEN if fails due to being blocked display a message saying 'please wait X-RequestCounter-Reset secs'
 
   
-update the 'last update date/time' per team when
- (a) initially loaded
- (b) auto-refreshed when options changed
- (c) manually refreshed using 'refresh' button
+DONE - update the 'last update date/time' when
+DONE -  (a) initially loaded
+DONE -  (b) auto-refreshed when options changed
+DONE -  (c) manually refreshed using 'refresh' button
 
-when 'refresh' button pressed
- if any team updated more than 30 secs ago proceed with refresh (only refreshing those teams updated more than 30 secs ago)
+when updating (any means e.g. 'refresh' button pressed)
+ if updated more than 30 secs ago proceed with refresh (only refreshing those teams updated more than 30 secs ago)
  else display a message saying 'please wait now-30 secs and re-try'
 
 

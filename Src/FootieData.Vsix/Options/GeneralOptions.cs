@@ -1,3 +1,4 @@
+using System;
 using FootieData.Common;
 using Microsoft.VisualStudio.Shell;
 using System.ComponentModel;

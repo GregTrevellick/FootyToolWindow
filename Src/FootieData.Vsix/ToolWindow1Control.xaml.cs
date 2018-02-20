@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using FootieData.Vsix.Options;
 
 namespace FootieData.Vsix
 {
@@ -25,9 +26,11 @@ namespace FootieData.Vsix
         private const string RequestLimitReached = "You reached your request limit. W";
         private const string Unavailable = "unavailable at this time - please try again later";
         private readonly Style _rightAlignStyle;
+        private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        private static Action<string> UpdateLastUpdatedDate { get; set; }
 
-        public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod)
+        public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
             InitializeComponent();
 
@@ -40,7 +43,9 @@ namespace FootieData.Vsix
                 //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
             }
 
+            GetLastUpdatedDate = getLastUpdatedDate;
             GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
+            UpdateLastUpdatedDate = updateLastUpdatedDate;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
@@ -62,12 +67,12 @@ namespace FootieData.Vsix
 
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
-
-                    if (shouldGetDataFromClient)
-                    {
+                    //var lastUpdatedDate = GetLastUpdatedDate(null);
+                    //var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid, lastUpdatedDate);
+                    //if (shouldGetDataFromClient)
+                    //{
                         DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
-                    }
+                    //}
                 }
                 else
                 {
@@ -85,9 +90,10 @@ namespace FootieData.Vsix
         {         
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
-            var getDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
+            var lastUpdatedDate = GetLastUpdatedDate(null);
+            var shouldGetDataFromClientTuple = DataGridHelper.ShouldGetDataFromClient(dataGrid, lastUpdatedDate);
 
-            if (getDataFromClient)
+            if (shouldGetDataFromClientTuple.Item1)
             {
                 try
                 {                    
@@ -152,6 +158,7 @@ namespace FootieData.Vsix
                     }
 
                     DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
+                    UpdateLastUpdatedDate(null);
                 }
                 catch (Exception ex)
                 {
@@ -159,6 +166,10 @@ namespace FootieData.Vsix
                     Logger.Log($"{errorText} {ex.Message}");
                     dataGrid.ItemsSource = new List<NullReturn> {new NullReturn {Error = errorText } };
                 }
+            }
+            else
+            {
+                dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = shouldGetDataFromClientTuple.Item2 } };
             }
         }
 
