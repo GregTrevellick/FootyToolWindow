@@ -91,9 +91,10 @@ namespace FootieData.Vsix
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
             var lastUpdatedDate = GetLastUpdatedDate(null);
-            var shouldGetDataFromClientTuple = DataGridHelper.ShouldGetDataFromClient(dataGrid, lastUpdatedDate);
+            var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
+            var shouldPerformRefresh = DataGridHelper.ShouldPerformRefresh(lastUpdatedDate);
 
-            if (shouldGetDataFromClientTuple.Item1)
+            if (shouldGetDataFromClient && shouldPerformRefresh)
             {
                 try
                 {                    
@@ -167,9 +168,17 @@ namespace FootieData.Vsix
                     dataGrid.ItemsSource = new List<NullReturn> {new NullReturn {Error = errorText } };
                 }
             }
+
+            if (!shouldPerformRefresh)
+            {
+                var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (DateTime.Now - lastUpdatedDate).Seconds;//gregt unit test
+                var refreshPostoned = $"As the data was last updated less than {CommonConstants.RefreshIntervalInSeconds} seconds ago, please re-try in {pleaseWait} seconds.";
+                TextBlockRefreshPostponed.Text = refreshPostoned;
+                TextBlockRefreshPostponed.Visibility = Visibility.Visible;
+            }
             else
             {
-                dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = shouldGetDataFromClientTuple.Item2 } };
+                TextBlockRefreshPostponed.Visibility = Visibility.Hidden;
             }
         }
 

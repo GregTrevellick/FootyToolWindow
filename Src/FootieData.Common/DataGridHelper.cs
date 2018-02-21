@@ -10,10 +10,9 @@ namespace FootieData.Common
 {
     public class DataGridHelper
     {
-        public static Tuple<bool, string> ShouldGetDataFromClient(DataGrid dataGrid, DateTime lastUpdatedDate)//gregt unit test
+        public static bool ShouldGetDataFromClient(DataGrid dataGrid)//gregt unit test
         {
             var getDataFromClient = false;
-            string reason = null;
 
             if (dataGrid.Items.Count == 0)
             {
@@ -31,18 +30,36 @@ namespace FootieData.Common
                 }                
             }
 
-            if (getDataFromClient)
+            return getDataFromClient;
+        }
+
+        public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)//gregt unit test
+        {
+            var shouldPerformRefresh = true;
+
+            var updatedWithinLastXSeconds = UpdatedWithinLastXSeconds(lastUpdatedDate);
+
+            if (updatedWithinLastXSeconds)
             {
-                //If updated within last X seconds don't repeat 
-                if (lastUpdatedDate > DateTime.Now.AddSeconds(-30))//gregt unit test
-                {
-                    getDataFromClient = false;
-                    reason = "No refresh as was updated within last X seconds";
-                }
+                shouldPerformRefresh = false;
             }
 
-            return new Tuple<bool, string>(getDataFromClient, reason);
+            return shouldPerformRefresh;
         }
+
+        private static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate)//gregt unit test
+        {
+            var updatedWithinLastXSeconds = false;
+
+            if (lastUpdatedDate > DateTime.Now.AddSeconds(-CommonConstants.RefreshIntervalInSeconds))//gregt unit test
+            {
+                updatedWithinLastXSeconds = true;
+            }
+
+            return updatedWithinLastXSeconds;
+        }
+
+
 
         public static void HideHeaderIfNoDataToShow(DataGrid dataGrid)
         {
