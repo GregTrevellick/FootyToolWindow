@@ -65,18 +65,17 @@ namespace FootieData.Vsix
                 var gridType = WpfHelper.GetGridType(expander.Name);
                 var internalLeagueCode = WpfHelper.GetInternalLeagueCode(expander.Name);
 
+                //gregt dedupe
+                var lastUpdatedDate = GetLastUpdatedDate(null);
+                var shouldPerformRefresh = DataGridHelper.ShouldPerformRefresh(lastUpdatedDate);
+
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    //var lastUpdatedDate = GetLastUpdatedDate(null);
-                    //var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid, lastUpdatedDate);
-                    //if (shouldGetDataFromClient)
-                    //{
-                        DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
-                    //}
+                    DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType, shouldPerformRefresh, lastUpdatedDate);
                 }
                 else
                 {
-                    dataGrid = GetMyDataGrid(internalLeagueCode, gridType);
+                    dataGrid = GetMyDataGrid(internalLeagueCode, gridType, shouldPerformRefresh, lastUpdatedDate);
                     expander.Content = dataGrid;
                 }
             }
@@ -86,13 +85,11 @@ namespace FootieData.Vsix
             }
         }
 
-        private async void DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
+        private async void DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType, bool shouldPerformRefresh, DateTime? lastUpdatedDate)
         {         
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
-            var lastUpdatedDate = GetLastUpdatedDate(null);
             var shouldGetDataFromClient = DataGridHelper.ShouldGetDataFromClient(dataGrid);
-            var shouldPerformRefresh = DataGridHelper.ShouldPerformRefresh(lastUpdatedDate);
 
             if (shouldGetDataFromClient && shouldPerformRefresh)
             {
@@ -171,7 +168,7 @@ namespace FootieData.Vsix
 
             if (!shouldPerformRefresh)
             {
-                var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (DateTime.Now - lastUpdatedDate).Seconds;//gregt unit test
+                var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (DateTime.Now - lastUpdatedDate.Value).Seconds;//gregt unit test
                 var refreshPostoned = $"As the data was last updated less than {CommonConstants.RefreshIntervalInSeconds} seconds ago, please re-try in {pleaseWait} seconds.";
                 TextBlockRefreshPostponed.Text = refreshPostoned;
                 TextBlockRefreshPostponed.Visibility = Visibility.Visible;
@@ -261,10 +258,14 @@ namespace FootieData.Vsix
 
         private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
         {
-            PopulateUi();
+            //gregt dedupe
+            var lastUpdatedDate = GetLastUpdatedDate(null);
+            var shouldPerformRefresh = DataGridHelper.ShouldPerformRefresh(lastUpdatedDate);
+
+            PopulateUi(shouldPerformRefresh, lastUpdatedDate);
         }
 
-        private void PopulateUi()
+        private void PopulateUi(bool shouldPerformRefresh = true, DateTime ? lastUpdatedDate = null)
         {
             StackPanelLeagueMode.Children.RemoveRange(0, StackPanelLeagueMode.Children.Count);
 
@@ -283,7 +284,7 @@ namespace FootieData.Vsix
                         if (leagueSubOption.Expand)
                         {
                             expander.IsExpanded = true;
-                            var dataGrid = GetMyDataGrid(leagueOption.InternalLeagueCode, leagueSubOption.GridType);
+                            var dataGrid = GetMyDataGrid(leagueOption.InternalLeagueCode, leagueSubOption.GridType, shouldPerformRefresh, lastUpdatedDate);
                             expander.Content = dataGrid;
                         }
 
@@ -306,7 +307,7 @@ namespace FootieData.Vsix
             expander.Expanded += ExpanderAny_OnExpanded;
         }
 
-        private MyDataGrid GetMyDataGrid(InternalLeagueCode internalLeagueCode, GridType gridType)
+        private MyDataGrid GetMyDataGrid(InternalLeagueCode internalLeagueCode, GridType gridType, bool shouldPerformRefresh, DateTime? lastUpdatedDate)
         {
             var dataGrid = new MyDataGrid
             {
@@ -320,7 +321,7 @@ namespace FootieData.Vsix
             }
             else
             {
-                DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
+                DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType, shouldPerformRefresh, lastUpdatedDate);
             }
 
             return dataGrid;
