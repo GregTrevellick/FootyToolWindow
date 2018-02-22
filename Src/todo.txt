@@ -1,4 +1,6 @@
-icons
+name in options
+
+
 
 sort results by date, home team
 
