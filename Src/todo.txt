@@ -1,5 +1,3 @@
-when refresh don't re-expand/re-collapse 
-
 implement GetCompetitionResultAsync
  zip file of screen shots in one drive e.g. async package start up
  https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/

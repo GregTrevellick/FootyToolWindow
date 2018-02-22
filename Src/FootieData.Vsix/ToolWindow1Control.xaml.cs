@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using FootieData.Vsix.Options;
+using stdole;
 
 namespace FootieData.Vsix
 {
@@ -50,7 +51,7 @@ namespace FootieData.Vsix
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
 
-            PopulateUi();
+            PopulateUi(false);
         }
         
         private FootieDataGateway GetFootieDataGateway()
@@ -255,15 +256,17 @@ namespace FootieData.Vsix
             else
             {
                 TextBlockRefreshPostponed.Visibility = Visibility.Collapsed;
-                PopulateUi();
+                PopulateUi(true);
             }
         }
 
-        private void PopulateUi()
+        private void PopulateUi(bool retainExpandCollapseState)
         {
-            StackPanelLeagueMode.Children.RemoveRange(0, StackPanelLeagueMode.Children.Count);
-
             GetOptionsFromStoreAndMapToInternalFormatMethod(null);
+
+            RetainExpandCollapseState(retainExpandCollapseState);
+
+            StackPanelLeagueMode.Children.RemoveRange(0, StackPanelLeagueMode.Children.Count);
 
             foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
             {
@@ -284,6 +287,28 @@ namespace FootieData.Vsix
 
                         StackPanelLeagueMode.Children.Add(expander);
                     }                                        
+                }
+            }
+        }
+
+        private void RetainExpandCollapseState(bool retainExpandCollapseState)
+        {
+            if (retainExpandCollapseState)
+            {
+                foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
+                {
+                    foreach (var leagueSubOption in leagueOption.LeagueSubOptions)
+                    {
+                        foreach (Expander child in StackPanelLeagueMode.Children)
+                        {
+                            //UK1_Standing
+                            if (child.Name.StartsWith(leagueOption.InternalLeagueCode.ToString()) &&
+                                child.Name.EndsWith(leagueSubOption.GridType.ToString()))
+                            {
+                                leagueSubOption.Expand = child.IsExpanded;
+                            }
+                        }
+                    }
                 }
             }
         }
