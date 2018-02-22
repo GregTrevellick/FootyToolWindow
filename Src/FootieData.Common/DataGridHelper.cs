@@ -10,13 +10,13 @@ namespace FootieData.Common
 {
     public class DataGridHelper
     {
-        public static bool ShouldGetDataFromClient(DataGrid dataGrid)//gregt unit test
+        public static bool IsDataGridEmpty(DataGrid dataGrid)//gregt unit test
         {
-            var getDataFromClient = false;
+            var dataGridEmpty = false;
 
             if (dataGrid.Items.Count == 0)
             {
-                getDataFromClient = true;
+                dataGridEmpty = true;
             }
             else
             {
@@ -25,12 +25,12 @@ namespace FootieData.Common
                     var noDataToShow = IsNoDataToShow(dataGrid);
                     if (noDataToShow)
                     {
-                        getDataFromClient = true;
+                        dataGridEmpty = true;
                     }
                 }                
             }
 
-            return getDataFromClient;
+            return dataGridEmpty;
         }
 
         public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)//gregt unit test
@@ -47,7 +47,7 @@ namespace FootieData.Common
             return shouldPerformRefresh;
         }
 
-        private static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate)//gregt unit test
+        public static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate)//gregt unit test
         {
             var updatedWithinLastXSeconds = false;
 
