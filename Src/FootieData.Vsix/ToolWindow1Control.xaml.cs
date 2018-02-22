@@ -224,21 +224,23 @@ namespace FootieData.Vsix
             }
         }
 
-        private void Click_Handler1(object sender, RoutedEventArgs e)
+        private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
             TextBlockBossMode.Text = CommonConstants.TheBossIsCommingText;
             BtnLeagueMode.Visibility = Visibility.Collapsed;
             StackPanelLeagueMode.Visibility = Visibility.Collapsed;
             BtnBossMode.Visibility = Visibility.Visible;
             StackPanelBossMode.Visibility = Visibility.Visible;
+            BtnRefresh.IsEnabled = false;
         }
 
-        private void Click_Handler2(object sender, RoutedEventArgs e)
+        private void Click_HandlerReturn(object sender, RoutedEventArgs e)
         {
             BtnLeagueMode.Visibility = Visibility.Visible;
             StackPanelLeagueMode.Visibility = Visibility.Visible;
             BtnBossMode.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Collapsed;
+            BtnRefresh.IsEnabled = true;
         }
 
         private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
