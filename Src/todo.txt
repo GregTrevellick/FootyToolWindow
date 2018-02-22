@@ -1,3 +1,6 @@
+diable refresh when in boss mode
+
+
 implement GetCompetitionResultAsync
  zip file of screen shots in one drive e.g. async package start up
  https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/
