@@ -1,14 +1,4 @@
-DONE - IF when refresh or initial load performed THEN if fails due to being blocked display a message saying 'please wait X-RequestCounter-Reset secs'
-  
-DONE - update the 'last update date/time' when
-DONE -  (a) initially loaded
-DONE -  (b) auto-refreshed when options changed
-DONE -  (c) manually refreshed using 'refresh' button
-
-DONE when updating (any means e.g. 'refresh' button pressed)
-DONE  if updated more than 30 secs ago proceed with refresh (only refreshing those teams updated more than 30 secs ago)
-DONE  else display a message saying 'please wait now-30 secs and re-try'
-
+when refresh don't re-expand/re-collapse 
 
 implement GetCompetitionResultAsync
  zip file of screen shots in one drive e.g. async package start up
@@ -23,7 +13,7 @@ status/score of match whilst part way thru a live match
 
 add vsix rating chaser
 
-put auth key into gen options ?
+put auth key into separate bitbucket dll
 
 performance
 
@@ -70,3 +60,4 @@ add league country flags/hyperlinks
 add club crests/hyperlinks
 promotion/relegation zone dotted border lines
 collapse all / expand all
+add 'refresh' icon to refresh button
