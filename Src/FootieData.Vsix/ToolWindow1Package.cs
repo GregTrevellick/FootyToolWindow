@@ -7,6 +7,7 @@ using FootieData.Common;
 using FootieData.Common.Options;
 using FootieData.Entities.ReferenceData;
 using FootieData.Vsix.Options;
+using VsixRatingChaser.Interfaces;
 
 namespace FootieData.Vsix
 {
@@ -23,6 +24,10 @@ namespace FootieData.Vsix
 
         public ToolWindow1Package()
         {
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            {
+                ChaseRating();
+            }            
         }
 
         protected override void Initialize()
@@ -81,5 +86,13 @@ namespace FootieData.Vsix
                 }
             };
         }
+
+        private void ChaseRating()
+        {
+            var hiddenChaserOptions = (IRatingDetailsDto)GetDialogPage(typeof(HiddenRatingDetailsDto));
+            var packageRatingChaser = new PackageRatingChaser();
+            packageRatingChaser.Hunt(hiddenChaserOptions);
+        }
+
     }
 }
