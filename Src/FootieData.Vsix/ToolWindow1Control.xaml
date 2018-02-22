@@ -18,7 +18,10 @@
                 <Button Content="Refresh" Click="Click_HandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0"/>
                 <Button Content="The boss is coming" Click="Click_Handler1" HorizontalAlignment="Right" Name="BtnLeagueMode"/>
                 <Button Content="Return" Click="Click_Handler2" HorizontalAlignment="Right" Name="BtnBossMode" Visibility="Collapsed" />
-                <TextBlock Name="TextBlockRefreshPostponed" Visibility="Hidden" />
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Name="TextBlockRefreshPostponed" Visibility="Collapsed" />
             </StackPanel>
 
             <StackPanel Name="StackPanelBossMode">

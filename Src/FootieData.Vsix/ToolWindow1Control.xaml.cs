@@ -248,13 +248,13 @@ namespace FootieData.Vsix
             if (updatedWithinLastXSeconds)
             {
                 var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (DateTime.Now - lastUpdatedDate).Seconds;//gregt unit test
-                var refreshPostoned = $"Data last updated within past {CommonConstants.RefreshIntervalInSeconds} seconds ago, please re-try in {pleaseWait} seconds.";
+                var refreshPostoned = $"Data last updated within last {CommonConstants.RefreshIntervalInSeconds} seconds, please re-try in {pleaseWait} seconds.";
                 TextBlockRefreshPostponed.Text = refreshPostoned;
                 TextBlockRefreshPostponed.Visibility = Visibility.Visible;
             }
             else
             {
-                TextBlockRefreshPostponed.Visibility = Visibility.Hidden;
+                TextBlockRefreshPostponed.Visibility = Visibility.Collapsed;
                 PopulateUi();
             }
         }
