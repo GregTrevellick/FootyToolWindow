@@ -1,9 +1,10 @@
-name in extns
+name in extns/icon
 
 appveyor
 
 sort results by date, home team
 
+readme.md
 
 implement GetCompetitionResultAsync
  zip file of screen shots in one drive e.g. async package start up
