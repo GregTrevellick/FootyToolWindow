@@ -20,10 +20,11 @@ namespace FootieData.Common
         public const string InternalLeagueCodeDescriptionPt1 = "Primeira Liga";
         public const string InternalLeagueCodeDescriptionUefa1 = "UEFA Champions League";
         public const string InternalLeagueCodeDescriptionUk1 = "English Premier League";
-        public const string InternalLeagueCodeDescriptionUk2 = "EFL Championship";
-        public const string InternalLeagueCodeDescriptionUk3 = "EFL League One";
-        public const string InternalLeagueCodeDescriptionUk4 = "EFL League Two";
+        public const string InternalLeagueCodeDescriptionUk2 = "English Football League Championship";
+        public const string InternalLeagueCodeDescriptionUk3 = "English Football League One";
+        public const string InternalLeagueCodeDescriptionUk4 = "English Football League Two";
 
+        //gregt
         public static string TheBossIsCommingText =
             @"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             + Environment.NewLine +
