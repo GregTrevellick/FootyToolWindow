@@ -11,7 +11,7 @@
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>The Beautiful Game</ButtonText>
+          <ButtonText>VS Sports Desk</ButtonText>
         </Strings>
       </Button>
     </Buttons>
