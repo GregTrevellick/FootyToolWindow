@@ -7,15 +7,15 @@ implement GetCompetitionResultAsync
  https://github.com/Microsoft/VisualStudio-TestHost
  https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
 
-status/score of match whilst part way thru a live match
-
+check status/score of match whilst part way thru a live match
 add vsix rating chaser
-
 put auth key into separate bitbucket dll
-
-performance
-
+check performance
 unit tests
+
+
+
+
 
 
 
