@@ -48,7 +48,7 @@ namespace FootieData.Gateway
                 var fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
                 if (fixturesResult != null)
                 {
-                    result = GetFixturePasts(fixturesResult);
+                    result = GetFixturePasts(fixturesResult);//.OrderBy(x => new { x.Date, x.HomeName }); ;
                 }
             }
             return result;
@@ -63,7 +63,7 @@ namespace FootieData.Gateway
                 var fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
                 if (fixturesResult != null)
                 {
-                    result = GetFixtureFutures(fixturesResult);
+                    result = GetFixtureFutures(fixturesResult);//.OrderBy(x => new { x.Date, x.HomeName });
                 }
             }
             return result;
