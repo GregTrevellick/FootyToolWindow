@@ -18,7 +18,7 @@ namespace FootieData.Vsix
     [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
     [Guid(ToolWindow1Package.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class ToolWindow1Package : Package
+    public sealed class ToolWindow1Package : Package//AsyncPackage
     {
         public const string PackageGuidString = "4431588e-199d-477f-b3c4-c0b9603602b0";
 

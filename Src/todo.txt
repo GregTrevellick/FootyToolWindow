@@ -1,7 +1,3 @@
-appveyor
-
-readme.md
-
 implement GetCompetitionResultAsync
  zip file of screen shots in one drive e.g. async package start up
  https://www.nuget.org/packages/OzCode.VisualStudioExtensionAnalyzers/
@@ -11,9 +7,12 @@ implement GetCompetitionResultAsync
  https://github.com/Microsoft/VisualStudio-TestHost
  https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
 
+appveyor
+readme.md
 check status/score of match whilst part way thru a live match
 put auth key into separate bitbucket dll
 check performance
+gregt
 unit tests
 
 

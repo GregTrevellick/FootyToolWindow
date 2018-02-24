@@ -159,7 +159,7 @@ namespace FootieData.Vsix
                 {
                     var errorText = $"Internal error loading data ERR0542 {internalLeagueCode} {gridType}";
                     Logger.Log($"{errorText} {ex.Message}");
-                    dataGrid.ItemsSource = new List<NullReturn> {new NullReturn {Error = errorText } };
+                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = errorText } };
                 }
             }
         }
