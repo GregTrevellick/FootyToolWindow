@@ -32,7 +32,7 @@ namespace FootieData.Vsix
         private static Action<string> UpdateLastUpdatedDate { get; set; }
 
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
-        {
+        {//?th
             InitializeComponent();
 
             try
