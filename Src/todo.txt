@@ -13,7 +13,7 @@ rename window title from 'vs sports desk' when boss mode clicked
 
 swans/manu/mancity/crystal
 
-update vsixrating chaser in nuget
+update vsixratingchaser in nuget
 
 test/remove uefa & brazil
 
