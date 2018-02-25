@@ -7,6 +7,12 @@ implement GetCompetitionResultAsync
  https://github.com/Microsoft/VisualStudio-TestHost
  https://github.com/Microsoft/VisualStudio-TestHost/tree/master/VSTestUtilities
 
+when a match finishes the league table is updated but match not removed from fixtures - should we use datetime.now?
+
+rename window title from 'vs sports desk' when boss mode clicked
+
+swans/manu/mancity/crystal
+
 appveyor
 readme.md
 check status/score of match whilst part way thru a live match

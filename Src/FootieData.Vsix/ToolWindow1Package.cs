@@ -1,24 +1,28 @@
 ﻿using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+using System.Threading;
 using FootieData.Common;
 using FootieData.Common.Options;
 using FootieData.Entities.ReferenceData;
 using FootieData.Vsix.Options;
 using VsixRatingChaser.Interfaces;
+using Task = System.Threading.Tasks.Task;
 
 namespace FootieData.Vsix
 {
+    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]//gregt UIContextGuids.NoSolution vs VSConstants.UICONTEXT.NoSolution_string
     [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
-    [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
+    [PackageRegistration(UseManagedResourcesOnly = true)]//, AllowsBackgroundLoading = true)]
+    [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]//[ProvideMenuResource(1000, 1)]
     [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
     [Guid(ToolWindow1Package.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class ToolWindow1Package : Package//AsyncPackage
+    public sealed partial class ToolWindow1Package : AsyncPackage
     {
         public const string PackageGuidString = "4431588e-199d-477f-b3c4-c0b9603602b0";
 
@@ -27,17 +31,15 @@ namespace FootieData.Vsix
             if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
             {
                 ChaseRating();
-            }            
+            }
         }
 
-        protected override void Initialize()
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            VsixToolWindowCommand.Initialize(this);
-            base.Initialize();
-
+            await VsixToolWindowCommand.Initialize(this);
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
                 any
-                    => 
+                    =>
                 {
                     var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
                     ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
@@ -92,7 +94,7 @@ namespace FootieData.Vsix
             var hiddenChaserOptions = (IRatingDetailsDto)GetDialogPage(typeof(HiddenRatingDetailsDto));
             var packageRatingChaser = new PackageRatingChaser();
             packageRatingChaser.Hunt(hiddenChaserOptions);
-        }
-
+        }   
+        
     }
 }

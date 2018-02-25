@@ -50,3 +50,7 @@ http://www.c-sharpcorner.com/UploadFile/mahesh/master-wpf-datagrid-in-24-hrs-hou
 
 
 I do not guarantee the provided data to be accurate, up-to-date or correct in any way - though this of course is my intention. I also cannot guarantee any level of availability.
+
+
+
+https://stackoverflow.com/questions/40345756/does-visual-studio-extension-packages-support-asyncronous-operations
