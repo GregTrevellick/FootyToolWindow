@@ -63,10 +63,10 @@ namespace FootieData.Common
             switch (gridType)
             {
                 case GridType.Result:
-                    headerSuffix = "Results";
+                    headerSuffix = $"Results (last {CommonConstants.DaysCount} days)";
                     break;
                 case GridType.Fixture:
-                    headerSuffix = "Fixtures";
+                    headerSuffix = $"Fixtures (next {CommonConstants.DaysCount} days)";
                     break;
                 default:
                     headerSuffix = string.Empty;
