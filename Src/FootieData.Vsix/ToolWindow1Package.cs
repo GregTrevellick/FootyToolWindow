@@ -1,26 +1,26 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿using FootieData.Common;
+using FootieData.Common.Options;
+using FootieData.Entities.ReferenceData;
+using FootieData.Vsix.Options;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
-using FootieData.Common;
-using FootieData.Common.Options;
-using FootieData.Entities.ReferenceData;
-using FootieData.Vsix.Options;
 using VsixRatingChaser.Interfaces;
 using Task = System.Threading.Tasks.Task;
 
 namespace FootieData.Vsix
 {
-    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]//gregt UIContextGuids.NoSolution vs VSConstants.UICONTEXT.NoSolution_string
-    [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
-    [PackageRegistration(UseManagedResourcesOnly = true)]//, AllowsBackgroundLoading = true)]
-    [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)] // Info on this package for Help/About
-    [ProvideMenuResource("Menus.ctmenu", 1)]//[ProvideMenuResource(1000, 1)]
-    [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
     [Guid(ToolWindow1Package.PackageGuidString)]
+    [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)] // Info on this package for Help/About
+    [PackageRegistration(UseManagedResourcesOnly = true)]//, AllowsBackgroundLoading = true)]
+    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]//gregt UIContextGuids.NoSolution vs VSConstants.UICONTEXT.NoSolution_string
+    [ProvideMenuResource("Menus.ctmenu", 1)]//[ProvideMenuResource(1000, 1)]
+    [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
+    [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     public sealed partial class ToolWindow1Package : AsyncPackage
     {
@@ -37,6 +37,7 @@ namespace FootieData.Vsix
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await VsixToolWindowCommand.Initialize(this);
+
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
                 any
                     =>
@@ -61,7 +62,6 @@ namespace FootieData.Vsix
                     var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
                     return hiddenOptions.LastUpdated;
                 };
-
         }
 
         private LeagueGeneralOptions GetLeagueGeneralOptions(GeneralOptions generalOptions)
@@ -94,7 +94,6 @@ namespace FootieData.Vsix
             var hiddenChaserOptions = (IRatingDetailsDto)GetDialogPage(typeof(HiddenRatingDetailsDto));
             var packageRatingChaser = new PackageRatingChaser();
             packageRatingChaser.Hunt(hiddenChaserOptions);
-        }   
-        
+        }          
     }
 }
