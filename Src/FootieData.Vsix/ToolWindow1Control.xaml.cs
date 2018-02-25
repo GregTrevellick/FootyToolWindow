@@ -16,15 +16,18 @@ namespace FootieData.Vsix
     public partial class ToolWindow1Control : UserControl
     {
         public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
-        private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
+
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
+        private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
+        private readonly Style _rightAlignStyle;
         private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = "No results available for the past 7 days" } };
         private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = "No fixtures available for the next 7 days" } };
+
         private const string PoliteRequestLimitReached = "The free request limit has been reached - please w";
         private const string RequestLimitReached = "You reached your request limit. W";
         private const string Unavailable = "unavailable at this time - please try again later";
-        private readonly Style _rightAlignStyle;
+
         private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
         private static Action<string> UpdateLastUpdatedDate { get; set; }
