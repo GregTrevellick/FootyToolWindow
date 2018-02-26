@@ -1,15 +1,19 @@
-when a match finishes the league table is updated but match not removed from fixtures - should we use datetime.now?
-
-rename window title from 'vs sports desk' when boss mode clicked
-
-swans/manu/mancity/crystal
-
-update vsixratingchaser in nuget
+figure out why try/catch is happening
 
 test/remove uefa & brazil
 
+swans/manu/mancity/crystal
+
 add more columns ? not just p/w/d/l but split out into home p/w/d/l & away p/w/d/l ?
 
+
+
+
+
+
+
+update vsixratingchaser in nuget
+rename window title from 'vs sports desk' when boss mode clicked
 appveyor
 readme.md
 check status/score of match whilst part way thru a live match

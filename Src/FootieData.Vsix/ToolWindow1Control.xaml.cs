@@ -192,7 +192,7 @@ namespace FootieData.Vsix
                 var theTask = Task.Run(() =>
                 {
                     var gateway = GetFootieDataGateway();
-                    var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), "p7");                    
+                    var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");                    
                     return result;
                 });
                 await Task.WhenAll(theTask);
@@ -212,7 +212,7 @@ namespace FootieData.Vsix
                 var theTask = Task.Run(() =>
                 {
                     var gateway = GetFootieDataGateway();
-                    var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), "n7");
+                    var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
                     return result;
                 });
                 await Task.WhenAll(theTask);
