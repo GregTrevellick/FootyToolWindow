@@ -98,7 +98,7 @@ namespace FootieData.Vsix
                         case GridType.Standing:
                             var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
                             var standingsList = standings.ToList();
-                            if (standingsList.Any(x=>x.Team.StartsWith(RequestLimitReached)))
+                            if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             {
                                 dataGrid.ItemsSource = new List<NullReturn> { new NullReturn {Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
                                 dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
@@ -114,7 +114,7 @@ namespace FootieData.Vsix
                             var resultsList = results.ToList();
                             if (resultsList.Any())
                             {
-                                if (resultsList.Any(x => x.HomeName.StartsWith(RequestLimitReached)))
+                                if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                                 {
                                     dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
                                     dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
@@ -135,7 +135,7 @@ namespace FootieData.Vsix
                             var fixturesList = fixtures.ToList();
                             if (fixturesList.Any())
                             {
-                                if (fixturesList.Any(x => x.HomeName.StartsWith(RequestLimitReached)))
+                                if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                                 {
                                     dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
                                     dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
