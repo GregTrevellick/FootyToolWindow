@@ -24,7 +24,7 @@ namespace FootballDataOrg
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;                
+                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
                 var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
                 if (IsInvalidResponse(responseString, httpResponseMessage))
@@ -38,25 +38,25 @@ namespace FootballDataOrg
             }
         }
 
-        public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
-        {
-            var uri = new Uri(baseUri);          
-
-            using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
-            {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
-                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                if (IsInvalidResponse(responseString, httpResponseMessage))
-                {
-                    return new CompetitionResponseDto { error = GetError(responseString) };
-                }
-                else
-                {
-                    return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
-                }
-            }
-        }
+        //public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
+        //{
+        //    var uri = new Uri(baseUri);
+        //
+        //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
+        //    {
+        //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
+        //        var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+        //
+        //        if (IsInvalidResponse(responseString, httpResponseMessage))
+        //        {
+        //            return new CompetitionResponseDto { error = GetError(responseString) };
+        //        }
+        //        else
+        //        {
+        //            return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
+        //        }
+        //    }
+        //}
 
         public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
         {
