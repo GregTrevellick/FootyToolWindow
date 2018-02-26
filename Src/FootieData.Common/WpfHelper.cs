@@ -127,30 +127,59 @@ namespace FootieData.Common
             {
                 InternalLeagueCode = internalLeagueCode,
                 ShowLeague = interestedIn,
-                LeagueSubOptions = WpfHelper.GetLeagueSubOptions()
+                LeagueSubOptions = GetLeagueSubOptions(internalLeagueCode)
             };
         }
 
-        private static List<LeagueSubOption> GetLeagueSubOptions()
+        private static List<LeagueSubOption> GetLeagueSubOptions(InternalLeagueCode internalLeagueCode)
         {
-            return new List<LeagueSubOption>
+            switch (internalLeagueCode)
             {
-                new LeagueSubOption
-                {
-                    GridType = GridType.Standing,
-                    Expand = true
-                },
-                new LeagueSubOption
-                {
-                    GridType = GridType.Result,
-                    Expand = false
-                },
-                new LeagueSubOption
-                {
-                    GridType = GridType.Fixture,
-                    Expand = false
-                }
-            };
+                case InternalLeagueCode.BR1:
+                    //Brazil - league table only seems to work
+                    return new List<LeagueSubOption>
+                    {
+                        new LeagueSubOption
+                        {
+                            GridType = GridType.Standing,
+                            Expand = true
+                        }
+                    };
+                case InternalLeagueCode.UEFA1:
+                    //Champions league - league table unsurprisingly doesn't work, but results/fixtures do (in knock-out rounds at least)
+                    return new List<LeagueSubOption>
+                    {
+                        new LeagueSubOption
+                        {
+                            GridType = GridType.Result,
+                            Expand = false
+                        },
+                        new LeagueSubOption
+                        {
+                            GridType = GridType.Fixture,
+                            Expand = false
+                        }
+                    };
+                default:
+                    return new List<LeagueSubOption>
+                    {
+                        new LeagueSubOption
+                        {
+                            GridType = GridType.Standing,
+                            Expand = true
+                        },
+                        new LeagueSubOption
+                        {
+                            GridType = GridType.Result,
+                            Expand = false
+                        },
+                        new LeagueSubOption
+                        {
+                            GridType = GridType.Fixture,
+                            Expand = false
+                        }
+                    };
+            }
         }
     }
 }

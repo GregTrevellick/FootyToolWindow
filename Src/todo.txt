@@ -1,5 +1,3 @@
-test/remove uefa & brazil
-
 swans/manu/mancity/crystal
 
 add more columns ? not just p/w/d/l but split out into home p/w/d/l & away p/w/d/l ?

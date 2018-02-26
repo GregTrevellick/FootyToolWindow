@@ -21,8 +21,8 @@ namespace FootieData.Vsix
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private readonly Style _rightAlignStyle;
-        private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = "No results available for the past 7 days" } };
-        private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = "No fixtures available for the next 7 days" } };
+        private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = $"No results available for the past {CommonConstants.DaysCount} days" } };
+        private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"No fixtures available for the next {CommonConstants.DaysCount} days" } };
 
         private const string PoliteRequestLimitReached = "The free request limit has been reached - please w";
         private const string RequestLimitReached = "You reached your request limit. W";
