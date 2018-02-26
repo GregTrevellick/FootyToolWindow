@@ -12,9 +12,12 @@ namespace FootieData.Common
     {
         public static void RightAlignDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style rightAlignStyle)
         {
-            foreach (var index in indexes)
+            if (dataGridColumns.Count > 0)
             {
-                dataGridColumns[index].CellStyle = rightAlignStyle;
+                foreach (var index in indexes)
+                {
+                    dataGridColumns[index].CellStyle = rightAlignStyle;
+                }
             }
         }
 
