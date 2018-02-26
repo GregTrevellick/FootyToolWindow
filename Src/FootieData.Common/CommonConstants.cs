@@ -9,7 +9,7 @@ namespace FootieData.Common
         public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
         public const int RefreshIntervalInSeconds = 5;//gregt reset to 60
 
-        public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
+        //public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
         public const string InternalLeagueCodeDescriptionDe1 = "1. Bundesliga";
         public const string InternalLeagueCodeDescriptionDe2 = "2. Bundesliga";
         public const string InternalLeagueCodeDescriptionEs1 = "La Liga Primera Division";

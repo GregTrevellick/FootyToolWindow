@@ -27,10 +27,10 @@ namespace FootieData.Vsix.Options
         [Description(CommonConstants.InterestedInLeague)]
         public bool InterestedInUk4 { get; set; } = false;
 
-        [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName(CommonConstants.InternalLeagueCodeDescriptionBr1)]
-        [Description(CommonConstants.InterestedInLeague)]
-        public bool InterestedInBr1 { get; set; } = false;
+        //[Category(CommonConstants.CategorySubLevel)]
+        //[DisplayName(CommonConstants.InternalLeagueCodeDescriptionBr1)]
+        //[Description(CommonConstants.InterestedInLeague)]
+        //public bool InterestedInBr1 { get; set; } = false;
 
         [Category(CommonConstants.CategorySubLevel)]
         [DisplayName(CommonConstants.InternalLeagueCodeDescriptionDe1)]

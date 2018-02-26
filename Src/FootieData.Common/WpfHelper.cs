@@ -25,8 +25,8 @@ namespace FootieData.Common
         {
             switch (internalLeagueCode)
             {
-                case InternalLeagueCode.BR1:
-                    return CommonConstants.InternalLeagueCodeDescriptionBr1;
+                //case InternalLeagueCode.BR1:
+                //    return CommonConstants.InternalLeagueCodeDescriptionBr1;
                 case InternalLeagueCode.DE1:
                     return CommonConstants.InternalLeagueCodeDescriptionDe1;
                 case InternalLeagueCode.DE2:
@@ -135,16 +135,6 @@ namespace FootieData.Common
         {
             switch (internalLeagueCode)
             {
-                ////////////////////////case InternalLeagueCode.BR1:
-                ////////////////////////    //Brazil - league table only seems to work
-                ////////////////////////    return new List<LeagueSubOption>
-                ////////////////////////    {
-                ////////////////////////        new LeagueSubOption
-                ////////////////////////        {
-                ////////////////////////            GridType = GridType.Standing,
-                ////////////////////////            Expand = true
-                ////////////////////////        }
-                ////////////////////////    };
                 case InternalLeagueCode.UEFA1:
                     //Champions league - league table unsurprisingly doesn't work, but results/fixtures do (in knock-out rounds at least)
                     return new List<LeagueSubOption>

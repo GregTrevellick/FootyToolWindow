@@ -4,7 +4,7 @@ namespace FootieData.Entities.ReferenceData
 {
     public enum InternalLeagueCode
     {
-        BR1,
+        //BR1,
         DE1,
         DE2,
         ES1,
