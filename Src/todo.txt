@@ -1,5 +1,3 @@
-figure out why try/catch is happening
-
 test/remove uefa & brazil
 
 swans/manu/mancity/crystal
