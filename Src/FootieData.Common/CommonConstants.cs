@@ -5,9 +5,9 @@ namespace FootieData.Common
     public static class CommonConstants
     {
         public const string CategorySubLevel = "General";
-        public const int DaysCount = 29;//gregt reset to 7
+        public const int DaysCount = 7;
         public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
-        public const int RefreshIntervalInSeconds = 5;//gregt reset to 60
+        public const int RefreshIntervalInSeconds = 60;
 
         //public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
         public const string InternalLeagueCodeDescriptionDe1 = "1. Bundesliga";
