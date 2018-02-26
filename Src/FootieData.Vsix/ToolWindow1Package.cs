@@ -17,7 +17,7 @@ namespace FootieData.Vsix
     [Guid(ToolWindow1Package.PackageGuidString)]
     [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)] // Info on this package for Help/About
     [PackageRegistration(UseManagedResourcesOnly = true)]//, AllowsBackgroundLoading = true)]
-    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]//gregt UIContextGuids.NoSolution vs VSConstants.UICONTEXT.NoSolution_string
+    [ProvideAutoLoad(UIContextGuids.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]//UIContextGuids.NoSolution vs VSConstants.UICONTEXT.NoSolution_string
     [ProvideMenuResource("Menus.ctmenu", 1)]//[ProvideMenuResource(1000, 1)]
     [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
     [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
