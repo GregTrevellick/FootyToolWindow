@@ -1,4 +1,5 @@
 swans/manu/mancity/crystal
+blanks for brazil
 
 add more columns ? not just p/w/d/l but split out into home p/w/d/l & away p/w/d/l ?
 
@@ -21,8 +22,10 @@ unit tests
 
 
 
-
-
+https://www.nuget.org/packages/Football-Data-API/
+https://github.com/Garand-Gary/Football-Data.co.uk
+http://livescore.football-data.co.uk/#inscore_ifheight_xdc_3759
+https://www.livescore.in/
 
 
 
@@ -65,4 +68,3 @@ promotion/relegation zone dotted border lines
 collapse all / expand all
 add 'refresh' icon to refresh button
 sort results by date, home team
-https://www.nuget.org/packages/Football-Data-API/

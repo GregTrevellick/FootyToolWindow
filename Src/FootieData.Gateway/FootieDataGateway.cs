@@ -110,7 +110,7 @@ namespace FootieData.Gateway
                     Played = x.PlayedGames,
                     Points = x.Points,
                     Rank = x.Rank,//x.Position,
-                    Team = x.Team,//x.TeamName,
+                    Team = MapExternalTeamNameToInternalTeamName(x.Team)
                 });
             }
         }
@@ -131,9 +131,9 @@ namespace FootieData.Gateway
             {
                 return fixturesResult?.Fixtures?.Select(x => new FixturePast
                 {
-                    AwayName = x.AwayTeamName,
+                    AwayName = MapExternalTeamNameToInternalTeamName(x.AwayTeamName),
                     Date = x.Date.ToString("d", enGB),//gregt unit test & replace with current culture
-                    HomeName = x.HomeTeamName,
+                    HomeName = MapExternalTeamNameToInternalTeamName(x.HomeTeamName),
                     GoalsAway = x.Result?.GoalsAwayTeam,
                     GoalsHome = x.Result?.GoalsHomeTeam,
                 });
@@ -156,11 +156,22 @@ namespace FootieData.Gateway
             {
                 return fixturesResult?.Fixtures?.Select(x => new FixtureFuture
                 {
-                    AwayName = x.AwayTeamName,
+                    AwayName = MapExternalTeamNameToInternalTeamName(x.AwayTeamName),
                     Date = x.Date.ToString("d"),
-                    HomeName = x.HomeTeamName,
+                    HomeName = MapExternalTeamNameToInternalTeamName(x.HomeTeamName),
                     Time = x.Date.ToString("t"),
                 });
+            }
+        }
+
+        private static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
+        {
+            switch (externalTeamName.ToLower())
+            {
+                case "manu":
+                    return "Manchester United";
+                default:
+                    return externalTeamName;
             }
         }
     }
