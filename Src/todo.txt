@@ -1,12 +1,12 @@
 swans/manu/mancity/crystal
+appveyor
+readme.md
 
 
 
 
 
 update vsixratingchaser in nuget
-appveyor
-readme.md
 check status/score of match whilst part way thru a live match
 put auth key into separate bitbucket dll
 check performance
