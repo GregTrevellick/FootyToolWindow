@@ -17,19 +17,25 @@ namespace FootieData.Vsix
 
         private void SetBossModeCaption()
         {
-            Caption = "Lorem ipsum";
+            Caption = "F-crash_.Data";
+        }
+
+        private void SetLeagueModeCaption()
+        {
+            Caption = Vsix.Name;
         }
 
         public VsixToolWindowPane() : base(null)
         {
-            Caption = Vsix.Name;
+            SetLeagueModeCaption();
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable, we are not calling Dispose on this object. 
             // This is because ToolWindowPane calls Dispose on the object returned by the Content property.
             Content = new ToolWindow1Control(GetOptionsFromStoreAndMapToInternalFormatMethod, UpdateLastUpdatedDate, GetLastUpdatedDate);
 
             var toolWindow1ControlContent = (ToolWindow1Control) Content;
-            toolWindow1ControlContent.BossComingEventHandler += SetBossModeCaption;
+            toolWindow1ControlContent.BossModeEventHandler += SetBossModeCaption;
+            toolWindow1ControlContent.LeagueModeEventHandler += SetLeagueModeCaption;
         }
     }
 }

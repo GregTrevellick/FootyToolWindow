@@ -5,7 +5,6 @@ swans/manu/mancity/crystal
 
 
 update vsixratingchaser in nuget
-rename window title from 'vs sports desk' when boss mode clicked
 appveyor
 readme.md
 check status/score of match whilst part way thru a live match

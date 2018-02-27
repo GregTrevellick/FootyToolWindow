@@ -16,7 +16,8 @@ namespace FootieData.Vsix
     public partial class ToolWindow1Control : UserControl
     {
         public delegate void EventHandler();
-        public event EventHandler BossComingEventHandler;
+        public event EventHandler BossModeEventHandler;
+        public event EventHandler LeagueModeEventHandler;
         public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
 
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
@@ -235,7 +236,7 @@ namespace FootieData.Vsix
             BtnBossMode.Visibility = Visibility.Visible;
             StackPanelBossMode.Visibility = Visibility.Visible;
             BtnRefresh.IsEnabled = false;
-            BossComingEventHandler?.Invoke();
+            BossModeEventHandler?.Invoke();
         }
 
         private void Click_HandlerReturn(object sender, RoutedEventArgs e)
@@ -245,6 +246,7 @@ namespace FootieData.Vsix
             BtnBossMode.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Collapsed;
             BtnRefresh.IsEnabled = true;
+            LeagueModeEventHandler?.Invoke();
         }
 
         private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
