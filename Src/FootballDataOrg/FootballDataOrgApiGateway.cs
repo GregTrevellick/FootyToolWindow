@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Data.FSharp;
 
 namespace FootballDataOrg
 {
     public class FootballDataOrgApiGateway
     {
         private string baseUri = "http://api.football-data.org/v1/competitions";
-        private string AuthToken { get; set; }
+        private string Token { get; set; }
 
-        public FootballDataOrgApiGateway(string token)
+        public FootballDataOrgApiGateway()
         {
-            AuthToken = token + "b";
+            Token = Frules.FootballDataOrgApiToken;
         }
 
         public CompetitionResponseDto GetCompetitionResult()
@@ -100,7 +101,7 @@ namespace FootballDataOrg
         
         private FootballDataOrgApiHttpClient GetFootballDataOrgApiHttpClient()
         {
-            return new FootballDataOrgApiHttpClient(AuthToken);
+            return new FootballDataOrgApiHttpClient(Token);
         }
 
         private static IEnumerable<CompetitionResponse> DeserializeCompetitions(string responseString)

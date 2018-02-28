@@ -1,5 +1,4 @@
 swans/manu/mancity/crystal
-appveyor
 readme.md
 
 
@@ -8,7 +7,6 @@ readme.md
 
 update vsixratingchaser in nuget
 check status/score of match whilst part way thru a live match
-put auth key into separate bitbucket dll
 check performance
 gregt
 unit tests
@@ -16,10 +14,10 @@ unit tests
 
 
 
-https://www.nuget.org/packages/Football-Data-API/
-https://github.com/Garand-Gary/Football-Data.co.uk
-http://livescore.football-data.co.uk/#inscore_ifheight_xdc_3759
-https://www.livescore.in/
+
+
+
+
 
 
 
@@ -62,3 +60,328 @@ promotion/relegation zone dotted border lines
 collapse all / expand all
 add 'refresh' icon to refresh button
 sort results by date, home team
+
+
+
+https://www.nuget.org/packages/Football-Data-API/
+https://github.com/Garand-Gary/Football-Data.co.uk
+http://livescore.football-data.co.uk/#inscore_ifheight_xdc_3759
+https://www.livescore.in/
+
+
+
+
+
+uefa json
+=========
+{
+    "leagueCaption": "Champions League 2017/18",
+    "matchday": 7,
+    "standings": {
+        "A": [
+            {
+                "group": "A",
+                "rank": 0,
+                "team": "SL Benfica",
+                "teamId": 495,
+                "playedGames": 0,
+                "crestURI": "http://upload.wikimedia.org/wikipedia/de/8/89/Logo_Benfica_Lissabon.svg",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            },
+            {
+                "group": "A",
+                "rank": 0,
+                "team": "CSKA Moscow",
+                "teamId": 751,
+                "playedGames": 0,
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/f/fa/CSKA_Moscow_logo.png",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            }
+        ],
+        "B": [
+            {
+                "group": "B",
+                "rank": 0,
+                "team": "Celtic FC",
+                "teamId": 732,
+                "playedGames": 0,
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/3/35/Celtic_FC.svg",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            },
+            {
+                "group": "B",
+                "rank": 0,
+                "team": "RSC Anderlecht",
+                "teamId": 726,
+                "playedGames": 0,
+                "crestURI": "http://en.wikipedia.org/wiki/R.S.C._Anderlecht#mediaviewer/File:Anderlecht_club_crest.jpg",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            }
+        ],
+        "C": [
+            {
+                "group": "C",
+                "rank": 0,
+                "team": "Club Atlético de Madrid",
+                "teamId": 78,
+                "playedGames": 0,
+                "crestURI": "http://upload.wikimedia.org/wikipedia/de/c/c1/Atletico_Madrid_logo.svg",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            },
+            {
+                "group": "C",
+               "rank": 0,
+                "team": "Qarabag Agdam FK",
+                "teamId": 611,
+                "playedGames": 0,
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/5/56/Qarabag%2Clogo%2C2016.png",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            }
+        ],
+        "D": [
+            {
+                "group": "D",
+                "rank": 0,
+                "team": "Olympiacos F.C.",
+                "teamId": 654,
+                "playedGames": 0,
+                "crestURI": "http://upload.wikimedia.org/wikipedia/de/9/96/Logo_Olympiakos_Pir%C3%A4us.svg",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            },
+            {
+                "group": "D",
+                "rank": 0,
+                "team": "Sporting CP",
+                "teamId": 498,
+                "playedGames": 0,
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/3/3e/Sporting_Clube_de_Portugal.png",
+                "points": 0,
+                "goals": 0,
+                "goalsAgainst": 0,
+                "goalDifference": 0
+            }
+        ],
+        "E": [
+            {
+                "group": "E",
+                "rank": 0,
+                "team": "NK Maribor",
+                "teamId": 734,
+
+               "playedGames": 0,
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/7/78/Nkmaribor_2013.png",
+                "points": 0,
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            },
+
+            {
+
+                "group": "E",
+
+                "rank": 0,
+
+                "team": "Spartak Moskva",
+
+                "teamId": 754,
+
+                "playedGames": 0,
+
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/2/22/FC_Spartak_Moscow_logo.png",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            }
+
+        ],
+
+        "F": [
+
+            {
+
+                "group": "F",
+
+                "rank": 0,
+
+                "team": "SSC Napoli",
+
+                "teamId": 113,
+
+                "playedGames": 0,
+
+                "crestURI": "http://upload.wikimedia.org/wikipedia/commons/2/28/S.S.C._Napoli_logo.svg",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            },
+
+            {
+
+                "group": "F",
+
+                "rank": 0,
+
+                "team": "Feyenoord Rotterdam",
+
+                "teamId": 675,
+
+                "playedGames": 0,
+
+                "crestURI": "http://upload.wikimedia.org/wikipedia/de/2/24/Logo_Feyenoord_Rotterdam.svg",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            }
+
+        ],
+
+        "G": [
+
+            {
+
+                "group": "G",
+
+                "rank": 0,
+
+                "team": "Red Bull Leipzig",
+
+                "teamId": 721,
+
+                "playedGames": 0,
+
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/0/04/RB_Leipzig_2014_logo.svg",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            },
+
+            {
+
+                "group": "G",
+
+                "rank": 0,
+
+                "team": "AS Monaco FC",
+
+                "teamId": 548,
+
+                "playedGames": 0,
+
+                "crestURI": "http://upload.wikimedia.org/wikipedia/de/3/3c/AS_Monaco.svg",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            }
+
+        ],
+
+        "H": [
+
+            {
+
+                "group": "H",
+
+                "rank": 0,
+
+                "team": "APOEL Nicosia",
+
+                "teamId": 752,
+
+                "playedGames": 0,
+
+                "crestURI": "https://upload.wikimedia.org/wikipedia/en/0/06/APOELnew.png",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            },
+
+            {
+
+                "group": "H",
+
+                "rank": 0,
+
+                "team": "Borussia Dortmund",
+
+                "teamId": 4,
+
+                "playedGames": 0,
+
+                "crestURI": "http://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg",
+
+                "points": 0,
+
+                "goals": 0,
+
+                "goalsAgainst": 0,
+
+                "goalDifference": 0
+
+            }
+
+        ]
+
+    }
+
+}

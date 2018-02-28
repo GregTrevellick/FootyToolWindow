@@ -20,7 +20,7 @@ namespace FootieData.Gateway
 
         private CompetitionResultSingleton()
         {
-            FootballDataOrgApiGateway = new FootballDataOrgApiGateway("52109775b158" + "4a93854ca187690ed4b");
+            FootballDataOrgApiGateway = new FootballDataOrgApiGateway();
             CompetitionResult = FootballDataOrgApiGateway.GetCompetitionResult();
         }
     }
