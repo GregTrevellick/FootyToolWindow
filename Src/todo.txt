@@ -1,11 +1,9 @@
-swans/manu/mancity/crystal
-readme.md
-
-
-
-
-
 update vsixratingchaser in nuget
+
+
+
+readme.md
+swans/manu/mancity/crystal
 check status/score of match whilst part way thru a live match
 check performance
 gregt
