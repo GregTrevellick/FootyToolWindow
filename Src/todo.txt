@@ -2,7 +2,7 @@ update vsixratingchaser in nuget
 
 
 
-readme.md
+readme.md screen shots
 swans/manu/mancity/crystal
 check status/score of match whilst part way thru a live match
 check performance
