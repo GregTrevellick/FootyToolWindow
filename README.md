@@ -15,21 +15,20 @@
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
 
-A [CharityWare][CharityWareURL] [Visual Studio][VisualStudioURL] extensions that display the beautiful game league tables and results.
+What more do you want from your IDE than to display the latest soccer scores and tables ? Everything else is just fluff.
 
-What more do u want from your IDE than the latest soccer scores ? Apart from knowing that it can ? And if it can, what opportunities does that open for your company and any internal http APIs ?
+So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] extension to do exactly that, leveraging the truly awesome labour of love that is [FootballData.org](https://www.football-data.org).
 
-Why ? Because I can.
+As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or correct in any way - though this of course is mine and Daniel's  intention.
 
-I do not guarantee the provided data to be accurate, up-to-date or correct in any way - though this of course is my intention. I also cannot guarantee any level of availability.
-
-The truly awesome, free, labour of love that is [FootballData.org](https://www.football-data.org).
+So why build this extension? 
+1. Because I can.
+1. To demonstrate  that VS can display any http feed (e.g. an internal  corporate feed).
+1. [This][WhyURL]. 
 
 Bugs can be logged [here][GitHubRepoIssuesURL].
 
 See the [change log](CHANGELOG.md) for release history.
-
-[Why build this extension?][WhyURL] 
 
 ## Credits
 
