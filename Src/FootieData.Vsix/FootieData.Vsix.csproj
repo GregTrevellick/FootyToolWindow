@@ -259,8 +259,8 @@
     <Reference Include="VsixLogger, Version=1.1.44.0, Culture=neutral, PublicKeyToken=29d32695dc822296, processorArchitecture=MSIL">
       <HintPath>..\packages\VsixLogger.1.1.44.0\lib\net45\VsixLogger.dll</HintPath>
     </Reference>
-    <Reference Include="VsixRatingChaser">
-      <HintPath>..\..\..\VsixRatingChaser\src\VsixRatingChaser\bin\Debug\VsixRatingChaser.dll</HintPath>
+    <Reference Include="VsixRatingChaser, Version=1.0.70.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\VsixRatingChaser.1.0.70\lib\net47\VsixRatingChaser.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
