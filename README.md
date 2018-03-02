@@ -38,13 +38,24 @@ See the [change log](CHANGELOG.md) for release history.
 
 ## Features
 
-![](SolutionOpenPopUp/Resources/ReadMeScreenShot_OptionsGeneral.png)
+- Tables displayed in a dockable window, just like Output window or Solution Explorer window
 
-- Option to show/hide the content of SolutionOpenPopUp.txt in root folder of the solution in a pop-up when the solution is open.
+- Configure your preferred football leagues from a choice of major European leagues
+  - Bundesliga
+  - Eredivisie
+  - La Liga Primera Division
+  - Ligue 1 / Ligue 2
+  - Premier League, EFL Championship, EFL League One, EFL League Two (aka Division 1 / 2 / 3 / 4)
+  - Primeira Liga
+  - Serie A / Serie B
 
-- Option to show/hide the content of ReadMe.txt in root folder of the solution in a pop-up when the solution is open.
+- League tables sortable by any column
 
-- Excessively long lines of text are truncated according to a user-defined value.
+- See the last seven days results
+
+- See the next seven days fixtures
+
+- Boss mode (replaces league tables with dummy crash dump data)
 
 ## Credits
 
