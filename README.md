@@ -38,7 +38,7 @@ See the [change log](CHANGELOG.md) for release history.
 
 ## Features
 
-- Tables displayed in a dockable window, just like Output window or Solution Explorer window
+- League standings are displayed in a dockable window, just like the Output window or the Solution Explorer window
 
 - Configure your preferred football leagues from a choice of major European leagues
   - Bundesliga
@@ -65,7 +65,9 @@ See the [change log](CHANGELOG.md) for release history.
 
 [FootballData.org](https://www.football-data.org)
 
-[Pixabay](https://pixabay.com/en/males-3d-model-isolated-3d-model-2358253/)
+[Marco Lachmann-Anke](http://marco-lachmann.de/)
+
+[Marco Lachmann-Anke 3dman_eu](https://pixabay.com/en/males-3d-model-isolated-3d-model-2358253/)
 
 [Walid Sakhana](https://github.com/sakhana88)
 
