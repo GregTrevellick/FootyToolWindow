@@ -19,7 +19,13 @@ What more do you want from your IDE than to display the latest soccer scores and
 
 So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] extension to do exactly that, leveraging the truly awesome labour of love that is [FootballData.org](https://www.football-data.org).
 
-As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or correct in any way - though this of course is mine and Daniel's  intention.
+As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or correct in any way - though this of course is mine and Daniel's  intention, and it generally will be.
+
+ - *If you LIKE this ***FREE*** extension please give a star rating below, it only takes a few seconds*.
+
+ - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
+
+![](SolutionOpenPopUp/Resources/ReadMe_AnimatedDemo.gif)
 
 So why build this extension? 
 1. Because I can.
@@ -29,6 +35,16 @@ So why build this extension?
 Bugs can be logged [here][GitHubRepoIssuesURL].
 
 See the [change log](CHANGELOG.md) for release history.
+
+## Features
+
+![](SolutionOpenPopUp/Resources/ReadMeScreenShot_OptionsGeneral.png)
+
+- Option to show/hide the content of SolutionOpenPopUp.txt in root folder of the solution in a pop-up when the solution is open.
+
+- Option to show/hide the content of ReadMe.txt in root folder of the solution in a pop-up when the solution is open.
+
+- Excessively long lines of text are truncated according to a user-defined value.
 
 ## Credits
 
