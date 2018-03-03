@@ -1,10 +1,17 @@
 readme.md screen shots
-swans/manu/mancity/crystal
+c.f. names vs daily mail (e.g. swans/manu/mancity/crystal)
+unit tests
+
+
+
+
 check status/score of match whilst part way thru a live match
 check performance
 gregt
-unit tests
 test vsix rating chaser in prod
+
+
+
 
 
 
