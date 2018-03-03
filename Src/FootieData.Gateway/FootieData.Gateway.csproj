@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapperHelper.cs" />
     <Compile Include="FootieDataGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CompetitionResultSingleton.cs" />

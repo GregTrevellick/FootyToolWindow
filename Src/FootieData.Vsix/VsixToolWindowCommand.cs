@@ -22,7 +22,7 @@ namespace FootieData.Vsix
             }
             _asyncPackage = asyncPackage;
 
-            var commandService = await asyncPackage.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+            OleMenuCommandService commandService = await asyncPackage.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
             Instance = new VsixToolWindowCommand(commandService);
         }
 

@@ -1,18 +1,14 @@
-update vsixratingchaser in nuget
-
-
-
 readme.md screen shots
 swans/manu/mancity/crystal
 check status/score of match whilst part way thru a live match
 check performance
 gregt
 unit tests
+test vsix rating chaser in prod
 
 
 
 
-random alternate boss mode text
 
 
 
@@ -58,7 +54,7 @@ promotion/relegation zone dotted border lines
 collapse all / expand all
 add 'refresh' icon to refresh button
 sort results by date, home team
-
+random alternate boss mode text
 
 
 https://www.nuget.org/packages/Football-Data-API/
