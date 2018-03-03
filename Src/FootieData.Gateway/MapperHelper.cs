@@ -5,11 +5,14 @@ namespace FootieData.Gateway
 {
     public class MapperHelper
     {
+        private static void TemporaryWriteTeamNameToTextFile(string externalTeamName)
+        {
+            File.AppendAllText("VsixFootieTeams.txt", externalTeamName + Environment.NewLine);
+        }
+
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
-            TemporaryWriteTeamNameToTextFile(externalTeamName);
-
-
+            //TemporaryWriteTeamNameToTextFile(externalTeamName);
 
             switch (externalTeamName)
             {
@@ -270,11 +273,6 @@ namespace FootieData.Gateway
                 default:
                     return "";
             }
-        }
-
-        private static void TemporaryWriteTeamNameToTextFile(string externalTeamName)
-        {
-            File.AppendAllText("VsixFootieTeams.txt", externalTeamName + Environment.NewLine);
         }
     }
 }
