@@ -1,9 +1,14 @@
-﻿namespace FootieData.Gateway
+﻿using System;
+using System.IO;
+
+namespace FootieData.Gateway
 {
     public class MapperHelper
     {
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
+            TemporaryWriteTeamNameToTextFile(externalTeamName);
+
             switch (externalTeamName)
             {
                 case "Manu":
@@ -392,6 +397,11 @@
                 default:
                     return externalTeamName;
             }
+        }
+
+        private static void TemporaryWriteTeamNameToTextFile(string externalTeamName)
+        {
+            File.AppendAllText("VsixFootieTeams.txt", externalTeamName + Environment.NewLine);                        
         }
     }
 }
