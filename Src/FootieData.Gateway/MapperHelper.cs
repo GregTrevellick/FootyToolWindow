@@ -11,89 +11,89 @@ namespace FootieData.Gateway
 
             switch (externalTeamName)
             {
-                case "Manu":
-                    return "Manchester United";
-                //case "AS Monaco FC":
-                //case "Boavista Porto FC":
-                //case "Bologna FC":
-                //case "Carpi FC":
-                //case "Chamois Niortais FC":
-                //case "Coritiba FC":
-                //case "Empoli FC":
-                //case "Fluminense FC":
-                //case "Genoa CFC":
-                //case "Girona FC":
-                //case "Hellas Verona FC":
-                //case "Moreirense FC":
-                //case "Paris FC":
-                //case "Parma FC":
-                //case "Santos FC":
-                //case "Sevilla FC":
-                //case "Sochaux FC":
-                //case "Stade Rennais FC":
-                //case "Torino FC":
-                //case "Toulouse FC":
-                case "Arsenal FC":
-                case "Barnet FC":
-                case "Barnsley FC":
-                case "Blackburn Rovers FC":
-                case "Blackpool FC":
-                case "Bolton Wanderers FC":
-                case "Brentford FC":
-                case "Burnley FC":
-                case "Burton Albion FC":
-                case "Bury FC":
-                case "Cardiff City FC":
-                case "Chelsea FC":
-                case "Chesterfield FC":
-                case "Colchester United FC":
-                case "Coventry City FC":
-                case "Crewe Alexandra FC":
-                case "Crystal Palace FC":
-                case "Doncaster Rovers FC":
-                case "Everton FC":
-                case "Fleetwood Town FC":                
-                case "Fulham FC":
-                case "Gillingham FC":
-                case "Hull City FC":
-                case "Leicester City FC":
-                case "Liverpool FC":
-                case "Manchester City FC":
-                case "Manchester United FC":
-                case "Middlesbrough FC":
-                case "Millwall FC":
-                case "Morecambe FC":
-                case "Newcastle United FC":
-                case "Norwich City FC":
-                case "Peterborough United FC":
-                case "Port Vale FC":                
-                case "Scunthorpe United FC":
-                case "Sheffield United FC":
-                case "Shrewsbury Town FC":
-                case "Southampton FC":
-                case "Southend United FC":
-                case "Stevenage FC":
-                case "Stoke City FC":
-                case "Swansea City FC":
-                case "Swindon Town FC":
-                case "Tottenham Hotspur FC":
-                case "Walsall FC":
-                case "Watford FC":
-                case "West Bromwich Albion FC":
-                case "West Ham United FC":
-                case "Wigan Athletic FC":
-                case "Wolverhampton Wanderers FC":
-                    return externalTeamName.Replace(" FC", string.Empty);
+                //case "Manu":
+                //    return "Manchester United";
+                ////case "AS Monaco FC":
+                ////case "Boavista Porto FC":
+                ////case "Bologna FC":
+                ////case "Carpi FC":
+                ////case "Chamois Niortais FC":
+                ////case "Coritiba FC":
+                ////case "Empoli FC":
+                ////case "Fluminense FC":
+                ////case "Genoa CFC":
+                ////case "Girona FC":
+                ////case "Hellas Verona FC":
+                ////case "Moreirense FC":
+                ////case "Paris FC":
+                ////case "Parma FC":
+                ////case "Santos FC":
+                ////case "Sevilla FC":
+                ////case "Sochaux FC":
+                ////case "Stade Rennais FC":
+                ////case "Torino FC":
+                ////case "Toulouse FC":
+                //case "Arsenal FC":
+                //case "Barnet FC":
+                //case "Barnsley FC":
+                //case "Blackburn Rovers FC":
+                //case "Blackpool FC":
+                //case "Bolton Wanderers FC":
+                //case "Brentford FC":
+                //case "Burnley FC":
+                //case "Burton Albion FC":
+                //case "Bury FC":
+                //case "Cardiff City FC":
+                //case "Chelsea FC":
+                //case "Chesterfield FC":
+                //case "Colchester United FC":
+                //case "Coventry City FC":
+                //case "Crewe Alexandra FC":
+                //case "Crystal Palace FC":
+                //case "Doncaster Rovers FC":
+                //case "Everton FC":
+                //case "Fleetwood Town FC":                
+                //case "Fulham FC":
+                //case "Gillingham FC":
+                //case "Hull City FC":
+                //case "Leicester City FC":
+                //case "Liverpool FC":
+                //case "Manchester City FC":
+                //case "Manchester United FC":
+                //case "Middlesbrough FC":
+                //case "Millwall FC":
+                //case "Morecambe FC":
+                //case "Newcastle United FC":
+                //case "Norwich City FC":
+                //case "Peterborough United FC":
+                //case "Port Vale FC":                
+                //case "Scunthorpe United FC":
+                //case "Sheffield United FC":
+                //case "Shrewsbury Town FC":
+                //case "Southampton FC":
+                //case "Southend United FC":
+                //case "Stevenage FC":
+                //case "Stoke City FC":
+                //case "Swansea City FC":
+                //case "Swindon Town FC":
+                //case "Tottenham Hotspur FC":
+                //case "Walsall FC":
+                //case "Watford FC":
+                //case "West Bromwich Albion FC":
+                //case "West Ham United FC":
+                //case "Wigan Athletic FC":
+                //case "Wolverhampton Wanderers FC":
+                //    return externalTeamName.Replace(" FC", string.Empty);
 
-                case "AFC Bournemouth":
-                case "AFC Wimbledon":
-                    return externalTeamName.Replace("AFC ", string.Empty);
+                //case "AFC Bournemouth":
+                //case "AFC Wimbledon":
+                //    return externalTeamName.Replace("AFC ", string.Empty);
 
-                case "Bradford City AFC":
-                case "Oldham Athletic AFC":
-                case "Rochdale AFC":
-                case "Sunderland AFC":
-                    return externalTeamName.Replace(" AFC ", string.Empty);
+                //case "Bradford City AFC":
+                //case "Oldham Athletic AFC":
+                //case "Rochdale AFC":
+                //case "Sunderland AFC":
+                //    return externalTeamName.Replace(" AFC ", string.Empty);
 
 
 
