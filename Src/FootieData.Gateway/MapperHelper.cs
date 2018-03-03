@@ -13,192 +13,260 @@ namespace FootieData.Gateway
 
             switch (externalTeamName)
             {
-                case "Accrington Stanley": return "Accrington Stanley";
+                case "Accrington Stanley":
+                    return "Accrington Stanley";
                 case "Arsenal":  
-                case "Arsenal FC": return "Arsenal";
+                case "Arsenal FC":
+                    return "Arsenal";
                 case "Aston Villa":   
-                case "Aston Villa FC": return "Aston Villa";
-                case "Barnet FC": return "Barnet";
+                case "Aston Villa FC":
+                    return "Aston Villa";
+                case "Barnet FC":
+                    return "Barnet";
                 case "Barnsley":  
-                case "Barnsley FC": return "Barnsley";
+                case "Barnsley FC":
+                    return "Barnsley";
                 case "Birmingham":  
-                case "Birmingham City": return "Birmingham";
-                case "Blackburn Rovers FC": return "Blackburn Rovers";
+                case "Birmingham City":
+                    return "Birmingham";
+                case "Blackburn Rovers FC":
+                    return "Blackburn Rovers";
                 case "Blackpool":  
-                case "Blackpool FC": return "Blackpool";
-                case "Bolton Wanderers FC": return "Bolton Wanderers";
+                case "Blackpool FC":
+                    return "Blackpool";
+                case "Bolton Wanderers FC":
+                    return "Bolton Wanderers";
                 case "AFC Bournemouth":  
-                case "Bournemouth": return "Bournemouth";
+                case "Bournemouth":
+                    return "Bournemouth";
                 case "Bradford":  
-                case "Bradford City AFC": return "Bradford";
-                case "Brentford FC": return "Brentford";
+                case "Bradford City AFC":
+                    return "Bradford";
+                case "Brentford FC":
+                    return "Brentford";
                 case "Brighton":     
-                case "Brighton & Hove Albion": return "Brighton & Hove Albion";
-                case "Bristol": return "";
-                case "Bristol City": return "Bristol City";
-                case "Bristol Rovers": return "Bristol Rovers";
+                case "Brighton & Hove Albion":
+                    return "Brighton & Hove Albion";
+                case "Bristol":
+                    return "";
+                case "Bristol City":
+                    return "Bristol City";
+                case "Bristol Rovers":
+                    return "Bristol Rovers";
                 case "Burnley":  
-                case "Burnley FC": return "Burnley";
+                case "Burnley FC":
+                    return "Burnley";
                 case "Burton":   
-                case "Burton Albion FC": return "Burton Albion";
+                case "Burton Albion FC":
+                    return "Burton Albion";
                 case "Bury":  
-                case "Bury FC": return "Bury";
-                case "Cambridge United": return "Cambridge United";
+                case "Bury FC":
+                    return "Bury";
+                case "Cambridge United":
+                    return "Cambridge United";
                 case "Cardiff":  
-                case "Cardiff City FC": return "Cardiff";
-                case "Carlisle United": return "Carlisle United";
+                case "Cardiff City FC":
+                    return "Cardiff";
+                case "Carlisle United":
+                    return "Carlisle United";
                 case "Charlton":   
-                case "Charlton Athletic": return "Charlton Athletic";
+                case "Charlton Athletic":
+                    return "Charlton Athletic";
                 case "Chelsea":  
-                case "Chelsea FC": return "Chelsea";
+                case "Chelsea FC":
+                    return "Chelsea";
                 case "Cheltenham":  
-                case "Cheltenham Town": return "Cheltenham";
+                case "Cheltenham Town":
+                    return "Cheltenham";
                 case "Chesterfield":  
-                case "Chesterfield FC": return "Chesterfield";
+                case "Chesterfield FC":
+                    return "Chesterfield";
                 case "Colchester":   
-                case "Colchester United FC": return "Colchester United";
+                case "Colchester United FC":
+                    return "Colchester United";
                 case "Coventry":  
-                case "Coventry City FC": return "Coventry";
-                case "Crawley Town": return "Crawley Town";
+                case "Coventry City FC":
+                    return "Coventry";
+                case "Crawley Town":
+                    return "Crawley Town";
                 case "Crewe":   
-                case "Crewe Alexandra FC": return "Crewe Alexandra";
+                case "Crewe Alexandra FC":
+                    return "Crewe Alexandra";
                 case "Crystal":   
-                case "Crystal Palace FC": return "Crystal Palace";
+                case "Crystal Palace FC":
+                    return "Crystal Palace";
                 case "Derby":   
-                case "Derby County": return "Derby County";
+                case "Derby County":
+                    return "Derby County";
                 case "Doncaster":   
-                case "Doncaster Rovers FC": return "Doncaster Rovers";
+                case "Doncaster Rovers FC":
+                    return "Doncaster Rovers";
                 case "Everton":  
-                case "Everton FC": return "Everton";
+                case "Everton FC":
+                    return "Everton";
                 case "Exeter":  
-                case "Exeter City": return "Exeter";
-                case "Fleetwood Town FC": return "Fleetwood";
-                case "Forest Green Rovers": return "Forest Green Rovers";
+                case "Exeter City":
+                    return "Exeter";
+                case "Fleetwood Town FC":
+                    return "Fleetwood";
+                case "Forest Green Rovers":
+                    return "Forest Green Rovers";
                 case "Fulham":  
-                case "Fulham FC": return "Fulham";
-                case "Gillingham FC": return "Gillingham";
-                case "Grimsby Town": return "Grimsby";
+                case "Fulham FC":
+                    return "Fulham";
+                case "Gillingham FC":
+                    return "Gillingham";
+                case "Grimsby Town":
+                    return "Grimsby";
                 case "Huddersfield":  
-                case "Huddersfield Town": return "Huddersfield";
+                case "Huddersfield Town":
+                    return "Huddersfield";
                 case "Hull":  
-                case "Hull City FC": return "Hull";
+                case "Hull City FC":
+                    return "Hull";
                 case "Ipswich":  
-                case "Ipswich Town": return "Ipswich";
-                case "Leeds United": return "Leeds";
+                case "Ipswich Town":
+                    return "Ipswich";
+                case "Leeds United":
+                    return "Leeds";
                 case "Foxes":  
-                case "Leicester City FC": return "Leicester";
+                case "Leicester City FC":
+                    return "Leicester";
                 case "Lincoln":  
-                case "Lincoln City": return "Lincoln";
+                case "Lincoln City":
+                    return "Lincoln";
                 case "Liverpool":  
-                case "Liverpool FC": return "Liverpool";
+                case "Liverpool FC":
+                    return "Liverpool";
                 case "Luton":  
-                case "Luton Town": return "Luton";
+                case "Luton Town":
+                    return "Luton";
                 case "Manchester City FC":   
-                case "ManCity": return "Manchester City";
+                case "ManCity":
+                    return "Manchester City";
                 case "Manchester United FC":   
-                case "ManU": return "Manchester United";
+                case "ManU":
+                    return "Manchester United";
                 case "Mansfield":  
-                case "Mansfield Town": return "Mansfield";
+                case "Mansfield Town":
+                    return "Mansfield";
                 case "Middlesbrough":  
-                case "Middlesbrough FC": return "Middlesbrough";
+                case "Middlesbrough FC":
+                    return "Middlesbrough";
                 case "Millwall":  
-                case "Millwall FC": return "Millwall";
-                case "Milton Keynes Dons": return "MK Dons";
+                case "Millwall FC":
+                    return "Millwall";
+                case "Milton Keynes Dons":
+                    return "MK Dons";
                 case "Morecambe":  
-                case "Morecambe FC": return "Morecambe";
+                case "Morecambe FC":
+                    return "Morecambe";
                 case "Newcastle":  
-                case "Newcastle United FC": return "Newcastle";
-                case "Newport County": return "Newport County";
+                case "Newcastle United FC":
+                    return "Newcastle";
+                case "Newport County":
+                    return "Newport County";
                 case "Northampton":  
-                case "Northampton Town": return "Northampton";
+                case "Northampton Town":
+                    return "Northampton";
                 case "Norwich":  
-                case "Norwich City FC": return "Norwich";
+                case "Norwich City FC":
+                    return "Norwich";
                 case "Nottingham":   
-                case "Nottingham Forest": return "Nottingham Forest";
-                case "Notts County": return "Notts County";
+                case "Nottingham Forest":
+                    return "Nottingham Forest";
+                case "Notts County":
+                    return "Notts County";
                 case "Oldham":   
-                case "Oldham Athletic AFC": return "Oldham Athletic";
+                case "Oldham Athletic AFC":
+                    return "Oldham Athletic";
                 case "Oxford":  
-                case "Oxford United": return "Oxford";
-                case "Peterborough United FC": return "Peterborough";
-                case "Plymouth Argyle": return "Plymouth Argyle";
+                case "Oxford United":
+                    return "Oxford";
+                case "Peterborough United FC":
+                    return "Peterborough";
+                case "Plymouth Argyle":
+                    return "Plymouth Argyle";
                 case "Port Vale":   
-                case "Port Vale FC": return "Port Vale";
-                case "Portsmouth": return "Portsmouth";
+                case "Port Vale FC":
+                    return "Port Vale";
+                case "Portsmouth":
+                    return "Portsmouth";
                 case "Preston":    
-                case "Preston North End": return "Preston North End";
+                case "Preston North End":
+                    return "Preston North End";
                 case "QPR":    
-                case "Queens Park Rangers": return "Queens Park Rangers";
-                case "Reading": return "Reading";
+                case "Queens Park Rangers":
+                    return "Queens Park Rangers";
+                case "Reading":
+                    return "Reading";
                 case "Rochdale":  
-                case "Rochdale AFC": return "Rochdale";
+                case "Rochdale AFC":
+                    return "Rochdale";
                 case "Rotherham":  
-                case "Rotherham United": return "Rotherham";
+                case "Rotherham United":
+                    return "Rotherham";
                 case "Scunthorpe United":  
-                case "Scunthorpe United FC": return "Scunthorpe";
-                case "Sheffield": return "gregtt";
-                case "Sheffield United FC": return "Sheffield United";
-                case "Sheffield Wednesday": return "Sheffield Wednesday";
+                case "Scunthorpe United FC":
+                    return "Scunthorpe";
+                case "Sheffield":
+                    return "gregtt";
+                case "Sheffield United FC":
+                    return "Sheffield United";
+                case "Sheffield Wednesday":
+                    return "Sheffield Wednesday";
                 case "Shrewsbury":  
-                case "Shrewsbury Town FC": return "Shrewsbury";
+                case "Shrewsbury Town FC":
+                    return "Shrewsbury";
                 case "Southampton":  
-                case "Southampton FC": return "Southampton";
+                case "Southampton FC":
+                    return "Southampton";
                 case "Southend United FC":  
-                case "Southend Utd": return "Southend";
-                case "Stevenage FC": return "Stevenage";
+                case "Southend Utd":
+                    return "Southend";
+                case "Stevenage FC":
+                    return "Stevenage";
                 case "Stoke":  
-                case "Stoke City FC": return "Stoke";
+                case "Stoke City FC":
+                    return "Stoke";
                 case "Sunderland":  
-                case "Sunderland AFC": return "Sunderland";
+                case "Sunderland AFC":
+                    return "Sunderland";
                 case "Swans":  
-                case "Swansea City FC": return "Swansea";
+                case "Swansea City FC":
+                    return "Swansea";
                 case "Swindon":  
-                case "Swindon Town FC": return "Swindon";
+                case "Swindon Town FC":
+                    return "Swindon";
                 case "Spurs":  
-                case "Tottenham Hotspur FC": return "Tottenham";
-                case "Walsall FC": return "Walsall";
+                case "Tottenham Hotspur FC":
+                    return "Tottenham";
+                case "Walsall FC":
+                    return "Walsall";
                 case "Watford":  
-                case "Watford FC": return "Watford";
+                case "Watford FC":
+                    return "Watford";
                 case "West Bromwich":  
-                case "West Bromwich Albion FC": return "West Bromwich Albion";
+                case "West Bromwich Albion FC":
+                    return "West Bromwich Albion";
                 case "West Ham":  
-                case "West Ham United FC": return "West Ham";
+                case "West Ham United FC":
+                    return "West Ham";
                 case "Wigan":  
-                case "Wigan Athletic FC": return "Wigan";
+                case "Wigan Athletic FC":
+                    return "Wigan";
                 case "AFC Wimbledon":  
-                case "Wimbledon": return "Wimbledon";
+                case "Wimbledon":
+                    return "Wimbledon";
                 case "Wolverhampton Wanderers FC":   
-                case "Wolves": return "Wolverhampton Wanderers";
+                case "Wolves":
+                    return "Wolverhampton Wanderers";
                 case "Wycombe":  
-                case "Wycombe Wanderers": return "Wycombe Wanderers";
+                case "Wycombe Wanderers":
+                    return "Wycombe Wanderers";
                 case "Yeovil":  
-                case "Yeovil Town": return "Yeovil";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                case "Yeovil Town":
+                    return "Yeovil";
                 default:
                     return "";
             }
