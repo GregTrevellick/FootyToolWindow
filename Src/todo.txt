@@ -1,8 +1,10 @@
 unit tests
+not all championship data being shown
+
+
 make refresh in 20 seconds red font
 revert refresh/boss buttons to text ?
-
-
+put timeout into options
 check status/score of match whilst part way thru a live match
 check performance
 gregt

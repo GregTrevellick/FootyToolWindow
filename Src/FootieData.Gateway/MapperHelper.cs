@@ -213,7 +213,6 @@ namespace FootieData.Gateway
                 case "Scunthorpe United FC":
                     return "Scunthorpe United";
                 case "Sheffield":
-                    return "gregtt";
                 case "Sheffield United FC":
                     return "Sheffield United";
                 case "Sheffield Wednesday":
