@@ -63,7 +63,7 @@ collapse all / expand all
 add 'refresh' icon to refresh button
 sort results by date, home team
 random alternate boss mode text
-
+restsharp ?
 
 https://www.nuget.org/packages/Football-Data-API/
 https://github.com/Garand-Gary/Football-Data.co.uk
