@@ -28,24 +28,31 @@ As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or
 ![](Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png)
 
 Auto-hide
+
 ![](Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
 
 Full screen if you like
+
 ![](Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
 
 Menu access
+
 ![](Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
 
 Options
+
 ![](Src/FootieData.Vsix/VsmmAssetts/Options.png)
 
 Sort by any column - reverse goal difference
+
 ![](Src/FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
 
 Sort by any column - match start time
+
 ![](Src/FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
 
 For when the boss is around
+
 ![](Src/FootieData.Vsix/VsmmAssetts/BossMode.png)
 
 [Why?][WhyURL]
