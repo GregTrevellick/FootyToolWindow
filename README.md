@@ -24,13 +24,31 @@ As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or
  - *If you LIKE this ***FREE*** extension please give a star rating below, it only takes a few seconds*.
 
  - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
+ 
+![](FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png)
 
-![](SolutionOpenPopUp/Resources/ReadMe_AnimatedDemo.gif)
+Auto-hide
+![](FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
 
-So why build this extension? 
-1. Because I can.
-1. To demonstrate  that VS can display any http feed (e.g. an internal  corporate feed).
-1. [This][WhyURL]. 
+Full screen if you like
+![](FootieData.Vsix/VsmmAssetts/FullScreen.png)
+
+Menu access
+![](FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
+
+Options
+![](FootieData.Vsix/VsmmAssetts/Options.png)
+
+Sort by any column - reverse goal difference
+![](FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
+
+Sort by any column - match start time
+![](FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
+
+For when the boss is around
+![](FootieData.Vsix/VsmmAssetts/BossMode.png)
+
+[Why?][WhyURL]. 
 
 Bugs can be logged [here][GitHubRepoIssuesURL].
 

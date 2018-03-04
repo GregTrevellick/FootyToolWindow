@@ -1,7 +1,7 @@
 readme.md screen shots
 c.f. names vs daily mail (e.g. swans/manu/mancity/crystal)
 unit tests
-
+make refresh in 20 seconds red font
 
 
 

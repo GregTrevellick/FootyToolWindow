@@ -4,10 +4,10 @@ namespace FootieData.Common
 {
     public static class CommonConstants
     {
-        public const string CategorySubLevel = "Football";
         public const int DaysCount = 7;
-        public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
         public const int RefreshIntervalInSeconds = 60;
+        public const string CategorySubLevelFootball = "Football";
+        public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
 
         //public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
         public const string InternalLeagueCodeDescriptionDe1 = "1. Bundesliga";
