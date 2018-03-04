@@ -15,6 +15,8 @@
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
 
+![](Src/FootieData.Vsix/Resources/VsixExtensionPreview_175x175.png)
+
 What more do you want from your IDE than to display the latest soccer scores and tables ? Everything else is just fluff.
 
 So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] extension to do exactly that, leveraging the truly awesome labour of love that is [FootballData.org](https://www.football-data.org).
@@ -25,15 +27,11 @@ As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or
 
  - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
     
+Bugs can be logged [here][GitHubRepoIssuesURL].
+
+See the [change log](CHANGELOG.md) for release history.
+
 ![](Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png)
-
-Auto-hide
-
-![](Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
-
-Full screen if you like
-
-![](Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
 
 Menu access
 
@@ -42,6 +40,14 @@ Menu access
 Options
 
 ![](Src/FootieData.Vsix/VsmmAssetts/Options.png)
+
+Full screen if you like
+
+![](Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
+
+Auto-hide
+
+![](Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
 
 Sort by any column - reverse goal difference
 
@@ -56,10 +62,6 @@ For when the boss is around
 ![](Src/FootieData.Vsix/VsmmAssetts/BossMode.png)
 
 [Why?][WhyURL]
-
-Bugs can be logged [here][GitHubRepoIssuesURL].
-
-See the [change log](CHANGELOG.md) for release history.
 
 ## Features
 
