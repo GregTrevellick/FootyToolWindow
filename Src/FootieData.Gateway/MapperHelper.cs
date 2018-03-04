@@ -31,7 +31,7 @@ namespace FootieData.Gateway
                     return "Barnsley";
                 case "Birmingham":  
                 case "Birmingham City":
-                    return "Birmingham";
+                    return "Birmingham City";
                 case "Blackburn Rovers FC":
                     return "Blackburn Rovers";
                 case "Blackpool":  
@@ -44,7 +44,7 @@ namespace FootieData.Gateway
                     return "Bournemouth";
                 case "Bradford":  
                 case "Bradford City AFC":
-                    return "Bradford";
+                    return "Bradford City";
                 case "Brentford FC":
                     return "Brentford";
                 case "Brighton":     
@@ -69,7 +69,7 @@ namespace FootieData.Gateway
                     return "Cambridge United";
                 case "Cardiff":  
                 case "Cardiff City FC":
-                    return "Cardiff";
+                    return "Cardiff City";
                 case "Carlisle United":
                     return "Carlisle United";
                 case "Charlton":   
@@ -89,7 +89,7 @@ namespace FootieData.Gateway
                     return "Colchester United";
                 case "Coventry":  
                 case "Coventry City FC":
-                    return "Coventry";
+                    return "Coventry City";
                 case "Crawley Town":
                     return "Crawley Town";
                 case "Crewe":   
@@ -109,9 +109,9 @@ namespace FootieData.Gateway
                     return "Everton";
                 case "Exeter":  
                 case "Exeter City":
-                    return "Exeter";
+                    return "Exeter City";
                 case "Fleetwood Town FC":
-                    return "Fleetwood";
+                    return "Fleetwood Town";
                 case "Forest Green Rovers":
                     return "Forest Green Rovers";
                 case "Fulham":  
@@ -120,30 +120,30 @@ namespace FootieData.Gateway
                 case "Gillingham FC":
                     return "Gillingham";
                 case "Grimsby Town":
-                    return "Grimsby";
+                    return "Grimsby Town";
                 case "Huddersfield":  
                 case "Huddersfield Town":
-                    return "Huddersfield";
+                    return "Huddersfield Town";
                 case "Hull":  
                 case "Hull City FC":
-                    return "Hull";
+                    return "Hull City";
                 case "Ipswich":  
                 case "Ipswich Town":
-                    return "Ipswich";
+                    return "Ipswich Town";
                 case "Leeds United":
-                    return "Leeds";
+                    return "Leeds United";
                 case "Foxes":  
                 case "Leicester City FC":
-                    return "Leicester";
+                    return "Leicester City";
                 case "Lincoln":  
                 case "Lincoln City":
-                    return "Lincoln";
+                    return "Lincoln City";
                 case "Liverpool":  
                 case "Liverpool FC":
                     return "Liverpool";
                 case "Luton":  
                 case "Luton Town":
-                    return "Luton";
+                    return "Luton Town";
                 case "Manchester City FC":   
                 case "ManCity":
                     return "Manchester City";
@@ -152,7 +152,7 @@ namespace FootieData.Gateway
                     return "Manchester United";
                 case "Mansfield":  
                 case "Mansfield Town":
-                    return "Mansfield";
+                    return "Mansfield Town";
                 case "Middlesbrough":  
                 case "Middlesbrough FC":
                     return "Middlesbrough";
@@ -160,21 +160,21 @@ namespace FootieData.Gateway
                 case "Millwall FC":
                     return "Millwall";
                 case "Milton Keynes Dons":
-                    return "MK Dons";
+                    return "Milton Keynes Dons";
                 case "Morecambe":  
                 case "Morecambe FC":
                     return "Morecambe";
                 case "Newcastle":  
                 case "Newcastle United FC":
-                    return "Newcastle";
+                    return "Newcastle United";
                 case "Newport County":
-                    return "Newport County";
+                    return "Newport County AFC";
                 case "Northampton":  
                 case "Northampton Town":
-                    return "Northampton";
+                    return "Northampton Town";
                 case "Norwich":  
                 case "Norwich City FC":
-                    return "Norwich";
+                    return "Norwich City";
                 case "Nottingham":   
                 case "Nottingham Forest":
                     return "Nottingham Forest";
@@ -185,9 +185,9 @@ namespace FootieData.Gateway
                     return "Oldham Athletic";
                 case "Oxford":  
                 case "Oxford United":
-                    return "Oxford";
+                    return "Oxford United";
                 case "Peterborough United FC":
-                    return "Peterborough";
+                    return "Peterborough United";
                 case "Plymouth Argyle":
                     return "Plymouth Argyle";
                 case "Port Vale":   
@@ -208,10 +208,10 @@ namespace FootieData.Gateway
                     return "Rochdale";
                 case "Rotherham":  
                 case "Rotherham United":
-                    return "Rotherham";
+                    return "Rotherham United";
                 case "Scunthorpe United":  
                 case "Scunthorpe United FC":
-                    return "Scunthorpe";
+                    return "Scunthorpe United";
                 case "Sheffield":
                     return "gregtt";
                 case "Sheffield United FC":
@@ -220,30 +220,30 @@ namespace FootieData.Gateway
                     return "Sheffield Wednesday";
                 case "Shrewsbury":  
                 case "Shrewsbury Town FC":
-                    return "Shrewsbury";
+                    return "Shrewsbury Town";
                 case "Southampton":  
                 case "Southampton FC":
                     return "Southampton";
                 case "Southend United FC":  
                 case "Southend Utd":
-                    return "Southend";
+                    return "Southend United";
                 case "Stevenage FC":
                     return "Stevenage";
                 case "Stoke":  
                 case "Stoke City FC":
-                    return "Stoke";
+                    return "Stoke City";
                 case "Sunderland":  
                 case "Sunderland AFC":
                     return "Sunderland";
                 case "Swans":  
                 case "Swansea City FC":
-                    return "Swansea";
+                    return "Swansea City";
                 case "Swindon":  
                 case "Swindon Town FC":
-                    return "Swindon";
+                    return "Swindon Town";
                 case "Spurs":  
                 case "Tottenham Hotspur FC":
-                    return "Tottenham";
+                    return "Tottenham Hotspur";
                 case "Walsall FC":
                     return "Walsall";
                 case "Watford":  
@@ -254,13 +254,13 @@ namespace FootieData.Gateway
                     return "West Bromwich Albion";
                 case "West Ham":  
                 case "West Ham United FC":
-                    return "West Ham";
+                    return "West Ham United";
                 case "Wigan":  
                 case "Wigan Athletic FC":
-                    return "Wigan";
+                    return "Wigan Athletic";
                 case "AFC Wimbledon":  
                 case "Wimbledon":
-                    return "Wimbledon";
+                    return "AFC Wimbledon";
                 case "Wolverhampton Wanderers FC":   
                 case "Wolves":
                     return "Wolverhampton Wanderers";
@@ -269,9 +269,9 @@ namespace FootieData.Gateway
                     return "Wycombe Wanderers";
                 case "Yeovil":  
                 case "Yeovil Town":
-                    return "Yeovil";
+                    return "Yeovil Town";
                 default:
-                    return "";
+                    return externalTeamName;
             }
         }
     }
