@@ -57,11 +57,20 @@ namespace FootballDataOrg
         //            return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
         //        }
         //    }
-        //}
+        //}            
 
         public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
         {
             var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
+
+            #region Alternative using RestSharp
+            //var client = new RestClient(baseUri);
+            //client.AddDefaultHeader("X-Auth-Token", Token);
+            //client.AddDefaultHeader("X-Response-Control", "minified");
+            //var request = new RestRequest($"/{idSeason}/leagueTable", Method.GET);
+            //var sr = await client.ExecuteTaskAsync<StandingsResponse>(request);
+            //return sr.Data;
+            #endregion
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
