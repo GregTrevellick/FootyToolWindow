@@ -1,10 +1,12 @@
-unit tests
+c.f. names vs daily mail for foreign leagues
 is BR working now we are in full mode ?
-does home/awy breakdown work now we are in full mode
+does home/away breakdown work now we are in full mode ?
 
 
 
-make refresh in 20 seconds red font
+
+unit tests
+make refresh in 60 seconds red font
 revert refresh/boss buttons to text ?
 put timeout into options
 check status/score of match whilst part way thru a live match
@@ -57,7 +59,6 @@ test vsix rating chaser in prod
 
 Future if becomes popular
 =========================
-c.f. names vs daily mail for foreign leagues
 add league country flags/hyperlinks
 add club crests/hyperlinks
 promotion/relegation zone dotted border lines
