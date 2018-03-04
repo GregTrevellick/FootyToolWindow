@@ -1,7 +1,6 @@
-c.f. names vs daily mail (e.g. swans/manu/mancity/crystal)
 unit tests
 make refresh in 20 seconds red font
-
+revert refresh/boss buttons to text ?
 
 
 check status/score of match whilst part way thru a live match
@@ -54,6 +53,7 @@ test vsix rating chaser in prod
 
 Future if becomes popular
 =========================
+c.f. names vs daily mail for foreign leagues
 add league country flags/hyperlinks
 add club crests/hyperlinks
 promotion/relegation zone dotted border lines
