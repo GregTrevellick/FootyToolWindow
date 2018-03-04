@@ -4,8 +4,10 @@ namespace FootballDataOrg.ResponseEntities
 {
     public class Standing
     {
-        public int Rank { get; set; }//'Position' if using non-minified request
-        public string Team { get; set; }//'TeamName' if using non-minified request
+        //public int Rank { get; set; }//'Rank' if using minified request
+        public int Position { get; set; }//'Position' if using non-minified request
+        //public string Team { get; set; }//'Team' if using minified request
+        public string TeamName { get; set; }//'TeamName' if using non-minified request
         //public string CrestURI { get; set; }TODO optionally implement in ui (subject to performance)
         public int PlayedGames { get; set; }
         public int Points { get; set; }

@@ -1,5 +1,7 @@
 unit tests
-not all championship data being shown
+is BR working now we are in full mode ?
+does home/awy breakdown work now we are in full mode
+
 
 
 make refresh in 20 seconds red font

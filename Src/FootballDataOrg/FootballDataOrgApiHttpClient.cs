@@ -24,7 +24,7 @@ namespace FootballDataOrg
             // "full" is default
             // "minified" will lack some (meta) information and thus be much smaller
             // "compressed" is currently only supported by the fixture resource
-            DefaultRequestHeaders.Add("X-Response-Control", "minified");
+            DefaultRequestHeaders.Add("X-Response-Control", "full");
         }
     }
 }

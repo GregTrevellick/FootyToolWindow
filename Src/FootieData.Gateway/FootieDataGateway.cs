@@ -109,8 +109,10 @@ namespace FootieData.Gateway
                     For = x.Goals,
                     Played = x.PlayedGames,
                     Points = x.Points,
-                    Rank = x.Rank,//x.Position,
-                    Team = MapperHelper.MapExternalTeamNameToInternalTeamName(x.Team)
+                    //Rank = x.Rank,//minified
+                    Rank = x.Position,//full
+                    //Team = MapperHelper.MapExternalTeamNameToInternalTeamName(x.Team)//minified
+                    Team = MapperHelper.MapExternalTeamNameToInternalTeamName(x.TeamName)//full
                 });
             }
         }
