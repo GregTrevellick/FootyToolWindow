@@ -24,31 +24,31 @@ As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or
  - *If you LIKE this ***FREE*** extension please give a star rating below, it only takes a few seconds*.
 
  - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
- 
-![](FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png)
+    
+![](Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png)
 
 Auto-hide
-![](FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
+![](Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
 
 Full screen if you like
-![](FootieData.Vsix/VsmmAssetts/FullScreen.png)
+![](Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
 
 Menu access
-![](FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
+![](Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
 
 Options
-![](FootieData.Vsix/VsmmAssetts/Options.png)
+![](Src/FootieData.Vsix/VsmmAssetts/Options.png)
 
 Sort by any column - reverse goal difference
-![](FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
+![](Src/FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
 
 Sort by any column - match start time
-![](FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
+![](Src/FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
 
 For when the boss is around
-![](FootieData.Vsix/VsmmAssetts/BossMode.png)
+![](Src/FootieData.Vsix/VsmmAssetts/BossMode.png)
 
-[Why?][WhyURL]. 
+[Why?][WhyURL]
 
 Bugs can be logged [here][GitHubRepoIssuesURL].
 

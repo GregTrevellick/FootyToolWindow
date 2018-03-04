@@ -110,7 +110,9 @@
     <Content Include="VsmmAssetts\SortedStartTime.png" />
     <Content Include="VsmmAssetts\SortedReverseGoalDifference.png" />
     <Content Include="VsmmAssetts\MenuViewOtherWindows.png" />
-    <Content Include="VsmmAssetts\VSSportsDeskRhs.png" />
+    <Content Include="VsmmAssetts\VSSportsDeskRhs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\closed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
