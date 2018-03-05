@@ -1,8 +1,7 @@
 c.f. names vs daily mail for foreign leagues
-
-
-
 put timeout into options
+
+
 
 unit tests
 check status/score of match whilst part way thru a live match
@@ -20,6 +19,12 @@ test vsix rating chaser in prod
 
 
 
+https://www.lequipe.fr/Football/ligue-1-classement.html
+https://www.lequipe.fr/Football/ligue-2-classement.html
+https://www.bndestem.nl/voetbalcenter/klassement/eredivisie/
+http://www.gazzetta.it/
+https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
+http://www.correiobraziliense.com.br/
 
 
 
@@ -29,29 +34,9 @@ test vsix rating chaser in prod
 
 
 
-https://stackoverflow.com/questions/19131091/align-datagrid-column-header-to-center
-public class ColumnNameAttribute : Attribute
-{
-    public HorizontalAlignment Alignment { get; set;}
-    public ColumnNameAttribute(HorizontalAlignment alignment){
-        Alignment = alignment;
-}
 
-public class Example(){
-    [ColumnName(HorizontalAlignment.Center)]
-    public string Column {get; set;}
-}
 
- private void dataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-{
-   var desc = e.PropertyDescriptor as PropertyDescriptor;
-   var att = desc.Attributes[typeof(ColumnNameAttribute)] as ColumnNameAttribute;
-   if(att != null){
-           e.Column.HeaderStyle = new Style(typeof(DataGridColumnHeader));
-           e.Column.HeaderStyle.Setters.Add(new Setter(HorizontalContentAlignmentProperty, att.Alignment));
-    }
 
-}
 
 
 
