@@ -61,13 +61,13 @@ namespace FootieData.Vsix
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(rightAlignSetter);
             
-            //gregt merge two below if using same colour
+            var homeAwayFontColour = Brushes.SlateGray;
             _homeStyle = new Style();
             _homeStyle.Setters.Add(rightAlignSetter);
-            _homeStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.SlateGray));
+            _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
             _awayStyle = new Style();
             _awayStyle.Setters.Add(rightAlignSetter);
-            _awayStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.SlateGray));
+            _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
 
             PopulateUi(false);
         }
