@@ -270,11 +270,11 @@ namespace FootieData.Gateway
                 case "Yeovil":  
                 case "Yeovil Town":
                     return "Yeovil Town";
-                    #endregion
+                #endregion
 
-                    #region Brazil
-                    //http://www.correiobraziliense.com.br/
-                    case "Atlético Goianiense": return "";
+                #region Brazil
+                //http://www.correiobraziliense.com.br/
+                case "Atlético Goianiense": return "";
                 case "Atlético Mineiro": return "";
                 case "Atlético PR": return "";
                 case "Avaí SC": return "";
@@ -291,15 +291,15 @@ namespace FootieData.Gateway
                 case "Palmeiras": return "";
                 case "Ponte Preta": return "";
                 case "Santos FC": return "";
-                    case "Sao Paulo": return "";
+                case "Sao Paulo": return "";
                 case "Sport Recife": return "";
                 case "Vasco da Gama": return "";
-                    #endregion
+                #endregion
 
-                    #region France
-                    //https://www.lequipe.fr/Football/ligue-1-classement.html
-                    //https://www.lequipe.fr/Football/ligue-2-classement.html
-                    case "AJ Auxerre": return "";
+                #region France
+                //https://www.lequipe.fr/Football/ligue-1-classement.html
+                //https://www.lequipe.fr/Football/ligue-2-classement.html
+                case "AJ Auxerre": return "";
                 case "Ajaccio AC": return "";
                 case "Amiens SC": return "";
                 case "Angers SCO": return "";
@@ -396,7 +396,7 @@ namespace FootieData.Gateway
                 case "1.FC Nürnberg": return "";
                 case "1.FC Union Berlin": return "";
                 case "1.FSV Mainz 05": return "";
-                    case "Arminia Bielefeld": return "";
+                case "Arminia Bielefeld": return "";
                 case "Bayer Leverkusen": return "";
                 case "Bor.Mönchengladbach": return "";
                 case "Borussia Dortmund": return "";
