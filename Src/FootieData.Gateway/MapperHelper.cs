@@ -390,7 +390,7 @@ namespace FootieData.Gateway
                 case "Virtus Entella": return "Entella";
                 #endregion
 
-                #region Germany
+                #region Germany gregt
                 //https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
                 case "1.FC Heidenheim 1846": return "";
                 case "1.FC Kaiserslautern": return "";
@@ -430,7 +430,7 @@ namespace FootieData.Gateway
                 case "Werder Bremen": return "";
                 #endregion
 
-                #region Netherlands
+                #region Netherlands gregt
                 //https://www.bndestem.nl/voetbalcenter/klassement/eredivisie/
                 case "ADO Den Haag": return "";
                 case "Ajax Amsterdam": return "";
@@ -452,7 +452,7 @@ namespace FootieData.Gateway
                 case "Willem II Tilburg": return "";
                 #endregion
 
-                #region Portugal
+                #region Portugal gregt
                 //https://www.dn.pt/desporto.html
                 case "Boavista Porto FC": return "";
                 case "C.F.Os Belenenses": return "";
@@ -474,7 +474,7 @@ namespace FootieData.Gateway
                 case "Vitoria Setubal": return "";
                 #endregion
 
-                #region Spain
+                #region Spain gregt
                 //https://resultados.elpais.com/deportivos/futbol/primera/clasificacion/
                 case "Athletic Club": return "";
                 case "CD Leganes": return "";
