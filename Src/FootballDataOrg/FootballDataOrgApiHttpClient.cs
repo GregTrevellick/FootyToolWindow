@@ -9,7 +9,7 @@ namespace FootballDataOrg
         {
             Timeout = TimeSpan.FromSeconds(5);//(8);//(30);//gregt put into VS IDE options
             //This value, if exceeded on the http call, gives rise to this error:
-            //TaskCanceledException: A task was canceled.
+            //TaskCanceledException: A task was cancelled.
             //https://stackoverflow.com/questions/29179848/httpclient-a-task-was-cancelled
         }
 
