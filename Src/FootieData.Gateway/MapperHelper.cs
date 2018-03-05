@@ -345,49 +345,49 @@ namespace FootieData.Gateway
                 #endregion
 
                 #region Italy
-                //http://www.gazzetta.it/
-                case "AC Cesena": return "";
-                case "AC Chievo Verona": return "";
-                case "AC Milan": return "";
-                case "ACF Fiorentina": return "";
-                case "AS Avellino 1912": return "";
-                case "AS Bari": return "";
-                case "AS Cittadella": return "";
-                case "AS Roma": return "";
-                case "Ascoli": return "";
-                case "Atalanta BC": return "";
-                case "Benevento Calcio": return "";
-                case "Bologna FC": return "";
-                case "Brescia Calcio": return "";
-                case "Cagliari Calcio": return "";
-                case "Carpi FC": return "";
-                case "Cremonese": return "";
-                case "Empoli FC": return "";
-                case "FC Crotone": return "";
-                case "FC Internazionale Milano": return "";
-                case "Foggia": return "";
-                case "Frosinone Calcio": return "";
-                case "Genoa CFC": return "";
-                case "Hellas Verona FC": return "";
-                case "Juventus Turin": return "";
-                case "Novara Calcio": return "";
-                case "Parma FC": return "";
-                case "Perugia": return "";
-                case "Pescara Calcio": return "";
-                case "Pro Vercelli": return "";
-                case "Salernitana Calcio": return "";
-                case "SPAL Ferrara": return "";
-                case "Spezia Calcio": return "";
-                case "SS Lazio": return "";
-                case "SSC Napoli": return "";
-                case "Ternana Calcio": return "";
-                case "Torino FC": return "";
-                case "UC Sampdoria": return "";
-                case "Udinese Calcio": return "";
-                case "US Cittá di Palermo": return "";
-                case "US Sassuolo Calcio": return "";
-                case "Venezia": return "";
-                case "Virtus Entella": return "";
+                //http://www.gazzetta.it/speciali/risultati_classifiche/2018/calcio/seriea/classifica.shtml
+                case "AC Cesena": return "Cesena";
+                case "AC Chievo Verona": return "Verona";
+                case "AC Milan": return "Milan";
+                case "ACF Fiorentina": return "Fiorentina";
+                case "AS Avellino 1912": return "Avellino";
+                case "AS Bari": return "Bari";
+                case "AS Cittadella": return "Cittadella";
+                case "AS Roma": return "Roma";
+                case "Ascoli": return "Ascoli";
+                case "Atalanta BC": return "Atalanta";
+                case "Benevento Calcio": return "Benevento";
+                case "Bologna FC": return "Bologna";
+                case "Brescia Calcio": return "Brescia";
+                case "Cagliari Calcio": return "Cagliari";
+                case "Carpi FC": return "Carpi";
+                case "Cremonese": return "Cremonese";
+                case "Empoli FC": return "Empoli";
+                case "FC Crotone": return "Crotone";
+                case "FC Internazionale Milano": return "Inter";
+                case "Foggia": return "Foggia";
+                case "Frosinone Calcio": return "Frosinone";
+                case "Genoa CFC": return "Genoa";
+                case "Hellas Verona FC": return "Verona";
+                case "Juventus Turin": return "Juventus";
+                case "Novara Calcio": return "Novara";
+                case "Parma FC": return "Parma";
+                case "Perugia": return "Perugia";
+                case "Pescara Calcio": return "Pescara";
+                case "Pro Vercelli": return "Pro Vercelli";
+                case "Salernitana Calcio": return "Salernitana";
+                case "SPAL Ferrara": return "Spal";
+                case "Spezia Calcio": return "Spezia";
+                case "SS Lazio": return "Lazio";
+                case "SSC Napoli": return "Napoli";
+                case "Ternana Calcio": return "Ternana U.";
+                case "Torino FC": return "Torino";
+                case "UC Sampdoria": return "Sampdoria";
+                case "Udinese Calcio": return "Udinese";
+                case "US Cittá di Palermo": return "Palermo";
+                case "US Sassuolo Calcio": return "Sassuolo";
+                case "Venezia": return "Venezia";
+                case "Virtus Entella": return "Entella";
                 #endregion
 
                 #region Germany
