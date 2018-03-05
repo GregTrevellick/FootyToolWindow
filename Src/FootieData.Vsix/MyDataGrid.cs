@@ -8,7 +8,7 @@ namespace FootieData.Vsix
     {
         public MyDataGrid()
         {
-            var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFF0"));
+            var color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#F8F8F8"));//("#F2F2F2"));//("#FFFFF0"));
             AlternatingRowBackground = color;
             ColumnHeaderHeight = 24;
             RowHeaderWidth = 0;
