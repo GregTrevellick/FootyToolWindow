@@ -61,7 +61,7 @@ namespace FootieData.Vsix
             
             //gregt merge two below if using same colour
             _homeStyle = new Style();
-            _homeStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.LightSteelBlue));
+            _homeStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.Lavender));
             _awayStyle = new Style();
             _awayStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.LightSteelBlue));
 
@@ -118,7 +118,11 @@ namespace FootieData.Vsix
                             }
                             else
                             {
+          
                                 dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+
+                                //dataGrid.Items.Add(new Standing{Team="jkjdhkdjs",Rank=1});
+                                
 
                                 //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
                                 var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6 };
@@ -128,6 +132,8 @@ namespace FootieData.Vsix
 
                                 WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
                                 WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
+                                WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
+                                
                                 WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
                             }
                             break;

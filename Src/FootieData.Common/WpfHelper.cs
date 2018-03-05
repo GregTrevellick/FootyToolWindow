@@ -10,15 +10,79 @@ namespace FootieData.Common
 {
     public class WpfHelper
     {
-        public static void FormatDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style rightAlignStyle)
+        public static void FormatDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style style)
         {
             if (dataGridColumns.Count > 0)
             {
                 foreach (var index in indexes)
                 {
-                    dataGridColumns[index].CellStyle = rightAlignStyle;
+                    dataGridColumns[index].CellStyle = style;
                 }
             }
+        }
+
+        public static void FormatDataGridHeader(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style style)
+        {
+            if (dataGridColumns.Count > 0)
+            {
+                foreach (var index in indexes)
+                {
+                    dataGridColumns[index].HeaderStyle = style;
+
+//                    var style = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+
+                   // var brushesAway = Brushes.LightSteelBlue;//gregtdeupde
+                    //var brushesHome = Brushes.Lavender;//gregtdeupde
+
+  //                  if (index >= 6 && index <= 12)
+    //                {
+      //                  style.Setters.Add(new Setter(ForegroundProperty, brushesHome));
+        //            }
+
+          //          if (index >= 13 && index <= 16)
+            //        {
+              //          style.Setters.Add(new Setter(ForegroundProperty, brushesAway));
+                //    }
+
+                  //  e.Column.HeaderStyle = style;
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         public static string GetHeaderPrefix(InternalLeagueCode internalLeagueCode)
