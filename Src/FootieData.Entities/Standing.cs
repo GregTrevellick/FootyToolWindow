@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Media;
-//gregt stuff to be deleted
-//using FootieData.Entities.CustomAttributes;
+﻿using System.ComponentModel;
 
 namespace FootieData.Entities
 {
@@ -14,7 +10,7 @@ namespace FootieData.Entities
         public int Rank { get; set; }
         [Description("Club")]
         public string Team { get; set; }
-        [Description("Pl")]
+        [Description("P")]
         public int Played { get; set; }
 
         //public string CrestURI { get; set; }
@@ -28,11 +24,7 @@ namespace FootieData.Entities
         [Description("PTs")]
         public int Points { get; set; }
 
-        //gregt stuff to be deleted
-
-        //[ColumnHeaderForegroundColor(Brushes.Red)]
-        //[Home(true)]
-        [Description("Home Pl")]
+        [Description("Home P")]
         public int HomePlayed => HomeWins + HomeDraws + HomeLosses;
         [Description("W")]
         public int HomeWins { get; set; }
@@ -44,8 +36,10 @@ namespace FootieData.Entities
         public int HomeGoalsFor { get; set; }
         [Description("A")]
         public int HomeGoalsAgainst { get; set; }
+        [Description("PTs")]
+        public int HomePoints => 3 * HomeWins + HomeDraws;
 
-        [Description("Away Pl")]
+        [Description("Away P")]
         public int AwayPlayed => AwayWins + AwayDraws + AwayLosses;
         [Description("W")]
         public int AwayWins { get; set; }
@@ -57,6 +51,7 @@ namespace FootieData.Entities
         public int AwayGoalsFor { get; set; }
         [Description("A")]
         public int AwayGoalsAgainst { get; set; }
-
+        [Description("PTs")]
+        public int AwayPoints => 3 * AwayWins + AwayDraws;
     }
 }

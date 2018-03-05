@@ -56,14 +56,18 @@ namespace FootieData.Vsix
             UpdateLastUpdatedDate = updateLastUpdatedDate;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
 
+            var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
+
             _rightAlignStyle = new Style();
-            _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
+            _rightAlignStyle.Setters.Add(rightAlignSetter);
             
             //gregt merge two below if using same colour
             _homeStyle = new Style();
-            _homeStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.Lavender));
+            _homeStyle.Setters.Add(rightAlignSetter);
+            _homeStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.SlateGray));
             _awayStyle = new Style();
-            _awayStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.LightSteelBlue));
+            _awayStyle.Setters.Add(rightAlignSetter);
+            _awayStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.SlateGray));
 
             PopulateUi(false);
         }
@@ -117,24 +121,21 @@ namespace FootieData.Vsix
                                 dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                             }
                             else
-                            {
-          
+                            {          
                                 dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-
-                                //dataGrid.Items.Add(new Standing{Team="jkjdhkdjs",Rank=1});
-                                
 
                                 //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
                                 var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6 };
-                                var homeColumns = new List<int> { 7, 8, 9, 10, 11, 12 };
-                                var awayColumns = new List<int> { 13, 14, 15, 16, 17, 18 };
+                                var homeColumns = new List<int> { 7, 8, 9, 10, 11, 12, 13 };
+                                var awayColumns = new List<int> { 14, 15, 16, 17, 18, 19, 20 };
                                 var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
 
                                 WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
                                 WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
-                                WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
-                                
                                 WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
+
+                                WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
+                                WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
                             }
                             break;
                         case GridType.Result:
