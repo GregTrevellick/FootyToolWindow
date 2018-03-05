@@ -270,35 +270,229 @@ namespace FootieData.Gateway
                 case "Yeovil":  
                 case "Yeovil Town":
                     return "Yeovil Town";
-                #endregion
+                    #endregion
 
-                #region Brazil
-                //http://www.correiobraziliense.com.br/
-                #endregion
+                    #region Brazil
+                    //http://www.correiobraziliense.com.br/
+                    case "Atlético Goianiense": return "";
+                case "Atlético Mineiro": return "";
+                case "Atlético PR": return "";
+                case "Avaí SC": return "";
+                case "Bahia": return "";
+                case "Botafogo": return "";
+                case "Chapecoense": return "";
+                case "Corinthians": return "";
+                case "Coritiba FC": return "";
+                case "Cruzeiro": return "";
+                case "EC Flamengo": return "";
+                case "EC Vitória": return "";
+                case "Fluminense FC": return "";
+                case "Grémio": return "";
+                case "Palmeiras": return "";
+                case "Ponte Preta": return "";
+                case "Santos FC": return "";
+                    case "Sao Paulo": return "";
+                case "Sport Recife": return "";
+                case "Vasco da Gama": return "";
+                    #endregion
 
-                #region France
-                //https://www.lequipe.fr/Football/ligue-1-classement.html
-                //https://www.lequipe.fr/Football/ligue-2-classement.html
+                    #region France
+                    //https://www.lequipe.fr/Football/ligue-1-classement.html
+                    //https://www.lequipe.fr/Football/ligue-2-classement.html
+                    case "AJ Auxerre": return "";
+                case "Ajaccio AC": return "";
+                case "Amiens SC": return "";
+                case "Angers SCO": return "";
+                case "AS Monaco FC": return "";
+                case "AS Nancy": return "";
+                case "AS Saint-Étienne": return "";
+                case "Chamois Niortais FC": return "";
+                case "Clermont Foot Auvergne": return "";
+                case "Dijon FCO": return "";
+                case "EA Guingamp": return "";
+                case "ES Troyes AC": return "";
+                case "FC Bourg - en - Bresse Péronnas": return "";
+                case "FC Girondins de Bordeaux": return "";
+                case "FC Lorient": return "";
+                case "FC Metz": return "";
+                case "FC Nantes": return "";
+                case "FC Valenciennes": return "";
+                case "Gazélec Ajaccio": return "";
+                case "LB Châteauroux": return "";
+                case "Le Havre AC": return "";
+                case "Montpellier Hérault SC": return "";
+                case "Nîmes Olympique": return "";
+                case "OGC Nice": return "";
+                case "Olympique de Marseille": return "";
+                case "Olympique Lyonnais": return "";
+                case "OSC Lille": return "";
+                case "Paris FC": return "";
+                case "Paris Saint - Germain": return "";
+                case "Paris Saint-Germain": return "";
+                case "Quevilly Rouen": return "";
+                case "RC Lens": return "";
+                case "RC Strasbourg Alsace": return "";
+                case "RC Tours": return "";
+                case "SM Caen": return "";
+                case "Sochaux FC": return "";
+                case "Stade Brestois": return "";
+                case "Stade de Reims": return "";
+                case "Stade Rennais FC": return "";
+                case "Toulouse FC": return "";
+                case "US Orleans": return "";
                 #endregion
 
                 #region Italy
                 //http://www.gazzetta.it/
+                case "AC Cesena": return "";
+                case "AC Chievo Verona": return "";
+                case "AC Milan": return "";
+                case "ACF Fiorentina": return "";
+                case "AS Avellino 1912": return "";
+                case "AS Bari": return "";
+                case "AS Cittadella": return "";
+                case "AS Roma": return "";
+                case "Ascoli": return "";
+                case "Atalanta BC": return "";
+                case "Benevento Calcio": return "";
+                case "Bologna FC": return "";
+                case "Brescia Calcio": return "";
+                case "Cagliari Calcio": return "";
+                case "Carpi FC": return "";
+                case "Cremonese": return "";
+                case "Empoli FC": return "";
+                case "FC Crotone": return "";
+                case "FC Internazionale Milano": return "";
+                case "Foggia": return "";
+                case "Frosinone Calcio": return "";
+                case "Genoa CFC": return "";
+                case "Hellas Verona FC": return "";
+                case "Juventus Turin": return "";
+                case "Novara Calcio": return "";
+                case "Parma FC": return "";
+                case "Perugia": return "";
+                case "Pescara Calcio": return "";
+                case "Pro Vercelli": return "";
+                case "Salernitana Calcio": return "";
+                case "SPAL Ferrara": return "";
+                case "Spezia Calcio": return "";
+                case "SS Lazio": return "";
+                case "SSC Napoli": return "";
+                case "Ternana Calcio": return "";
+                case "Torino FC": return "";
+                case "UC Sampdoria": return "";
+                case "Udinese Calcio": return "";
+                case "US Cittá di Palermo": return "";
+                case "US Sassuolo Calcio": return "";
+                case "Venezia": return "";
+                case "Virtus Entella": return "";
                 #endregion
 
                 #region Germany
                 //https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
+                case "1.FC Heidenheim 1846": return "";
+                case "1.FC Kaiserslautern": return "";
+                case "1.FC Köln": return "";
+                case "1.FC Nürnberg": return "";
+                case "1.FC Union Berlin": return "";
+                case "1.FSV Mainz 05": return "";
+                    case "Arminia Bielefeld": return "";
+                case "Bayer Leverkusen": return "";
+                case "Bor.Mönchengladbach": return "";
+                case "Borussia Dortmund": return "";
+                case "Dynamo Dresden": return "";
+                case "Eintracht Braunschweig": return "";
+                case "Eintracht Frankfurt": return "";
+                case "Erzgebirge Aue": return "";
+                case "FC Augsburg": return "";
+                case "FC Bayern München": return "";
+                case "FC Ingolstadt 04": return "";
+                case "FC Schalke 04": return "";
+                case "FC St. Pauli": return "";
+                case "Fortuna Düsseldorf": return "";
+                case "Hamburger SV": return "";
+                case "Hannover 96": return "";
+                case "Hertha BSC": return "";
+                case "Holstein Kiel": return "";
+                case "Jahn Regensburg": return "";
+                case "MSV Duisburg": return "";
+                case "Red Bull Leipzig": return "";
+                case "SC Freiburg": return "";
+                case "SpVgg Greuther Fürth": return "";
+                case "SV Darmstadt 98": return "";
+                case "SV Sandhausen": return "";
+                case "TSG 1899 Hoffenheim": return "";
+                case "VfB Stuttgart": return "";
+                case "VfL Bochum": return "";
+                case "VfL Wolfsburg": return "";
+                case "Werder Bremen": return "";
                 #endregion
 
                 #region Netherlands
                 //https://www.bndestem.nl/voetbalcenter/klassement/eredivisie/
+                case "ADO Den Haag": return "";
+                case "Ajax Amsterdam": return "";
+                case "AZ Alkmaar": return "";
+                case "Excelsior": return "";
+                case "FC Groningen": return "";
+                case "FC Twente Enschede": return "";
+                case "FC Utrecht": return "";
+                case "Feyenoord Rotterdam": return "";
+                case "Heracles Almelo": return "";
+                case "NAC Breda": return "";
+                case "PEC Zwolle": return "";
+                case "PSV Eindhoven": return "";
+                case "Roda JC Kerkrade": return "";
+                case "SC Heerenveen": return "";
+                case "Sparta Rotterdam": return "";
+                case "Vitesse Arnhem": return "";
+                case "VVV Venlo": return "";
+                case "Willem II Tilburg": return "";
                 #endregion
 
                 #region Portugal
                 //https://www.dn.pt/desporto.html
+                case "Boavista Porto FC": return "";
+                case "C.F.Os Belenenses": return "";
+                case "CD Tondela": return "";
+                case "Desportivo Aves": return "";
+                case "FC Paços de Ferreira": return "";
+                case "FC Porto": return "";
+                case "FC Rio Ave": return "";
+                case "Feirense": return "";
+                case "G.D.Chaves": return "";
+                case "GD Estoril Praia": return "";
+                case "Maritimo Funchal": return "";
+                case "Moreirense FC": return "";
+                case "Portimonense S.C.": return "";
+                case "SL Benfica": return "";
+                case "Sporting Braga": return "";
+                case "Sporting CP": return "";
+                case "Vitoria Guimaraes": return "";
+                case "Vitoria Setubal": return "";
                 #endregion
 
                 #region Spain
                 //https://resultados.elpais.com/deportivos/futbol/primera/clasificacion/
+                case "Athletic Club": return "";
+                case "CD Leganes": return "";
+                case "Club Atlético de Madrid": return "";
+                case "Deportivo Alavés": return "";
+                case "FC Barcelona": return "";
+                case "Girona FC": return "";
+                case "Levante UD": return "";
+                case "Málaga CF": return "";
+                case "RC Celta de Vigo": return "";
+                case "RC Deportivo La Coruna": return "";
+                case "RCD Espanyol": return "";
+                case "Real Betis": return "";
+                case "Real Madrid CF": return "";
+                case "Real Sociedad de Fútbol": return "";
+                case "SD Eibar": return "";
+                case "Sevilla FC": return "";
+                case "UD Las Palmas": return "";
+                case "Valencia CF": return "";
+                case "Villarreal CF": return "";
                 #endregion
 
                 default:
@@ -307,290 +501,3 @@ namespace FootieData.Gateway
         }
     }
 }
-
-
-
-//"1. FC Heidenheim 1846",
-//"1. FC Kaiserslautern",
-//"1. FC Köln",
-//"1. FC Nürnberg",
-//"1. FC Union Berlin",
-//"1. FSV Mainz 05",
-//"AC Cesena",
-//"AC Chievo Verona",
-//"AC Milan",
-//"Accrington Stanley",
-//"ACF Fiorentina",
-//"ADO Den Haag",
-//"AJ Auxerre",
-//"Ajaccio AC",
-//"Ajax Amsterdam",
-//"Amiens SC",
-//"Angers SCO",
-//"Arminia Bielefeld",
-//"Arsenal FC",
-//"AS Avellino 1912",
-//"AS Bari",
-//"AS Cittadella",
-//"AS Monaco FC",
-//"AS Nancy",
-//"AS Roma",
-//"AS Saint-Étienne",
-//"Ascoli",
-//"Aston Villa FC":
-//"Atalanta BC",
-//"Athletic Club",
-//"Atlético Goianiense",
-//"Atlético Mineiro",
-//"Atlético PR",
-//"Avaí SC",
-//"AZ Alkmaar",
-//"Bahia",
-//"Barnet FC",
-//"Barnsley FC",
-//"Bayer Leverkusen",
-//"Benevento Calcio",
-//"Birmingham City",
-//"Blackburn Rovers FC",
-//"Blackpool FC",
-//"Boavista Porto FC",
-//"Bologna FC",
-//"Bolton Wanderers FC",
-//"Bor. Mönchengladbach",
-//"Borussia Dortmund",
-//"Botafogo",
-//"Bradford City AFC",
-//"Brentford FC",
-//"Brescia Calcio",
-//"Brighton & Hove Albion",
-//"Bristol City",
-//"Bristol Rovers",
-//"Burnley FC",
-//"Burton Albion FC",
-//"Bury FC",
-//"C.F. Os Belenenses",
-//"Cagliari Calcio",
-//"Cambridge United",
-//"Cardiff City FC",
-//"Carlisle United",
-//"Carpi FC",
-//"CD Leganes",
-//"CD Tondela",
-//"Chamois Niortais FC",
-//"Chapecoense",
-//"Charlton Athletic",
-//"Chelsea FC",
-//"Cheltenham Town",
-//"Chesterfield FC",
-//"Clermont Foot Auvergne",
-//"Club Atlético de Madrid",
-//"Colchester United FC",
-//"Corinthians",
-//"Coritiba FC",
-//"Coventry City FC",
-//"Crawley Town",
-//"Cremonese",
-//"Crewe Alexandra FC",
-//"Cruzeiro",
-//"Crystal Palace FC",
-//"Deportivo Alavés",
-//"Derby County",
-//"Desportivo Aves",
-//"Dijon FCO",
-//"Doncaster Rovers FC",
-//"Dynamo Dresden",
-//"EA Guingamp",
-//"EC Flamengo",
-//"EC Vitória",
-//"Eintracht Braunschweig",
-//"Eintracht Frankfurt",
-//"Empoli FC",
-//"Erzgebirge Aue",
-//"ES Troyes AC",
-//"Everton FC",
-//"Excelsior",
-//"Exeter City",
-//"FC Augsburg",
-//"FC Barcelona",
-//"FC Bayern München",
-//"FC Bourg-en-Bresse Péronnas",
-//"FC Crotone",
-//"FC Girondins de Bordeaux",
-//"FC Groningen",
-//"FC Ingolstadt 04",
-//"FC Internazionale Milano",
-//"FC Lorient",
-//"FC Metz",
-//"FC Nantes",
-//"FC Paços de Ferreira",
-//"FC Porto",
-//"FC Rio Ave",
-//"FC Schalke 04",
-//"FC St. Pauli",
-//"FC Twente Enschede",
-//"FC Utrecht",
-//"FC Valenciennes",
-//"Feirense",
-//"Feyenoord Rotterdam",
-//"Fleetwood Town FC",
-//"Fluminense FC",
-//"Foggia",
-//"Forest Green Rovers",
-//"Fortuna Düsseldorf",
-//"Frosinone Calcio",
-//"Fulham FC",
-//"G.D. Chaves",
-//"Gazélec Ajaccio",
-//"GD Estoril Praia",
-//"Genoa CFC",
-//"Getafe CF",
-//"Gillingham FC",
-//"Girona FC",
-//"Grémio",
-//"Grimsby Town",
-//"Hamburger SV",
-//"Hannover 96",
-//"Hellas Verona FC",
-//"Heracles Almelo",
-//"Hertha BSC",
-//"Holstein Kiel",
-//"Huddersfield Town",
-//"Hull City FC",
-//"Ipswich Town",
-//"Jahn Regensburg",
-//"Juventus Turin",
-//"LB Châteauroux",
-//"Le Havre AC",
-//"Leeds United",
-//"Leicester City FC",
-//"Levante UD",
-//"Lincoln City",
-//"Liverpool FC",
-//"Luton Town",
-//"Málaga CF",
-//"Manchester City FC",
-//"Manchester United FC",
-//"Mansfield Town",
-//"Maritimo Funchal",
-//"Middlesbrough FC",
-//"Millwall FC",
-//"Milton Keynes Dons",
-//"Montpellier Hérault SC",
-//"Morecambe FC",
-//"Moreirense FC",
-//"MSV Duisburg",
-//"NAC Breda",
-//"Newcastle United FC",
-//"Newport County",
-//"Nîmes Olympique",
-//"Northampton Town",
-//"Norwich City FC",
-//"Nottingham Forest",
-//"Notts County",
-//"Novara Calcio",
-//"OGC Nice",
-//"Oldham Athletic AFC",
-//"Olympique de Marseille",
-//"Olympique Lyonnais",
-//"OSC Lille",
-//"Oxford United",
-//"Palmeiras",
-//"Paris FC",
-//"Paris Saint-Germain",
-//"Parma FC",
-//"PEC Zwolle",
-//"Perugia",
-//"Pescara Calcio",
-//"Peterborough United FC",
-//"Plymouth Argyle",
-//"Ponte Preta",
-//"Port Vale FC",
-//"Portimonense S.C.",
-//"Portsmouth",
-//"Preston North End",
-//"Pro Vercelli",
-//"PSV Eindhoven",
-//"Queens Park Rangers",
-//"Quevilly Rouen",
-//"RC Celta de Vigo",
-//"RC Deportivo La Coruna",
-//"RC Lens",
-//"RC Strasbourg Alsace",
-//"RC Tours",
-//"RCD Espanyol",
-//"Reading",
-//"Real Betis",
-//"Real Madrid CF",
-//"Real Sociedad de Fútbol",
-//"Red Bull Leipzig",
-//"Rochdale AFC",
-//"Roda JC Kerkrade",
-//"Rotherham United",
-//"Salernitana Calcio",
-//"Santos FC",
-//"Sao Paulo",
-//"SC Freiburg",
-//"SC Heerenveen",
-//"Scunthorpe United FC",
-//"SD Eibar",
-//"Sevilla FC",
-//"Sheffield United FC",
-//"Sheffield Wednesday",
-//"Shrewsbury Town FC",
-//"SL Benfica",
-//"SM Caen",
-//"Sochaux FC",
-//"Southampton FC",
-//"Southend United FC",
-//"SPAL Ferrara",
-//"Sparta Rotterdam",
-//"Spezia Calcio",
-//"Sport Recife",
-//"Sporting Braga",
-//"Sporting CP",
-//"SpVgg Greuther Fürth",
-//"SS Lazio",
-//"SSC Napoli",
-//"Stade Brestois",
-//"Stade de Reims",
-//"Stade Rennais FC",
-//"Stevenage FC",
-//"Stoke City FC",
-//"Sunderland AFC",
-//"SV Darmstadt 98",
-//"SV Sandhausen",
-//"Swansea City FC",
-//"Swindon Town FC",
-//"Ternana Calcio",
-//"Torino FC",
-//"Tottenham Hotspur FC",
-//"Toulouse FC",
-//"TSG 1899 Hoffenheim",
-//"UC Sampdoria",
-//"UD Las Palmas",
-//"Udinese Calcio",
-//"US Cittá di Palermo",
-//"US Orleans",
-//"US Sassuolo Calcio",
-//"Valencia CF",
-//"Vasco da Gama",
-//"Venezia",
-//"VfB Stuttgart",
-//"VfL Bochum",
-//"VfL Wolfsburg",
-//"Villarreal CF",
-//"Virtus Entella",
-//"Vitesse Arnhem",
-//"Vitoria Guimaraes",
-//"Vitoria Setubal",
-//"VVV Venlo",
-//"Walsall FC",
-//"Watford FC",
-//"Werder Bremen",
-//"West Bromwich Albion FC",
-//"West Ham United FC",
-//"Wigan Athletic FC",
-//"Willem II Tilburg",
-//"Wolverhampton Wanderers FC",
-//"Wycombe Wanderers",
-//"Yeovil Town",
