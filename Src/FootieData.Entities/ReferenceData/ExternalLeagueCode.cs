@@ -4,7 +4,7 @@
     {
         BL1,
         BL2,
-        //BSA,
+        BSA,
         CL,
         DED,
         EL1,

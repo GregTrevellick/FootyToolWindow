@@ -9,7 +9,7 @@ namespace FootieData.Common
         public const string CategorySubLevelFootball = "Football";
         public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
 
-        //public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
+        public const string InternalLeagueCodeDescriptionBr1 = "Campeonato Brasileiro Série A";
         public const string InternalLeagueCodeDescriptionDe1 = "1. Bundesliga";
         public const string InternalLeagueCodeDescriptionDe2 = "2. Bundesliga";
         public const string InternalLeagueCodeDescriptionEs1 = "La Liga Primera Division";

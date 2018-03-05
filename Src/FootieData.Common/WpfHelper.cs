@@ -25,8 +25,8 @@ namespace FootieData.Common
         {
             switch (internalLeagueCode)
             {
-                //case InternalLeagueCode.BR1:
-                //    return CommonConstants.InternalLeagueCodeDescriptionBr1;
+                case InternalLeagueCode.BR1:
+                    return CommonConstants.InternalLeagueCodeDescriptionBr1;
                 case InternalLeagueCode.DE1:
                     return CommonConstants.InternalLeagueCodeDescriptionDe1;
                 case InternalLeagueCode.DE2:

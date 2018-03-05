@@ -67,8 +67,9 @@ For when the boss is around
 
 - League standings are displayed in a dockable window, just like the Output window or the Solution Explorer window
 
-- Configure your preferred football leagues from a choice of major European leagues
+- Configure your preferred football leagues from a choice of major European leagues and one South American league
   - Bundesliga
+  - Campeonato Brasileiro da Série A
   - Eredivisie
   - La Liga Primera Division
   - Ligue 1 / Ligue 2
