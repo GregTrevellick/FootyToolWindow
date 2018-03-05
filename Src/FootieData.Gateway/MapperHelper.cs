@@ -474,27 +474,27 @@ namespace FootieData.Gateway
                 case "Vitoria Setubal": return "";
                 #endregion
 
-                #region Spain gregt
+                #region Spain
                 //https://resultados.elpais.com/deportivos/futbol/primera/clasificacion/
-                case "Athletic Club": return "";
-                case "CD Leganes": return "";
-                case "Club Atlético de Madrid": return "";
-                case "Deportivo Alavés": return "";
-                case "FC Barcelona": return "";
-                case "Girona FC": return "";
-                case "Levante UD": return "";
-                case "Málaga CF": return "";
-                case "RC Celta de Vigo": return "";
-                case "RC Deportivo La Coruna": return "";
-                case "RCD Espanyol": return "";
-                case "Real Betis": return "";
-                case "Real Madrid CF": return "";
-                case "Real Sociedad de Fútbol": return "";
-                case "SD Eibar": return "";
-                case "Sevilla FC": return "";
-                case "UD Las Palmas": return "";
-                case "Valencia CF": return "";
-                case "Villarreal CF": return "";
+                case "Athletic Club": return "Athletic";
+                case "CD Leganes": return "Leganés";
+                case "Club Atlético de Madrid": return "Atlético";
+                case "Deportivo Alavés": return "Alavés";
+                case "FC Barcelona": return "Barcelona";
+                case "Girona FC": return "Girona";
+                case "Levante UD": return "Levante";
+                case "Málaga CF": return "Málaga";
+                case "RC Celta de Vigo": return "Celta";
+                case "RC Deportivo La Coruna": return "Deportivo";
+                case "RCD Espanyol": return "Espanyol";
+                case "Real Betis": return "Betis";
+                case "Real Madrid CF": return "Real Madrid";
+                case "Real Sociedad de Fútbol": return "R. Sociedad";
+                case "SD Eibar": return "Eibar";
+                case "Sevilla FC": return "Sevilla";
+                case "UD Las Palmas": return "Las Palmas";
+                case "Valencia CF": return "Valencia";
+                case "Villarreal CF": return "Villarreal";
                 #endregion
 
                 default:
