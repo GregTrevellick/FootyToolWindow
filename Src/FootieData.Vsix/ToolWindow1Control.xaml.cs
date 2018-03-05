@@ -121,22 +121,31 @@ namespace FootieData.Vsix
                                 dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                             }
                             else
-                            {          
-                                dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
+                            {
+                                if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
+                                {
+                                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } } ;
+                                    dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                }
+                                else
+                                {
+                                    dataGrid.ItemsSource = standings ?? (IEnumerable) _nullStandings;
 
-                                //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
-                                var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6 };
-                                var homeColumns = new List<int> { 7, 8, 9, 10, 11, 12, 13 };
-                                var awayColumns = new List<int> { 14, 15, 16, 17, 18, 19, 20 };
-                                var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
+                                    //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
+                                    var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6};
+                                    var homeColumns = new List<int> {7, 8, 9, 10, 11, 12, 13};
+                                    var awayColumns = new List<int> {14, 15, 16, 17, 18, 19, 20};
+                                    var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
 
-                                WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
-                                WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
-                                WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
+                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
+                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
+                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
 
-                                WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
-                                WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
+                                    WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
+                                    WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
+                                }
                             }
+
                             break;
                         case GridType.Result:
                             var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
@@ -150,8 +159,16 @@ namespace FootieData.Vsix
                                 }
                                 else
                                 {
-                                    dataGrid.ItemsSource = resultsList;
-                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                                    if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+                                    {
+                                        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
+                                        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                    }
+                                    else
+                                    {
+                                        dataGrid.ItemsSource = resultsList;
+                                        WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                                    }
                                 }
                             }
                             else
@@ -171,8 +188,16 @@ namespace FootieData.Vsix
                                 }
                                 else
                                 {
-                                    dataGrid.ItemsSource = fixturesList;
-                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                                    if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+                                    {
+                                        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
+                                        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                    }
+                                    else
+                                    {
+                                        dataGrid.ItemsSource = fixturesList;
+                                        WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                                    }
                                 }
                             }
                             else

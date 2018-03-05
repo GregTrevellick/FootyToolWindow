@@ -36,10 +36,10 @@ namespace FootieData.Gateway
                 {
                     leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
                 }
-                catch (Exception ex)
+                catch (AggregateException ex)
                 {
-                    //gregt log time out
-                    leagueTableResult = null;
+                    //gregt log exception
+                    leagueTableResult = new StandingsResponse { Standing = new List<FootballDataOrg.ResponseEntities.Standing> { new FootballDataOrg.ResponseEntities.Standing { TeamName = EntityConstants.PotentialTimeout } }};
                 }                
                 if (leagueTableResult != null)
                 {
@@ -60,11 +60,11 @@ namespace FootieData.Gateway
                 {
                     fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
                 }
-                catch (Exception ex)
+                catch (AggregateException ex)
                 {
-                    //gregt log time out
-                    fixturesResult = null;
-                }                
+                    //gregt log exception
+                    fixturesResult = new FixturesResponse {  Fixtures = new List<Fixture> { new Fixture { HomeTeamName = EntityConstants.PotentialTimeout } } };
+                }
                 if (fixturesResult != null)
                 {
                     result = GetFixturePasts(fixturesResult);//.OrderBy(x => new { x.Date, x.HomeName }); ;
@@ -84,10 +84,10 @@ namespace FootieData.Gateway
                 {
                     fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
                 }
-                catch (Exception ex)
+                catch (AggregateException ex)
                 {
-                    //gregt log time out
-                    fixturesResult = null;
+                    //gregt log exception
+                    fixturesResult = new FixturesResponse { Fixtures = new List<Fixture> { new Fixture { HomeTeamName = EntityConstants.PotentialTimeout } } };
                 }                
                 if (fixturesResult != null)
                 {
@@ -132,19 +132,19 @@ namespace FootieData.Gateway
                 return leagueTableResult?.Standing?.Select(x => new Standing
                 {
                     Against = x.GoalsAgainst,
-                    AwayDraws = x.Away.Draws,
-                    AwayGoalsAgainst = x.Away.GoalsAgainst,
-                    AwayGoalsFor = x.Away.Goals,
-                    AwayLosses = x.Away.Losses,
-                    AwayWins = x.Away.Wins,
+                    AwayDraws = x.Away?.Draws ?? -1,
+                    AwayGoalsAgainst = x.Away?.GoalsAgainst ?? -1,
+                    AwayGoalsFor = x.Away?.Goals ?? -1,
+                    AwayLosses = x.Away?.Losses ?? -1,
+                    AwayWins = x.Away?.Wins ?? -1,
                     //CrestURI = x.CrestURI,
                     Diff = x.GoalDifference,
                     For = x.Goals,
-                    HomeDraws = x.Home.Draws,
-                    HomeGoalsAgainst = x.Home.GoalsAgainst,
-                    HomeGoalsFor = x.Home.Goals,
-                    HomeLosses = x.Home.Losses,
-                    HomeWins = x.Home.Wins,
+                    HomeDraws = x.Home?.Draws ?? -1,
+                    HomeGoalsAgainst = x.Home?.GoalsAgainst ?? -1,
+                    HomeGoalsFor = x.Home?.Goals ?? -1,
+                    HomeLosses = x.Home?.Losses ?? -1,
+                    HomeWins = x.Home?.Wins ?? -1,
                     Played = x.PlayedGames,
                     Points = x.Points,
                     Rank = x.Position,//full

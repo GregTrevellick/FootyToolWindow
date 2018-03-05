@@ -1,3 +1,4 @@
+add w/d/l to primary columns
 c.f. names vs daily mail for foreign leagues
 put timeout into options
 
@@ -8,7 +9,7 @@ check status/score of match whilst part way thru a live match
 check performance
 gregt
 test vsix rating chaser in prod
-
+order of leagues in the tool window ?
 
 
 
