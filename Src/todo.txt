@@ -2,11 +2,9 @@ c.f. names vs daily mail for foreign leagues
 
 
 
-
+put timeout into options
 
 unit tests
-revert refresh/boss buttons to text ?
-put timeout into options
 check status/score of match whilst part way thru a live match
 check performance
 gregt

@@ -1,4 +1,5 @@
-﻿using FootballDataOrg.ResponseEntities;
+﻿using System;
+using FootballDataOrg.ResponseEntities;
 using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using System.Collections.Generic;
@@ -30,7 +31,16 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
+                StandingsResponse leagueTableResult;
+                try
+                {
+                    leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
+                }
+                catch (Exception ex)
+                {
+                    //gregt log time out
+                    leagueTableResult = null;
+                }                
                 if (leagueTableResult != null)
                 {
                     result = GetResultMatchStandings(leagueTableResult);
@@ -45,7 +55,16 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
+                FixturesResponse fixturesResult;
+                try
+                {
+                    fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
+                }
+                catch (Exception ex)
+                {
+                    //gregt log time out
+                    fixturesResult = null;
+                }                
                 if (fixturesResult != null)
                 {
                     result = GetFixturePasts(fixturesResult);//.OrderBy(x => new { x.Date, x.HomeName }); ;
@@ -60,7 +79,16 @@ namespace FootieData.Gateway
             var idSeason = GetIdSeason(leagueIdentifier);
             if (idSeason > 0)
             {
-                var fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
+                FixturesResponse fixturesResult;
+                try
+                {
+                    fixturesResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetFixturesResultAsync(idSeason, timeFrame).Result;
+                }
+                catch (Exception ex)
+                {
+                    //gregt log time out
+                    fixturesResult = null;
+                }                
                 if (fixturesResult != null)
                 {
                     result = GetFixtureFutures(fixturesResult);//.OrderBy(x => new { x.Date, x.HomeName });
