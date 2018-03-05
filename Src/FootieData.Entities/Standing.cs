@@ -10,7 +10,34 @@ namespace FootieData.Entities
         public string Team { get; set; }
         [Description("P")]
         public int Played { get; set; }
+
         //public string CrestURI { get; set; }
+
+        [Description("hW")]
+        public int HomeWins { get; set; }
+        [Description("hD")]
+        public int HomeDraws { get; set; }
+        [Description("hL")]
+        public int HomeLosses { get; set; }
+        [Description("hF")]
+        public int HomeGoalsFor { get; set; }
+        [Description("hA")]
+        public int HomeGoalsAgainst { get; set; }
+
+
+        [Description("aW")]
+        public int AwayWins { get; set; }
+        [Description("aD")]
+        public int AwayDraws { get; set; }
+        [Description("aL")]
+        public int AwayLosses { get; set; }
+        [Description("aF")]
+        public int AwayGoalsFor { get; set; }
+        [Description("aA")]
+        public int AwayGoalsAgainst { get; set; }
+
+
+
         [Description("F")]
         public int For { get; set; }
         [Description("A")]
@@ -19,5 +46,8 @@ namespace FootieData.Entities
         public int Diff { get; set; }
         [Description("PTs")]
         public int Points { get; set; }
+
+
+
     }
 }
