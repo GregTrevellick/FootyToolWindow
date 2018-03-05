@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -21,8 +22,14 @@ namespace FootieData.Vsix
             try
             {
                 base.OnAutoGeneratingColumn(e);
+
                 var propDescr = e.PropertyDescriptor as System.ComponentModel.PropertyDescriptor;
                 e.Column.Header = propDescr?.Description;
+
+                var style = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+                style.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Click to sort"));
+                style.Setters.Add(new Setter(ForegroundProperty, Brushes.Red));
+                e.Column.HeaderStyle = style;
             }
             catch (Exception)
             {
