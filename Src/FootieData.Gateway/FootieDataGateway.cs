@@ -103,30 +103,26 @@ namespace FootieData.Gateway
             {                
                 return leagueTableResult?.Standing?.Select(x => new Standing
                 {
-                    //gregt sort alpha
-
-                    //CrestURI = x.CrestURI,
                     Against = x.GoalsAgainst,
+                    AwayDraws = x.Away.Draws,
+                    AwayGoalsAgainst = x.Away.GoalsAgainst,
+                    AwayGoalsFor = x.Away.Goals,
+                    AwayLosses = x.Away.Losses,
+                    AwayWins = x.Away.Wins,
+                    //CrestURI = x.CrestURI,
                     Diff = x.GoalDifference,
                     For = x.Goals,
+                    HomeDraws = x.Home.Draws,
+                    HomeGoalsAgainst = x.Home.GoalsAgainst,
+                    HomeGoalsFor = x.Home.Goals,
+                    HomeLosses = x.Home.Losses,
+                    HomeWins = x.Home.Wins,
                     Played = x.PlayedGames,
                     Points = x.Points,
-                    //Rank = x.Rank,//minified
                     Rank = x.Position,//full
+                    //Rank = x.Rank,//minified
                     //Team = MapperHelper.MapExternalTeamNameToInternalTeamName(x.Team),//minified
                     Team = MapperHelper.MapExternalTeamNameToInternalTeamName(x.TeamName),//full
-
-                    HomeWins = x.Home.Wins,
-                    HomeDraws = x.Home.Draws,
-                    HomeLosses = x.Home.Losses,
-                    HomeGoalsFor = x.Home.Goals,
-                    HomeGoalsAgainst = x.Home.GoalsAgainst,
-
-                    AwayWins = x.Away.Wins,
-                    AwayDraws = x.Away.Draws,
-                    AwayLosses = x.Away.Losses,
-                    AwayGoalsFor = x.Away.Goals,
-                    AwayGoalsAgainst = x.Away.GoalsAgainst,
                 });
             }
         }
