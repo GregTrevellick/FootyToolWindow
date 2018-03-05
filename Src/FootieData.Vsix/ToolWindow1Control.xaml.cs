@@ -132,9 +132,9 @@ namespace FootieData.Vsix
                                     dataGrid.ItemsSource = standings ?? (IEnumerable) _nullStandings;
 
                                     //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
-                                    var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6};
-                                    var homeColumns = new List<int> {7, 8, 9, 10, 11, 12, 13};
-                                    var awayColumns = new List<int> {14, 15, 16, 17, 18, 19, 20};
+                                    var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6, 7, 8, 9};
+                                    var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16};
+                                    var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23};
                                     var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
 
                                     WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);

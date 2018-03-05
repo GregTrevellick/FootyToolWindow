@@ -6,15 +6,20 @@ namespace FootieData.Entities
     {
         //DO NOT RE-ORDER: this is the UI order
 
+        //public string CrestURI { get; set; }
+
         [Description("")]
         public int Rank { get; set; }
         [Description("Club")]
         public string Team { get; set; }
         [Description("P")]
         public int Played { get; set; }
-
-        //public string CrestURI { get; set; }
-
+        [Description("W")]
+        public int Wins => HomeWins + AwayWins;
+        [Description("D")]
+        public int Draws => HomeDraws + AwayDraws;
+        [Description("L")]
+        public int Losses => HomeLosses + AwayLosses;
         [Description("F")]
         public int For { get; set; }
         [Description("A")]
