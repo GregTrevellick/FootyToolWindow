@@ -19,12 +19,6 @@ test vsix rating chaser in prod
 
 
 
-https://www.lequipe.fr/Football/ligue-1-classement.html
-https://www.lequipe.fr/Football/ligue-2-classement.html
-https://www.bndestem.nl/voetbalcenter/klassement/eredivisie/
-http://www.gazzetta.it/
-https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
-http://www.correiobraziliense.com.br/
 
 
 

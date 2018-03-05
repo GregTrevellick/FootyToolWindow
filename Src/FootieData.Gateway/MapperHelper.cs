@@ -12,10 +12,11 @@ namespace FootieData.Gateway
 
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
-            //TemporaryWriteTeamNameToTextFile(externalTeamName);
+            TemporaryWriteTeamNameToTextFile(externalTeamName);//gregt comment out
 
             switch (externalTeamName)
             {
+                #region UK
                 case "Accrington Stanley":
                     return "Accrington Stanley";
                 case "Arsenal":  
@@ -269,6 +270,37 @@ namespace FootieData.Gateway
                 case "Yeovil":  
                 case "Yeovil Town":
                     return "Yeovil Town";
+                #endregion
+
+                #region Brazil
+                //http://www.correiobraziliense.com.br/
+                #endregion
+
+                #region France
+                //https://www.lequipe.fr/Football/ligue-1-classement.html
+                //https://www.lequipe.fr/Football/ligue-2-classement.html
+                #endregion
+
+                #region Italy
+                //http://www.gazzetta.it/
+                #endregion
+
+                #region Germany
+                //https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
+                #endregion
+
+                #region Netherlands
+                //https://www.bndestem.nl/voetbalcenter/klassement/eredivisie/
+                #endregion
+
+                #region Portugal
+                //https://www.dn.pt/desporto.html
+                #endregion
+
+                #region Spain
+                //https://resultados.elpais.com/deportivos/futbol/primera/clasificacion/
+                #endregion
+
                 default:
                     return externalTeamName;
             }
