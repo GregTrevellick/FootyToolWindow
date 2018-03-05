@@ -21,7 +21,7 @@
             </StackPanel>
 
             <StackPanel>
-                <TextBlock Name="TextBlockRefreshPostponed" Visibility="Collapsed" />
+                <TextBlock Name="TextBlockRefreshPostponed" Visibility="Collapsed" Foreground="Red"/>
             </StackPanel>
 
             <StackPanel Name="StackPanelBossMode">
