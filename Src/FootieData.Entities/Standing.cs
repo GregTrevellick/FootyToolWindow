@@ -4,6 +4,8 @@ namespace FootieData.Entities
 {
     public class Standing
     {
+        //DO NOT RE-ORDER: this is the UI order
+
         [Description("")]
         public int Rank { get; set; }
         [Description("Club")]
@@ -13,6 +15,17 @@ namespace FootieData.Entities
 
         //public string CrestURI { get; set; }
 
+        [Description("F")]
+        public int For { get; set; }
+        [Description("A")]
+        public int Against { get; set; }
+        [Description("GD")]
+        public int Diff { get; set; }
+        [Description("PTs")]
+        public int Points { get; set; }
+
+        [Description("hP")]
+        public int HomePlayed => HomeWins + HomeDraws+ HomeLosses;
         [Description("hW")]
         public int HomeWins { get; set; }
         [Description("hD")]
@@ -24,7 +37,8 @@ namespace FootieData.Entities
         [Description("hA")]
         public int HomeGoalsAgainst { get; set; }
 
-
+        [Description("aP")]
+        public int AwayPlayed => AwayWins + AwayDraws + AwayLosses;
         [Description("aW")]
         public int AwayWins { get; set; }
         [Description("aD")]
@@ -35,19 +49,6 @@ namespace FootieData.Entities
         public int AwayGoalsFor { get; set; }
         [Description("aA")]
         public int AwayGoalsAgainst { get; set; }
-
-
-
-        [Description("F")]
-        public int For { get; set; }
-        [Description("A")]
-        public int Against { get; set; }
-        [Description("GD")]
-        public int Diff { get; set; }
-        [Description("PTs")]
-        public int Points { get; set; }
-
-
 
     }
 }
