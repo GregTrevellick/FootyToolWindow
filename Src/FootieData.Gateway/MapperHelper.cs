@@ -273,73 +273,75 @@ namespace FootieData.Gateway
                 #endregion
 
                 #region Brazil
-                //http://www.correiobraziliense.com.br/
-                case "Atlético Goianiense": return "";
-                case "Atlético Mineiro": return "";
-                case "Atlético PR": return "";
-                case "Avaí SC": return "";
-                case "Bahia": return "";
-                case "Botafogo": return "";
-                case "Chapecoense": return "";
-                case "Corinthians": return "";
-                case "Coritiba FC": return "";
-                case "Cruzeiro": return "";
-                case "EC Flamengo": return "";
-                case "EC Vitória": return "";
-                case "Fluminense FC": return "";
-                case "Grémio": return "";
-                case "Palmeiras": return "";
-                case "Ponte Preta": return "";
-                case "Santos FC": return "";
-                case "Sao Paulo": return "";
-                case "Sport Recife": return "";
-                case "Vasco da Gama": return "";
+                //https://www.df.superesportes.com.br/campeonatos/2017/brasileirao/serie-a/
+                case "Atlético Goianiense": return "Atlético-GO";
+                case "Atlético Mineiro": return "Atlético-MG";
+                case "Atlético PR": return "Atlético-PR";
+                case "Avaí SC": return "Avaí";
+                case "Bahia": return " Bahia";
+                case "Botafogo": return "Botafogo";
+                case "Chapecoense": return "Chapecoense";
+                case "Corinthians": return "Corinthians";
+                case "Coritiba FC": return "Coritiba";
+                case "Cruzeiro": return "Cruzeiro";
+                case "EC Flamengo": return "Flamengo";
+                case "EC Vitória": return "Vitória";
+                case "Fluminense FC": return "Fluminense";
+                case "Grémio": return "Grêmio";
+                case "Palmeiras": return "Palmeiras";
+                case "Ponte Preta": return "Ponte Preta";
+                case "Santos FC": return "Santos";
+                case "Sao Paulo": return "São Paulo";
+                case "Sport Recife": return "Sport";
+                case "Vasco da Gama": return "Vasco";
                 #endregion
 
                 #region France
                 //https://www.lequipe.fr/Football/ligue-1-classement.html
                 //https://www.lequipe.fr/Football/ligue-2-classement.html
-                case "AJ Auxerre": return "";
-                case "Ajaccio AC": return "";
-                case "Amiens SC": return "";
-                case "Angers SCO": return "";
-                case "AS Monaco FC": return "";
-                case "AS Nancy": return "";
-                case "AS Saint-Étienne": return "";
-                case "Chamois Niortais FC": return "";
-                case "Clermont Foot Auvergne": return "";
-                case "Dijon FCO": return "";
-                case "EA Guingamp": return "";
-                case "ES Troyes AC": return "";
-                case "FC Bourg - en - Bresse Péronnas": return "";
-                case "FC Girondins de Bordeaux": return "";
-                case "FC Lorient": return "";
-                case "FC Metz": return "";
-                case "FC Nantes": return "";
-                case "FC Valenciennes": return "";
-                case "Gazélec Ajaccio": return "";
-                case "LB Châteauroux": return "";
-                case "Le Havre AC": return "";
-                case "Montpellier Hérault SC": return "";
-                case "Nîmes Olympique": return "";
-                case "OGC Nice": return "";
-                case "Olympique de Marseille": return "";
-                case "Olympique Lyonnais": return "";
-                case "OSC Lille": return "";
-                case "Paris FC": return "";
-                case "Paris Saint - Germain": return "";
-                case "Paris Saint-Germain": return "";
-                case "Quevilly Rouen": return "";
-                case "RC Lens": return "";
-                case "RC Strasbourg Alsace": return "";
-                case "RC Tours": return "";
-                case "SM Caen": return "";
-                case "Sochaux FC": return "";
-                case "Stade Brestois": return "";
-                case "Stade de Reims": return "";
-                case "Stade Rennais FC": return "";
-                case "Toulouse FC": return "";
-                case "US Orleans": return "";
+                case "AJ Auxerre": return "Auxerre";
+                case "Ajaccio AC":
+                case "Gazélec Ajaccio":
+                    return "AC Ajaccio";
+                case "Amiens SC": return "Amiens";
+                case "Angers SCO": return "Angers";
+                case "AS Monaco FC": return "Monaco";
+                case "AS Nancy": return "Nancy";
+                case "AS Saint-Étienne": return "Saint-Étienne";
+                case "Chamois Niortais FC": return "Niort";
+                case "Clermont Foot Auvergne": return "Clermont";
+                case "Dijon FCO": return "Dijon";
+                case "EA Guingamp": return "Guingamp";
+                case "ES Troyes AC": return "Troyes";
+                case "FC Bourg - en - Bresse Péronnas": return "Bourg-en-Bresse";
+                case "FC Girondins de Bordeaux": return "Bordeaux";
+                case "FC Lorient": return "Lorient";
+                case "FC Metz": return "Metz";
+                case "FC Nantes": return "Nantes";
+                case "FC Valenciennes": return "Valenciennes";
+                case "LB Châteauroux": return "Châteauroux";
+                case "Le Havre AC": return "Le Havre";
+                case "Montpellier Hérault SC": return "Montpellier";
+                case "Nîmes Olympique": return "Nîmes";
+                case "OGC Nice": return "Nice";
+                case "Olympique de Marseille": return "Marseille";
+                case "Olympique Lyonnais": return "Lyon";
+                case "OSC Lille": return "Lille";
+                case "Paris FC": return "Paris FC";
+                case "Paris Saint - Germain": 
+                case "Paris Saint-Germain":
+                    return "Paris-SG";
+                case "Quevilly Rouen": return "Quevilly-Rouen";
+                case "RC Lens": return "Lens";
+                case "RC Strasbourg Alsace": return "Strasbourg";
+                case "RC Tours": return "Tours";
+                case "SM Caen": return "Caen";
+                case "Sochaux FC": return "Sochaux";
+                case "Stade Brestois": return "Brest";
+                case "Stade de Reims": return "Reims";
+                case "Stade Rennais FC": return "Rennes";
+                case "Toulouse FC": return "Toulouse";
+                case "US Orleans": return "Nancy";
                 #endregion
 
                 #region Italy
