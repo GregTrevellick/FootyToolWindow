@@ -10,7 +10,7 @@ namespace FootieData.Common
 {
     public class WpfHelper
     {
-        public static void RightAlignDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style rightAlignStyle)
+        public static void FormatDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style rightAlignStyle)
         {
             if (dataGridColumns.Count > 0)
             {

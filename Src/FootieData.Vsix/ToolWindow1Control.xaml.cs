@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace FootieData.Vsix
 {
@@ -23,6 +24,8 @@ namespace FootieData.Vsix
         private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
         private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
+        private readonly Style _awayStyle;
+        private readonly Style _homeStyle;
         private readonly Style _rightAlignStyle;
         private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = $"No results available for the past {CommonConstants.DaysCount} days" } };
         private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"No fixtures available for the next {CommonConstants.DaysCount} days" } };
@@ -52,8 +55,15 @@ namespace FootieData.Vsix
             GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
             UpdateLastUpdatedDate = updateLastUpdatedDate;
             _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
+
             _rightAlignStyle = new Style();
             _rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
+            
+            //gregt merge two below if using same colour
+            _homeStyle = new Style();
+            _homeStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.LightSteelBlue));
+            _awayStyle = new Style();
+            _awayStyle.Setters.Add(new Setter(ForegroundProperty, Brushes.LightSteelBlue));
 
             PopulateUi(false);
         }
@@ -109,7 +119,16 @@ namespace FootieData.Vsix
                             else
                             {
                                 dataGrid.ItemsSource = standings ?? (IEnumerable)_nullStandings;
-                                WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2, 3, 4, 5, 6 }, _rightAlignStyle);
+
+                                //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
+                                var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6 };
+                                var homeColumns = new List<int> { 7, 8, 9, 10, 11, 12 };
+                                var awayColumns = new List<int> { 13, 14, 15, 16, 17, 18 };
+                                var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
+
+                                WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
+                                WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
+                                WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
                             }
                             break;
                         case GridType.Result:
@@ -125,7 +144,7 @@ namespace FootieData.Vsix
                                 else
                                 {
                                     dataGrid.ItemsSource = resultsList;
-                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
                                 }
                             }
                             else
@@ -146,7 +165,7 @@ namespace FootieData.Vsix
                                 else
                                 {
                                     dataGrid.ItemsSource = fixturesList;
-                                    WpfHelper.RightAlignDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
                                 }
                             }
                             else

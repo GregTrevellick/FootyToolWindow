@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Windows.Media;
+//gregt stuff to be deleted
+//using FootieData.Entities.CustomAttributes;
 
 namespace FootieData.Entities
 {
@@ -24,8 +27,12 @@ namespace FootieData.Entities
         [Description("PTs")]
         public int Points { get; set; }
 
+        //gregt stuff to be deleted
+
+        //[ColumnHeaderForegroundColor(Brushes.Red)]
+        //[Home(true)]
         [Description("hP")]
-        public int HomePlayed => HomeWins + HomeDraws+ HomeLosses;
+        public int HomePlayed => HomeWins + HomeDraws + HomeLosses;
         [Description("hW")]
         public int HomeWins { get; set; }
         [Description("hD")]
