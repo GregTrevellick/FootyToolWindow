@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Gateway.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Vsix.Tests", "FootieData.Vsix.Tests\FootieData.Vsix.Tests.csproj", "{77BF7E8B-F3D5-4AA1-9C70-22679D4A26A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballDataOrg.Tests", "FootballDataOrg.Tests\FootballDataOrg.Tests.csproj", "{9D7DA61D-37FC-4743-BB53-39906622B703}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Entities.Tests", "FootieData.Entities.Tests\FootieData.Entities.Tests.csproj", "{D384E82A-D0FB-4AE3-A215-BE57A4855969}"
 EndProject
 Global
@@ -69,10 +67,6 @@ Global
 		{77BF7E8B-F3D5-4AA1-9C70-22679D4A26A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77BF7E8B-F3D5-4AA1-9C70-22679D4A26A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77BF7E8B-F3D5-4AA1-9C70-22679D4A26A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D7DA61D-37FC-4743-BB53-39906622B703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D7DA61D-37FC-4743-BB53-39906622B703}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D7DA61D-37FC-4743-BB53-39906622B703}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D7DA61D-37FC-4743-BB53-39906622B703}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D384E82A-D0FB-4AE3-A215-BE57A4855969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D384E82A-D0FB-4AE3-A215-BE57A4855969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D384E82A-D0FB-4AE3-A215-BE57A4855969}.Release|Any CPU.ActiveCfg = Release|Any CPU
