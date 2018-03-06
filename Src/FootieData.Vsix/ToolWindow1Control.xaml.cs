@@ -307,8 +307,8 @@ namespace FootieData.Vsix
 
             if (updatedWithinLastXSeconds)
             {
-                var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (DateTime.Now - lastUpdatedDate).Seconds;//gregt unit test
-                var refreshPostoned = $"Data last updated within last {CommonConstants.RefreshIntervalInSeconds} seconds, please re-try in {pleaseWait} seconds.";
+                var pleaseWaitTime = WpfHelper.GetPleaseWaitTime(lastUpdatedDate, DateTime.Now);
+                var refreshPostoned = $"Data last updated within last {CommonConstants.RefreshIntervalInSeconds} seconds, please re-try in {pleaseWaitTime} seconds.";
                 TextBlockRefreshPostponed.Text = refreshPostoned;
                 TextBlockRefreshPostponed.Visibility = Visibility.Visible;
             }

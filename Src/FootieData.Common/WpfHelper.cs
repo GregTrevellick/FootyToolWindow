@@ -142,6 +142,12 @@ namespace FootieData.Common
             };
         }
 
+        public static int GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now)//gregt unit test
+        {
+            var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (now - lastUpdatedDate).Seconds;
+            return pleaseWait;
+        }
+
         private static List<LeagueSubOption> GetLeagueSubOptions(InternalLeagueCode internalLeagueCode)
         {
             switch (internalLeagueCode)
