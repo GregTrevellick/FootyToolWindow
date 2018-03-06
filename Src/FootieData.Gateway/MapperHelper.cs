@@ -430,26 +430,26 @@ namespace FootieData.Gateway
                 case "Werder Bremen": return "";
                 #endregion
 
-                #region Netherlands gregt
+                #region Netherlands 
                 //https://www.bndestem.nl/voetbalcenter/klassement/eredivisie/
-                case "ADO Den Haag": return "";
-                case "Ajax Amsterdam": return "";
-                case "AZ Alkmaar": return "";
-                case "Excelsior": return "";
-                case "FC Groningen": return "";
-                case "FC Twente Enschede": return "";
-                case "FC Utrecht": return "";
-                case "Feyenoord Rotterdam": return "";
-                case "Heracles Almelo": return "";
-                case "NAC Breda": return "";
-                case "PEC Zwolle": return "";
-                case "PSV Eindhoven": return "";
-                case "Roda JC Kerkrade": return "";
-                case "SC Heerenveen": return "";
-                case "Sparta Rotterdam": return "";
-                case "Vitesse Arnhem": return "";
-                case "VVV Venlo": return "";
-                case "Willem II Tilburg": return "";
+                case "ADO Den Haag": return "ADO Den Haag";
+                case "Ajax Amsterdam": return "Ajax";
+                case "AZ Alkmaar": return "AZ";
+                case "Excelsior": return "Excelsior";
+                case "FC Groningen": return "FC Groningen";
+                case "FC Twente Enschede": return "FC Twente";
+                case "FC Utrecht": return "FC Utrecht";
+                case "Feyenoord Rotterdam": return "Feyenoord";
+                case "Heracles Almelo": return "Heracles Almelo";
+                case "NAC Breda": return "NAC Breda";
+                case "PEC Zwolle": return "PEC Zwolle";
+                case "PSV Eindhoven": return "PSV";
+                case "Roda JC Kerkrade": return "Roda JC Kerkrade";
+                case "SC Heerenveen": return "sc Heerenveen";
+                case "Sparta Rotterdam": return "Sparta Rotterdam";
+                case "Vitesse Arnhem": return "Vitesse";
+                case "VVV Venlo": return "VVV-Venlo";
+                case "Willem II Tilburg": return "Willem II";
                 #endregion
 
                 #region Portugal 
