@@ -10,7 +10,7 @@ namespace FootieData.Common
 {
     public class DataGridHelper
     {
-        public static bool IsDataGridEmpty(DataGrid dataGrid)//gregt unit test
+        public static bool IsDataGridEmpty(DataGrid dataGrid)
         {
             var dataGridEmpty = false;
 
@@ -33,11 +33,11 @@ namespace FootieData.Common
             return dataGridEmpty;
         }
 
-        public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)//gregt unit test
+        public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)
         {
             var shouldPerformRefresh = true;
 
-            var updatedWithinLastXSeconds = UpdatedWithinLastXSeconds(lastUpdatedDate);
+            var updatedWithinLastXSeconds = UpdatedWithinLastXSeconds(lastUpdatedDate, CommonConstants.RefreshIntervalInSeconds, DateTime.Now);
 
             if (updatedWithinLastXSeconds)
             {
@@ -47,19 +47,17 @@ namespace FootieData.Common
             return shouldPerformRefresh;
         }
 
-        public static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate)//gregt unit test
+        public static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate, int refreshIntervalInSeconds, DateTime now)
         {
             var updatedWithinLastXSeconds = false;
 
-            if (lastUpdatedDate > DateTime.Now.AddSeconds(-CommonConstants.RefreshIntervalInSeconds))//gregt unit test
+            if (lastUpdatedDate > now.AddSeconds(-refreshIntervalInSeconds))
             {
                 updatedWithinLastXSeconds = true;
             }
 
             return updatedWithinLastXSeconds;
         }
-
-
 
         public static void HideHeaderIfNoDataToShow(DataGrid dataGrid)
         {

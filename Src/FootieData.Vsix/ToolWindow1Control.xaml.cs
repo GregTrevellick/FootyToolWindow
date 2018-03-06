@@ -303,11 +303,11 @@ namespace FootieData.Vsix
         private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
         {
             var lastUpdatedDate = GetLastUpdatedDate(null);
-            var updatedWithinLastXSeconds = DataGridHelper.UpdatedWithinLastXSeconds(lastUpdatedDate);
+            var updatedWithinLastXSeconds = DataGridHelper.UpdatedWithinLastXSeconds(lastUpdatedDate, CommonConstants.RefreshIntervalInSeconds, DateTime.Now);
 
             if (updatedWithinLastXSeconds)
             {
-                var pleaseWaitTime = WpfHelper.GetPleaseWaitTime(lastUpdatedDate, DateTime.Now);
+                var pleaseWaitTime = WpfHelper.GetPleaseWaitTime(lastUpdatedDate, DateTime.Now, CommonConstants.RefreshIntervalInSeconds);
                 var refreshPostoned = $"Data last updated within last {CommonConstants.RefreshIntervalInSeconds} seconds, please re-try in {pleaseWaitTime} seconds.";
                 TextBlockRefreshPostponed.Text = refreshPostoned;
                 TextBlockRefreshPostponed.Visibility = Visibility.Visible;

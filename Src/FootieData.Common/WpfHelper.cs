@@ -143,9 +143,9 @@ namespace FootieData.Common
             };
         }
 
-        public static int GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now)//gregt unit test
+        public static int GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now, int refreshIntervalInSeconds)
         {
-            var pleaseWait = CommonConstants.RefreshIntervalInSeconds - (now - lastUpdatedDate).Seconds;
+            var pleaseWait = refreshIntervalInSeconds - (now - lastUpdatedDate).Seconds;
             return pleaseWait;
         }
 
