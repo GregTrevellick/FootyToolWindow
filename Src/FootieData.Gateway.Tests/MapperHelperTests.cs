@@ -17,6 +17,21 @@ namespace FootieData.Gateway.Tests
         }
 
         [TestMethod]
+        public void GetTimeTest()
+        {
+            //https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
+
+            //Arrange
+            var date = new DateTime(2001, 12, 31, 13, 45, 30);
+
+            //Act/Assert
+            Assert.AreEqual("1:45 PM", MapperHelper.GetTime(date, new CultureInfo("en-US")));
+            Assert.AreEqual("13:45", MapperHelper.GetTime(date, new CultureInfo("en-GB")));
+            Assert.AreEqual("13:45", MapperHelper.GetTime(date, new CultureInfo("hr-HR")));
+            Assert.AreEqual("01:45 م", MapperHelper.GetTime(date, new CultureInfo("ar-EG")));            
+        }
+
+        [TestMethod]
         public void GetDateTest()
         {
             //Arrange

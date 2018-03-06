@@ -192,16 +192,12 @@ namespace FootieData.Gateway
                 return fixturesResult?.Fixtures?.Select(x => new FixtureFuture
                 {
                     AwayName = MapperHelper.MapExternalTeamNameToInternalTeamName(x.AwayTeamName),
-                    Date = x.Date.ToString("d"),
+                    Date = MapperHelper.GetDate(x.Date, Thread.CurrentThread.CurrentCulture),
                     HomeName = MapperHelper.MapExternalTeamNameToInternalTeamName(x.HomeTeamName),
-                    Time = x.Date.ToString("t"),
+                    Time = MapperHelper.GetTime(x.Date, Thread.CurrentThread.CurrentCulture),
                 });
             }
         }
     }
 }
 
-//https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
-//2009-06-15T13:45:30 -> 1:45 PM(en-US)
-//2009-06-15T13:45:30 -> 13:45 (hr-HR)
-//2009-06-15T13:45:30 -> 01:45 م(ar-EG)

@@ -6,14 +6,14 @@ namespace FootieData.Gateway
 {
     public class MapperHelper
     {
-        //For for testing
-        //private static CultureInfo enUS = new CultureInfo("en-US");
-        //private static CultureInfo enGB = new CultureInfo("en-GB");
-        //private static CultureInfo frFR = new CultureInfo("fr-FR");
-        //private static CultureInfo deDE = new CultureInfo("de-DE");
-        public static string GetDate(DateTime date, CultureInfo cultureInfo)//gregt unit test 
+        public static string GetDate(DateTime date, CultureInfo cultureInfo)
         {
             return date.ToString("d", cultureInfo);
+        }
+
+        public static string GetTime(DateTime date, CultureInfo cultureInfo)
+        {
+            return date.ToString("t", cultureInfo);
         }
 
         private static void TemporaryWriteTeamNameToTextFile(string externalTeamName)
