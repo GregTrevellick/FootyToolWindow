@@ -131,7 +131,7 @@ namespace FootballDataOrg
 }
 
 
-//private static void HandleResponseHeaders(HttpResponseMessage httpResponseMessage, string tempGregtResponseStringError)
+//private static void HandleResponseHeaders(HttpResponseMessage httpResponseMessage, string responseStringError)
 //{
 //    //You reached your request limit. Wait 52 seconds.
 //    //You reached your request limit {X-RequestsAvailable}. Wait {X-RequestCounter-Reset} seconds.
