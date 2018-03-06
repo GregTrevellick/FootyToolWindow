@@ -6,18 +6,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using Standing = FootieData.Entities.Standing;
 
 namespace FootieData.Gateway
 {
     public class FootieDataGateway
     {
-        //For for testing
-        //private static CultureInfo enUS = new CultureInfo("en-US");
-        private static CultureInfo enGB = new CultureInfo("en-GB");//gregt
-        //private static CultureInfo frFR = new CultureInfo("fr-FR");
-        //private static CultureInfo deDE = new CultureInfo("de-DE");
-
         private readonly CompetitionResultSingleton _competitionResultSingleton;
 
         public FootieDataGateway(CompetitionResultSingleton competitionResultSingletonInstance)
@@ -172,14 +167,14 @@ namespace FootieData.Gateway
                 return fixturesResult?.Fixtures?.Select(x => new FixturePast
                 {
                     AwayName = MapperHelper.MapExternalTeamNameToInternalTeamName(x.AwayTeamName),
-                    Date = x.Date.ToString("d", enGB),//gregt unit test & replace with current culture
+                    Date = MapperHelper.GetDate(x.Date, Thread.CurrentThread.CurrentCulture),
                     HomeName = MapperHelper.MapExternalTeamNameToInternalTeamName(x.HomeTeamName),
                     GoalsAway = x.Result?.GoalsAwayTeam,
                     GoalsHome = x.Result?.GoalsHomeTeam,
                 });
             }
         }
-
+        
         private static IEnumerable<FixtureFuture> GetFixtureFutures(FixturesResponse fixturesResult)
         {
             if (!string.IsNullOrEmpty(fixturesResult?.Error))
