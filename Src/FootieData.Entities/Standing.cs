@@ -15,11 +15,11 @@ namespace FootieData.Entities
         [Description("P")]
         public int Played { get; set; }
         [Description("W")]
-        public int Wins => HomeWins + AwayWins;//gregt unit test
+        public int Wins => HomeWins + AwayWins;
         [Description("D")]
-        public int Draws => HomeDraws + AwayDraws;//gregt unit test
+        public int Draws => HomeDraws + AwayDraws;
         [Description("L")]
-        public int Losses => HomeLosses + AwayLosses;//gregt unit test
+        public int Losses => HomeLosses + AwayLosses;
         [Description("F")]
         public int For { get; set; }
         [Description("A")]
@@ -30,7 +30,7 @@ namespace FootieData.Entities
         public int Points { get; set; }
 
         [Description("Home P")]
-        public int HomePlayed => HomeWins + HomeDraws + HomeLosses;//gregt unit test
+        public int HomePlayed => HomeWins + HomeDraws + HomeLosses;
         [Description("W")]
         public int HomeWins { get; set; }
         [Description("D")]
@@ -42,10 +42,10 @@ namespace FootieData.Entities
         [Description("A")]
         public int HomeGoalsAgainst { get; set; }
         [Description("PTs")]
-        public int HomePoints => 3 * HomeWins + HomeDraws;//gregt unit test
+        public int HomePoints => 3 * HomeWins + HomeDraws;
 
         [Description("Away P")]
-        public int AwayPlayed => AwayWins + AwayDraws + AwayLosses;//gregt unit test
+        public int AwayPlayed => AwayWins + AwayDraws + AwayLosses;
         [Description("W")]
         public int AwayWins { get; set; }
         [Description("D")]
@@ -57,6 +57,6 @@ namespace FootieData.Entities
         [Description("A")]
         public int AwayGoalsAgainst { get; set; }
         [Description("PTs")]
-        public int AwayPoints => 3 * AwayWins + AwayDraws;//gregt unit test
+        public int AwayPoints => 3 * AwayWins + AwayDraws;
     }
 }
