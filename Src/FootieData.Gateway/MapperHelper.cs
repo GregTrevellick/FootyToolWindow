@@ -452,26 +452,26 @@ namespace FootieData.Gateway
                 case "Willem II Tilburg": return "";
                 #endregion
 
-                #region Portugal gregt
+                #region Portugal 
                 //https://www.dn.pt/desporto.html
-                case "Boavista Porto FC": return "";
-                case "C.F.Os Belenenses": return "";
-                case "CD Tondela": return "";
-                case "Desportivo Aves": return "";
-                case "FC Paços de Ferreira": return "";
-                case "FC Porto": return "";
-                case "FC Rio Ave": return "";
-                case "Feirense": return "";
-                case "G.D.Chaves": return "";
-                case "GD Estoril Praia": return "";
-                case "Maritimo Funchal": return "";
-                case "Moreirense FC": return "";
-                case "Portimonense S.C.": return "";
-                case "SL Benfica": return "";
-                case "Sporting Braga": return "";
-                case "Sporting CP": return "";
-                case "Vitoria Guimaraes": return "";
-                case "Vitoria Setubal": return "";
+                case "Boavista Porto FC": return "Boavista";
+                case "C.F.Os Belenenses": return "Belenenses";
+                case "CD Tondela": return "Tondela";
+                case "Desportivo Aves": return "Aves";
+                case "FC Paços de Ferreira": return "Paços de Ferreira";
+                case "FC Porto": return "FC Porto";
+                case "FC Rio Ave": return "Rio Ave";
+                case "Feirense": return "Feirense";
+                case "G.D.Chaves": return "Chaves";
+                case "GD Estoril Praia": return "Estoril";
+                case "Maritimo Funchal": return "Maritimo";
+                case "Moreirense FC": return "Moreirense";
+                case "Portimonense S.C.": return "Portimonense";
+                case "SL Benfica": return "Benfica";
+                case "Sporting Braga": return "Braga";
+                case "Sporting CP": return "Sporting";
+                case "Vitoria Guimaraes": return "V. Guimarães";
+                case "Vitoria Setubal": return "V. Setúbal";
                 #endregion
 
                 #region Spain
