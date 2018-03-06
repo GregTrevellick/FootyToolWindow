@@ -390,44 +390,45 @@ namespace FootieData.Gateway
                 case "Virtus Entella": return "Entella";
                 #endregion
 
-                #region Germany gregt
+                #region Germany 
                 //https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
-                case "1.FC Heidenheim 1846": return "";
-                case "1.FC Kaiserslautern": return "";
-                case "1.FC Köln": return "";
-                case "1.FC Nürnberg": return "";
-                case "1.FC Union Berlin": return "";
-                case "1.FSV Mainz 05": return "";
-                case "Arminia Bielefeld": return "";
-                case "Bayer Leverkusen": return "";
-                case "Bor.Mönchengladbach": return "";
-                case "Borussia Dortmund": return "";
-                case "Dynamo Dresden": return "";
-                case "Eintracht Braunschweig": return "";
-                case "Eintracht Frankfurt": return "";
-                case "Erzgebirge Aue": return "";
-                case "FC Augsburg": return "";
-                case "FC Bayern München": return "";
-                case "FC Ingolstadt 04": return "";
-                case "FC Schalke 04": return "";
-                case "FC St. Pauli": return "";
-                case "Fortuna Düsseldorf": return "";
-                case "Hamburger SV": return "";
-                case "Hannover 96": return "";
-                case "Hertha BSC": return "";
-                case "Holstein Kiel": return "";
-                case "Jahn Regensburg": return "";
-                case "MSV Duisburg": return "";
-                case "Red Bull Leipzig": return "";
-                case "SC Freiburg": return "";
-                case "SpVgg Greuther Fürth": return "";
-                case "SV Darmstadt 98": return "";
-                case "SV Sandhausen": return "";
-                case "TSG 1899 Hoffenheim": return "";
-                case "VfB Stuttgart": return "";
-                case "VfL Bochum": return "";
-                case "VfL Wolfsburg": return "";
-                case "Werder Bremen": return "";
+                //https://www.bild.de/sport/fussball/2-bundesliga/2-liga-startseite-52368772.bild.html
+                case "1.FC Heidenheim 1846": return "Heidenheim";
+                case "1.FC Kaiserslautern": return "Kaiserslautern";
+                case "1.FC Köln": return "Köln";
+                case "1.FC Nürnberg": return "Nürnberg";
+                case "1.FC Union Berlin": return "Union Berlin";
+                case "1.FSV Mainz 05": return "Mainz 05";
+                case "Arminia Bielefeld": return "Bielefeld";
+                case "Bayer Leverkusen": return "Leverkusen";
+                case "Bor.Mönchengladbach": return "Mönchengladbach";
+                case "Borussia Dortmund": return "Dortmund";
+                case "Dynamo Dresden": return "Dresden";
+                case "Eintracht Braunschweig": return "Braunschweig";
+                case "Eintracht Frankfurt": return "Frankfurt";
+                case "Erzgebirge Aue": return "Aue";
+                case "FC Augsburg": return "Augsburg";
+                case "FC Bayern München": return "Bayern";
+                case "FC Ingolstadt 04": return "Ingolstadt";
+                case "FC Schalke 04": return "Schalke";
+                case "FC St. Pauli": return "St. Pauli";
+                case "Fortuna Düsseldorf": return "Düsseldorf";
+                case "Hamburger SV": return "Hamburg";
+                case "Hannover 96": return "Hannover";
+                case "Hertha BSC": return "Hertha";
+                case "Holstein Kiel": return "Holstein Kiel";
+                case "Jahn Regensburg": return "Regensburg";
+                case "MSV Duisburg": return "Duisburg";
+                case "Red Bull Leipzig": return "RB Leipzig";
+                case "SC Freiburg": return "Freiburg";
+                case "SpVgg Greuther Fürth": return "Gr. Fürth";
+                case "SV Darmstadt 98": return "Darmstadt";
+                case "SV Sandhausen": return "Sandhausen";
+                case "TSG 1899 Hoffenheim": return "Hoffenheim";
+                case "VfB Stuttgart": return "Stuttgart";
+                case "VfL Bochum": return "Bochum";
+                case "VfL Wolfsburg": return "Wolfsburg";
+                case "Werder Bremen": return "Werder";
                 #endregion
 
                 #region Netherlands 
