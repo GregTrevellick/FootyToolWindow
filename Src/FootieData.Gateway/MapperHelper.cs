@@ -12,7 +12,7 @@ namespace FootieData.Gateway
 
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
-            TemporaryWriteTeamNameToTextFile(externalTeamName);//gregt comment out
+            //TemporaryWriteTeamNameToTextFile(externalTeamName);
 
             switch (externalTeamName)
             {

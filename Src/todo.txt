@@ -1,4 +1,3 @@
-c.f. leagues table & league name 
 put timeout into options
 order of leagues in the tool window ?
 
@@ -71,6 +70,7 @@ test vsix rating chaser in prod
 
 Future if becomes popular
 =========================
+c.f. leagues table & league name against local dialect
 add league country flags/hyperlinks
 add club crests/hyperlinks
 promotion/relegation zone dotted border lines
