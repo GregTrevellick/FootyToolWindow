@@ -23,7 +23,7 @@ namespace FootieData.Gateway
 
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
-            switch (externalTeamName)
+            switch (externalTeamName.Trim())
             {
                 #region UK
                 case "Accrington Stanley":
@@ -322,7 +322,10 @@ namespace FootieData.Gateway
                 case "Dijon FCO": return "Dijon";
                 case "EA Guingamp": return "Guingamp";
                 case "ES Troyes AC": return "Troyes";
-                case "FC Bourg - en - Bresse Péronnas": return "Bourg-en-Bresse";
+                case "FC Bourg - en - Bresse Péronnas":
+                case "FC Bourg-en - Bresse Péronnas":
+                case "FC Bourg-en-Bresse Péronnas":
+                    return "Bourg-en-Bresse";
                 case "FC Girondins de Bordeaux": return "Bordeaux";
                 case "FC Lorient": return "Lorient";
                 case "FC Metz": return "Metz";
@@ -479,14 +482,20 @@ namespace FootieData.Gateway
                 #region Portugal 
                 //https://www.dn.pt/desporto.html
                 case "Boavista Porto FC": return "Boavista";
-                case "C.F.Os Belenenses": return "Belenenses";
+                case "C.F.Os Belenenses":
+                case "C.F.Os  Belenenses":
+                case "C.F.Os Belenenses ":
+                case "C.F. Os Belenenses":
+                    return "Belenenses";
                 case "CD Tondela": return "Tondela";
                 case "Desportivo Aves": return "Aves";
                 case "FC Paços de Ferreira": return "Paços de Ferreira";
                 case "FC Porto": return "FC Porto";
                 case "FC Rio Ave": return "Rio Ave";
                 case "Feirense": return "Feirense";
-                case "G.D.Chaves": return "Chaves";
+                case "G.D.Chaves":
+                case "G.D. Chaves":
+                    return "Chaves";
                 case "GD Estoril Praia": return "Estoril";
                 case "Maritimo Funchal": return "Maritimo";
                 case "Moreirense FC": return "Moreirense";
@@ -505,6 +514,9 @@ namespace FootieData.Gateway
                 case "Club Atlético de Madrid": return "Atlético";
                 case "Deportivo Alavés": return "Alavés";
                 case "FC Barcelona": return "Barcelona";
+                case " Getafe CF":
+                case "Getafe CF":
+                    return "Getafe";
                 case "Girona FC": return "Girona";
                 case "Levante UD": return "Levante";
                 case "Málaga CF": return "Málaga";

@@ -16,7 +16,7 @@ FC Bourg-en-Bresse Péronnas
 
 
 
-
+https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 
 
 
