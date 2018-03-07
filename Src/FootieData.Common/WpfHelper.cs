@@ -143,9 +143,9 @@ namespace FootieData.Common
             };
         }
 
-        public static int GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now, int refreshIntervalInSeconds)
+        public static double GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now, int refreshIntervalInSeconds)
         {
-            var pleaseWait = refreshIntervalInSeconds - (now - lastUpdatedDate).Seconds;
+            var pleaseWait = refreshIntervalInSeconds - (now - lastUpdatedDate).TotalSeconds;
             return pleaseWait;
         }
 
