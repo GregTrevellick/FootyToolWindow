@@ -1,8 +1,4 @@
 put timeout into options
-order of leagues in the tool window ?
-
-
-
 
 
 

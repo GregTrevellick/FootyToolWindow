@@ -70,21 +70,22 @@ namespace FootieData.Vsix
             {
                 LeagueOptions = new List<LeagueOption>
                 {
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInBr1, InternalLeagueCode.BR1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInDe1, InternalLeagueCode.DE1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInDe2, InternalLeagueCode.DE2),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInEs1, InternalLeagueCode.ES1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInFr1, InternalLeagueCode.FR1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInFr2, InternalLeagueCode.FR2),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInIt1, InternalLeagueCode.IT1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInIt2, InternalLeagueCode.IT2),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInNl1, InternalLeagueCode.NL1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInPt1, InternalLeagueCode.PT1),
-                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUefa1, InternalLeagueCode.UEFA1),
+                    //This is the sequence leagues appear in the UI
                     WpfHelper.GetLeagueOption(generalOptions.InterestedInUk1, InternalLeagueCode.UK1),
                     WpfHelper.GetLeagueOption(generalOptions.InterestedInUk2, InternalLeagueCode.UK2),
                     WpfHelper.GetLeagueOption(generalOptions.InterestedInUk3, InternalLeagueCode.UK3),
                     WpfHelper.GetLeagueOption(generalOptions.InterestedInUk4, InternalLeagueCode.UK4),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInEs1, InternalLeagueCode.ES1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInNl1, InternalLeagueCode.NL1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInDe1, InternalLeagueCode.DE1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInDe2, InternalLeagueCode.DE2),                    
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInFr1, InternalLeagueCode.FR1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInFr2, InternalLeagueCode.FR2),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInIt1, InternalLeagueCode.IT1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInIt2, InternalLeagueCode.IT2),                    
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInPt1, InternalLeagueCode.PT1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInUefa1, InternalLeagueCode.UEFA1),
+                    WpfHelper.GetLeagueOption(generalOptions.InterestedInBr1, InternalLeagueCode.BR1),
                 }
             };
         }
