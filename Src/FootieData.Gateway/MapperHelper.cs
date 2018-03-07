@@ -23,8 +23,6 @@ namespace FootieData.Gateway
 
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
-            //TemporaryWriteTeamNameToTextFile(externalTeamName);
-
             switch (externalTeamName)
             {
                 #region UK
@@ -404,15 +402,29 @@ namespace FootieData.Gateway
                 #region Germany 
                 //https://www.bild.de/sport/fussball/bundesliga/bundesliga-startseite-52368768.bild.html
                 //https://www.bild.de/sport/fussball/2-bundesliga/2-liga-startseite-52368772.bild.html
-                case "1.FC Heidenheim 1846": return "Heidenheim";
-                case "1.FC Kaiserslautern": return "Kaiserslautern";
-                case "1.FC Köln": return "Köln";
-                case "1.FC Nürnberg": return "Nürnberg";
-                case "1.FC Union Berlin": return "Union Berlin";
-                case "1.FSV Mainz 05": return "Mainz 05";
+                case "1.FC Heidenheim 1846":
+                case "1. FC Heidenheim 1846":
+                    return "Heidenheim";
+                case "1.FC Kaiserslautern":
+                case "1. FC Kaiserslautern":
+                    return "Kaiserslautern";
+                case "1.FC Köln":
+                case "1. FC Köln":
+                    return "Köln";
+                case "1.FC Nürnberg":
+                case "1. FC Nürnberg":
+                    return "Nürnberg";
+                case "1.FC Union Berlin":
+                case "1. FC Union Berlin":
+                    return "Union Berlin";
+                case "1.FSV Mainz 05":
+                case "1. FSV Mainz 05":
+                    return "Mainz 05";
                 case "Arminia Bielefeld": return "Bielefeld";
                 case "Bayer Leverkusen": return "Leverkusen";
-                case "Bor.Mönchengladbach": return "Mönchengladbach";
+                case "Bor.Mönchengladbach":
+                case "Bor. Mönchengladbach":
+                    return "Mönchengladbach";
                 case "Borussia Dortmund": return "Dortmund";
                 case "Dynamo Dresden": return "Dresden";
                 case "Eintracht Braunschweig": return "Braunschweig";
@@ -510,6 +522,7 @@ namespace FootieData.Gateway
                 #endregion
 
                 default:
+                    TemporaryWriteTeamNameToTextFile(externalTeamName);//gregt
                     return externalTeamName;
             }
         }

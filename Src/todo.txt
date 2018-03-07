@@ -1,6 +1,22 @@
 put timeout into options
 order of leagues in the tool window ?
-refresh not correcting german league names ?
+
+
+
+
+mappings:
+Getafe CF
+
+G.D. Chaves
+
+C.F. Os Belenenses
+
+FC Bourg-en-Bresse Péronnas
+
+
+
+
+
 
 
 

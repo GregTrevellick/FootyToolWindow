@@ -33,9 +33,9 @@ namespace FootieData.Gateway
                 }
                 catch (AggregateException ex)
                 {
-                    //gregt log exception
+                    LogAggregateException(ex);
                     leagueTableResult = new StandingsResponse { Standing = new List<FootballDataOrg.ResponseEntities.Standing> { new FootballDataOrg.ResponseEntities.Standing { TeamName = EntityConstants.PotentialTimeout } }};
-                }                
+                }
                 if (leagueTableResult != null)
                 {
                     result = GetResultMatchStandings(leagueTableResult);
@@ -57,7 +57,7 @@ namespace FootieData.Gateway
                 }
                 catch (AggregateException ex)
                 {
-                    //gregt log exception
+                    LogAggregateException(ex);
                     fixturesResult = new FixturesResponse {  Fixtures = new List<Fixture> { new Fixture { HomeTeamName = EntityConstants.PotentialTimeout } } };
                 }
                 if (fixturesResult != null)
@@ -81,7 +81,7 @@ namespace FootieData.Gateway
                 }
                 catch (AggregateException ex)
                 {
-                    //gregt log exception
+                    LogAggregateException(ex);
                     fixturesResult = new FixturesResponse { Fixtures = new List<Fixture> { new Fixture { HomeTeamName = EntityConstants.PotentialTimeout } } };
                 }                
                 if (fixturesResult != null)
@@ -90,6 +90,11 @@ namespace FootieData.Gateway
                 }
             }
             return result;
+        }
+
+        private void LogAggregateException(AggregateException ex)
+        {
+            Logger.Log($"Exception in {nameof(GetFromClientStandings)}" + ex.Message);
         }
 
         private int GetIdSeason(string leagueIdentifier, bool getViaHttpRequest = false)
