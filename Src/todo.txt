@@ -4,24 +4,14 @@ order of leagues in the tool window ?
 
 
 
-mappings:
-Getafe CF
-
-G.D. Chaves
-
-C.F. Os Belenenses
-
-FC Bourg-en-Bresse Péronnas
 
 
 
-
-https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 
 
 
 check status/score of match whilst part way thru a live match
-check performance
+check performance - https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 gregt
 test vsix rating chaser in prod
 
