@@ -1,9 +1,9 @@
 put timeout into options
 order of leagues in the tool window ?
+refresh not correcting german league names ?
 
 
 
-unit tests
 check status/score of match whilst part way thru a live match
 check performance
 gregt
