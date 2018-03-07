@@ -143,10 +143,10 @@ namespace FootieData.Common
             };
         }
 
-        public static double GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now, int refreshIntervalInSeconds)
+        public static int GetPleaseWaitTime(DateTime lastUpdatedDate, DateTime now, int refreshIntervalInSeconds)
         {
             var pleaseWait = refreshIntervalInSeconds - (now - lastUpdatedDate).TotalSeconds;
-            return pleaseWait;
+            return (int) pleaseWait;
         }
 
         private static List<LeagueSubOption> GetLeagueSubOptions(InternalLeagueCode internalLeagueCode)
