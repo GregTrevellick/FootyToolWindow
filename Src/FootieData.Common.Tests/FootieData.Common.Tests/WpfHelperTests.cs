@@ -12,7 +12,14 @@ namespace FootieData.Common.Tests
             var lastUpdatedDate = new DateTime(2001, 02, 03, 4, 5, 4);
             var dateTimeNow = new DateTime(2001, 02, 03, 4, 5, 6);
 
+            Assert.AreEqual(-1, WpfHelper.GetPleaseWaitTime(lastUpdatedDate, dateTimeNow, 1));
+
+            Assert.AreEqual(0, WpfHelper.GetPleaseWaitTime(lastUpdatedDate, dateTimeNow, 2));
+
+            Assert.AreEqual(1, WpfHelper.GetPleaseWaitTime(lastUpdatedDate, dateTimeNow, 3));
+
             Assert.AreEqual(8, WpfHelper.GetPleaseWaitTime(lastUpdatedDate, dateTimeNow, 10));
+
             Assert.AreEqual(68, WpfHelper.GetPleaseWaitTime(lastUpdatedDate, dateTimeNow, 70));
 
             dateTimeNow = new DateTime(2001, 02, 03, 4, 7, 6);
