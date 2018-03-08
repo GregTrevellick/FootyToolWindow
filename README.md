@@ -4,10 +4,6 @@
 [GitHubRepoIssuesURL]: https://github.com/GregTrevellick/VsixFootie/issues
 [GitHubRepoPullRequestsURL]: https://github.com/GregTrevellick/VsixFootie/pulls
 [VersionNumberBadgeURL]: https://vsmarketplacebadge.apphb.com/version/GregTrevellick.VsixFootie.svg
-[VisualStudioURL]: https://www.visualstudio.com/
-[VSMarketplaceUrl]: https://marketplace.visualstudio.com/search?term=trevellick&target=VS&sortBy=Relevance
-[CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware
-[WhyURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Why
 
 # Visual Studio Sports Desk
 
@@ -15,11 +11,17 @@
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
 
+<!--VSMM readme start-->
+[VisualStudioURL]: https://www.visualstudio.com/
+[VSMarketplaceUrl]: https://marketplace.visualstudio.com/search?term=trevellick&target=VS&sortBy=Relevance
+[CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware
+[WhyURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Why
+
 ![](Src/FootieData.Vsix/Resources/VsixExtensionPreview_175x175.png)
 
 What more do you want from your IDE than to display the latest soccer scores and tables ? Everything else is just fluff.
 
-So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] extension to do exactly that, leveraging the truly awesome labour of love that is [FootballData.org](https://www.football-data.org).
+So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] extension to do exactly that, leveraging the truly awesome labour of love that is [footballdata.org](https://www.football-data.org).
 
 As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or correct in any way - though this of course is mine and Daniel's  intention, and it generally will be.
 
@@ -31,35 +33,35 @@ Bugs can be logged [here][GitHubRepoIssuesURL].
 
 See the [change log](CHANGELOG.md) for release history.
 
-![](Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png?raw=true)
 
 Menu access
 
-![](Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
 
 Options
 
-![](Src/FootieData.Vsix/VsmmAssetts/Options.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/Options.png)
 
 Full screen if you like
 
-![](Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
 
 Auto-hide
 
-![](Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
 
 Sort by any column - reverse goal difference
 
-![](Src/FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
 
 Sort by any column - match start time
 
-![](Src/FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
 
 For when the boss is around
 
-![](Src/FootieData.Vsix/VsmmAssetts/BossMode.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/BossMode.png)
 
 [Why?][WhyURL]
 
@@ -84,6 +86,8 @@ For when the boss is around
 - See the next seven days fixtures
 
 - Boss mode (replaces league tables with dummy crash dump data)
+
+<!--VSMM readme end-->
 
 ## Credits
 
