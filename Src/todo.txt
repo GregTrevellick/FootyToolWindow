@@ -1,3 +1,6 @@
+chagelog link in vsmm not working
+
+
 put timeout into options
 update readme screenshots with home away reordering etc
 check status/score of match whilst part way thru a live match
