@@ -26,7 +26,7 @@ So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] ext
 
 As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or correct in any way - though this of course is mine and Daniel's  intention, and it generally will be.
 
- - *If you LIKE this ***FREE*** extension please give a star rating below, it only takes a few seconds*.
+ - *If you LIKE this ***FREE*** extension please give a star rating above, it only takes a few seconds*.
 
  - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
     
