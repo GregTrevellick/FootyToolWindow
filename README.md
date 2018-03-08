@@ -37,7 +37,7 @@ See the [change log](CHANGELOG.md) for release history.
 
 Menu access
 
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png?raw=true)
 
 Options
 
@@ -45,23 +45,23 @@ Options
 
 Full screen if you like
 
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/FullScreen.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/FullScreen.png?raw=true)
 
 Auto-hide
 
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/AutoHideLhs.png?raw=true)
 
 Sort by any column - reverse goal difference
 
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/SortedReverseGoalDifference.png?raw=true)
 
 Sort by any column - match start time
 
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/SortedStartTime.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/SortedStartTime.png?raw=true)
 
 For when the boss is around
 
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/BossMode.png)
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/BossMode.png?raw=true)
 
 [Why?][WhyURL]
 
