@@ -534,7 +534,7 @@ namespace FootieData.Gateway
                 #endregion
 
                 default:
-                    TemporaryWriteTeamNameToTextFile(externalTeamName);//gregt
+                    //TemporaryWriteTeamNameToTextFile(externalTeamName);
                     return externalTeamName;
             }
         }

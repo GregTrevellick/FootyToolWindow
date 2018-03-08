@@ -28,10 +28,10 @@ namespace FootieData.Vsix
 
         public ToolWindow1Package()
         {
-            //gregt if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
-            //{
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            {
                 ChaseRating();
-            //}
+            }
         }
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)

@@ -13,7 +13,7 @@ namespace FootieData.Vsix
             {
                 AuthorName = Vsix.Author,
                 ExtensionName = Vsix.Name,
-                MarketPlaceUrl = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.gregt"
+                MarketPlaceUrl = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.VSSportsDesk"
             };
 
             Probe(ratingDetailsDto, extensionDetailsDto);

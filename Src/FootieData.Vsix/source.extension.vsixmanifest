@@ -9,7 +9,7 @@
         <ReleaseNotes>https://github.com/GregTrevellick/VsixFootie/blob/master/CHANGELOG.md</ReleaseNotes>
         <Icon>Resources\VsixExtensionPreview_90x90.png</Icon>
         <PreviewImage>Resources\VsixExtensionPreview_175x175.png</PreviewImage>
-        <Tags>Beautiful game, Brasileiro, Bundesliga, Campeonato, Championship, Desk, English, Eredivisie, Football, Footie, Footy, League, Liga, Ligue, Premier, Primeira, Primera, Serie, Soccer, Sport, United</Tags>
+        <Tags>Bundesliga, Championship, Desk, English, Football, Footie, Footy, League, Liga, Premier, Soccer, Sport, United, Sports, Desk</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[11.0,16.0)" />
