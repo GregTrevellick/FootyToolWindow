@@ -12,6 +12,7 @@
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
 
 <!--VSMM readme start-->
+
 [VisualStudioURL]: https://www.visualstudio.com/
 [VSMarketplaceUrl]: https://marketplace.visualstudio.com/search?term=trevellick&target=VS&sortBy=Relevance
 [CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware
