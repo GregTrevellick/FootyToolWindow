@@ -1,10 +1,16 @@
+roslyn analyzer / .net core / check performance - https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
+
+
+
 chagelog link in vsmm not working
+
+add country flags to readme.txt features
+
 
 
 put timeout into options
 update readme screenshots with home away reordering etc
 check status/score of match whilst part way thru a live match
-check performance - https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 test vsix rating chaser in prod
 
 

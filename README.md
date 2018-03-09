@@ -22,18 +22,10 @@
 
 What more do you want from your IDE than to display the latest soccer scores and tables ? Everything else is just fluff.
 
-So I built a [charity ware][CharityWareURL] [Visual Studio][VisualStudioURL] extension to do exactly that, leveraging the truly awesome labour of love that is [footballdata.org](https://www.football-data.org).
+This **free** [charity ware][CharityWareURL] Visual Studio extension does exactly that, leveraging the  awesome labour of love that is [footballdata.org](https://www.football-data.org).
 
-As Daniel Freitag says, I can't guarantee the data to be accurate, up-to-date or correct in any way - though this of course is mine and Daniel's  intention, and it generally will be.
-
- - *If you LIKE this ***FREE*** extension please give a star rating above, it only takes a few seconds*.
-
- - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
+ - *If you like this ***free*** extension please give a star rating above, it only takes a few seconds. You can even [help others][CharityWareURL].*
     
-Bugs can be logged [here][GitHubRepoIssuesURL].
-
-See the [change log](CHANGELOG.md) for release history.
-
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png?raw=true)
 
 Menu access
@@ -64,7 +56,13 @@ For when the boss is around
 
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/BossMode.png?raw=true)
 
-[Why?][WhyURL]
+As [Daniel Freitag](https://www.football-data.org) says, I can't *guarantee* the data to be fully accurate and up-to-date 100% of the time (this is free after all), but this is of course is mine and Daniel's intention.
+
+[Why bother?][WhyURL]
+
+Bugs can be logged [here][GitHubRepoIssuesURL].
+
+See the [change log](CHANGELOG.md) for release history.
 
 ## Features
 
