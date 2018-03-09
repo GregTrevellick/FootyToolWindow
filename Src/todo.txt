@@ -1,4 +1,3 @@
-accidentely added nuget for Microsoft.VisualStudio.SDK.Analyzers
 roslyn analyzer / .net core / check performance - https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 
 chagelog link in vsmm not working
