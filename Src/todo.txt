@@ -1,5 +1,8 @@
 roslyn analyzer / .net core / check performance - https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 
+
+add midmatch goals for future fixtures
+
 put timeout into options
 update readme screenshots with home away reordering etc
 check status/score of match whilst part way thru a live match
