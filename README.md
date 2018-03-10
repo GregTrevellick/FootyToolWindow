@@ -62,8 +62,6 @@ As [Daniel Freitag](https://www.football-data.org) says, I can't *guarantee* the
 
 Bugs can be logged [here][GitHubRepoIssuesURL].
 
-See the [change log](CHANGELOG.md) for release history.
-
 ## Features
 
 - League standings are displayed in a dockable window, just like the Output window or the Solution Explorer window
@@ -87,6 +85,8 @@ See the [change log](CHANGELOG.md) for release history.
 - Boss mode (replaces league tables with dummy crash dump data)
 
 <!--VSMM readme end-->
+
+See the [change log](CHANGELOG.md) for release history.
 
 ## Credits
 
