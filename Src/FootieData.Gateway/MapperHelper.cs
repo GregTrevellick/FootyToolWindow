@@ -23,6 +23,11 @@ namespace FootieData.Gateway
 
         public static string MapExternalTeamNameToInternalTeamName(string externalTeamName)
         {
+            if (string.IsNullOrEmpty(externalTeamName))
+            {
+                return "Unknown";                
+            }
+
             switch (externalTeamName.Trim())
             {
                 #region UK

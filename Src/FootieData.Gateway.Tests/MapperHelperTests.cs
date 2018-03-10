@@ -10,8 +10,8 @@ namespace FootieData.Gateway.Tests
         [TestMethod]
         public void MapExternalTeamNameToInternalTeamNameTest()
         {
-            Assert.AreEqual(null, MapperHelper.MapExternalTeamNameToInternalTeamName(null));
-            Assert.AreEqual(string.Empty, MapperHelper.MapExternalTeamNameToInternalTeamName(""));
+            Assert.AreEqual("Unknown", MapperHelper.MapExternalTeamNameToInternalTeamName(null));
+            Assert.AreEqual("Unknown", MapperHelper.MapExternalTeamNameToInternalTeamName(""));
             Assert.AreEqual("Manchester United", MapperHelper.MapExternalTeamNameToInternalTeamName("ManU"));
             Assert.AreEqual("Arsenal", MapperHelper.MapExternalTeamNameToInternalTeamName("Arsenal"));
         }
