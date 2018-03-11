@@ -1,5 +1,5 @@
-roslyn analyzer / .net core / check performance - https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
-
+check performance - 
+https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
 
 add midmatch goals for future fixtures
 
@@ -9,7 +9,7 @@ check status/score of match whilst part way thru a live match
 test vsix rating chaser in prod
 
 
-
+test in vs2015
 
 
 
