@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using VsixRatingChaser.Interfaces;
 using Task = System.Threading.Tasks.Task;
 
@@ -34,9 +35,54 @@ namespace FootieData.Vsix
             }
         }
 
-        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+
+        //this block moved to InitializeToolWindowAsync() where potentially expensive work, preferably done on a background thread where possible.
+        //protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        //{
+        //    await VsixToolWindowCommand.InitializeGregt(this);
+        //    VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
+        //        any
+        //            =>
+        //        {
+        //            var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+        //            ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
+        //        };
+        //    VsixToolWindowPane.UpdateLastUpdatedDate =
+        //        any
+        //            =>
+        //        {
+        //            var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
+        //            hiddenOptions.LastUpdated = DateTime.Now;
+        //            hiddenOptions.SaveSettingsToStorage();
+        //        };
+        //    VsixToolWindowPane.GetLastUpdatedDate =
+        //        any
+        //            =>
+        //        {
+        //            var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
+        //            return hiddenOptions.LastUpdated;
+        //        };
+        //}
+
+
+        //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
+        public override IVsAsyncToolWindowFactory GetAsyncToolWindowFactory(Guid toolWindowType)
         {
-            await VsixToolWindowCommand.Initialize(this);
+            if (toolWindowType == typeof(VsixToolWindowPane).GUID)
+            {
+                return this;
+            }
+            //we always return above so next line superfluous, and for now can ignore the non-await light bulb suggestion
+            return base.GetAsyncToolWindowFactory(toolWindowType);
+        }
+
+        protected override async Task<object> InitializeToolWindowAsync(Type toolWindowType, int id, CancellationToken cancellationToken)
+        {
+            // potentially expensive work, preferably done on a background thread where possible.
+            //await Task.Delay(5000, cancellationToken);
+            //await Task.Delay(1, cancellationToken);
+
+            await VsixToolWindowCommand.InitializeGregt(this);
 
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
                 any
@@ -45,7 +91,6 @@ namespace FootieData.Vsix
                     var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
                     ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
                 };
-
             VsixToolWindowPane.UpdateLastUpdatedDate =
                 any
                     =>
@@ -54,7 +99,6 @@ namespace FootieData.Vsix
                     hiddenOptions.LastUpdated = DateTime.Now;
                     hiddenOptions.SaveSettingsToStorage();
                 };
-
             VsixToolWindowPane.GetLastUpdatedDate =
                 any
                     =>
@@ -62,7 +106,24 @@ namespace FootieData.Vsix
                     var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
                     return hiddenOptions.LastUpdated;
                 };
+
+            return "foo"; // this is passed to the tool window constructor
         }
+
+        /// <summary>
+        /// is this ever hit ? it ought to be !  
+        /// </summary>
+        protected override string GetToolWindowTitle(Type toolWindowType, int id)
+        {
+            if (toolWindowType == typeof(VsixToolWindowPane))
+            {
+                return "VsixToolWindowPane loading";
+            }
+            return base.GetToolWindowTitle(toolWindowType, id);
+        }
+
+
+
 
         private LeagueGeneralOptions GetLeagueGeneralOptions(GeneralOptions generalOptions)
         {

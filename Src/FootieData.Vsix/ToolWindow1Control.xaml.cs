@@ -69,6 +69,8 @@ namespace FootieData.Vsix
             _awayStyle.Setters.Add(rightAlignSetter);
             _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
 
+
+            //gregt this needs to be done on a different thread to not block the ui
             PopulateUi(false);
         }
         
