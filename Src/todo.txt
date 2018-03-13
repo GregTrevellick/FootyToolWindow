@@ -12,6 +12,7 @@ test vsix rating chaser in prod
 test in vs2015
 
 
+credits -         //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
 
 
 

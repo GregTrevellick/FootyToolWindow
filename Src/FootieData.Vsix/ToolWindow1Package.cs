@@ -15,6 +15,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace FootieData.Vsix
 {
+    #region attributes
     [Guid(ToolWindow1Package.PackageGuidString)]
     [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)] // Info on this package for Help/About
     [PackageRegistration(UseManagedResourcesOnly = true)]//, AllowsBackgroundLoading = true)]
@@ -23,6 +24,7 @@ namespace FootieData.Vsix
     [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, CommonConstants.CategorySubLevelFootball, 0, 0, true)]
     [ProvideToolWindow(typeof(VsixToolWindowPane), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057")]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    #endregion
     public sealed partial class ToolWindow1Package : AsyncPackage
     {
         public const string PackageGuidString = "4431588e-199d-477f-b3c4-c0b9603602b0";
@@ -34,7 +36,6 @@ namespace FootieData.Vsix
                 ChaseRating();
             }
         }
-
 
         //this block moved to InitializeToolWindowAsync() where potentially expensive work, preferably done on a background thread where possible.
         //protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
@@ -66,6 +67,7 @@ namespace FootieData.Vsix
 
 
         //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
+
         public override IVsAsyncToolWindowFactory GetAsyncToolWindowFactory(Guid toolWindowType)
         {
             if (toolWindowType == typeof(VsixToolWindowPane).GUID)
@@ -78,12 +80,12 @@ namespace FootieData.Vsix
 
         protected override async Task<object> InitializeToolWindowAsync(Type toolWindowType, int id, CancellationToken cancellationToken)
         {
-            // potentially expensive work, preferably done on a background thread where possible.
+            //potentially expensive work, preferably done on a background thread where possible.
+         
             //await Task.Delay(5000, cancellationToken);
-            //await Task.Delay(1, cancellationToken);
-
             await VsixToolWindowCommand.InitializeGregt(this);
 
+            #region define actions/funcs for later on
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
                 any
                     =>
@@ -106,14 +108,12 @@ namespace FootieData.Vsix
                     var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
                     return hiddenOptions.LastUpdated;
                 };
+            #endregion
 
             return "foo"; // this is passed to the tool window constructor
         }
 
-        /// <summary>
-        /// is this ever hit ? it ought to be !  
-        /// </summary>
-        protected override string GetToolWindowTitle(Type toolWindowType, int id)
+        protected override string GetToolWindowTitle(Type toolWindowType, int id)//gregt - is this ever hit ? it ought to be !  
         {
             if (toolWindowType == typeof(VsixToolWindowPane))
             {
@@ -121,9 +121,6 @@ namespace FootieData.Vsix
             }
             return base.GetToolWindowTitle(toolWindowType, id);
         }
-
-
-
 
         private LeagueGeneralOptions GetLeagueGeneralOptions(GeneralOptions generalOptions)
         {

@@ -31,7 +31,6 @@ namespace FootieData.Vsix
             Caption = Vsix.Name;
         }
 
-        //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
         public VsixToolWindowPane(string message) : this()
         {
             //just before this breakpoint the IDE kicks into life 

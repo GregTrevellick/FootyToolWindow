@@ -69,11 +69,10 @@ namespace FootieData.Vsix
             _awayStyle.Setters.Add(rightAlignSetter);
             _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
 
-
-            //gregt this needs to be done on a different thread to not block the ui
-            PopulateUi(false);
+            //PopulateUi(false);
+            DoStuff(false);
         }
-        
+
         private FootieDataGateway GetFootieDataGateway()
         {
             return new FootieDataGateway(_competitionResultSingletonInstance);
@@ -317,7 +316,41 @@ namespace FootieData.Vsix
             else
             {
                 TextBlockRefreshPostponed.Visibility = Visibility.Collapsed;
-                PopulateUi(true);
+                //PopulateUi(true);
+                DoStuff(true);
+            }
+        }
+
+        public async Task DoStuff(bool retainExpandCollapseState)
+        {
+            await Task.Run(() =>
+            {
+                LongRunningOperation(retainExpandCollapseState);
+            });
+        }
+
+        private async Task LongRunningOperation(bool retainExpandCollapseState)
+        {
+            //int counter;
+            //for (counter = 0; counter < 50000; counter++)
+            //{
+            //    Console.WriteLine(counter);
+            //}
+            //return "Counter = " + counter;
+
+            try
+            {
+                PopulateUi(retainExpandCollapseState);
+            }
+            catch (Exception ex)
+            {
+                //Due to high risk of deadlock you cannot call GetService
+                //from a background thread in an AsyncPackage derived class. 
+                //You should instead call GetServiceAsync(without calling 
+                //Result or Wait on the resultant Task object) or switch 
+                //to the UI thread with the JoinableTaskFactory.SwitchToMainThreadAsync 
+                //method before calling GetService.
+                throw;
             }
         }
 
