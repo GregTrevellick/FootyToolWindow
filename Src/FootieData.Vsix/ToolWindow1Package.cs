@@ -82,7 +82,7 @@ namespace FootieData.Vsix
         {
             //potentially expensive work, preferably done on a background thread where possible.
          
-            //await Task.Delay(5000, cancellationToken);
+            //await Task.Delay(60000, cancellationToken);
             await VsixToolWindowCommand.InitializeGregt(this);
 
             #region define actions/funcs for later on
