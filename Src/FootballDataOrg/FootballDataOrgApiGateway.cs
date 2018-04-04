@@ -41,6 +41,19 @@ namespace FootballDataOrg
 
         public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
         {
+
+
+
+            //gregt long running code
+            for (int i = 0; i < 10_000_000; i++)
+            {
+                DateTime.Now.ToString();
+            }
+
+            
+
+
+
             var uri = new Uri(baseUri);
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
