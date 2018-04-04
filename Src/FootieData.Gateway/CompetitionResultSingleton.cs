@@ -1,5 +1,5 @@
 ﻿using FootballDataOrg;
-using FootballDataOrg.ResponseEntities;
+/////////////////////////////////////////////////////////////////using FootballDataOrg.ResponseEntities;
 
 namespace FootieData.Gateway
 {
@@ -21,7 +21,12 @@ namespace FootieData.Gateway
         private CompetitionResultSingleton()
         {
             FootballDataOrgApiGateway = new FootballDataOrgApiGateway();
-            CompetitionResult = FootballDataOrgApiGateway.GetCompetitionResult();
+            CompetitionResultSingletonAsync(FootballDataOrgApiGateway);
+        }
+
+        private async void CompetitionResultSingletonAsync(FootballDataOrgApiGateway FootballDataOrgApiGateway)
+        {
+            CompetitionResult = await FootballDataOrgApiGateway.GetCompetitionResultAsync();
         }
     }
 }

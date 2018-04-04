@@ -14,7 +14,7 @@ namespace FootieData.Vsix
 
         public static VsixToolWindowCommand Instance { get; private set; }
 
-        public static async Task Initialize(AsyncPackage asyncPackage)
+        public static async Task InitializeGregt(AsyncPackage asyncPackage)
         {
             if (asyncPackage == null)
             {
@@ -29,22 +29,40 @@ namespace FootieData.Vsix
         private VsixToolWindowCommand(OleMenuCommandService commandService)
         {
             var commandId = new CommandID(CommandSet, CommandId);
-            var menuItem = new OleMenuCommand(ShowToolWindow, commandId);
+            var menuItem = new OleMenuCommand(FindShowToolWindowAsync, commandId);
             commandService.AddCommand(menuItem);
         }
 
-        private void ShowToolWindow(object sender, EventArgs e)
+        /// <summary>
+        /// Is hit when user selects Tools > Windows > VS Sports Desk
+        /// </summary>
+        private void FindShowToolWindowAsync(object sender, EventArgs e)
         {
             // Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.
-            var window = _asyncPackage.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
-            if (window?.Frame == null)
-            {
-                throw new NotSupportedException("Cannot create tool window");
-            }
+            //var window = _asyncPackage.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
+            //if (window?.Frame == null)
+            //{
+            //    throw new NotSupportedException("Cannot create tool window");
+            //}
+            //var windowFrame = (IVsWindowFrame)window.Frame;
+            //Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
 
-            var windowFrame = (IVsWindowFrame)window.Frame;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+            // Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
+            // The last flag is set to true so that if the tool window does not exists it will be created.
+            _asyncPackage.JoinableTaskFactory.RunAsync(async delegate
+            {
+                /////////////////////////////////////////////////////////////var window = await _asyncPackage.ShowToolWindowAsync(typeof(VsixToolWindowPane), 0, true, _asyncPackage.DisposalToken);
+                /////var window = _asyncPackage.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
+                var window = await _asyncPackage.FindToolWindowAsync(typeof(VsixToolWindowPane), 0, true, _asyncPackage.DisposalToken);
+                if (window?.Frame == null)
+                {
+                    throw new NotSupportedException("Cannot create tool window");
+                }
+                await _asyncPackage.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var windowFrame = (IVsWindowFrame)window.Frame;
+                Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+            });
         }
     }
 }

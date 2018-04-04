@@ -8,6 +8,12 @@ namespace FootieData.Vsix
     // In Visual Studio tool windows are composed of a frame (implemented by the shell) and a pane, usually implemented by the package implementer.
     // This class derives from the ToolWindowPane class provided from the MPF in order to use its implementation of the IVsUIElementPane interface.
 
+    //////////////////////////////////////////////////public ToolWindow1() : base(null)
+    //////////////////////////////////////////////////{
+    //////////////////////////////////////////////////    this.Caption = "ToolWindow1";
+    //////////////////////////////////////////////////    this.Content = new ToolWindow1Control();
+    //////////////////////////////////////////////////}
+
     [Guid("c53b01a9-7130-4b7f-957d-cdc8672fa6de")]
     public class VsixToolWindowPane : ToolWindowPane
     {
@@ -24,6 +30,12 @@ namespace FootieData.Vsix
         {
             Caption = Vsix.Name;
         }
+
+        //////////////////////////////////////////////////public VsixToolWindowPane(string message) : this()
+        //////////////////////////////////////////////////{
+        //////////////////////////////////////////////////    //just before this breakpoint the IDE kicks into life 
+        //////////////////////////////////////////////////    //when debugging 'message' is 'foo'
+        //////////////////////////////////////////////////}
 
         public VsixToolWindowPane() : base(null)
         {
