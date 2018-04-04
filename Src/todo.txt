@@ -12,7 +12,12 @@ test vsix rating chaser in prod
 test in vs2015
 
 
+
 credits -         //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
+=======
+set to c#7 ?
+copyright in assemblyinfo.cs
+
 
 
 
@@ -152,7 +157,7 @@ uefa json
             {
                 "group": "C",
                 "rank": 0,
-                "team": "Club Atlético de Madrid",
+                "team": "Club AtlÃ©tico de Madrid",
                 "teamId": 78,
                 "playedGames": 0,
                 "crestURI": "http://upload.wikimedia.org/wikipedia/de/c/c1/Atletico_Madrid_logo.svg",
