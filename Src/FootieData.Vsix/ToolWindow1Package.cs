@@ -37,53 +37,10 @@ namespace FootieData.Vsix
             }
         }
 
-        //this block moved to InitializeToolWindowAsync() where potentially expensive work, preferably done on a background thread where possible.
-        //protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
-        //{
-        //    await VsixToolWindowCommand.InitializeGregt(this);
-        //    VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
-        //        any
-        //            =>
-        //        {
-        //            var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-        //            ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
-        //        };
-        //    VsixToolWindowPane.UpdateLastUpdatedDate =
-        //        any
-        //            =>
-        //        {
-        //            var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
-        //            hiddenOptions.LastUpdated = DateTime.Now;
-        //            hiddenOptions.SaveSettingsToStorage();
-        //        };
-        //    VsixToolWindowPane.GetLastUpdatedDate =
-        //        any
-        //            =>
-        //        {
-        //            var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
-        //            return hiddenOptions.LastUpdated;
-        //        };
-        //}
-
-
-        //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
-
-        public override IVsAsyncToolWindowFactory GetAsyncToolWindowFactory(Guid toolWindowType)
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            if (toolWindowType == typeof(VsixToolWindowPane).GUID)
-            {
-                return this;
-            }
-            //we always return above so next line superfluous, and for now can ignore the non-await light bulb suggestion
-            return base.GetAsyncToolWindowFactory(toolWindowType);
-        }
-
-        protected override async Task<object> InitializeToolWindowAsync(Type toolWindowType, int id, CancellationToken cancellationToken)
-        {
-            //potentially expensive work, preferably done on a background thread where possible.
-         
-            //await Task.Delay(60000, cancellationToken);
-            await VsixToolWindowCommand.InitializeGregt(this);
+            await base.InitializeAsync(cancellationToken, progress);
+            await VsixToolWindowCommand.InitializeGregt(this);//IT IS CRITICAL TO HAVE THIS HERE AS 'InitializeToolWindowAsync' NEVER GETS INVOKED
 
             #region define actions/funcs for later on
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
@@ -109,8 +66,23 @@ namespace FootieData.Vsix
                     return hiddenOptions.LastUpdated;
                 };
             #endregion
+        }
 
-            return "foo"; // this is passed to the tool window constructor
+        public override IVsAsyncToolWindowFactory GetAsyncToolWindowFactory(Guid toolWindowType)
+        {
+            if (toolWindowType == typeof(VsixToolWindowPane).GUID)
+            {
+                return this;
+            }
+            //we always return above so next line superfluous, and for now can ignore the non-await light bulb suggestion
+            return base.GetAsyncToolWindowFactory(toolWindowType);
+        }
+
+        protected override async Task<object> InitializeToolWindowAsync(Type toolWindowType, int id, CancellationToken cancellationToken)
+        {
+            ////////potentially expensive work, preferably done on a background thread where possible.
+            ////////await Task.Delay(500, cancellationToken);
+            return ToolWindowCreationContext.Unspecified;
         }
 
         protected override string GetToolWindowTitle(Type toolWindowType, int id)//gregt - is this ever hit ? it ought to be !  
