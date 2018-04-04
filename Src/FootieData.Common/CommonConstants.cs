@@ -50,10 +50,11 @@ namespace FootieData.Common
             @"0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089' or one of its dependencies." +
             Environment.NewLine +
             @"The module was expected to contain an assembly manifest." + Environment.NewLine +
-            @"failed at car tracker.exe [1.5.9.88]" + Environment.NewLine +
+            @"failed at car tracker.exe [1.5.9.88] in Godber.bat" + Environment.NewLine +
             @"1.0.0.0 " + Environment.NewLine +
             @"4f2bf2f4" + Environment.NewLine +
             @"failed at car tracker unexpected" + Environment.NewLine +
+            @"Unexpected fawlty error caught in cybil.runner. Re-try manuel or auto-restart." + Environment.NewLine +
             @"1.0.0.0 " + Environment.NewLine +
             @"4f2bf2f4" + Environment.NewLine +
             @"    f" + Environment.NewLine +
@@ -71,17 +72,22 @@ namespace FootieData.Common
             @"Application Name:   cpa.exe" + Environment.NewLine +
             @"Application Version:    0.0.0.0" + Environment.NewLine +
             @"Application Timestamp:  4d264c2d" + Environment.NewLine +
+            @"Primary Path:  C:\Users\PondaG\AppData\Local\Microsoft\Trigger\Boycie\Data\Temp" + Environment.NewLine +
             @"Fault Module Name:  MSVCR90.dll" + Environment.NewLine +
             @"Fault Module Version:   9.0.30729.4940" + Environment.NewLine +
             @"Fault Module Timestamp: 4ca2ef57" + Environment.NewLine +
             @"Exception Offset:   00071f93" + Environment.NewLine +
             @"Exception Code: c0000417" + Environment.NewLine +
             @"Exception Data: 00000000" + Environment.NewLine +
+            @"Culture code: en-GB" + Environment.NewLine +
+            @"Culture package: R_Mellie.ray" + Environment.NewLine +
+            @"von" + Environment.NewLine +
             @"OS Version: 6.1.7601.2.1.0.256.4" + Environment.NewLine +
             @"Locale ID:  2057" + Environment.NewLine +
             @"Additional Information 1:   4c98" + Environment.NewLine +
             @"Additional Information 2:   4c98092e5e2eda594b891f3082316b3d" + Environment.NewLine +
             @"Additional Information 3:   6ad3" + Environment.NewLine +
-            @"Additional Information 4:   6ad3940877f665a2ce265b32b2aa8269";
+            @"Additional Information 4:   6ad3940877f665a2ce265b32b2aa8269" + Environment.NewLine +
+            @"Additional Information 5:   Slade,HMP";
     }
 }

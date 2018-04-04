@@ -72,7 +72,6 @@ copyright in assemblyinfo.cs
 
 
 
-
 Future if becomes popular
 =========================
 c.f. leagues table & league name against local dialect
