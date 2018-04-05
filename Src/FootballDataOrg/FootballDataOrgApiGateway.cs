@@ -41,18 +41,7 @@ namespace FootballDataOrg
 
         public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
         {
-
-
-
-            //gregt long running code
-            for (int i = 0; i < 10_000_000; i++)
-            {
-                DateTime.Now.ToString();
-            }
-
-            
-
-
+            SomeLongRunningCode();
 
             var uri = new Uri(baseUri);
 
@@ -69,6 +58,15 @@ namespace FootballDataOrg
                 {
                     return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
                 }
+            }
+        }
+
+        private static void SomeLongRunningCode()
+        {
+            //gregt long running code - circa 12/13 seconds
+            for (int i = 0; i < 10_000_000; i++)
+            {
+                DateTime.Now.ToString();
             }
         }
 
