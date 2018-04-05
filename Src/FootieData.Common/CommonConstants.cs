@@ -84,10 +84,12 @@ namespace FootieData.Common
             @"von" + Environment.NewLine +
             @"OS Version: 6.1.7601.2.1.0.256.4" + Environment.NewLine +
             @"Locale ID:  2057" + Environment.NewLine +
+            @"     Runtime error in Gizard-P[](14,15] at the following lines: 1066. 1966. " + Environment.NewLine +
+            @"  (error ton.yfe.rri.no) " + Environment.NewLine +
             @"Additional Information 1:   4c98" + Environment.NewLine +
             @"Additional Information 2:   4c98092e5e2eda594b891f3082316b3d" + Environment.NewLine +
             @"Additional Information 3:   6ad3" + Environment.NewLine +
             @"Additional Information 4:   6ad3940877f665a2ce265b32b2aa8269" + Environment.NewLine +
-            @"Additional Information 5:   Slade,HMP";
+            @" Slade:Hmp.*^." + Environment.NewLine;
     }
 }
