@@ -38,8 +38,19 @@ namespace FootieData.Vsix
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
         private static Action<string> UpdateLastUpdatedDate { get; set; }
 
+        //gregt
+        private static void SomeLongRunningCode()
+        {
+            for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
+            {
+                DateTime.Now.ToString();
+            }
+        }
+
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
+            SomeLongRunningCode();
+
             InitializeComponent();
 
             try
@@ -71,6 +82,8 @@ namespace FootieData.Vsix
 
             PopulateUi(false);
             //////////////////////////////////////////////////////////////////////////DoStuff(false);
+
+            SomeLongRunningCode();
         }
 
         private FootieDataGateway GetFootieDataGateway()
