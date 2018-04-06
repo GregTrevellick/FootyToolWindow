@@ -49,14 +49,14 @@ namespace FootieData.Vsix
 
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
-            //SomeLongRunningCode();
-
             InitializeComponent();
 
             try
             {
                 //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
                 _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
+                ////////////////////////////////////SomeLongRunningCode();
+                ////////////////////////////////////_competitionResultSingletonInstance = new CompetitionResultSingleton();
             }
             catch (Exception)
             {
@@ -83,8 +83,6 @@ namespace FootieData.Vsix
 
             PopulateUi(false);
             //////////////////////////////////////////////////////////////////////////DoStuff(false);
-
-            //SomeLongRunningCode();
         }
 
         private FootieDataGateway GetFootieDataGateway()

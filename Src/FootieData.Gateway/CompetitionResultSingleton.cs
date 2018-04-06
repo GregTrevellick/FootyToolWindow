@@ -27,6 +27,7 @@ namespace FootieData.Gateway
 
         private async void CompetitionResultSingletonAsync(FootballDataOrgApiGateway FootballDataOrgApiGateway)
         {
+            //this is slow - consider a task.run as this uses a diffewrent thread ?
             CompetitionResult = await FootballDataOrgApiGateway.GetCompetitionResultAsync();
         }
     }

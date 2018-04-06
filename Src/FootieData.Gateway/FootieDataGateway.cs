@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using Standing = FootieData.Entities.Standing;
+using System.Threading.Tasks;
 
 namespace FootieData.Gateway
 {
@@ -20,7 +21,7 @@ namespace FootieData.Gateway
             _competitionResultSingleton = competitionResultSingletonInstance;
         }
 
-        public IEnumerable<Standing> GetFromClientStandings(string leagueIdentifier)
+        public async Task<IEnumerable<Standing>> GetFromClientStandings(string leagueIdentifier)
         {
             IEnumerable<Standing> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
@@ -29,7 +30,8 @@ namespace FootieData.Gateway
                 StandingsResponse leagueTableResult;
                 try
                 {
-                    leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
+                    //leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
+                    leagueTableResult = await _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason);
                 }
                 catch (AggregateException ex)
                 {
