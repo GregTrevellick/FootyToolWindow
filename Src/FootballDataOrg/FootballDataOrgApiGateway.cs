@@ -19,29 +19,27 @@ namespace FootballDataOrg
             Token = Frules.FootballDataOrgApiToken;
         }
 
-        //public CompetitionResponseDto GetCompetitionResult()
-        //{
-        //    var uri = new Uri(baseUri);
-
-        //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
-        //    {
-        //        //var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
-        //        //var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
-        
-        //        if (IsInvalidResponse(responseString, httpResponseMessage))
-        //        {
-        //            return new CompetitionResponseDto { error = GetError(responseString) };
-        //        }
-        //        else
-        //        {
-        //            return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
-        //        }
-        //    }
-        //}
+        ////////////////////public CompetitionResponseDto GetCompetitionResult()
+        ////////////////////{
+        ////////////////////    var uri = new Uri(baseUri);
+        ////////////////////    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
+        ////////////////////    {
+        ////////////////////        //var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
+        ////////////////////        //var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
+        ////////////////////        if (IsInvalidResponse(responseString, httpResponseMessage))
+        ////////////////////        {
+        ////////////////////            return new CompetitionResponseDto { error = GetError(responseString) };
+        ////////////////////        }
+        ////////////////////        else
+        ////////////////////        {
+        ////////////////////            return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
+        ////////////////////        }
+        ////////////////////    }
+        ////////////////////}
 
         public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
         {
-            SomeLongRunningCode();
+            ///////////////////////////////////SomeLongRunningCode();
 
             var uri = new Uri(baseUri);
 
