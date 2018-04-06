@@ -51,7 +51,8 @@ namespace FootieData.Vsix
             {
                 return this;
             }
-            //we always return above so next line superfluous, and for now can ignore the non-await light bulb suggestion
+
+            //we always return above as it happens...
             return base.GetAsyncToolWindowFactory(toolWindowType);
         }
 
