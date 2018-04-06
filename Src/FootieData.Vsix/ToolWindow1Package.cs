@@ -31,18 +31,17 @@ namespace FootieData.Vsix
 
         public ToolWindow1Package()
         {
-            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
-            {
-                ChaseRating();
-            }
         }
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await base.InitializeAsync(cancellationToken, progress);
             await VsixToolWindowCommand.InitializeGregt(this);//IT IS CRITICAL TO HAVE THIS HERE AS 'InitializeToolWindowAsync' NEVER GETS INVOKED
+            InitializeDelegates();
+        }
 
-            #region define actions/funcs for later on
+        private void InitializeDelegates()
+        {
             VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
                 any
                     =>
@@ -65,11 +64,15 @@ namespace FootieData.Vsix
                     var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
                     return hiddenOptions.LastUpdated;
                 };
-            #endregion
         }
 
         public override IVsAsyncToolWindowFactory GetAsyncToolWindowFactory(Guid toolWindowType)
         {
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            {
+                ChaseRating();
+            }
+
             if (toolWindowType == typeof(VsixToolWindowPane).GUID)
             {
                 return this;
@@ -85,14 +88,15 @@ namespace FootieData.Vsix
             return ToolWindowCreationContext.Unspecified;
         }
 
-        protected override string GetToolWindowTitle(Type toolWindowType, int id)//gregt - is this ever hit ? it ought to be !  
-        {
-            if (toolWindowType == typeof(VsixToolWindowPane))
-            {
-                return "VsixToolWindowPane loading";
-            }
-            return base.GetToolWindowTitle(toolWindowType, id);
-        }
+        ////gregt - never hit ? it ought to be !  
+        //protected override string GetToolWindowTitle(Type toolWindowType, int id)
+        //{
+        //    if (toolWindowType == typeof(VsixToolWindowPane))
+        //    {
+        //        return "VsixToolWindowPane loading";
+        //    }
+        //    return base.GetToolWindowTitle(toolWindowType, id);
+        //}
 
         private LeagueGeneralOptions GetLeagueGeneralOptions(GeneralOptions generalOptions)
         {
