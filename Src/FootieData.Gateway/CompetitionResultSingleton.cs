@@ -20,6 +20,8 @@ namespace FootieData.Gateway
         private CompetitionResultSingleton()
         {
             FootballDataOrgApiGateway = new FootballDataOrgApiGateway();
+
+            //this calls into class that calls the external web service 
             CompetitionResultSingletonAsync(FootballDataOrgApiGateway);
         }
 
