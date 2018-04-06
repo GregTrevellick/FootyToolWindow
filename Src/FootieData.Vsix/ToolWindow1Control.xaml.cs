@@ -90,7 +90,7 @@ namespace FootieData.Vsix
             return new FootieDataGateway(_competitionResultSingletonInstance);
         }
 
-        private void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
+        private async void ExpanderAny_OnExpanded(object sender, RoutedEventArgs e)
         {
             if (sender is Expander expander)
             {
@@ -99,7 +99,7 @@ namespace FootieData.Vsix
 
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
+                    await DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace FootieData.Vsix
             }
         }
 
-        private async void DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
+        private async Task DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
         {         
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
