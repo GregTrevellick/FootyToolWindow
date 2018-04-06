@@ -55,7 +55,8 @@ namespace FootieData.Vsix
 
             try
             {
-                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast(ish)
+                //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
+                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
             }
             catch (Exception)
             {
