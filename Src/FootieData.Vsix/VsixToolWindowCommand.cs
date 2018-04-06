@@ -29,24 +29,24 @@ namespace FootieData.Vsix
         private VsixToolWindowCommand(OleMenuCommandService commandService)
         {
             var commandId = new CommandID(CommandSet, CommandId);
-            var menuItem = new OleMenuCommand(FindShowToolWindowAsync, commandId);
+            var menuItem = new OleMenuCommand(CommandEventHandler, commandId);
             commandService.AddCommand(menuItem);
         }
 
         /// <summary>
         /// Is hit when user selects Tools > Windows > VS Sports Desk
         /// </summary>
-        private void FindShowToolWindowAsync(object sender, EventArgs e)
+        private void CommandEventHandler(object sender, EventArgs e)
         {
-            // Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
-            // The last flag is set to true so that if the tool window does not exists it will be created.
-            //var window = _asyncPackage.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
-            //if (window?.Frame == null)
-            //{
-            //    throw new NotSupportedException("Cannot create tool window");
-            //}
-            //var windowFrame = (IVsWindowFrame)window.Frame;
-            //Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+            //////////////////////////////////// Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
+            //////////////////////////////////// The last flag is set to true so that if the tool window does not exists it will be created.
+            ////////////////////////////////////var window = _asyncPackage.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
+            ////////////////////////////////////if (window?.Frame == null)
+            ////////////////////////////////////{
+            ////////////////////////////////////    throw new NotSupportedException("Cannot create tool window");
+            ////////////////////////////////////}
+            ////////////////////////////////////var windowFrame = (IVsWindowFrame)window.Frame;
+            ////////////////////////////////////Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
 
             // Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.
