@@ -21,16 +21,6 @@ namespace FootieData.Vsix
         public static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
         public static Action<string> UpdateLastUpdatedDate { get; set; }
 
-        private void SetBossModeCaption()
-        {
-            Caption = "F-crash_.Data";
-        }
-
-        private void SetLeagueModeCaption()
-        {
-            Caption = Vsix.Name;
-        }
-
         //////////////////////////////////////////////////public VsixToolWindowPane(string message) : this()
         //////////////////////////////////////////////////{
         //////////////////////////////////////////////////    //just before this breakpoint the IDE kicks into life 
@@ -48,6 +38,16 @@ namespace FootieData.Vsix
             var toolWindow1ControlContent = (ToolWindow1Control) Content;
             toolWindow1ControlContent.BossModeEventHandler += SetBossModeCaption;
             toolWindow1ControlContent.LeagueModeEventHandler += SetLeagueModeCaption;
+        }
+
+        private void SetBossModeCaption()
+        {
+            Caption = "F-crash_.Data";
+        }
+
+        private void SetLeagueModeCaption()
+        {
+            Caption = Vsix.Name;
         }
     }
 }
