@@ -292,7 +292,7 @@ namespace FootieData.Gateway
                 case "Atlético Mineiro": return "Atlético-MG";
                 case "Atlético PR": return "Atlético-PR";
                 case "Avaí SC": return "Avaí";
-                case "Bahia": return " Bahia";
+                case "Bahia": return "Bahia";
                 case "Botafogo": return "Botafogo";
                 case "Chapecoense": return "Chapecoense";
                 case "Corinthians": return "Corinthians";
