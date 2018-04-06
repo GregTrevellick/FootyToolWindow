@@ -14,7 +14,7 @@ namespace FootieData.Vsix
 
         public static VsixToolWindowCommand Instance { get; private set; }
 
-        public static async Task InitializeGregt(AsyncPackage asyncPackage)
+        public static async Task InitializeCommandAsync(AsyncPackage asyncPackage)
         {
             if (asyncPackage == null)
             {

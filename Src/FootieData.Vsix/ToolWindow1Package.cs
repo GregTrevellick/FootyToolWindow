@@ -36,7 +36,7 @@ namespace FootieData.Vsix
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await base.InitializeAsync(cancellationToken, progress);
-            await VsixToolWindowCommand.InitializeGregt(this);//IT IS CRITICAL TO HAVE THIS HERE 
+            await VsixToolWindowCommand.InitializeCommandAsync(this);//IT IS CRITICAL TO HAVE THIS HERE 
             InitializeDelegates();
         }
 
