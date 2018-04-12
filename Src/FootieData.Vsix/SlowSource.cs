@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 
-namespace AsyncBindingProperty
+namespace FootieData.Vsix
 {
     public class SlowSource : INotifyPropertyChanged
     {
@@ -34,10 +34,10 @@ namespace AsyncBindingProperty
             ThreadPool.QueueUserWorkItem(delegate
             {
                 Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
-                Thread.Sleep(TimeSpan.FromSeconds(5));
+                Thread.Sleep(TimeSpan.FromSeconds(25));
 
                 string newValue = "Value " + Interlocked.Increment(ref id);
-                this.Data = newValue;
+                Data = newValue;
             });
         }
 
