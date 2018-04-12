@@ -34,7 +34,7 @@ namespace FootieData.Vsix
             ThreadPool.QueueUserWorkItem(delegate
             {
                 Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
-                Thread.Sleep(TimeSpan.FromSeconds(25));
+                Thread.Sleep(TimeSpan.FromSeconds(10));
 
                 string newValue = "Value " + Interlocked.Increment(ref id);
                 Data = newValue;
