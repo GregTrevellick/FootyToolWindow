@@ -61,27 +61,32 @@ namespace FootieData.Vsix
                 {
                     //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
                 }
-                
+
                 //GetLastUpdatedDate = getLastUpdatedDate;
                 //GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
                 //UpdateLastUpdatedDate = updateLastUpdatedDate;
                 _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
 
-                var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
-
-                _rightAlignStyle = new Style();
-                _rightAlignStyle.Setters.Add(rightAlignSetter);
-            
-                var homeAwayFontColour = Brushes.SlateGray;
-                _homeStyle = new Style();
-                _homeStyle.Setters.Add(rightAlignSetter);
-                _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-                _awayStyle = new Style();
-                _awayStyle.Setters.Add(rightAlignSetter);
-                _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                InitializeStyling();
 
                 PopulateUi(false);
             });
+        }
+
+        private void InitializeStyling()
+        {
+            var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
+
+            _rightAlignStyle = new Style();
+            _rightAlignStyle.Setters.Add(rightAlignSetter);
+
+            var homeAwayFontColour = Brushes.SlateGray;
+            _homeStyle = new Style();
+            _homeStyle.Setters.Add(rightAlignSetter);
+            _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+            _awayStyle = new Style();
+            _awayStyle.Setters.Add(rightAlignSetter);
+            _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
         }
 
         private FootieDataGateway GetFootieDataGateway()
