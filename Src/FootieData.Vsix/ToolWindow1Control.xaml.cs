@@ -44,8 +44,9 @@ namespace FootieData.Vsix
         //public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         public ToolWindow1Control()
         {
-            InitializeComponent();
             Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
+            InitializeComponent();
+            InitializeStyling();
 
             ThreadPool.QueueUserWorkItem(delegate
             {
@@ -67,9 +68,7 @@ namespace FootieData.Vsix
                 //UpdateLastUpdatedDate = updateLastUpdatedDate;
                 _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
 
-                InitializeStyling();
-
-                PopulateUi(false);
+                PopulateUi(false);//trigger this based on a [completion] property changed notifier in the background thread ?
             });
         }
 
