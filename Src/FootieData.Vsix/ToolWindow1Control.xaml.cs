@@ -6,7 +6,9 @@ using FootieData.Gateway;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,12 +23,13 @@ namespace FootieData.Vsix
         public event EventHandler LeagueModeEventHandler;
         public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
 
-        private readonly CompetitionResultSingleton _competitionResultSingletonInstance;
-        private readonly LeagueDtosSingleton _leagueDtosSingletonInstance;
+        private CompetitionResultSingleton _competitionResultSingletonInstance;
+        private LeagueDtosSingleton _leagueDtosSingletonInstance;
+
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
-        private readonly Style _awayStyle;
-        private readonly Style _homeStyle;
-        private readonly Style _rightAlignStyle;
+        private Style _awayStyle;
+        private Style _homeStyle;
+        private Style _rightAlignStyle;
         private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = $"No results available for the past {CommonConstants.DaysCount} days" } };
         private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"No fixtures available for the next {CommonConstants.DaysCount} days" } };
 
@@ -34,55 +37,51 @@ namespace FootieData.Vsix
         private const string RequestLimitReached = "You reached your request limit. W";
         private const string Unavailable = "unavailable at this time - please try again later";
 
-        private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
-        private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
-        private static Action<string> UpdateLastUpdatedDate { get; set; }
+        //private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
+        //private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        //private static Action<string> UpdateLastUpdatedDate { get; set; }
 
-        //gregt
-        //private static void SomeLongRunningCode()
-        //{
-        //    for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
-        //    {
-        //        DateTime.Now.ToString();
-        //    }
-        //}
-
-        public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
+        //public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
+        public ToolWindow1Control()
         {
             InitializeComponent();
+            Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
 
-            try
+            ThreadPool.QueueUserWorkItem(delegate
             {
-                //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
-                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
-                ////////////////////////////////////SomeLongRunningCode();
-                ////////////////////////////////////_competitionResultSingletonInstance = new CompetitionResultSingleton();
-            }
-            catch (Exception)
-            {
-                //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
-            }
+                Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
+                //Thread.Sleep(TimeSpan.FromSeconds(25));
 
-            GetLastUpdatedDate = getLastUpdatedDate;
-            GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
-            UpdateLastUpdatedDate = updateLastUpdatedDate;
-            _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
+                try
+                {
+                    //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
+                    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
+                }
+                catch (Exception)
+                {
+                    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+                }
+                
+                //GetLastUpdatedDate = getLastUpdatedDate;
+                //GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
+                //UpdateLastUpdatedDate = updateLastUpdatedDate;
+                _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
 
-            var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
+                var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
 
-            _rightAlignStyle = new Style();
-            _rightAlignStyle.Setters.Add(rightAlignSetter);
+                _rightAlignStyle = new Style();
+                _rightAlignStyle.Setters.Add(rightAlignSetter);
             
-            var homeAwayFontColour = Brushes.SlateGray;
-            _homeStyle = new Style();
-            _homeStyle.Setters.Add(rightAlignSetter);
-            _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-            _awayStyle = new Style();
-            _awayStyle.Setters.Add(rightAlignSetter);
-            _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                var homeAwayFontColour = Brushes.SlateGray;
+                _homeStyle = new Style();
+                _homeStyle.Setters.Add(rightAlignSetter);
+                _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                _awayStyle = new Style();
+                _awayStyle.Setters.Add(rightAlignSetter);
+                _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
 
-            PopulateUi(false);
-            //////////////////////////////////////////////////////////////////////////DoStuff(false);
+                PopulateUi(false);
+            });
         }
 
         private FootieDataGateway GetFootieDataGateway()
@@ -329,42 +328,8 @@ namespace FootieData.Vsix
             {
                 TextBlockRefreshPostponed.Visibility = Visibility.Collapsed;
                 PopulateUi(true);
-                ////////////////////////////////////////////////////////////////////////////DoStuff(true);
             }
         }
-
-        //////////////////////////////////////////////////////////////////////////////////////////public async Task DoStuff(bool retainExpandCollapseState)
-        //////////////////////////////////////////////////////////////////////////////////////////{
-        //////////////////////////////////////////////////////////////////////////////////////////    await Task.Run(() =>
-        //////////////////////////////////////////////////////////////////////////////////////////    {
-        //////////////////////////////////////////////////////////////////////////////////////////        LongRunningOperation(retainExpandCollapseState);
-        //////////////////////////////////////////////////////////////////////////////////////////    });
-        //////////////////////////////////////////////////////////////////////////////////////////}
-
-        //////////////////////////////////////////////////////////////////////////////////////////private async Task LongRunningOperation(bool retainExpandCollapseState)
-        //////////////////////////////////////////////////////////////////////////////////////////{
-        //////////////////////////////////////////////////////////////////////////////////////////    //int counter;
-        //////////////////////////////////////////////////////////////////////////////////////////    //for (counter = 0; counter < 50000; counter++)
-        //////////////////////////////////////////////////////////////////////////////////////////    //{
-        //////////////////////////////////////////////////////////////////////////////////////////    //    Console.WriteLine(counter);
-        //////////////////////////////////////////////////////////////////////////////////////////    //}
-        //////////////////////////////////////////////////////////////////////////////////////////    //return "Counter = " + counter;
-
-        //////////////////////////////////////////////////////////////////////////////////////////    try
-        //////////////////////////////////////////////////////////////////////////////////////////    {
-        //////////////////////////////////////////////////////////////////////////////////////////        PopulateUi(retainExpandCollapseState);
-        //////////////////////////////////////////////////////////////////////////////////////////    }
-        //////////////////////////////////////////////////////////////////////////////////////////    catch (Exception ex)
-        //////////////////////////////////////////////////////////////////////////////////////////    {
-        //////////////////////////////////////////////////////////////////////////////////////////        //Due to high risk of deadlock you cannot call GetService
-        //////////////////////////////////////////////////////////////////////////////////////////        //from a background thread in an AsyncPackage derived class. 
-        //////////////////////////////////////////////////////////////////////////////////////////        //You should instead call GetServiceAsync(without calling 
-        //////////////////////////////////////////////////////////////////////////////////////////        //Result or Wait on the resultant Task object) or switch 
-        //////////////////////////////////////////////////////////////////////////////////////////        //to the UI thread with the JoinableTaskFactory.SwitchToMainThreadAsync 
-        //////////////////////////////////////////////////////////////////////////////////////////        //method before calling GetService.
-        //////////////////////////////////////////////////////////////////////////////////////////        throw;
-        //////////////////////////////////////////////////////////////////////////////////////////    }
-        //////////////////////////////////////////////////////////////////////////////////////////}
 
         private void PopulateUi(bool retainExpandCollapseState)
         {
@@ -451,5 +416,54 @@ namespace FootieData.Vsix
 
             return dataGrid;
         }
+
+        private void UpdateLastUpdatedDate(string dummy)
+        {
+            //TODO
+        }
+
+        private DateTime GetLastUpdatedDate(string dummy)
+        {
+            //TODO
+            return DateTime.Now.AddHours(-1);
+        }
+
+        private void GetOptionsFromStoreAndMapToInternalFormatMethod(string dummy)
+        {
+            //TODO
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////public async Task DoStuff(bool retainExpandCollapseState)
+        //////////////////////////////////////////////////////////////////////////////////////////{
+        //////////////////////////////////////////////////////////////////////////////////////////    await Task.Run(() =>
+        //////////////////////////////////////////////////////////////////////////////////////////    {
+        //////////////////////////////////////////////////////////////////////////////////////////        LongRunningOperation(retainExpandCollapseState);
+        //////////////////////////////////////////////////////////////////////////////////////////    });
+        //////////////////////////////////////////////////////////////////////////////////////////}
+
+        //////////////////////////////////////////////////////////////////////////////////////////private async Task LongRunningOperation(bool retainExpandCollapseState)
+        //////////////////////////////////////////////////////////////////////////////////////////{
+        //////////////////////////////////////////////////////////////////////////////////////////    //int counter;
+        //////////////////////////////////////////////////////////////////////////////////////////    //for (counter = 0; counter < 50000; counter++)
+        //////////////////////////////////////////////////////////////////////////////////////////    //{
+        //////////////////////////////////////////////////////////////////////////////////////////    //    Console.WriteLine(counter);
+        //////////////////////////////////////////////////////////////////////////////////////////    //}
+        //////////////////////////////////////////////////////////////////////////////////////////    //return "Counter = " + counter;
+
+        //////////////////////////////////////////////////////////////////////////////////////////    try
+        //////////////////////////////////////////////////////////////////////////////////////////    {
+        //////////////////////////////////////////////////////////////////////////////////////////        PopulateUi(retainExpandCollapseState);
+        //////////////////////////////////////////////////////////////////////////////////////////    }
+        //////////////////////////////////////////////////////////////////////////////////////////    catch (Exception ex)
+        //////////////////////////////////////////////////////////////////////////////////////////    {
+        //////////////////////////////////////////////////////////////////////////////////////////        //Due to high risk of deadlock you cannot call GetService
+        //////////////////////////////////////////////////////////////////////////////////////////        //from a background thread in an AsyncPackage derived class. 
+        //////////////////////////////////////////////////////////////////////////////////////////        //You should instead call GetServiceAsync(without calling 
+        //////////////////////////////////////////////////////////////////////////////////////////        //Result or Wait on the resultant Task object) or switch 
+        //////////////////////////////////////////////////////////////////////////////////////////        //to the UI thread with the JoinableTaskFactory.SwitchToMainThreadAsync 
+        //////////////////////////////////////////////////////////////////////////////////////////        //method before calling GetService.
+        //////////////////////////////////////////////////////////////////////////////////////////        throw;
+        //////////////////////////////////////////////////////////////////////////////////////////    }
+        //////////////////////////////////////////////////////////////////////////////////////////}
     }
 }
