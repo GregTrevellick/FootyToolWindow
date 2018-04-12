@@ -1,7 +1,9 @@
 ﻿namespace FootieData.Vsix
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -15,17 +17,20 @@
         /// </summary>
         public ToolWindow1PackageControl()
         {
+            Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
             this.InitializeComponent();
             SomeLongRunningCode();
         }
 
-        //gregt
-        private static void SomeLongRunningCode()
+        private void SomeLongRunningCode()
         {
-            for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
-            {
-                DateTime.Now.ToString();
-            }
+            //for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
+            //{
+            //    DateTime.Now.ToString();
+            //}
+            var source = new SlowSource();
+            this.DataContext = source;
+            source.FetchNewData();
         }
 
         /// <summary>
@@ -39,7 +44,7 @@
         {
             MessageBox.Show(
                 string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
-                "ToolWindow1Package");
+                "ToolWindow1Package GregtA");
         }
     }
 }

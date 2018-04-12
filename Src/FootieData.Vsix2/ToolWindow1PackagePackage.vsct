@@ -46,7 +46,7 @@
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>ToolWindow1Package gregt</ButtonText>
+          <ButtonText>ToolWindow1Package GregtC</ButtonText>
         </Strings>
       </Button>
     </Buttons>

@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="PackageRatingChaser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlowSource.cs" />
     <Compile Include="ToolWindow1Package.cs" />
     <Compile Include="ToolWindow1PackageCommand.cs" />
     <Compile Include="ToolWindow1PackageControl.xaml.cs">
