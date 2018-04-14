@@ -38,16 +38,6 @@ namespace FootieData.Vsix
         /// </summary>
         private async void CommandEventHandler(object sender, EventArgs e)
         {
-
-            //AsyncBindingProperty.SlowSource source = new AsyncBindingProperty.SlowSource();
-            //source.FetchNewData();
-
-
-
-
-
-
-
             //////////////////////////////////// Get the instance number 0 of this tool window. This window is single instance so this instance is actually the only one.
             //////////////////////////////////// The last flag is set to true so that if the tool window does not exists it will be created.
             ////////////////////////////////////var window = _asyncPackage.FindToolWindow(typeof(VsixToolWindowPane), 0, true);
