@@ -67,10 +67,22 @@ namespace FootieData.Vsix
             PopulateUi(false);
         }
 
-        private void SomeLongRunningCode(ExternalLeagueCode externalLeagueCode)
+        private void SomeLongRunningCodeStandings(ExternalLeagueCode externalLeagueCode)
         {
             this.DataContext = slowSourceFootie;
-            slowSourceFootie.FetchNewData(externalLeagueCode);
+            slowSourceFootie.FetchNewDataStandings(externalLeagueCode);
+        }
+
+        private void SomeLongRunningCodeFixturePasts(ExternalLeagueCode externalLeagueCode)
+        {
+            this.DataContext = slowSourceFootie;
+            slowSourceFootie.FetchNewDataFixturePasts(externalLeagueCode);
+        }
+
+        private void SomeLongRunningCodeFixtureFutures(ExternalLeagueCode externalLeagueCode)
+        {
+            this.DataContext = slowSourceFootie;
+            slowSourceFootie.FetchNewDataFixtureFutures(externalLeagueCode);
         }
 
         private void InitializeStyling()
@@ -131,9 +143,7 @@ namespace FootieData.Vsix
                     switch (gridType)
                     {
                         case GridType.Standing:
-                            //var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
-                            SomeLongRunningCode(externalLeagueCode);//this calls FetchNewData, which hardcodedly (for now, will be external call eventually) populates an ObservableCollection of Standings, which, if the ui is bound to SlowSourceFootie.Standings will auto-update the ui
-
+                            SomeLongRunningCodeStandings(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates
                             var standingsList = slowSourceFootie.Standings.ToList();
                             if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             {
@@ -149,28 +159,24 @@ namespace FootieData.Vsix
                                 }
                                 else
                                 {
-                                    //dataGrid.ItemsSource = standings ?? (IEnumerable) _nullStandings;
                                     dataGrid.ItemsSource = slowSourceFootie.Standings ?? (IEnumerable)_nullStandings;
-
                                     //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
                                     var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6, 7, 8, 9};
                                     var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16};
                                     var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23};
                                     var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
-
                                     WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
                                     WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
                                     WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
-
                                     WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
                                     WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
                                 }
                             }
-
                             break;
                         case GridType.Result:
-                            var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
-                            var resultsList = results.ToList();
+                            ////////var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
+                            SomeLongRunningCodeFixturePasts(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
+                            var resultsList = slowSourceFootie.FixturePasts.ToList();
                             if (resultsList.Any())
                             {
                                 if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
@@ -187,7 +193,8 @@ namespace FootieData.Vsix
                                     }
                                     else
                                     {
-                                        dataGrid.ItemsSource = resultsList;
+                                        ///////dataGrid.ItemsSource = resultsList;
+                                        dataGrid.ItemsSource = slowSourceFootie.FixturePasts ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
                                         WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
                                     }
                                 }
@@ -198,8 +205,9 @@ namespace FootieData.Vsix
                             }
                             break;
                         case GridType.Fixture:
-                            var fixtures = await GetFixtureFuturesAsync(externalLeagueCode); //wont run til web service call has finished
-                            var fixturesList = fixtures.ToList();
+                            ///////////var fixtures = await GetFixtureFuturesAsync(externalLeagueCode); //wont run til web service call has finished
+                            SomeLongRunningCodeFixtureFutures(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
+                            var fixturesList = slowSourceFootie.FixtureFutures.ToList();
                             if (fixturesList.Any())
                             {
                                 if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
@@ -216,7 +224,8 @@ namespace FootieData.Vsix
                                     }
                                     else
                                     {
-                                        dataGrid.ItemsSource = fixturesList;
+                                        //////dataGrid.ItemsSource = fixturesList;
+                                        dataGrid.ItemsSource = slowSourceFootie.FixtureFutures ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
                                         WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
                                     }
                                 }
@@ -251,7 +260,6 @@ namespace FootieData.Vsix
         //            return result;
         //        });
         //        await Task.WhenAll(theTask);
-
         //        return theTask.Result;
         //    }
         //    catch (Exception)
@@ -260,45 +268,43 @@ namespace FootieData.Vsix
         //    }
         //}
 
-        private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(ExternalLeagueCode externalLeagueCode)
-        {
-            try
-            {
-                var theTask = Task.Run(() =>
-                {
-                    var gateway = GetFootieDataGateway();
-                    var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");                    
-                    return result;
-                });
-                await Task.WhenAll(theTask);
+        //private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(ExternalLeagueCode externalLeagueCode)
+        //{
+        //    try
+        //    {
+        //        var theTask = Task.Run(() =>
+        //        {
+        //            var gateway = GetFootieDataGateway();
+        //            var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");                    
+        //            return result;
+        //        });
+        //        await Task.WhenAll(theTask);
+        //        return theTask.Result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new List<FixturePast> { new FixturePast { HomeName = "GetResultsAsync internal error" } };
+        //    }
+        //}
 
-                return theTask.Result;
-            }
-            catch (Exception)
-            {
-                return new List<FixturePast> { new FixturePast { HomeName = "GetResultsAsync internal error" } };
-            }
-        }
-
-        private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(ExternalLeagueCode externalLeagueCode)
-        {
-            try
-            {
-                var theTask = Task.Run(() =>
-                {
-                    var gateway = GetFootieDataGateway();
-                    var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
-                    return result;
-                });
-                await Task.WhenAll(theTask);
-
-                return theTask.Result;
-            }
-            catch (Exception)
-            {
-                return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
-            }
-        }
+        //private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(ExternalLeagueCode externalLeagueCode)
+        //{
+        //    try
+        //    {
+        //        var theTask = Task.Run(() =>
+        //        {
+        //            var gateway = GetFootieDataGateway();
+        //            var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
+        //            return result;
+        //        });
+        //        await Task.WhenAll(theTask);
+        //        return theTask.Result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
+        //    }
+        //}
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
