@@ -100,6 +100,8 @@ See the [change log](CHANGELOG.md) for release history.
 
 [Marco Lachmann-Anke 3dman_eu](https://pixabay.com/en/males-3d-model-isolated-3d-model-2358253/)
 
+[Thomas Levesque](http://www.thomaslevesque.com/2009/04/17/wpf-binding-to-an-asynchronous-collection/)
+
 [Walid Sakhana](https://github.com/sakhana88)
 
 ## License

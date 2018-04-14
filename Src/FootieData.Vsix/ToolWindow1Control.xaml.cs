@@ -37,39 +37,40 @@ namespace FootieData.Vsix
         private const string RequestLimitReached = "You reached your request limit. W";
         private const string Unavailable = "unavailable at this time - please try again later";
 
-        //private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
-        //private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
-        //private static Action<string> UpdateLastUpdatedDate { get; set; }
+        private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
+        private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        private static Action<string> UpdateLastUpdatedDate { get; set; }
 
-        //public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
-        public ToolWindow1Control()
+        private SlowSourceFootie slowSourceFootie = new SlowSourceFootie();
+
+        public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
             Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
             InitializeComponent();
-            InitializeStyling();
 
-            ThreadPool.QueueUserWorkItem(delegate
+            try
             {
-                Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
-                //Thread.Sleep(TimeSpan.FromSeconds(25));
+                //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
+                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
+            }
+            catch (Exception)
+            {
+                //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+            }
 
-                try
-                {
-                    //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
-                    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
-                }
-                catch (Exception)
-                {
-                    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
-                }
+            GetLastUpdatedDate = getLastUpdatedDate;
+            GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
+            UpdateLastUpdatedDate = updateLastUpdatedDate;
+            _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
 
-                //GetLastUpdatedDate = getLastUpdatedDate;
-                //GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
-                //UpdateLastUpdatedDate = updateLastUpdatedDate;
-                _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
+            InitializeStyling();
+            PopulateUi(false);
+        }
 
-                PopulateUi(false);//trigger this based on a [completion] property changed notifier in the background thread ?
-            });
+        private void SomeLongRunningCode()
+        {
+            this.DataContext = slowSourceFootie;
+            slowSourceFootie.FetchNewData();
         }
 
         private void InitializeStyling()
@@ -129,8 +130,10 @@ namespace FootieData.Vsix
                     switch (gridType)
                     {
                         case GridType.Standing:
-                            var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
-                            var standingsList = standings.ToList();
+                            //var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
+                            SomeLongRunningCode();//this calls FetchNewData, which hardcodedly (for now, will be external call eventually) populates an ObservableCollection of Standings, which, if the ui is bound to SlowSourceFootie.Standings will auto-update the ui
+
+                            var standingsList = new List<Standing>();//tempry to get it to compile - the real line is      var standingsList = standings.ToList();
                             if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             {
                                 dataGrid.ItemsSource = new List<NullReturn> { new NullReturn {Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
@@ -145,7 +148,8 @@ namespace FootieData.Vsix
                                 }
                                 else
                                 {
-                                    dataGrid.ItemsSource = standings ?? (IEnumerable) _nullStandings;
+                                    //dataGrid.ItemsSource = standings ?? (IEnumerable) _nullStandings;
+                                    dataGrid.ItemsSource = slowSourceFootie.Standings ?? (IEnumerable)_nullStandings;
 
                                     //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
                                     var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -421,21 +425,19 @@ namespace FootieData.Vsix
             return dataGrid;
         }
 
-        private void UpdateLastUpdatedDate(string dummy)
-        {
-            //TODO
-        }
-
-        private DateTime GetLastUpdatedDate(string dummy)
-        {
-            //TODO
-            return DateTime.Now.AddHours(-1);
-        }
-
-        private void GetOptionsFromStoreAndMapToInternalFormatMethod(string dummy)
-        {
-            //TODO
-        }
+        //private void UpdateLastUpdatedDate(string dummy)
+        //{
+        //    //TODO (method only exist to get code to compile, if we get rid of the delegates)
+        //}
+        //private DateTime GetLastUpdatedDate(string dummy)
+        //{
+        //    //TODO (method only exist to get code to compile, if we get rid of the delegates)
+        //    return DateTime.Now.AddHours(-1);
+        //}
+        //private void GetOptionsFromStoreAndMapToInternalFormatMethod(string dummy)
+        //{
+        //    //TODO (method only exist to get code to compile, if we get rid of the delegates)
+        //}
 
         //////////////////////////////////////////////////////////////////////////////////////////public async Task DoStuff(bool retainExpandCollapseState)
         //////////////////////////////////////////////////////////////////////////////////////////{
@@ -471,3 +473,25 @@ namespace FootieData.Vsix
         //////////////////////////////////////////////////////////////////////////////////////////}
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//#region 
+////get FetchNewData() to populate standings2 (when, after 30 secs, FetchNewData updates the content of standings2, the ui will auto-update as the ui is data bound to this observable collection
+//var standings2 = new ObservableCollection<Standing>();
+//standings2.Add(new Standing { Team = "united", For = 12, Against = 34 });
+//standings2.Add(new Standing { Team = "rovers", For = 56, Against = 78 });
+//standings = standings2;
+//#endregion

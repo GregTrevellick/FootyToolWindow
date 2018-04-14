@@ -17,9 +17,9 @@ namespace FootieData.Vsix
     [Guid("c53b01a9-7130-4b7f-957d-cdc8672fa6de")]
     public class VsixToolWindowPane : ToolWindowPane
     {
-        //public static Func<string, DateTime> GetLastUpdatedDate { get; set; }
-        //public static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
-        //public static Action<string> UpdateLastUpdatedDate { get; set; }
+        public static Func<string, DateTime> GetLastUpdatedDate { get; set; }
+        public static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
+        public static Action<string> UpdateLastUpdatedDate { get; set; }
 
         //////////////////////////////////////////////////public VsixToolWindowPane(string message) : this()
         //////////////////////////////////////////////////{
@@ -33,8 +33,7 @@ namespace FootieData.Vsix
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable, we are not calling Dispose on this object. 
             // This is because ToolWindowPane calls Dispose on the object returned by the Content property.
-            //Content = new ToolWindow1Control(GetOptionsFromStoreAndMapToInternalFormatMethod, UpdateLastUpdatedDate, GetLastUpdatedDate);
-            Content = new ToolWindow1Control();
+            Content = new ToolWindow1Control(GetOptionsFromStoreAndMapToInternalFormatMethod, UpdateLastUpdatedDate, GetLastUpdatedDate);
 
             var toolWindow1ControlContent = (ToolWindow1Control) Content;
             toolWindow1ControlContent.BossModeEventHandler += SetBossModeCaption;

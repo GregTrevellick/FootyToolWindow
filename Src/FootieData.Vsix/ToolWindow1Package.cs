@@ -108,28 +108,28 @@ namespace FootieData.Vsix
 
         private void InitializeDelegates()
         {
-            //VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
-            //    any
-            //        =>
-            //    {
-            //        var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-            //        ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
-            //    };
-            //VsixToolWindowPane.UpdateLastUpdatedDate =
-            //    any
-            //        =>
-            //    {
-            //        var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
-            //        hiddenOptions.LastUpdated = DateTime.Now;
-            //        hiddenOptions.SaveSettingsToStorage();
-            //    };
-            //VsixToolWindowPane.GetLastUpdatedDate =
-            //    any
-            //        =>
-            //    {
-            //        var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
-            //        return hiddenOptions.LastUpdated;
-            //    };
+            VsixToolWindowPane.GetOptionsFromStoreAndMapToInternalFormatMethod =
+                any
+                    =>
+                {
+                    var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+                    ToolWindow1Control.LeagueGeneralOptions = GetLeagueGeneralOptions(generalOptions);
+                };
+            VsixToolWindowPane.UpdateLastUpdatedDate =
+                any
+                    =>
+                {
+                    var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
+                    hiddenOptions.LastUpdated = DateTime.Now;
+                    hiddenOptions.SaveSettingsToStorage();
+                };
+            VsixToolWindowPane.GetLastUpdatedDate =
+                any
+                    =>
+                {
+                    var hiddenOptions = (HiddenOptions)GetDialogPage(typeof(HiddenOptions));
+                    return hiddenOptions.LastUpdated;
+                };
         }
     }
 }
