@@ -67,10 +67,10 @@ namespace FootieData.Vsix
             PopulateUi(false);
         }
 
-        private void SomeLongRunningCode()
+        private void SomeLongRunningCode(ExternalLeagueCode externalLeagueCode)
         {
             this.DataContext = slowSourceFootie;
-            slowSourceFootie.FetchNewData();
+            slowSourceFootie.FetchNewData(externalLeagueCode);
         }
 
         private void InitializeStyling()
@@ -105,11 +105,12 @@ namespace FootieData.Vsix
                 {
                     await DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);
                 }
-                else
-                {
-                    dataGrid = GetMyDataGrid(internalLeagueCode, gridType);
-                    expander.Content = dataGrid;
-                }
+                //this gets called aswell as line 364, creating 2 entries per team in the grid. not really sure why this is needed.
+                ////else
+                ////{
+                ////    dataGrid = GetMyDataGrid(internalLeagueCode, gridType);
+                ////    expander.Content = dataGrid;
+                ////}
             }
             else
             {
@@ -131,19 +132,19 @@ namespace FootieData.Vsix
                     {
                         case GridType.Standing:
                             //var standings = await GetStandingsAsync(externalLeagueCode); //wont run til web service call has finished
-                            SomeLongRunningCode();//this calls FetchNewData, which hardcodedly (for now, will be external call eventually) populates an ObservableCollection of Standings, which, if the ui is bound to SlowSourceFootie.Standings will auto-update the ui
+                            SomeLongRunningCode(externalLeagueCode);//this calls FetchNewData, which hardcodedly (for now, will be external call eventually) populates an ObservableCollection of Standings, which, if the ui is bound to SlowSourceFootie.Standings will auto-update the ui
 
-                            var standingsList = new List<Standing>();//tempry to get it to compile - the real line is      var standingsList = standings.ToList();
+                            var standingsList = slowSourceFootie.Standings.ToList();
                             if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             {
-                                dataGrid.ItemsSource = new List<NullReturn> { new NullReturn {Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+                                dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
                                 dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                             }
                             else
                             {
                                 if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
                                 {
-                                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } } ;
+                                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
                                     dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                                 }
                                 else
@@ -239,25 +240,25 @@ namespace FootieData.Vsix
             }
         }
 
-        private async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
-        {
-            try
-            {
-                var theTask = Task.Run(() =>
-                {                 
-                    var gateway = GetFootieDataGateway();
-                    var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
-                    return result;
-                });
-                await Task.WhenAll(theTask);
+        //private async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
+        //{
+        //    try
+        //    {
+        //        var theTask = Task.Run(() =>
+        //        {                 
+        //            var gateway = GetFootieDataGateway();
+        //            var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+        //            return result;
+        //        });
+        //        await Task.WhenAll(theTask);
 
-                return theTask.Result;
-            }
-            catch (Exception)
-            {
-                return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
-            }
-        }
+        //        return theTask.Result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
+        //    }
+        //}
 
         private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(ExternalLeagueCode externalLeagueCode)
         {
