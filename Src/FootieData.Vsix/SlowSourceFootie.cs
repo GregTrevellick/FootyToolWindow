@@ -1,28 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using FootieData.Gateway;
 using FootieData.Entities;
 using System.Collections.ObjectModel;
+using FootieData.Entities.ReferenceData;
 
 namespace FootieData.Vsix
 {
     public class SlowSourceFootie : INotifyPropertyChanged
     {
+        private CompetitionResultSingleton _competitionResultSingletonInstance;
         private volatile string _dataValue = "Initial data";
 
-        //private volatile ObservableCollection<Standing> _standingsValue = new ObservableCollection<Standing>
         private volatile ObservableCollection<Standing> _standingsValue = new AsyncObservableCollection<Standing>
-            {
-                new Standing { Team = "united", For = 12, Against = 0 },
-                new Standing { Team = "rovers", For = 56, Against = 0 },
-                new Standing { Team = "city", For = 99, Against = 0 }
-            };
+        {
+            new Standing { Team = "Loading..." }
+        };
 
         private int id = 1;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        
         public string Data
         {
             get
@@ -58,19 +58,31 @@ namespace FootieData.Vsix
             }
         }
 
-        public void FetchNewData()
+        public void FetchNewData(ExternalLeagueCode externalLeagueCode)
         {
             ThreadPool.QueueUserWorkItem(delegate
             {
                 Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
-                Thread.Sleep(TimeSpan.FromSeconds(10));
+                Thread.Sleep(TimeSpan.FromSeconds(5));
                 string newValue = "Value " + Interlocked.Increment(ref id);
                 Data = newValue;
 
-                Random r = new Random();
-                var randF = r.Next(5, 10);
-                var randA = r.Next(1, 5);
-                Standings.Add(new Standing { Team = "fetch slow f.c.", For = randF, Against = randA });
+                try
+                {
+                    //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
+                    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
+                }
+                catch (Exception)
+                {
+                    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+                }
+
+                var iEnumerableStandings = GetStandings(externalLeagueCode);
+                Standings.Clear();
+                foreach (var standing in iEnumerableStandings)
+                {
+                    Standings.Add(standing);
+                }
             });
         }
 
@@ -82,5 +94,49 @@ namespace FootieData.Vsix
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public IEnumerable<Standing> GetStandings(ExternalLeagueCode externalLeagueCode)
+        {
+            try
+            {
+                var gateway = GetFootieDataGateway();
+                var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+                return result;
+            }
+            catch (Exception)
+            {
+                return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
+            }
+        }
+
+        private FootieDataGateway GetFootieDataGateway()
+        {
+            return new FootieDataGateway(_competitionResultSingletonInstance);
+        }
     }
 }
+
+
+
+
+
+
+
+//public async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
+//{
+//    try
+//    {
+//        var theTask = Task.Run(() =>
+//        {
+//            var gateway = GetFootieDataGateway();
+//            var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+//            return result;
+//        });
+//        await Task.WhenAll(theTask);
+//        return theTask.Result;
+//    }
+//    catch (Exception)
+//    {
+//        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
+//    }
+//}

@@ -1,14 +1,12 @@
-﻿using System;
-using FootballDataOrg.ResponseEntities;
+﻿using FootballDataOrg.ResponseEntities;
 using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using Standing = FootieData.Entities.Standing;
-using System.Threading.Tasks;
 
 namespace FootieData.Gateway
 {
@@ -21,7 +19,7 @@ namespace FootieData.Gateway
             _competitionResultSingleton = competitionResultSingletonInstance;
         }
 
-        public async Task<IEnumerable<Standing>> GetFromClientStandings(string leagueIdentifier)
+        public IEnumerable<Standing> GetFromClientStandings(string leagueIdentifier)
         {
             IEnumerable<Standing> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
@@ -30,13 +28,14 @@ namespace FootieData.Gateway
                 StandingsResponse leagueTableResult;
                 try
                 {
-                    //leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
-                    leagueTableResult = await _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason);
+                    ////leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
+                    //leagueTableResult = await _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason);
+                    leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResult(idSeason);
                 }
                 catch (AggregateException ex)
                 {
                     LogAggregateException(ex);
-                    leagueTableResult = new StandingsResponse { Standing = new List<FootballDataOrg.ResponseEntities.Standing> { new FootballDataOrg.ResponseEntities.Standing { TeamName = EntityConstants.PotentialTimeout } }};
+                    leagueTableResult = new StandingsResponse { Standing = new List<FootballDataOrg.ResponseEntities.Standing> { new FootballDataOrg.ResponseEntities.Standing { TeamName = EntityConstants.PotentialTimeout } } };
                 }
                 if (leagueTableResult != null)
                 {
@@ -45,6 +44,31 @@ namespace FootieData.Gateway
             }
             return result;
         }
+
+        ////////public async Task<IEnumerable<Standing>> GetFromClientStandingsAsync(string leagueIdentifier)
+        ////////{
+        ////////    IEnumerable<Standing> result = null;
+        ////////    var idSeason = GetIdSeason(leagueIdentifier);
+        ////////    if (idSeason > 0)
+        ////////    {
+        ////////        StandingsResponse leagueTableResult;
+        ////////        try
+        ////////        {
+        ////////            //leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
+        ////////            leagueTableResult = await _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason);
+        ////////        }
+        ////////        catch (AggregateException ex)
+        ////////        {
+        ////////            LogAggregateException(ex);
+        ////////            leagueTableResult = new StandingsResponse { Standing = new List<FootballDataOrg.ResponseEntities.Standing> { new FootballDataOrg.ResponseEntities.Standing { TeamName = EntityConstants.PotentialTimeout } }};
+        ////////        }
+        ////////        if (leagueTableResult != null)
+        ////////        {
+        ////////            result = GetResultMatchStandings(leagueTableResult);
+        ////////        }
+        ////////    }
+        ////////    return result;
+        ////////}
 
         public IEnumerable<FixturePast> GetFromClientFixturePasts(string leagueIdentifier, string timeFrame)
         {
