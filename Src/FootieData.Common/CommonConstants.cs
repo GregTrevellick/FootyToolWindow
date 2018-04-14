@@ -5,7 +5,7 @@ namespace FootieData.Common
     public static class CommonConstants
     {
         public const int DaysCount = 7;
-        public const int RefreshIntervalInSeconds = 60;
+        public const int RefreshIntervalInSeconds = 10;//gregt must revert this back to 60 !!!
         public const string CategorySubLevelFootball = "Football";
         public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
 
