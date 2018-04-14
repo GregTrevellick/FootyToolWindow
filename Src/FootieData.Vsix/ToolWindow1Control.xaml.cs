@@ -174,7 +174,6 @@ namespace FootieData.Vsix
                             }
                             break;
                         case GridType.Result:
-                            ////////var results = await GetFixturePastsAsync(externalLeagueCode); //wont run til web service call finished
                             SomeLongRunningCodeFixturePasts(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
                             var resultsList = slowSourceFootie.FixturePasts.ToList();
                             if (resultsList.Any())
@@ -193,7 +192,6 @@ namespace FootieData.Vsix
                                     }
                                     else
                                     {
-                                        ///////dataGrid.ItemsSource = resultsList;
                                         dataGrid.ItemsSource = slowSourceFootie.FixturePasts ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
                                         WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
                                     }
@@ -205,7 +203,6 @@ namespace FootieData.Vsix
                             }
                             break;
                         case GridType.Fixture:
-                            ///////////var fixtures = await GetFixtureFuturesAsync(externalLeagueCode); //wont run til web service call has finished
                             SomeLongRunningCodeFixtureFutures(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
                             var fixturesList = slowSourceFootie.FixtureFutures.ToList();
                             if (fixturesList.Any())
@@ -224,7 +221,6 @@ namespace FootieData.Vsix
                                     }
                                     else
                                     {
-                                        //////dataGrid.ItemsSource = fixturesList;
                                         dataGrid.ItemsSource = slowSourceFootie.FixtureFutures ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
                                         WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
                                     }
@@ -248,63 +244,6 @@ namespace FootieData.Vsix
                 }
             }
         }
-
-        //private async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
-        //{
-        //    try
-        //    {
-        //        var theTask = Task.Run(() =>
-        //        {                 
-        //            var gateway = GetFootieDataGateway();
-        //            var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
-        //            return result;
-        //        });
-        //        await Task.WhenAll(theTask);
-        //        return theTask.Result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
-        //    }
-        //}
-
-        //private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(ExternalLeagueCode externalLeagueCode)
-        //{
-        //    try
-        //    {
-        //        var theTask = Task.Run(() =>
-        //        {
-        //            var gateway = GetFootieDataGateway();
-        //            var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");                    
-        //            return result;
-        //        });
-        //        await Task.WhenAll(theTask);
-        //        return theTask.Result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return new List<FixturePast> { new FixturePast { HomeName = "GetResultsAsync internal error" } };
-        //    }
-        //}
-
-        //private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(ExternalLeagueCode externalLeagueCode)
-        //{
-        //    try
-        //    {
-        //        var theTask = Task.Run(() =>
-        //        {
-        //            var gateway = GetFootieDataGateway();
-        //            var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
-        //            return result;
-        //        });
-        //        await Task.WhenAll(theTask);
-        //        return theTask.Result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
-        //    }
-        //}
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
@@ -491,3 +430,65 @@ namespace FootieData.Vsix
 //////////////////////////////////////////////////////////////////////////////////////////        throw;
 //////////////////////////////////////////////////////////////////////////////////////////    }
 //////////////////////////////////////////////////////////////////////////////////////////}
+
+
+
+
+
+
+//private async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
+//{
+//    try
+//    {
+//        var theTask = Task.Run(() =>
+//        {                 
+//            var gateway = GetFootieDataGateway();
+//            var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+//            return result;
+//        });
+//        await Task.WhenAll(theTask);
+//        return theTask.Result;
+//    }
+//    catch (Exception)
+//    {
+//        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
+//    }
+//}
+
+//private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(ExternalLeagueCode externalLeagueCode)
+//{
+//    try
+//    {
+//        var theTask = Task.Run(() =>
+//        {
+//            var gateway = GetFootieDataGateway();
+//            var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");                    
+//            return result;
+//        });
+//        await Task.WhenAll(theTask);
+//        return theTask.Result;
+//    }
+//    catch (Exception)
+//    {
+//        return new List<FixturePast> { new FixturePast { HomeName = "GetResultsAsync internal error" } };
+//    }
+//}
+
+//private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(ExternalLeagueCode externalLeagueCode)
+//{
+//    try
+//    {
+//        var theTask = Task.Run(() =>
+//        {
+//            var gateway = GetFootieDataGateway();
+//            var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
+//            return result;
+//        });
+//        await Task.WhenAll(theTask);
+//        return theTask.Result;
+//    }
+//    catch (Exception)
+//    {
+//        return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
+//    }
+//}
