@@ -51,6 +51,7 @@ namespace FootieData.Vsix
                 }
             }
         }
+
         public ObservableCollection<Standing> Standings
         {
             get
