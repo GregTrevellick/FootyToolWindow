@@ -126,7 +126,6 @@ namespace FootieData.Vsix
                     switch (gridType)
                     {
                         case GridType.Standing:
-                            //SomeLongRunningCodeStandings(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
@@ -151,7 +150,6 @@ namespace FootieData.Vsix
                             //}
                             break;
                         case GridType.Result:
-                            //SomeLongRunningCodeFixturePasts(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Result);
@@ -183,7 +181,6 @@ namespace FootieData.Vsix
                             //}
                             break;
                         case GridType.Fixture:
-                            //SomeLongRunningCodeFixtureFutures(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
