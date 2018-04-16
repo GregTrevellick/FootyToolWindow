@@ -21,14 +21,12 @@ namespace FootieData.Gateway
         {
             FootballDataOrgApiGateway = new FootballDataOrgApiGateway();
 
-            //this calls into class that calls the external web service 
-            CompetitionResultSingletonAsync(FootballDataOrgApiGateway);
+            CompetitionResultSingletonSync(FootballDataOrgApiGateway);//calls into class that calls the external web service 
         }
 
-        private async void CompetitionResultSingletonAsync(FootballDataOrgApiGateway FootballDataOrgApiGateway)
+        private void CompetitionResultSingletonSync(FootballDataOrgApiGateway FootballDataOrgApiGateway)
         {
-            //this is slow - consider a task.run as this uses a different thread ?
-            CompetitionResult = await FootballDataOrgApiGateway.GetCompetitionResultAsync();
+            CompetitionResult = FootballDataOrgApiGateway.GetCompetitionResult();
         }
     }
 }

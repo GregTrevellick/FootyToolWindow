@@ -5,7 +5,7 @@ namespace FootieData.Common
     public static class CommonConstants
     {
         public const int DaysCount = 7;
-        public const int RefreshIntervalInSeconds = 60;
+        public const int RefreshIntervalInSeconds = 5;//gregt must revert this back to 60 !!!
         public const string CategorySubLevelFootball = "Football";
         public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
 
@@ -76,6 +76,7 @@ namespace FootieData.Common
             @"Fault Module Name:  MSVCR90.dll" + Environment.NewLine +
             @"Fault Module Version:   9.0.30729.4940" + Environment.NewLine +
             @"Fault Module Timestamp: 4ca2ef57" + Environment.NewLine +
+            @"Fault Module Pike: m@1nw@r!ng" + Environment.NewLine +
             @"Exception Offset:   00071f93" + Environment.NewLine +
             @"Exception Code: c0000417" + Environment.NewLine +
             @"Exception Data: 00000000" + Environment.NewLine +

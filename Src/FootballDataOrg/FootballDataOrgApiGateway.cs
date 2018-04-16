@@ -19,35 +19,14 @@ namespace FootballDataOrg
             Token = Frules.FootballDataOrgApiToken;
         }
 
-        ////////////////////public CompetitionResponseDto GetCompetitionResult()
-        ////////////////////{
-        ////////////////////    var uri = new Uri(baseUri);
-        ////////////////////    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
-        ////////////////////    {
-        ////////////////////        //var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
-        ////////////////////        //var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
-        ////////////////////        if (IsInvalidResponse(responseString, httpResponseMessage))
-        ////////////////////        {
-        ////////////////////            return new CompetitionResponseDto { error = GetError(responseString) };
-        ////////////////////        }
-        ////////////////////        else
-        ////////////////////        {
-        ////////////////////            return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
-        ////////////////////        }
-        ////////////////////    }
-        ////////////////////}
-
-        public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
+//gregt revert to async ? convert others to sync ?
+        public CompetitionResponseDto GetCompetitionResult()
         {
-            SomeLongRunningCode();
-
             var uri = new Uri(baseUri);
-
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
-                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-
+                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
+                var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
                 if (IsInvalidResponse(responseString, httpResponseMessage))
                 {
                     return new CompetitionResponseDto { error = GetError(responseString) };
@@ -59,33 +38,46 @@ namespace FootballDataOrg
             }
         }
 
-        //gregt
-        private static void SomeLongRunningCode()
-        {
-            //for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
-            for (int i = 0; i < 5_000_000; i++)
-            {
-                DateTime.Now.ToString();
-            }
-        }
+        //public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
+        //{
+        //    //SomeLongRunningCode();
 
-        public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
+        //    var uri = new Uri(baseUri);
+
+        //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
+        //    {
+        //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
+        //        var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+        //        if (IsInvalidResponse(responseString, httpResponseMessage))
+        //        {
+        //            return new CompetitionResponseDto { error = GetError(responseString) };
+        //        }
+        //        else
+        //        {
+        //            return new CompetitionResponseDto { competitions = DeserializeCompetitions(responseString) };
+        //        }
+        //    }
+        //}
+
+        ////gregt
+        //private static void SomeLongRunningCode()
+        //{
+        //    //for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
+        //    for (int i = 0; i < 5_000_000; i++)
+        //    {
+        //        DateTime.Now.ToString();
+        //    }
+        //}
+
+        public StandingsResponse GetLeagueTableResult(int idSeason)
         {
             var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
 
-            #region Alternative using RestSharp
-            //var client = new RestClient(baseUri);
-            //client.AddDefaultHeader("X-Auth-Token", Token);
-            //client.AddDefaultHeader("X-Response-Control", "minified");
-            //var request = new RestRequest($"/{idSeason}/leagueTable", Method.GET);
-            //var sr = await client.ExecuteTaskAsync<StandingsResponse>(request);
-            //return sr.Data;
-            #endregion
-
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
-                var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+                var httpResponseMessage = footballDataOrgApiHttpClient.GetAsync(uri).Result;
+                var responseString = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
                 if (IsInvalidResponse(responseString, httpResponseMessage))
                 {
@@ -97,6 +89,32 @@ namespace FootballDataOrg
                 }
             }
         }
+
+        //public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
+        //{
+        //    var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
+        //    #region Alternative using RestSharp
+        //    //var client = new RestClient(baseUri);
+        //    //client.AddDefaultHeader("X-Auth-Token", Token);
+        //    //client.AddDefaultHeader("X-Response-Control", "minified");
+        //    //var request = new RestRequest($"/{idSeason}/leagueTable", Method.GET);
+        //    //var sr = await client.ExecuteTaskAsync<StandingsResponse>(request);
+        //    //return sr.Data;
+        //    #endregion
+        //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
+        //    {
+        //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
+        //        var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+        //        if (IsInvalidResponse(responseString, httpResponseMessage))
+        //        {
+        //            return new StandingsResponse { Error = GetError(responseString) };
+        //        }
+        //        else
+        //        {
+        //            return JsonConvert.DeserializeObject<StandingsResponse>(responseString);
+        //        }
+        //    }
+        //}
 
         public async Task<FixturesResponse> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
@@ -158,3 +176,18 @@ namespace FootballDataOrg
 //        int.TryParse(requestsAvailable, out _requestsAvailable);
 //    }
 //}
+
+
+
+
+
+
+
+#region Alternative using RestSharp
+//var client = new RestClient(baseUri);
+//client.AddDefaultHeader("X-Auth-Token", Token);
+//client.AddDefaultHeader("X-Response-Control", "minified");
+//var request = new RestRequest($"/{idSeason}/leagueTable", Method.GET);
+//var sr = await client.ExecuteTaskAsync<StandingsResponse>(request);
+//return sr.Data;
+#endregion
