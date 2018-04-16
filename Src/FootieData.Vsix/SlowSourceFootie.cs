@@ -19,13 +19,15 @@ namespace FootieData.Vsix
         private int id = 1;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public SlowSourceFootie()
+        //public SlowSourceFootie(IEnumerable<ExternalLeagueCode> externalLeagueCodes)
+        public SlowSourceFootie(ExternalLeagueCode externalLeagueCode)
         {
             SetUpCompRsltSingleton();
 
-            //Add an initial entry to LeagueParents for every league
-            AddTargetLeagueToLeagueParents(ExternalLeagueCode.PL);
-            AddTargetLeagueToLeagueParents(ExternalLeagueCode.PD);
+            //foreach (var externalLeagueCode in externalLeagueCodes)
+            //{
+                  AddTargetLeagueToLeagueParents(externalLeagueCode);
+            //}
         }
 
         private void SetUpCompRsltSingleton()
