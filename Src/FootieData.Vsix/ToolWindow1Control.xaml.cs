@@ -41,18 +41,13 @@ namespace FootieData.Vsix
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
         private static Action<string> UpdateLastUpdatedDate { get; set; }
 
-        //private SlowSourceFootie slowSourceFootie;
-
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
             Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(ToolWindow1Control) + "_ctor");
             InitializeComponent();
-            //slowSourceFootie = new SlowSourceFootie();
-            //this.DataContext = slowSourceFootie;
 
             try
             {
-                //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
                 _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
             }
             catch (Exception)
@@ -68,21 +63,6 @@ namespace FootieData.Vsix
             InitializeStyling();
             PopulateUi(false);
         }
-
-        //private void SomeLongRunningCodeStandings(ExternalLeagueCode externalLeagueCode)
-        //{
-        //    slowSourceFootie.FetchNewDataGeneric(externalLeagueCode, GridType.Standing);
-        //}
-
-        //private void SomeLongRunningCodeFixturePasts(ExternalLeagueCode externalLeagueCode)
-        //{
-        //    slowSourceFootie.FetchNewDataGeneric(externalLeagueCode, GridType.Result);
-        //}
-
-        //private void SomeLongRunningCodeFixtureFutures(ExternalLeagueCode externalLeagueCode)
-        //{
-        //    slowSourceFootie.FetchNewDataGeneric(externalLeagueCode, GridType.Fixture);
-        //}
 
         private void InitializeStyling()
         {
@@ -302,31 +282,6 @@ namespace FootieData.Vsix
             RetainExpandCollapseState(retainExpandCollapseState);
 
             StackPanelLeagueMode.Children.RemoveRange(0, StackPanelLeagueMode.Children.Count);
-
-
-
-            #region fetch new data
-            //var externalLeagueCodesToFetch = new List<ExternalLeagueCode>();
-            //foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
-            //{
-            //    if (leagueOption.ShowLeague)
-            //    {
-            //        foreach (var leagueSubOption in leagueOption.LeagueSubOptions)
-            //        {
-            //            if (leagueSubOption.Expand)
-            //            {
-            //                ExternalLeagueCode externalLeagueCode = 0;
-            //                if (leagueOption.InternalLeagueCode == InternalLeagueCode.UK1) { externalLeagueCode = ExternalLeagueCode.PL; };
-            //                if (leagueOption.InternalLeagueCode == InternalLeagueCode.ES1) { externalLeagueCode = ExternalLeagueCode.PD; };
-            //                externalLeagueCodesToFetch.Add(externalLeagueCode);
-            //            }
-            //         }
-            //    }
-            //}
-            //slowSourceFootie.FetchNewDataGeneric(externalLeagueCodesToFetch, GridType.Standing);
-            #endregion
-
-
 
             foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
             {

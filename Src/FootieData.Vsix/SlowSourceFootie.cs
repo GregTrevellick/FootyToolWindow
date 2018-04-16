@@ -19,18 +19,13 @@ namespace FootieData.Vsix
         private int id = 1;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //public SlowSourceFootie(IEnumerable<ExternalLeagueCode> externalLeagueCodes)
         public SlowSourceFootie(ExternalLeagueCode externalLeagueCode)
         {
-            SetUpCompRsltSingleton();
-
-            //foreach (var externalLeagueCode in externalLeagueCodes)
-            //{
-                  AddTargetLeagueToLeagueParents(externalLeagueCode);
-            //}
+            InitializeCompetitionResultSingletonInstance();
+            AddTargetLeagueToLeagueParents(externalLeagueCode);
         }
 
-        private void SetUpCompRsltSingleton()
+        private void InitializeCompetitionResultSingletonInstance()
         {
             try
             {
@@ -92,7 +87,6 @@ namespace FootieData.Vsix
             }
         }
 
-        //this is re-used for each league, causing confusion
         public ObservableCollection<Standing> Standings
         {
             get
@@ -142,50 +136,46 @@ namespace FootieData.Vsix
         }
 
         public void FetchNewDataGeneric(ExternalLeagueCode externalLeagueCode, GridType gridType)
-        //public void FetchNewDataGeneric(IEnumerable<ExternalLeagueCode> externalLeagueCodes, GridType gridType)
         {
             ThreadPool.QueueUserWorkItem(delegate
             {
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+                //////Thread.Sleep(TimeSpan.FromSeconds(10));
                 string newValue = "Value " + Interlocked.Increment(ref id);
                 Data = newValue;
 
-                //foreach (var externalLeagueCode in externalLeagueCodes)
-                //{
-                    var targetLeague = LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode);//gregt try/catch this?
+                var targetLeague = LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode);//gregt try/catch this?
 
-                    switch (gridType)
-                    {
-                        case GridType.Unknown:
-                            break;
-                        case GridType.Standing:
-                            var iEnumerableStandings = GetStandings(externalLeagueCode);
-                            targetLeague.Standings.Clear();
-                            foreach (var standing in iEnumerableStandings)
-                            {
-                                targetLeague.Standings.Add(standing);
-                            }
-                            break;
-                        case GridType.Result:
-                            var iEnumerableFixturePasts = GetFixturePasts(externalLeagueCode);
-                            targetLeague.FixturePasts.Clear();
-                            foreach (var fixturePast in iEnumerableFixturePasts)
-                            {
-                                targetLeague.FixturePasts.Add(fixturePast);
-                            }
-                            break;
-                        case GridType.Fixture:
-                            var iEnumerableFixtureFutures = GetFixtureFutures(externalLeagueCode);
-                            targetLeague.FixtureFutures.Clear();
-                            foreach (var fixtureFuture in iEnumerableFixtureFutures)
-                            {
-                                targetLeague.FixtureFutures.Add(fixtureFuture);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                //}
+                switch (gridType)
+                {
+                    case GridType.Unknown:
+                        break;
+                    case GridType.Standing:
+                        var iEnumerableStandings = GetStandings(externalLeagueCode);
+                        targetLeague.Standings.Clear();
+                        foreach (var standing in iEnumerableStandings)
+                        {
+                            targetLeague.Standings.Add(standing);
+                        }
+                        break;
+                    case GridType.Result:
+                        var iEnumerableFixturePasts = GetFixturePasts(externalLeagueCode);
+                        targetLeague.FixturePasts.Clear();
+                        foreach (var fixturePast in iEnumerableFixturePasts)
+                        {
+                            targetLeague.FixturePasts.Add(fixturePast);
+                        }
+                        break;
+                    case GridType.Fixture:
+                        var iEnumerableFixtureFutures = GetFixtureFutures(externalLeagueCode);
+                        targetLeague.FixtureFutures.Clear();
+                        foreach (var fixtureFuture in iEnumerableFixtureFutures)
+                        {
+                            targetLeague.FixtureFutures.Add(fixtureFuture);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             });
         }
 
