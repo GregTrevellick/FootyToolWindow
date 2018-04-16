@@ -139,7 +139,7 @@ namespace FootieData.Vsix
         }
         #endregion
 
-        public void FetchNewDataGeneric(ExternalLeagueCode externalLeagueCode, GridType gridType)
+        public void FetchDataFromGateway(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             ThreadPool.QueueUserWorkItem(delegate
             {

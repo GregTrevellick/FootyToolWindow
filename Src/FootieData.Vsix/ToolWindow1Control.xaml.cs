@@ -127,7 +127,7 @@ namespace FootieData.Vsix
                             //SomeLongRunningCodeStandings(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates
                             slowSourceFootie = new SlowSourceFootie(externalLeagueCode);
                             this.DataContext = slowSourceFootie;
-                            slowSourceFootie.FetchNewDataGeneric(externalLeagueCode, GridType.Standing);
+                            slowSourceFootie.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
                             //var standingsList = slowSourceFootie.LeagueParents.FirstOrDefault(x=>x.ExternalLeagueCode == externalLeagueCode)?.Standings.ToList();
                             //if (standingsList?.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             //{
@@ -161,7 +161,7 @@ namespace FootieData.Vsix
                             //SomeLongRunningCodeFixturePasts(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
                             slowSourceFootie = new SlowSourceFootie(externalLeagueCode);
                             this.DataContext = slowSourceFootie;
-                            slowSourceFootie.FetchNewDataGeneric(externalLeagueCode, GridType.Result);
+                            slowSourceFootie.FetchDataFromGateway(externalLeagueCode, GridType.Result);
                             //var resultsList = slowSourceFootie.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixturePasts.ToList();
                             //if (resultsList?.Any())
                             //{
@@ -193,7 +193,7 @@ namespace FootieData.Vsix
                             //SomeLongRunningCodeFixtureFutures(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
                             slowSourceFootie = new SlowSourceFootie(externalLeagueCode);
                             this.DataContext = slowSourceFootie;
-                            slowSourceFootie.FetchNewDataGeneric(externalLeagueCode, GridType.Fixture);
+                            slowSourceFootie.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
                             //var fixturesList = slowSourceFootie.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixtureFutures.ToList();
                             //if (fixturesList?.Any())
                             //{
