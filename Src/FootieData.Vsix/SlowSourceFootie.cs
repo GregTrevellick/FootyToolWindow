@@ -13,10 +13,7 @@ using FootieData.Common;
 namespace FootieData.Vsix
 {
     public class SlowSourceFootie : INotifyPropertyChanged
-    {
-        private CompetitionResultSingleton _competitionResultSingletonInstance;
-        private volatile string _dataValue = "Initial data";
-        private int id = 1;
+    {       
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SlowSourceFootie(ExternalLeagueCode externalLeagueCode)
@@ -32,12 +29,16 @@ namespace FootieData.Vsix
                 //below is done in toolwindow1control.xaml.cs too, but is needed in both places
                 _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
             }
         }
 
+        #region privates
+        private CompetitionResultSingleton _competitionResultSingletonInstance;
+        //private volatile string _dataValue = "Initial data";
+        //private int id = 1;
         private volatile ObservableCollection<LeagueParent> _leagueParentsValue = new AsyncObservableCollection<LeagueParent>();
 
         private volatile ObservableCollection<Standing> _standingsValue = new AsyncObservableCollection<Standing>
@@ -54,22 +55,24 @@ namespace FootieData.Vsix
         {
             new FixtureFuture { HomeName = "Loading..." }
         };
+        #endregion
 
-        public string Data
-        {
-            get
-            {
-                return _dataValue;
-            }
-            set
-            {
-                if (value != _dataValue)
-                {
-                    _dataValue = value;
-                    OnPropertyChanged(nameof(Data));
-                }
-            }
-        }
+        #region getters & setters
+        //public string Data
+        //{
+        //    get
+        //    {
+        //        return _dataValue;
+        //    }
+        //    set
+        //    {
+        //        if (value != _dataValue)
+        //        {
+        //            _dataValue = value;
+        //            OnPropertyChanged(nameof(Data));
+        //        }
+        //    }
+        //}
 
         public ObservableCollection<LeagueParent> LeagueParents
         {
@@ -134,21 +137,20 @@ namespace FootieData.Vsix
                 }
             }
         }
+        #endregion
 
         public void FetchNewDataGeneric(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             ThreadPool.QueueUserWorkItem(delegate
             {
-                //////Thread.Sleep(TimeSpan.FromSeconds(10));
-                string newValue = "Value " + Interlocked.Increment(ref id);
-                Data = newValue;
+                //Thread.Sleep(TimeSpan.FromSeconds(10));
+                //string newValue = "Value " + Interlocked.Increment(ref id);
+                //Data = newValue;
 
                 var targetLeague = LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode);//gregt try/catch this?
 
                 switch (gridType)
                 {
-                    case GridType.Unknown:
-                        break;
                     case GridType.Standing:
                         var iEnumerableStandings = GetStandings(externalLeagueCode);
                         targetLeague.Standings.Clear();
@@ -187,6 +189,7 @@ namespace FootieData.Vsix
             }
         }
 
+        #region gateway gets
         private IEnumerable<Standing> GetStandings(ExternalLeagueCode externalLeagueCode)
         {
             try
@@ -233,6 +236,7 @@ namespace FootieData.Vsix
         {
             return new FootieDataGateway(_competitionResultSingletonInstance);
         }
+        #endregion
 
         private void AddTargetLeagueToLeagueParents(ExternalLeagueCode externalLeagueCode)
         {
@@ -277,102 +281,4 @@ namespace FootieData.Vsix
 
 
 
-
-
-
-//public void FetchNewDataStandings(ExternalLeagueCode externalLeagueCode, GridType gridType)
-//{
-//    ThreadPool.QueueUserWorkItem(delegate
-//    {
-//        Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(FetchNewDataStandings));
-//        Thread.Sleep(TimeSpan.FromSeconds(5));
-//        string newValue = "Value " + Interlocked.Increment(ref id);
-//        Data = newValue;
-//        //try
-//        //{
-//        //    //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
-//        //    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
-//        //}
-//        //catch (Exception)
-//        //{
-//        //    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
-//        //}
-//        var iEnumerableStandings = GetStandings(externalLeagueCode);
-//        IfLeagueParentsNotContainsThisLeagueThenAddIt(externalLeagueCode);
-//        LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode).Standings.Clear();
-//        foreach (var standing in iEnumerableStandings)
-//        {
-//            LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings.Add(standing);
-//        }
-//    });
-//}
-
-//public void FetchNewDataFixturePasts(ExternalLeagueCode externalLeagueCode, GridType gridType)
-//{
-//    ThreadPool.QueueUserWorkItem(delegate
-//    {
-//        Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(FetchNewDataFixturePasts));
-//        Thread.Sleep(TimeSpan.FromSeconds(5));
-//        string newValue = "Value " + Interlocked.Increment(ref id);
-//        Data = newValue;
-//        //try
-//        //{
-//        //    //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
-//        //    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
-//        //}
-//        //catch (Exception)
-//        //{
-//        //    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
-//        //}
-//        var iEnumerableFixturePasts = GetFixturePasts(externalLeagueCode);
-//        IfLeagueParentsNotContainsThisLeagueThenAddIt(externalLeagueCode);
-//        LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts.Clear();
-//        foreach (var fixturePast in iEnumerableFixturePasts)
-//        {
-//            LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts.Add(fixturePast);
-//        }
-//    });
-//}
-
-//public void FetchNewDataFixtureFutures(ExternalLeagueCode externalLeagueCode, GridType gridType)
-//{
-//    ThreadPool.QueueUserWorkItem(delegate
-//    {
-//        Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(FetchNewDataFixtureFutures));
-//        Thread.Sleep(TimeSpan.FromSeconds(5));
-//        string newValue = "Value " + Interlocked.Increment(ref id);
-//        Data = newValue;
-//        //try
-//        //{
-//        //    //expensive (calls the rest api in perhaps a call stack that is non-async) - do on a background thread if possible
-//        //    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
-//        //}
-//        //catch (Exception)
-//        //{
-//        //    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
-//        //}
-//        var iEnumerableFixtureFutures = GetFixtureFutures(externalLeagueCode);
-//        IfLeagueParentsNotContainsThisLeagueThenAddIt(externalLeagueCode);
-//        LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures.Clear();
-//        foreach (var fixtureFuture in iEnumerableFixtureFutures)
-//        {
-//            LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures.Add(fixtureFuture);
-//        }
-//    });
-//}
-
-
-
-
-//                Debug.WriteLine("Get thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(Data));
-
-
-
-
-//LeagueParents.Add(new LeagueParent
-//                {
-//                    ExternalLeagueCode = externalLeagueCode,
-//                    Standings = Standings,/////////////////////////////////////////////////////////////////////////////////////////////_standingsValue,
-//                    FixturePasts = FixturePasts,///////////////////////////////////////////////////////////////////////////////////////_fixturePastsValue,
-//                    FixtureFutures = FixtureFutures,///////////////////////////////////////////////////////////////////////////////////_fixtureFuturesValue,
-//                });
+// Debug.WriteLine("Get thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(Data));
