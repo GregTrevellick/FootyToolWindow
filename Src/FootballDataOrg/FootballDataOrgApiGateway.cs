@@ -60,16 +60,6 @@ namespace FootballDataOrg
         //    }
         //}
 
-        ////gregt
-        //private static void SomeLongRunningCode()
-        //{
-        //    //for (int i = 0; i < 10_000_000; i++)//gregt long running code - circa 12/13 seconds
-        //    for (int i = 0; i < 5_000_000; i++)
-        //    {
-        //        DateTime.Now.ToString();
-        //    }
-        //}
-
         public StandingsResponse GetLeagueTableResult(int idSeason)
         {
             var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
