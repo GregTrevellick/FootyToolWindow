@@ -119,16 +119,16 @@ namespace FootieData.Vsix
             {
                 try
                 {
-                    SlowSourceFootie slowSourceFootie;
+                    ThreadedDataProvider threadedDataProvider;
 
                     switch (gridType)
                     {
                         case GridType.Standing:
                             //SomeLongRunningCodeStandings(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates
-                            slowSourceFootie = new SlowSourceFootie(externalLeagueCode);
-                            this.DataContext = slowSourceFootie;
-                            slowSourceFootie.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
-                            //var standingsList = slowSourceFootie.LeagueParents.FirstOrDefault(x=>x.ExternalLeagueCode == externalLeagueCode)?.Standings.ToList();
+                            threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
+                            this.DataContext = threadedDataProvider;
+                            threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
+                            //var standingsList = threadedDataProvider.LeagueParents.FirstOrDefault(x=>x.ExternalLeagueCode == externalLeagueCode)?.Standings.ToList();
                             //if (standingsList?.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             //{
                             //    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
@@ -143,7 +143,7 @@ namespace FootieData.Vsix
                             //    }
                             //    else
                             //    {
-                            dataGrid.ItemsSource = slowSourceFootie.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings;// ?? (IEnumerable)_nullStandings;
+                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings;// ?? (IEnumerable)_nullStandings;
                             //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
                             var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6, 7, 8, 9};
                             var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16};
@@ -159,10 +159,10 @@ namespace FootieData.Vsix
                             break;
                         case GridType.Result:
                             //SomeLongRunningCodeFixturePasts(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
-                            slowSourceFootie = new SlowSourceFootie(externalLeagueCode);
-                            this.DataContext = slowSourceFootie;
-                            slowSourceFootie.FetchDataFromGateway(externalLeagueCode, GridType.Result);
-                            //var resultsList = slowSourceFootie.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixturePasts.ToList();
+                            threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
+                            this.DataContext = threadedDataProvider;
+                            threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Result);
+                            //var resultsList = threadedDataProvider.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixturePasts.ToList();
                             //if (resultsList?.Any())
                             //{
                             //    if (resultsList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
@@ -179,7 +179,7 @@ namespace FootieData.Vsix
                             //        }
                             //        else
                             //        {
-                            dataGrid.ItemsSource = slowSourceFootie.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts;// ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
+                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts;// ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
                             WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
                             //        }
                             //    }
@@ -191,9 +191,9 @@ namespace FootieData.Vsix
                             break;
                         case GridType.Fixture:
                             //SomeLongRunningCodeFixtureFutures(externalLeagueCode);//this populates an ObservableCollection of Standings on a different thread, which the ui is bound to & auto-updates 
-                            slowSourceFootie = new SlowSourceFootie(externalLeagueCode);
-                            this.DataContext = slowSourceFootie;
-                            slowSourceFootie.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
+                            threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
+                            this.DataContext = threadedDataProvider;
+                            threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
                             //var fixturesList = slowSourceFootie.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixtureFutures.ToList();
                             //if (fixturesList?.Any())
                             //{
@@ -211,7 +211,7 @@ namespace FootieData.Vsix
                             //        }
                             //        else
                             //        {
-                            dataGrid.ItemsSource = slowSourceFootie.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures;// ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
+                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures;// ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
                             WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
                             //        }
                             //    }

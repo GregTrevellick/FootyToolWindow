@@ -12,11 +12,11 @@ using FootieData.Common;
 
 namespace FootieData.Vsix
 {
-    public class SlowSourceFootie : INotifyPropertyChanged
+    public class ThreadedDataProvider : INotifyPropertyChanged
     {       
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public SlowSourceFootie(ExternalLeagueCode externalLeagueCode)
+        public ThreadedDataProvider(ExternalLeagueCode externalLeagueCode)
         {
             InitializeCompetitionResultSingletonInstance();
             AddTargetLeagueToLeagueParents(externalLeagueCode);
