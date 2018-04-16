@@ -146,18 +146,7 @@ namespace FootieData.Vsix
                             //    else
                             //    {
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings;// ?? (IEnumerable)_nullStandings;
-                            
-                            //gregt extract
-                            //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
-                            var primaryColumns = new List<int> {0, 2, 3, 4, 5, 6, 7, 8, 9};
-                            var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16};
-                            var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23};
-                            var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
-                            WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
-                            WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
-                            WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
-                            WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
-                            WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
+                            SetLeagueTableColumnStyling(dataGrid);
                             //    }
                             //}
                             break;
@@ -237,6 +226,22 @@ namespace FootieData.Vsix
                     dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = errorText } };
                 }
             }
+        }
+
+        private void SetLeagueTableColumnStyling(DataGrid dataGrid)
+        {
+            //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
+            var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16 };
+            var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23 };
+
+            var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
+
+            WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
+            WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
+            WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
+            WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
+            WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
         }
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)

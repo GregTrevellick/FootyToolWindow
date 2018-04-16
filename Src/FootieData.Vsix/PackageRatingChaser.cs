@@ -25,6 +25,5 @@ namespace FootieData.Vsix
             var chaseOutcome = chaser.Chase(ratingDetailsDto, extensionDetailsDto);
             return chaseOutcome;
         }
-
     }
 }
