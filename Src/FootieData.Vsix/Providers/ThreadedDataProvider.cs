@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using FootieData.Entities.ReferenceData;
 using FootieData.Common;
 
-namespace FootieData.Vsix
+namespace FootieData.Vsix.Providers
 {
     public class ThreadedDataProvider : INotifyPropertyChanged
     {       

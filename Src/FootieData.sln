@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Vsix.Tests", "Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Entities.Tests", "FootieData.Entities.Tests\FootieData.Entities.Tests.csproj", "{D384E82A-D0FB-4AE3-A215-BE57A4855969}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootieData.Vsix2", "FootieData.Vsix2\FootieData.Vsix2.csproj", "{5CA763AA-D534-41C0-A23D-7EB0E4967CFD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,10 +71,6 @@ Global
 		{D384E82A-D0FB-4AE3-A215-BE57A4855969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D384E82A-D0FB-4AE3-A215-BE57A4855969}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D384E82A-D0FB-4AE3-A215-BE57A4855969}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CA763AA-D534-41C0-A23D-7EB0E4967CFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CA763AA-D534-41C0-A23D-7EB0E4967CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CA763AA-D534-41C0-A23D-7EB0E4967CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CA763AA-D534-41C0-A23D-7EB0E4967CFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

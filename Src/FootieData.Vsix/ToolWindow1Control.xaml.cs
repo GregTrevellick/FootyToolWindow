@@ -3,6 +3,7 @@ using FootieData.Common.Options;
 using FootieData.Entities;
 using FootieData.Entities.ReferenceData;
 using FootieData.Gateway;
+using FootieData.Vsix.Providers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
