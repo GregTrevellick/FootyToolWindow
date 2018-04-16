@@ -40,15 +40,11 @@ namespace FootballDataOrg
 
         //public async Task<CompetitionResponseDto> GetCompetitionResultAsync()
         //{
-        //    //SomeLongRunningCode();
-
         //    var uri = new Uri(baseUri);
-
         //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
         //    {
         //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
         //        var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-
         //        if (IsInvalidResponse(responseString, httpResponseMessage))
         //        {
         //            return new CompetitionResponseDto { error = GetError(responseString) };
@@ -83,14 +79,6 @@ namespace FootballDataOrg
         //public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
         //{
         //    var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
-        //    #region Alternative using RestSharp
-        //    //var client = new RestClient(baseUri);
-        //    //client.AddDefaultHeader("X-Auth-Token", Token);
-        //    //client.AddDefaultHeader("X-Response-Control", "minified");
-        //    //var request = new RestRequest($"/{idSeason}/leagueTable", Method.GET);
-        //    //var sr = await client.ExecuteTaskAsync<StandingsResponse>(request);
-        //    //return sr.Data;
-        //    #endregion
         //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
         //    {
         //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
