@@ -43,6 +43,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LeagueParent.cs" />
     <Compile Include="EntityConstants.cs" />
     <Compile Include="FixturePast.cs" />
     <Compile Include="LeagueCodeMappingsSingleton.cs" />
