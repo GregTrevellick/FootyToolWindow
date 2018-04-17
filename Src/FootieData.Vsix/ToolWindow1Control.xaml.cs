@@ -26,16 +26,13 @@ namespace FootieData.Vsix
 
         private CompetitionResultSingleton _competitionResultSingletonInstance;
         private LeagueDtosSingleton _leagueDtosSingletonInstance;
-
-        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
         private Style _awayStyle;
         private Style _homeStyle;
         private Style _rightAlignStyle;
-        private readonly IEnumerable<NullReturn> _zeroFixturePasts = new List<NullReturn> { new NullReturn { Error = $"No results available for the past {CommonConstants.DaysCount} days" } };
-        private readonly IEnumerable<NullReturn> _zeroFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"No fixtures available for the next {CommonConstants.DaysCount} days" } };
 
-        private const string PoliteRequestLimitReached = "The free request limit has been reached - please w";
-        private const string RequestLimitReached = "You reached your request limit. W";
+        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"League results {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"League fixtures {Unavailable}" } };
         private const string Unavailable = "unavailable at this time - please try again later";
 
         private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
@@ -73,9 +70,11 @@ namespace FootieData.Vsix
             _rightAlignStyle.Setters.Add(rightAlignSetter);
 
             var homeAwayFontColour = Brushes.SlateGray;
+
             _homeStyle = new Style();
             _homeStyle.Setters.Add(rightAlignSetter);
             _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+
             _awayStyle = new Style();
             _awayStyle.Setters.Add(rightAlignSetter);
             _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
@@ -122,94 +121,28 @@ namespace FootieData.Vsix
                 {
                     ThreadedDataProvider threadedDataProvider;
 
-                    //gregt handles commented out code below in threadeddataprovider?
                     switch (gridType)
                     {
                         case GridType.Standing:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
-                            //var standingsList = threadedDataProvider.LeagueParents.FirstOrDefault(x=>x.ExternalLeagueCode == externalLeagueCode)?.Standings.ToList();
-                            //if (standingsList?.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
-                            //{
-                            //    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
-                            //    dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            //}
-                            //else
-                            //{
-                            //    if (standingsList?.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
-                            //    {
-                            //        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
-                            //        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            //    }
-                            //    else
-                            //    {
-                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings;// ?? (IEnumerable)_nullStandings;
+                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings ?? (IEnumerable)_nullStandings;
                             SetLeagueTableColumnStyling(dataGrid);
-                            //    }
-                            //}
                             break;
                         case GridType.Result:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Result);
-                            //var resultsList = threadedDataProvider.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixturePasts.ToList();
-                            //if (resultsList?.Any())
-                            //{
-                            //    if (resultsList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
-                            //    {
-                            //        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
-                            //        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            //    }
-                            //    else
-                            //    {
-                            //        if (resultsList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
-                            //        {
-                            //            dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
-                            //            dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            //        }
-                            //        else
-                            //        {
-                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts;// ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
+                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts ?? (IEnumerable)_nullFixturePasts;
                             WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
-                            //        }
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    dataGrid.ItemsSource = _zeroFixturePasts;
-                            //}
                             break;
                         case GridType.Fixture:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
-                            //var fixturesList = slowSourceFootie.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixtureFutures.ToList();
-                            //if (fixturesList?.Any())
-                            //{
-                            //    if (fixturesList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
-                            //    {
-                            //        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
-                            //        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            //    }
-                            //    else
-                            //    {
-                            //        if (fixturesList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
-                            //        {
-                            //            dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
-                            //            dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            //        }
-                            //        else
-                            //        {
-                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures;// ?? (IEnumerable)_nullStandings;//gregt _nullStandings or something else ?
+                            dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures ?? (IEnumerable)_nullFixtureFutures;
                             WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
-                            //        }
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    dataGrid.ItemsSource = _zeroFixtureFutures;
-                            //}
                             break;
                     }
 
@@ -486,5 +419,122 @@ namespace FootieData.Vsix
 //    catch (Exception)
 //    {
 //        return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
+//    }
+//}
+
+
+
+//private async Task DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
+//{
+//    var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
+
+//    var dataGridEmpty = DataGridHelper.IsDataGridEmpty(dataGrid);
+
+//    if (dataGridEmpty)
+//    {
+//        try
+//        {
+//            ThreadedDataProvider threadedDataProvider;
+
+//            //gregt handles commented out code below in threadeddataprovider?
+//            switch (gridType)
+//            {
+//                case GridType.Standing:
+//                    threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
+//                    this.DataContext = threadedDataProvider;
+//                    threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
+//                    ////////////////////////////////////var standingsList = threadedDataProvider.LeagueParents.FirstOrDefault(x=>x.ExternalLeagueCode == externalLeagueCode)?.Standings.ToList();
+//                    ////////////////////////////////////if (standingsList?.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
+//                    ////////////////////////////////////{
+//                    ////////////////////////////////////    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+//                    ////////////////////////////////////    dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+//                    ////////////////////////////////////}
+//                    ////////////////////////////////////else
+//                    ////////////////////////////////////{
+//                    ////////////////////////////////////    if (standingsList?.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
+//                    ////////////////////////////////////    {
+//                    ////////////////////////////////////        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
+//                    ////////////////////////////////////        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+//                    ////////////////////////////////////    }
+//                    ////////////////////////////////////    else
+//                    ////////////////////////////////////    {
+//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings ?? (IEnumerable)_nullStandings;
+//                    SetLeagueTableColumnStyling(dataGrid);
+//                    ////////////////////////////////////    }
+//                    ////////////////////////////////////}
+//                    break;
+//                case GridType.Result:
+//                    threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
+//                    this.DataContext = threadedDataProvider;
+//                    threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Result);
+//                    ////////////////////////////////////var resultsList = threadedDataProvider.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixturePasts.ToList();
+//                    ////////////////////////////////////if (resultsList?.Any())
+//                    ////////////////////////////////////{
+//                    ////////////////////////////////////    if (resultsList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
+//                    ////////////////////////////////////    {
+//                    ////////////////////////////////////        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+//                    ////////////////////////////////////        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+//                    ////////////////////////////////////    }
+//                    ////////////////////////////////////    else
+//                    ////////////////////////////////////    {
+//                    ////////////////////////////////////        if (resultsList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+//                    ////////////////////////////////////        {
+//                    ////////////////////////////////////            dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
+//                    ////////////////////////////////////            dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+//                    ////////////////////////////////////        }
+//                    ////////////////////////////////////        else
+//                    ////////////////////////////////////        {
+//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts ?? (IEnumerable)_nullStandings;//gregt _nullStandings or _nullSomethingElse
+//                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+//                    ////////////////////////////////////        }
+//                    ////////////////////////////////////    }
+//                    ////////////////////////////////////}
+//                    ////////////////////////////////////else
+//                    ////////////////////////////////////{
+//                    ////////////////////////////////////    dataGrid.ItemsSource = _zeroFixturePasts;
+//                    ////////////////////////////////////}
+//                    break;
+//                case GridType.Fixture:
+//                    threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
+//                    this.DataContext = threadedDataProvider;
+//                    threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
+//                    ////////////////////////////////////var fixturesList = slowSourceFootie.LeagueParents.FirstOrDefault(x => x.ExternalLeagueCode == externalLeagueCode)?.FixtureFutures.ToList();
+//                    ////////////////////////////////////if (fixturesList?.Any())
+//                    ////////////////////////////////////{
+//                    ////////////////////////////////////    if (fixturesList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
+//                    ////////////////////////////////////    {
+//                    ////////////////////////////////////        dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached) } };
+//                    ////////////////////////////////////        dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+//                    ////////////////////////////////////    }
+//                    ////////////////////////////////////    else
+//                    ////////////////////////////////////    {
+//                    ////////////////////////////////////        if (fixturesList?.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+//                    ////////////////////////////////////        {
+//                    ////////////////////////////////////            dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = EntityConstants.PotentialTimeout } };
+//                    ////////////////////////////////////            dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+//                    ////////////////////////////////////        }
+//                    ////////////////////////////////////        else
+//                    ////////////////////////////////////        {
+//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures ?? (IEnumerable)_nullStandings;//gregt _nullStandings or _nullSomethingElse
+//                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+//                    //////////////////////////////////        }
+//                    //////////////////////////////////    }
+//                    //////////////////////////////////}
+//                    //////////////////////////////////else
+//                    //////////////////////////////////{
+//                    //////////////////////////////////    dataGrid.ItemsSource = _zeroFixtureFutures;
+//                    //////////////////////////////////}
+//                    break;
+//            }
+
+//            DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
+//            UpdateLastUpdatedDate(null);
+//        }
+//        catch (Exception ex)
+//        {
+//            var errorText = $"Internal error loading data ERR0542 {internalLeagueCode} {gridType}";
+//            Logger.Log($"{errorText} {ex.Message}");
+//            dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = errorText } };
+//        }
 //    }
 //}

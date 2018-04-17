@@ -15,6 +15,10 @@ namespace FootieData.Vsix.Providers
     public class ThreadedDataProvider : INotifyPropertyChanged
     {       
         public event PropertyChangedEventHandler PropertyChanged;
+        private readonly string _zeroFixturePasts = $"No results available for the past {CommonConstants.DaysCount} days";
+        private readonly string _zeroFixtureFutures = $"No fixtures available for the next {CommonConstants.DaysCount} days";
+        private const string PoliteRequestLimitReached = "The free request limit has been reached - please w";
+        private const string RequestLimitReached = "You reached your request limit. W";
 
         public ThreadedDataProvider(ExternalLeagueCode externalLeagueCode)
         {
@@ -154,25 +158,93 @@ namespace FootieData.Vsix.Providers
                     case GridType.Standing:
                         var iEnumerableStandings = GetStandings(externalLeagueCode);
                         targetLeague.Standings.Clear();
-                        foreach (var standing in iEnumerableStandings)
+                        var standingsList = iEnumerableStandings.ToList();
+                        if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                         {
-                            targetLeague.Standings.Add(standing);
+                            //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                            var politeRequestLimitReached = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached);
+                            targetLeague.Standings.Add(new Standing { Team = politeRequestLimitReached });
+                        }
+                        else
+                        {
+                            if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
+                            {
+                                //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                targetLeague.Standings.Add(new Standing { Team = EntityConstants.PotentialTimeout });
+                            }
+                            else
+                            {
+                                foreach (var standing in iEnumerableStandings)
+                                {
+                                    targetLeague.Standings.Add(standing);
+                                }
+                            }
                         }
                         break;
                     case GridType.Result:
                         var iEnumerableFixturePasts = GetFixturePasts(externalLeagueCode);
                         targetLeague.FixturePasts.Clear();
-                        foreach (var fixturePast in iEnumerableFixturePasts)
+                        var resultsList = iEnumerableFixturePasts.ToList();
+                        if (resultsList.Any())
                         {
-                            targetLeague.FixturePasts.Add(fixturePast);
+                            if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
+                            {
+                                //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                var politeRequestLimitReached = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached);
+                                targetLeague.FixturePasts.Add(new FixturePast { HomeName = politeRequestLimitReached });
+                            }
+                            else
+                            {
+                                if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+                                {
+                                    //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                    targetLeague.FixturePasts.Add(new FixturePast { HomeName = EntityConstants.PotentialTimeout });
+                                }
+                                else
+                                {
+                                    foreach (var fixturePast in iEnumerableFixturePasts)
+                                    {
+                                        targetLeague.FixturePasts.Add(fixturePast);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            targetLeague.FixturePasts.Add(new FixturePast { HomeName = _zeroFixturePasts });
                         }
                         break;
                     case GridType.Fixture:
                         var iEnumerableFixtureFutures = GetFixtureFutures(externalLeagueCode);
                         targetLeague.FixtureFutures.Clear();
-                        foreach (var fixtureFuture in iEnumerableFixtureFutures)
+                        var fixturesList = iEnumerableFixtureFutures.ToList();
+                        if (fixturesList.Any())
                         {
-                            targetLeague.FixtureFutures.Add(fixtureFuture);
+                            if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
+                            {
+                                //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                var politeRequestLimitReached = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached);
+                                targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = politeRequestLimitReached });
+                            }
+                            else
+                            {
+                                if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+                                {
+                                    //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                                    targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = EntityConstants.PotentialTimeout });
+                                }
+                                else
+                                {
+                                    foreach (var fixtureFuture in iEnumerableFixtureFutures)
+                                    {
+                                        targetLeague.FixtureFutures.Add(fixtureFuture);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = _zeroFixtureFutures });
                         }
                         break;
                     default:
