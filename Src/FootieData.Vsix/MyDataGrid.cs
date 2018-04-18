@@ -37,24 +37,25 @@ namespace FootieData.Vsix
             }
         }
 
-        // Be warned that the `Loaded` event runs anytime the window loads into view, so you
-        // will probably want to include an Unloaded event that detaches the collection
-
         protected override void OnLoadingRow(DataGridRowEventArgs e)
         {
             base.OnLoadingRow(e);
-            var standing = (Standing)e.Row.Item;
-            if (standing.Team.Contains("Man"))
+            var standing = (Standing)e.Row.Item;//gregt replace Standing with a try/catch or similar
+            if (standing.Team.Contains("Chelsea"))//gregt replace .Team with .NewErrorText
             {
-                var _hideStyle = new Style();
-                //_hideStyle.Setters.Add(new Setter(MaxWidthProperty, 0m));
-                var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#b53939"));
-                _hideStyle.Setters.Add(new Setter(BackgroundProperty, color));
+                var _hideHeaderStyle = new Style();
+                _hideHeaderStyle.Setters.Add(new Setter(HeadersVisibilityProperty, DataGridHeadersVisibility.None));//"None"));
+
+                var _hideCellStyle = new Style();
+                var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#728769"));
+                _hideCellStyle.Setters.Add(new Setter(BackgroundProperty, color));//gregt replace green background with hiding of the columns (except for the NewErrorText column)
+                //_hideCellStyle.Setters.Add(new Setter(MaxWidthProperty, (double)0));
+                //_hideCellStyle.Setters.Add(new Setter(ColumnWidthProperty, (double)0)); 
+
                 foreach (var item in this.Columns)
                 {
-                    item.HeaderStyle = _hideStyle;
-                    item.CellStyle = _hideStyle;
-                    //dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                    item.HeaderStyle = _hideHeaderStyle;
+                    item.CellStyle = _hideCellStyle;
                 }
             }
         }
