@@ -17,7 +17,6 @@ namespace FootieData.Vsix.Providers
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly string _zeroFixturePasts = $"No results available for the past {CommonConstants.DaysCount} days";
         private readonly string _zeroFixtureFutures = $"No fixtures available for the next {CommonConstants.DaysCount} days";
-        private const string PoliteRequestLimitReached = "The free request limit has been reached - please w";
         private const string RequestLimitReached = "You reached your request limit. W";
 
         public ThreadedDataProvider(ExternalLeagueCode externalLeagueCode)
@@ -161,15 +160,13 @@ namespace FootieData.Vsix.Providers
                         var standingsList = iEnumerableStandings.ToList();
                         if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                         {
-                            //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                            var politeRequestLimitReached = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, PoliteRequestLimitReached);
-                            targetLeague.Standings.Add(new Standing { Team = politeRequestLimitReached });
+                            var politeRequestLimitReached = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
+                            targetLeague.Standings.Add(new Standing { Team = EntityConstants.PoliteRequestLimitReached });
                         }
                         else
                         {
                             if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
                             {
-                                //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                                 targetLeague.Standings.Add(new Standing { Team = EntityConstants.PotentialTimeout });
                             }
                             else
@@ -189,15 +186,13 @@ namespace FootieData.Vsix.Providers
                         {
                             if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                             {
-                                //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                                var politeRequestLimitReached = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached);
-                                targetLeague.FixturePasts.Add(new FixturePast { HomeName = politeRequestLimitReached });
+                                var politeRequestLimitReached = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
+                                targetLeague.FixturePasts.Add(new FixturePast { HomeName = EntityConstants.PoliteRequestLimitReached });
                             }
                             else
                             {
                                 if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
                                 {
-                                    //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                                     targetLeague.FixturePasts.Add(new FixturePast { HomeName = EntityConstants.PotentialTimeout });
                                 }
                                 else
@@ -222,15 +217,13 @@ namespace FootieData.Vsix.Providers
                         {
                             if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                             {
-                                //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
-                                var politeRequestLimitReached = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, PoliteRequestLimitReached);
-                                targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = politeRequestLimitReached });
+                                var politeRequestLimitReached = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
+                                targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = EntityConstants.PoliteRequestLimitReached });
                             }
                             else
                             {
                                 if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
                                 {
-                                    //gregt dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
                                     targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = EntityConstants.PotentialTimeout });
                                 }
                                 else
@@ -272,7 +265,7 @@ namespace FootieData.Vsix.Providers
             }
             catch (Exception ex)
             {
-                return new List<Standing> { new Standing { Team = "GetStandings internal error" } };
+                return new List<Standing> { new Standing { Team = nameof(GetStandings) + " internal error" } };
             }
         }
 
@@ -286,7 +279,7 @@ namespace FootieData.Vsix.Providers
             }
             catch (Exception ex)
             {
-                return new List<FixturePast> { new FixturePast { HomeName = "GetFixturePasts internal error" } };
+                return new List<FixturePast> { new FixturePast { HomeName = nameof(GetFixturePasts) + " internal error" } };
             }
         }
 
@@ -300,7 +293,7 @@ namespace FootieData.Vsix.Providers
             }
             catch (Exception ex)
             {
-                return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixtureFutures internal error" } };
+                return new List<FixtureFuture> { new FixtureFuture { HomeName = nameof(GetFixtureFutures) + " internal error" } };
             }
         }
 

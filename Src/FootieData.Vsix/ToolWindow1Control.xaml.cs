@@ -128,21 +128,21 @@ namespace FootieData.Vsix
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings ?? (IEnumerable)_nullStandings;
-                            SetLeagueTableColumnStyling(dataGrid);
+                            SetColumnStylingStandings(dataGrid);
                             break;
                         case GridType.Result:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Result);
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts ?? (IEnumerable)_nullFixturePasts;
-                            WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+                            SetColumnStylingFixturePasts(dataGrid);
                             break;
                         case GridType.Fixture:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures ?? (IEnumerable)_nullFixtureFutures;
-                            WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+                            SetColumnStylingFixtureFutures(dataGrid);
                             break;
                     }
 
@@ -158,9 +158,9 @@ namespace FootieData.Vsix
             }
         }
 
-        private void SetLeagueTableColumnStyling(DataGrid dataGrid)
+        private void SetColumnStylingStandings(DataGrid dataGrid)
         {
-            //Yes these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
+            //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
             var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
             var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16 };
             var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23 };
@@ -172,6 +172,16 @@ namespace FootieData.Vsix
             WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
             WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
             WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
+        }
+
+        private void SetColumnStylingFixturePasts(DataGrid dataGrid)
+        {
+            WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+        }
+
+        private void SetColumnStylingFixtureFutures(DataGrid dataGrid)
+        {
+            WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
         }
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootieData.Entities;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -33,6 +34,28 @@ namespace FootieData.Vsix
             catch (Exception)
             {
                 Logger.Log("No data grid column heading found");
+            }
+        }
+
+        // Be warned that the `Loaded` event runs anytime the window loads into view, so you
+        // will probably want to include an Unloaded event that detaches the collection
+
+        protected override void OnLoadingRow(DataGridRowEventArgs e)
+        {
+            base.OnLoadingRow(e);
+            var standing = (Standing)e.Row.Item;
+            if (standing.Team.Contains("Man"))
+            {
+                var _hideStyle = new Style();
+                //_hideStyle.Setters.Add(new Setter(MaxWidthProperty, 0m));
+                var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#b53939"));
+                _hideStyle.Setters.Add(new Setter(BackgroundProperty, color));
+                foreach (var item in this.Columns)
+                {
+                    item.HeaderStyle = _hideStyle;
+                    item.CellStyle = _hideStyle;
+                    //dataGrid.HeadersVisibility = DataGridHeadersVisibility.None;
+                }
             }
         }
     }
