@@ -15,8 +15,8 @@ namespace FootieData.Vsix.Providers
     public class ThreadedDataProvider : INotifyPropertyChanged
     {       
         public event PropertyChangedEventHandler PropertyChanged;
-        private readonly string _zeroFixturePasts = $"No results available for the past {CommonConstants.DaysCount} days";//gregt move to EntityConstants
-        private readonly string _zeroFixtureFutures = $"No fixtures available for the next {CommonConstants.DaysCount} days";//gregt move to EntityConstants
+        private readonly string _zeroFixturePasts = $"No results available for the past {CommonConstants.DaysCount} days";//TODO move to EntityConstants
+        private readonly string _zeroFixtureFutures = $"No fixtures available for the next {CommonConstants.DaysCount} days";//TODO move to EntityConstants
         private const string RequestLimitReached = "You reached your request limit. W";
 
         public ThreadedDataProvider(ExternalLeagueCode externalLeagueCode)

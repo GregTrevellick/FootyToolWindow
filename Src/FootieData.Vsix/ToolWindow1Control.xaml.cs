@@ -444,7 +444,6 @@ namespace FootieData.Vsix
 //        {
 //            ThreadedDataProvider threadedDataProvider;
 
-//            //gregt handles commented out code below in threadeddataprovider?
 //            switch (gridType)
 //            {
 //                case GridType.Standing:
@@ -492,7 +491,7 @@ namespace FootieData.Vsix
 //                    ////////////////////////////////////        }
 //                    ////////////////////////////////////        else
 //                    ////////////////////////////////////        {
-//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts ?? (IEnumerable)_nullStandings;//gregt _nullStandings or _nullSomethingElse
+//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts ?? (IEnumerable)_nullStandings;
 //                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
 //                    ////////////////////////////////////        }
 //                    ////////////////////////////////////    }
@@ -523,7 +522,7 @@ namespace FootieData.Vsix
 //                    ////////////////////////////////////        }
 //                    ////////////////////////////////////        else
 //                    ////////////////////////////////////        {
-//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures ?? (IEnumerable)_nullStandings;//gregt _nullStandings or _nullSomethingElse
+//                    dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures ?? (IEnumerable)_nullStandings;
 //                    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
 //                    //////////////////////////////////        }
 //                    //////////////////////////////////    }
