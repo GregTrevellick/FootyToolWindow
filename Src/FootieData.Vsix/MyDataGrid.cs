@@ -40,17 +40,27 @@ namespace FootieData.Vsix
         protected override void OnLoadingRow(DataGridRowEventArgs e)
         {
             base.OnLoadingRow(e);
+
             var standing = (Standing)e.Row.Item;//gregt replace Standing with a try/catch or similar
+
             if (standing.Team.Contains("Chelsea"))//gregt replace .Team with .NewErrorText
             {
+                
+                // HIDE IT !
+
                 var _hideHeaderStyle = new Style();
-                _hideHeaderStyle.Setters.Add(new Setter(HeadersVisibilityProperty, DataGridHeadersVisibility.None));//"None"));
+                var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#a75ced"));
+                _hideHeaderStyle.Setters.Add(new Setter(BackgroundProperty, color));
+                //_hideHeaderStyle.Setters.Add(new Setter(HeadersVisibilityProperty, DataGridHeadersVisibility.None));//"None"));
 
                 var _hideCellStyle = new Style();
-                var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#728769"));
+                color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#728769"));
                 _hideCellStyle.Setters.Add(new Setter(BackgroundProperty, color));//gregt replace green background with hiding of the columns (except for the NewErrorText column)
                 //_hideCellStyle.Setters.Add(new Setter(MaxWidthProperty, (double)0));
                 //_hideCellStyle.Setters.Add(new Setter(ColumnWidthProperty, (double)0)); 
+                
+                ////////////////DataGridRow row = e.Row as DataGridRow;
+                ////////////////row.Visibility == Visibility.Collapsed;
 
                 foreach (var item in this.Columns)
                 {
