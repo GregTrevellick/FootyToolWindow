@@ -15,8 +15,8 @@ namespace FootieData.Vsix.Providers
     public class ThreadedDataProvider : INotifyPropertyChanged
     {       
         public event PropertyChangedEventHandler PropertyChanged;
-        private readonly string _zeroFixturePasts = $"No results available for the past {CommonConstants.DaysCount} days";
-        private readonly string _zeroFixtureFutures = $"No fixtures available for the next {CommonConstants.DaysCount} days";
+        private readonly string _zeroFixturePasts = $"No results available for the past {CommonConstants.DaysCount} days";//gregt move to EntityConstants
+        private readonly string _zeroFixtureFutures = $"No fixtures available for the next {CommonConstants.DaysCount} days";//gregt move to EntityConstants
         private const string RequestLimitReached = "You reached your request limit. W";
 
         public ThreadedDataProvider(ExternalLeagueCode externalLeagueCode)
@@ -161,13 +161,13 @@ namespace FootieData.Vsix.Providers
                         if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                         {
                             var politeRequestLimitReached = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
-                            targetLeague.Standings.Add(new Standing { Team = EntityConstants.PoliteRequestLimitReached });
+                            targetLeague.Standings.Add(new Standing { PoliteError = EntityConstants.PoliteRequestLimitReached });
                         }
                         else
                         {
                             if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
                             {
-                                targetLeague.Standings.Add(new Standing { Team = EntityConstants.PotentialTimeout });
+                                targetLeague.Standings.Add(new Standing { PoliteError = EntityConstants.PotentialTimeout });
                             }
                             else
                             {
@@ -187,13 +187,13 @@ namespace FootieData.Vsix.Providers
                             if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                             {
                                 var politeRequestLimitReached = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
-                                targetLeague.FixturePasts.Add(new FixturePast { HomeName = EntityConstants.PoliteRequestLimitReached });
+                                targetLeague.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.PoliteRequestLimitReached });
                             }
                             else
                             {
                                 if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
                                 {
-                                    targetLeague.FixturePasts.Add(new FixturePast { HomeName = EntityConstants.PotentialTimeout });
+                                    targetLeague.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.PotentialTimeout });
                                 }
                                 else
                                 {
@@ -206,7 +206,7 @@ namespace FootieData.Vsix.Providers
                         }
                         else
                         {
-                            targetLeague.FixturePasts.Add(new FixturePast { HomeName = _zeroFixturePasts });
+                            targetLeague.FixturePasts.Add(new FixturePast { PoliteError = _zeroFixturePasts });
                         }
                         break;
                     case GridType.Fixture:
@@ -218,13 +218,13 @@ namespace FootieData.Vsix.Providers
                             if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                             {
                                 var politeRequestLimitReached = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
-                                targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = EntityConstants.PoliteRequestLimitReached });
+                                targetLeague.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.PoliteRequestLimitReached });
                             }
                             else
                             {
                                 if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
                                 {
-                                    targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = EntityConstants.PotentialTimeout });
+                                    targetLeague.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.PotentialTimeout });
                                 }
                                 else
                                 {
@@ -237,7 +237,7 @@ namespace FootieData.Vsix.Providers
                         }
                         else
                         {
-                            targetLeague.FixtureFutures.Add(new FixtureFuture { HomeName = _zeroFixtureFutures });
+                            targetLeague.FixtureFutures.Add(new FixtureFuture { PoliteError = _zeroFixtureFutures });
                         }
                         break;
                     default:

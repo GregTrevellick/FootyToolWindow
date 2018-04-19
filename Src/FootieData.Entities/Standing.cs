@@ -2,7 +2,7 @@
 
 namespace FootieData.Entities
 {
-    public class Standing
+    public class Standing : EntityBase
     {
         //DO NOT RE-ORDER: this is the UI order
 

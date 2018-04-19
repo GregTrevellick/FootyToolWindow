@@ -30,9 +30,9 @@ namespace FootieData.Vsix
         private Style _homeStyle;
         private Style _rightAlignStyle;
 
-        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { Error = $"League table {Unavailable}" } };
-        private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { Error = $"League results {Unavailable}" } };
-        private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { Error = $"League fixtures {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { PoliteError = $"League table {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { PoliteError = $"League results {Unavailable}" } };
+        private readonly IEnumerable<NullReturn> _nullFixtureFutures = new List<NullReturn> { new NullReturn { PoliteError = $"League fixtures {Unavailable}" } };
         private const string Unavailable = "unavailable at this time - please try again later";
 
         private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
@@ -153,7 +153,7 @@ namespace FootieData.Vsix
                 {
                     var errorText = $"Internal error loading data ERR0542 {internalLeagueCode} {gridType}";
                     Logger.Log($"{errorText} {ex.Message}");
-                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { Error = errorText } };
+                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { PoliteError = errorText } };
                 }
             }
         }

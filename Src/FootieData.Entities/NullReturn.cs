@@ -1,10 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace FootieData.Entities
+﻿namespace FootieData.Entities
 {
-    public class NullReturn
+    public class NullReturn : EntityBase
     {
-        [Description("")]
-        public string Error { get; set; }
     }
 }

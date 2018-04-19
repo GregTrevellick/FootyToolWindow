@@ -10,13 +10,13 @@ namespace FootieData.Vsix
     {
         public MyDataGrid()
         {
-            var color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#F8F8F8"));//("#F2F2F2"));//("#FFFFF0"));
+            var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F8F8F8"));//("#F2F2F2"));//("#FFFFF0"));
             AlternatingRowBackground = color;
             ColumnHeaderHeight = 24;
             RowHeaderWidth = 0;
             CanUserAddRows = false;
             GridLinesVisibility = DataGridGridLinesVisibility.None;
-        }      
+        }
 
         protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -41,17 +41,32 @@ namespace FootieData.Vsix
         {
             base.OnLoadingRow(e);
 
-            var standing = (Standing)e.Row.Item;//gregt replace Standing with a try/catch or similar
+            var entityBase = (EntityBase)e.Row.Item;
 
-            if (standing.Team.Contains("Chelsea"))//gregt replace .Team with .NewErrorText
+            var hidePoliteError = string.IsNullOrEmpty(entityBase.PoliteError);
+
+            foreach (var item in this.Columns)
             {
-                foreach (var item in this.Columns)
+                var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
+
+                var visibility = Visibility.Hidden;
+
+                if (isPoliteErrorColumn)
                 {
-                    if (item.SortMemberPath == "Team")//gregt replace .Team with .NewErrorText
+                    if (!hidePoliteError)
                     {
-                        item.Visibility = Visibility.Hidden;
+                        visibility = Visibility.Visible;
                     }
                 }
+                else
+                {
+                    if (hidePoliteError)
+                    {
+                        visibility = Visibility.Visible;
+                    }
+                }
+
+                item.Visibility = visibility;
             }
         }
     }
@@ -81,7 +96,6 @@ namespace FootieData.Vsix
 ////////////////////////////////////////////_hideCellStyle.Setters.Add(new Setter(CellStyleProperty, Visibility.Collapsed));
 //////////////////////////////////////////_hideCellStyle = CellStyle;
 
-
 //////////////////////////////////////////https://stackoverflow.com/questions/39725214/datagrid-cell-styling-with-dynamic-generating-column?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
 //////////////////////////////////////////DataGridRow row = e.Row as DataGridRow;
@@ -89,15 +103,12 @@ namespace FootieData.Vsix
 
 ////////////////////////////////////////item.CellStyle = _hideCellStyle;
 
-
 //var _hideHeaderStyle = new Style();
 //var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#a75ced"));
 //_hideHeaderStyle.Setters.Add(new Setter(BackgroundProperty, color));
 //                //_hideHeaderStyle.Setters.Add(new Setter(HeadersVisibilityProperty, DataGridHeadersVisibility.None));//"None"));
 
-
-
 //var _hideCellStyle = new Style();
 //color = new SolidColorBrush((Color) ColorConverter.ConvertFromString("#728769"));
-//                _hideCellStyle.Setters.Add(new Setter(BackgroundProperty, color));//gregt replace green background with hiding of the columns (except for the NewErrorText column)
+//                _hideCellStyle.Setters.Add(new Setter(BackgroundProperty, color));//replace green background with hiding of the columns (except for the NewErrorText column)
 /////item.HeaderStyle = _hideHeaderStyle;

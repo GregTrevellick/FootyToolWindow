@@ -2,7 +2,7 @@
 
 namespace FootieData.Entities
 {
-    public class FixtureFuture
+    public class FixtureFuture : EntityBase
     {
         [Description("Date")]
         public string Date { get; set; }
