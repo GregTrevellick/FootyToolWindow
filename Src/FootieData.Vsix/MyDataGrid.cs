@@ -12,10 +12,10 @@ namespace FootieData.Vsix
         {
             var color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F8F8F8"));//("#F2F2F2"));//("#FFFFF0"));
             AlternatingRowBackground = color;
-            ColumnHeaderHeight = 24;
-            RowHeaderWidth = 0;
             CanUserAddRows = false;
+            ColumnHeaderHeight = 24;
             GridLinesVisibility = DataGridGridLinesVisibility.None;
+            RowHeaderWidth = 0;
         }
 
         protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)
@@ -42,13 +42,11 @@ namespace FootieData.Vsix
             base.OnLoadingRow(e);
 
             var entityBase = (EntityBase)e.Row.Item;
-
             var hidePoliteError = string.IsNullOrEmpty(entityBase.PoliteError);
 
             foreach (var item in this.Columns)
             {
                 var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
-
                 var visibility = Visibility.Hidden;
 
                 if (isPoliteErrorColumn)

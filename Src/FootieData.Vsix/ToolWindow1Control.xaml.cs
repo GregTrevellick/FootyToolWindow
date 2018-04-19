@@ -41,7 +41,7 @@ namespace FootieData.Vsix
 
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
-            Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(ToolWindow1Control) + "_ctor");
+            //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(ToolWindow1Control) + "_ctor");
             InitializeComponent();
 
             try
@@ -186,6 +186,7 @@ namespace FootieData.Vsix
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
+            //gregt sort alpha
             TextBlockBossMode.Text = CommonConstants.TheBossIsCommingText;
             BtnLeagueMode.Visibility = Visibility.Collapsed;
             StackPanelLeagueMode.Visibility = Visibility.Collapsed;
@@ -197,6 +198,7 @@ namespace FootieData.Vsix
 
         private void Click_HandlerReturn(object sender, RoutedEventArgs e)
         {
+            //gregt sort alpha
             BtnLeagueMode.Visibility = Visibility.Visible;
             StackPanelLeagueMode.Visibility = Visibility.Visible;
             BtnBossMode.Visibility = Visibility.Collapsed;
@@ -227,9 +229,7 @@ namespace FootieData.Vsix
         private void PopulateUi(bool retainExpandCollapseState)
         {
             GetOptionsFromStoreAndMapToInternalFormatMethod(null);
-
             RetainExpandCollapseState(retainExpandCollapseState);
-
             StackPanelLeagueMode.Children.RemoveRange(0, StackPanelLeagueMode.Children.Count);
 
             foreach (var leagueOption in LeagueGeneralOptions.LeagueOptions)
