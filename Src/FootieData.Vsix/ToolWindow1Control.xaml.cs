@@ -186,24 +186,22 @@ namespace FootieData.Vsix
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
-            //gregt sort alpha
-            TextBlockBossMode.Text = CommonConstants.TheBossIsCommingText;
-            BtnLeagueMode.Visibility = Visibility.Collapsed;
-            StackPanelLeagueMode.Visibility = Visibility.Collapsed;
             BtnBossMode.Visibility = Visibility.Visible;
+            BtnLeagueMode.Visibility = Visibility.Collapsed;
             StackPanelBossMode.Visibility = Visibility.Visible;
+            StackPanelLeagueMode.Visibility = Visibility.Collapsed;
+            TextBlockBossMode.Text = CommonConstants.TheBossIsCommingText;
             BtnRefresh.IsEnabled = false;
             BossModeEventHandler?.Invoke();
         }
 
         private void Click_HandlerReturn(object sender, RoutedEventArgs e)
         {
-            //gregt sort alpha
-            BtnLeagueMode.Visibility = Visibility.Visible;
-            StackPanelLeagueMode.Visibility = Visibility.Visible;
             BtnBossMode.Visibility = Visibility.Collapsed;
-            StackPanelBossMode.Visibility = Visibility.Collapsed;
+            BtnLeagueMode.Visibility = Visibility.Visible;
             BtnRefresh.IsEnabled = true;
+            StackPanelBossMode.Visibility = Visibility.Collapsed;
+            StackPanelLeagueMode.Visibility = Visibility.Visible;
             LeagueModeEventHandler?.Invoke();
         }
 

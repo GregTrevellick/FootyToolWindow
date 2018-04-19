@@ -58,12 +58,12 @@ namespace FootieData.Vsix
 
         protected override async Task<object> InitializeToolWindowAsync(Type toolWindowType, int id, CancellationToken cancellationToken)
         {
-            ////////potentially expensive work, preferably done on a background thread where possible. gregt
-            ////////await Task.Delay(500, cancellationToken);
+            //potentially expensive work, preferably done on a background thread where possible
+            //await Task.Delay(500, cancellationToken);
             return ToolWindowCreationContext.Unspecified;
         }
 
-        ////gregt - never hit ? it ought to be !  
+        //gregt - never hit ? it ought to be ?
         //protected override string GetToolWindowTitle(Type toolWindowType, int id)
         //{
         //    if (toolWindowType == typeof(VsixToolWindowPane))
