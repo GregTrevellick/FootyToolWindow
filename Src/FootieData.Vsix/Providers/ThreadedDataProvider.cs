@@ -60,23 +60,7 @@ namespace FootieData.Vsix.Providers
         };
         #endregion
 
-        #region getters & setters
-        //public string Data
-        //{
-        //    get
-        //    {
-        //        return _dataValue;
-        //    }
-        //    set
-        //    {
-        //        if (value != _dataValue)
-        //        {
-        //            _dataValue = value;
-        //            OnPropertyChanged(nameof(Data));
-        //        }
-        //    }
-        //}
-
+        #region Public members
         public ObservableCollection<LeagueParent> LeagueParents
         {
             get
@@ -154,7 +138,7 @@ namespace FootieData.Vsix.Providers
 
                 try
                 {
-                    throw new Exception();
+                    //throw new Exception(); //for debugging
                     leagueParent = LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode);
 
                     switch (gridType)
@@ -280,55 +264,6 @@ namespace FootieData.Vsix.Providers
             }
         }
 
-        #region gateway gets
-        private IEnumerable<Standing> GetStandings(ExternalLeagueCode externalLeagueCode)
-        {
-            try
-            {
-                var gateway = GetFootieDataGateway();
-                var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return new List<Standing> { new Standing { Team = nameof(GetStandings) + " internal error" } };
-            }
-        }
-
-        private IEnumerable<FixturePast> GetFixturePasts(ExternalLeagueCode externalLeagueCode)
-        {
-            try
-            {
-                var gateway = GetFootieDataGateway();
-                var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return new List<FixturePast> { new FixturePast { HomeName = nameof(GetFixturePasts) + " internal error" } };
-            }
-        }
-
-        private IEnumerable<FixtureFuture> GetFixtureFutures(ExternalLeagueCode externalLeagueCode)
-        {
-            try
-            {
-                var gateway = GetFootieDataGateway();
-                var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return new List<FixtureFuture> { new FixtureFuture { HomeName = nameof(GetFixtureFutures) + " internal error" } };
-            }
-        }
-
-        private FootieDataGateway GetFootieDataGateway()
-        {
-            return new FootieDataGateway(_competitionResultSingletonInstance);
-        }
-        #endregion
-
         private void AddTargetLeagueToLeagueParents(ExternalLeagueCode externalLeagueCode)
         {
             if (LeagueParents.Count(x => x.ExternalLeagueCode == externalLeagueCode) == 0)
@@ -342,6 +277,58 @@ namespace FootieData.Vsix.Providers
                 });
             }
         }
+
+        #region Get data from gateway
+        private IEnumerable<Standing> GetStandings(ExternalLeagueCode externalLeagueCode)
+        {
+            try
+            {
+                //throw new Exception();//for debugging
+                var gateway = GetFootieDataGateway();
+                var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new List<Standing> { new Standing { PoliteError = $"{EntityConstants.UnexpectedErrorOccured} ({nameof(GetStandings)})" } };
+            }
+        }
+
+        private IEnumerable<FixturePast> GetFixturePasts(ExternalLeagueCode externalLeagueCode)
+        {
+            try
+            {
+                //throw new Exception();//for debugging
+                var gateway = GetFootieDataGateway();
+                var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new List<FixturePast> { new FixturePast { PoliteError = $"{EntityConstants.UnexpectedErrorOccured} ({nameof(GetFixturePasts)})" } };
+            }
+        }
+
+        private IEnumerable<FixtureFuture> GetFixtureFutures(ExternalLeagueCode externalLeagueCode)
+        {
+            try
+            {
+                //throw new Exception();//for debugging
+                var gateway = GetFootieDataGateway();
+                var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new List<FixtureFuture> { new FixtureFuture { PoliteError = $"{EntityConstants.UnexpectedErrorOccured} ({nameof(GetFixtureFutures)})" } };
+            }
+        }
+
+        private FootieDataGateway GetFootieDataGateway()
+        {
+            return new FootieDataGateway(_competitionResultSingletonInstance);
+        }
+        #endregion
     }
 }
 
