@@ -30,7 +30,7 @@ namespace FootieData.Vsix.Providers
             try
             {
                 //below is done in toolwindow1control.xaml.cs too, but is needed in both places
-                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
+                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
             }
             catch (Exception ex)
             {
@@ -40,9 +40,9 @@ namespace FootieData.Vsix.Providers
 
         #region privates
         private CompetitionResultSingleton _competitionResultSingletonInstance;
+        private volatile ObservableCollection<LeagueParent> _leagueParentsValue = new AsyncObservableCollection<LeagueParent>();
         //private volatile string _dataValue = "Initial data";
         //private int id = 1;
-        private volatile ObservableCollection<LeagueParent> _leagueParentsValue = new AsyncObservableCollection<LeagueParent>();
 
         private volatile ObservableCollection<Standing> _standingsValue = new AsyncObservableCollection<Standing>
         {
@@ -150,98 +150,124 @@ namespace FootieData.Vsix.Providers
                 //string newValue = "Value " + Interlocked.Increment(ref id);
                 //Data = newValue;
 
-                var targetLeague = LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode);//gregt try/catch this?
+                var leagueParent = new LeagueParent();
 
-                switch (gridType)
+                try
                 {
-                    case GridType.Standing:
-                        var iEnumerableStandings = GetStandings(externalLeagueCode);
-                        targetLeague.Standings.Clear();
-                        var standingsList = iEnumerableStandings.ToList();
-                        if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
-                        {
-                            var politeRequestLimitReached = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
-                            targetLeague.Standings.Add(new Standing { PoliteError = EntityConstants.PoliteRequestLimitReached });
-                        }
-                        else
-                        {
-                            if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
+                    throw new Exception();
+                    leagueParent = LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode);
+
+                    switch (gridType)
+                    {
+                        case GridType.Standing:
+                            var iEnumerableStandings = GetStandings(externalLeagueCode);
+                            leagueParent.Standings.Clear();
+                            var standingsList = iEnumerableStandings.ToList();
+                            if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(RequestLimitReached)))
                             {
-                                targetLeague.Standings.Add(new Standing { PoliteError = EntityConstants.PotentialTimeout });
+                                var politeRequestLimitReached = standingsList.First(x => x.Team.StartsWith(RequestLimitReached)).Team.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
+                                leagueParent.Standings.Add(new Standing { PoliteError = EntityConstants.PoliteRequestLimitReached });
                             }
                             else
                             {
-                                foreach (var standing in iEnumerableStandings)
+                                if (standingsList.Any(x => x.Team != null && x.Team.StartsWith(EntityConstants.PotentialTimeout)))
                                 {
-                                    targetLeague.Standings.Add(standing);
-                                }
-                            }
-                        }
-                        break;
-                    case GridType.Result:
-                        var iEnumerableFixturePasts = GetFixturePasts(externalLeagueCode);
-                        targetLeague.FixturePasts.Clear();
-                        var resultsList = iEnumerableFixturePasts.ToList();
-                        if (resultsList.Any())
-                        {
-                            if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
-                            {
-                                var politeRequestLimitReached = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
-                                targetLeague.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.PoliteRequestLimitReached });
-                            }
-                            else
-                            {
-                                if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
-                                {
-                                    targetLeague.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.PotentialTimeout });
+                                    leagueParent.Standings.Add(new Standing { PoliteError = EntityConstants.PotentialTimeout });
                                 }
                                 else
                                 {
-                                    foreach (var fixturePast in iEnumerableFixturePasts)
+                                    foreach (var standing in iEnumerableStandings)
                                     {
-                                        targetLeague.FixturePasts.Add(fixturePast);
+                                        leagueParent.Standings.Add(standing);
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            targetLeague.FixturePasts.Add(new FixturePast { PoliteError = _zeroFixturePasts });
-                        }
-                        break;
-                    case GridType.Fixture:
-                        var iEnumerableFixtureFutures = GetFixtureFutures(externalLeagueCode);
-                        targetLeague.FixtureFutures.Clear();
-                        var fixturesList = iEnumerableFixtureFutures.ToList();
-                        if (fixturesList.Any())
-                        {
-                            if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
+                            break;
+                        case GridType.Result:
+                            var iEnumerableFixturePasts = GetFixturePasts(externalLeagueCode);
+                            leagueParent.FixturePasts.Clear();
+                            var resultsList = iEnumerableFixturePasts.ToList();
+                            if (resultsList.Any())
                             {
-                                var politeRequestLimitReached = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
-                                targetLeague.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.PoliteRequestLimitReached });
-                            }
-                            else
-                            {
-                                if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+                                if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
                                 {
-                                    targetLeague.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.PotentialTimeout });
+                                    var politeRequestLimitReached = resultsList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
+                                    leagueParent.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.PoliteRequestLimitReached });
                                 }
                                 else
                                 {
-                                    foreach (var fixtureFuture in iEnumerableFixtureFutures)
+                                    if (resultsList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
                                     {
-                                        targetLeague.FixtureFutures.Add(fixtureFuture);
+                                        leagueParent.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.PotentialTimeout });
+                                    }
+                                    else
+                                    {
+                                        foreach (var fixturePast in iEnumerableFixturePasts)
+                                        {
+                                            leagueParent.FixturePasts.Add(fixturePast);
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            targetLeague.FixtureFutures.Add(new FixtureFuture { PoliteError = _zeroFixtureFutures });
-                        }
-                        break;
-                    default:
-                        break;
+                            else
+                            {
+                                leagueParent.FixturePasts.Add(new FixturePast { PoliteError = _zeroFixturePasts });
+                            }
+                            break;
+                        case GridType.Fixture:
+                            var iEnumerableFixtureFutures = GetFixtureFutures(externalLeagueCode);
+                            leagueParent.FixtureFutures.Clear();
+                            var fixturesList = iEnumerableFixtureFutures.ToList();
+                            if (fixturesList.Any())
+                            {
+                                if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(RequestLimitReached)))
+                                {
+                                    var politeRequestLimitReached = fixturesList.First(x => x.HomeName.StartsWith(RequestLimitReached)).HomeName.Replace(RequestLimitReached, EntityConstants.PoliteRequestLimitReached);
+                                    leagueParent.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.PoliteRequestLimitReached });
+                                }
+                                else
+                                {
+                                    if (fixturesList.Any(x => x.HomeName != null && x.HomeName.StartsWith(EntityConstants.PotentialTimeout)))
+                                    {
+                                        leagueParent.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.PotentialTimeout });
+                                    }
+                                    else
+                                    {
+                                        foreach (var fixtureFuture in iEnumerableFixtureFutures)
+                                        {
+                                            leagueParent.FixtureFutures.Add(fixtureFuture);
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                leagueParent.FixtureFutures.Add(new FixtureFuture { PoliteError = _zeroFixtureFutures });
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    leagueParent = LeagueParents.FirstOrDefault();
+                    leagueParent.ExternalLeagueCode = externalLeagueCode;
+                    switch (gridType)
+                    {
+                        case GridType.Standing:
+                            leagueParent.Standings.Clear();
+                            leagueParent.Standings.Add(new Standing { PoliteError = EntityConstants.UnexpectedErrorOccured });
+                            break;
+                        case GridType.Result:
+                            leagueParent.FixturePasts.Clear();
+                            leagueParent.FixturePasts.Add(new FixturePast { PoliteError = EntityConstants.UnexpectedErrorOccured });
+                            break;
+                        case GridType.Fixture:
+                            leagueParent.FixtureFutures.Clear();
+                            leagueParent.FixtureFutures.Add(new FixtureFuture { PoliteError = EntityConstants.UnexpectedErrorOccured });
+                            break;
+                    }
                 }
             });
         }
