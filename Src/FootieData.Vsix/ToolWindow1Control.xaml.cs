@@ -115,7 +115,7 @@ namespace FootieData.Vsix
             }
         }
 
-        private async Task DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
+        private async Task DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)//gregt no await keywords
         {         
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
@@ -126,7 +126,6 @@ namespace FootieData.Vsix
                 try
                 {
                     //throw new Exception();//for debugging
-
                     ThreadedDataProvider threadedDataProvider;
 
                     switch (gridType)
