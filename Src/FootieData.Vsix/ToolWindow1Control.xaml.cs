@@ -100,7 +100,7 @@ namespace FootieData.Vsix
 
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    await DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);//TODO seems to never get invoked, consider removal
+                    DataGridLoaded(dataGrid, internalLeagueCode, gridType);//TODO seems to never get invoked, consider removal
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace FootieData.Vsix
             }
         }
 
-        private async Task DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)//gregt no await keywords
+        private void DataGridLoaded(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
         {         
             var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
 
@@ -309,7 +309,7 @@ namespace FootieData.Vsix
             }
             else
             {
-                DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);//gregt await this ??????????
+                DataGridLoaded(dataGrid, internalLeagueCode, gridType);
             }
 
             return dataGrid;
