@@ -57,7 +57,7 @@ namespace FootieData.Vsix.Providers
             ThreadPool.QueueUserWorkItem(delegate
             {
                 //Debug.WriteLine("Get thread: " + Thread.CurrentThread.ManagedThreadId);
-                //Thread.Sleep(TimeSpan.FromSeconds(30)); gregt test this
+                //Thread.Sleep(TimeSpan.FromSeconds(30));//for debugging
 
                 var leagueParent = new LeagueParent();
 
