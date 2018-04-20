@@ -327,23 +327,6 @@ namespace FootieData.Vsix
 
 
 
-
-
-
-
-
-
-//#region 
-////get FetchNewData() to populate standings2 (when, after 30 secs, FetchNewData updates the content of standings2, the ui will auto-update as the ui is data bound to this observable collection
-//var standings2 = new ObservableCollection<Standing>();
-//standings2.Add(new Standing { Team = "united", For = 12, Against = 34 });
-//standings2.Add(new Standing { Team = "rovers", For = 56, Against = 78 });
-//standings = standings2;
-//#endregion
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////public async Task DoStuff(bool retainExpandCollapseState)
 //////////////////////////////////////////////////////////////////////////////////////////{
 //////////////////////////////////////////////////////////////////////////////////////////    await Task.Run(() =>
@@ -400,46 +383,6 @@ namespace FootieData.Vsix
 //        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
 //    }
 //}
-
-//private async Task<IEnumerable<FixturePast>> GetFixturePastsAsync(ExternalLeagueCode externalLeagueCode)
-//{
-//    try
-//    {
-//        var theTask = Task.Run(() =>
-//        {
-//            var gateway = GetFootieDataGateway();
-//            var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");                    
-//            return result;
-//        });
-//        await Task.WhenAll(theTask);
-//        return theTask.Result;
-//    }
-//    catch (Exception)
-//    {
-//        return new List<FixturePast> { new FixturePast { HomeName = "GetResultsAsync internal error" } };
-//    }
-//}
-
-//private async Task<IEnumerable<FixtureFuture>> GetFixtureFuturesAsync(ExternalLeagueCode externalLeagueCode)
-//{
-//    try
-//    {
-//        var theTask = Task.Run(() =>
-//        {
-//            var gateway = GetFootieDataGateway();
-//            var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
-//            return result;
-//        });
-//        await Task.WhenAll(theTask);
-//        return theTask.Result;
-//    }
-//    catch (Exception)
-//    {
-//        return new List<FixtureFuture> { new FixtureFuture { HomeName = "GetFixturesAsync internal error" } };
-//    }
-//}
-
-
 
 //private async Task DataGridLoadedAsync(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
 //{
