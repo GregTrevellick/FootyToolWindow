@@ -41,12 +41,12 @@ namespace FootieData.Vsix
 
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
-            //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(ToolWindow1Control) + "_ctor");
+            //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
             InitializeComponent();
 
             try
             {
-                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;//This is slow, the rest is fast
+                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
             }
             catch (Exception)
             {
@@ -94,14 +94,14 @@ namespace FootieData.Vsix
 
                 if (expander.Content is DataGrid dataGrid)
                 {
-                    await DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);//gregt not sure if this line is ever invoked ???
+                    await DataGridLoadedAsync(dataGrid, internalLeagueCode, gridType);//TODO seems to never get invoked, consider removal
                 }
                 else
                 {
-                    //this gets called aswell as line 364 - is required so that when the results/future fixtures is expanded that we get the data for it
+                    //Called here so that when the results/future fixtures is expanded (for very first time) we get the data for it
                     dataGrid = GetMyDataGrid(internalLeagueCode, gridType);
                     expander.Content = dataGrid;
-                }
+                }               
             }
             else
             {
