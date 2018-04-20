@@ -215,7 +215,7 @@ namespace FootieData.Vsix
             LeagueModeEventHandler?.Invoke();
         }
 
-        private async void Click_HandlerRefresh(object sender, RoutedEventArgs e)
+        private void Click_HandlerRefresh(object sender, RoutedEventArgs e)
         {
             var lastUpdatedDate = GetLastUpdatedDate(null);
             var updatedWithinLastXSeconds = DataGridHelper.UpdatedWithinLastXSeconds(lastUpdatedDate, CommonConstants.RefreshIntervalInSeconds, DateTime.Now);
