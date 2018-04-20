@@ -116,14 +116,15 @@ namespace FootieData.Vsix
         }
 
         private void DataGridLoaded(DataGrid dataGrid, InternalLeagueCode internalLeagueCode, GridType gridType)
-        {         
-            var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-
-            var dataGridEmpty = DataGridHelper.IsDataGridEmpty(dataGrid);
-
-            if (dataGridEmpty)
+        {
+            try
             {
-                try
+                var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
+                //throw new Exception();//for debugging
+
+                var dataGridEmpty = DataGridHelper.IsDataGridEmpty(dataGrid);
+
+                if (dataGridEmpty)
                 {
                     //throw new Exception();//for debugging
                     ThreadedDataProvider threadedDataProvider;
@@ -156,12 +157,12 @@ namespace FootieData.Vsix
                     DataGridHelper.HideHeaderIfNoDataToShow(dataGrid);
                     UpdateLastUpdatedDate(null);
                 }
-                catch (Exception ex)
-                {
-                    var errorText = $"{EntityConstants.UnexpectedErrorOccured} ({internalLeagueCode}_{gridType})";
-                    Logger.Log($"{errorText} {ex.Message}");
-                    dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { PoliteError = errorText } };
-                }
+            }
+            catch (Exception ex)
+            {
+                var errorText = $"{EntityConstants.UnexpectedErrorOccured} ({internalLeagueCode}_{gridType})";
+                Logger.Log($"{errorText} {ex.Message}");
+                dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { PoliteError = errorText } };
             }
         }
 
