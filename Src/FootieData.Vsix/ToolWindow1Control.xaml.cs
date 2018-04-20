@@ -24,6 +24,7 @@ namespace FootieData.Vsix
         public event EventHandler LeagueModeEventHandler;
         public static LeagueGeneralOptions LeagueGeneralOptions { get; set; }
 
+        #region Private members
         private CompetitionResultSingleton _competitionResultSingletonInstance;
         private LeagueDtosSingleton _leagueDtosSingletonInstance;
         private Style _awayStyle;
@@ -38,11 +39,14 @@ namespace FootieData.Vsix
         private static Func<string, DateTime> GetLastUpdatedDate { get; set; }
         private static Action<string> GetOptionsFromStoreAndMapToInternalFormatMethod { get; set; }
         private static Action<string> UpdateLastUpdatedDate { get; set; }
+        #endregion
 
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
             //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
             InitializeComponent();
+
+            //gregt throw an exception here - what happens ?
 
             try
             {
@@ -60,6 +64,8 @@ namespace FootieData.Vsix
 
             InitializeStyling();
             PopulateUi(false);
+
+            //gregt throw an exception here - what happens ?
         }
 
         private void InitializeStyling()
@@ -119,6 +125,8 @@ namespace FootieData.Vsix
             {
                 try
                 {
+                    //throw new Exception();//for debugging
+
                     ThreadedDataProvider threadedDataProvider;
 
                     switch (gridType)
@@ -151,7 +159,7 @@ namespace FootieData.Vsix
                 }
                 catch (Exception ex)
                 {
-                    var errorText = $"Internal error loading data ERR0542 {internalLeagueCode} {gridType}";
+                    var errorText = $"{EntityConstants.UnexpectedErrorOccured} ({internalLeagueCode}_{gridType})";
                     Logger.Log($"{errorText} {ex.Message}");
                     dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { PoliteError = errorText } };
                 }
