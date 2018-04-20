@@ -166,6 +166,7 @@ namespace FootieData.Vsix
             }
         }
 
+        #region gregt right align columns - not quite right ?
         private void SetColumnStylingStandings(DataGrid dataGrid)
         {
             //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
@@ -191,6 +192,7 @@ namespace FootieData.Vsix
         {
             WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
         }
+        #endregion
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
@@ -271,7 +273,6 @@ namespace FootieData.Vsix
                     {
                         foreach (Expander child in StackPanelLeagueMode.Children)
                         {
-                            //UK1_Standing
                             if (child.Name.StartsWith(leagueOption.InternalLeagueCode.ToString()) &&
                                 child.Name.EndsWith(leagueSubOption.GridType.ToString()))
                             {
