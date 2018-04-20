@@ -38,101 +38,26 @@ namespace FootieData.Vsix.Providers
             }
         }
 
-        #region privates
-        private CompetitionResultSingleton _competitionResultSingletonInstance;
-        private volatile ObservableCollection<LeagueParent> _leagueParentsValue = new AsyncObservableCollection<LeagueParent>();
-        //private volatile string _dataValue = "Initial data";
-        //private int id = 1;
-
-        private volatile ObservableCollection<Standing> _standingsValue = new AsyncObservableCollection<Standing>
+        private void AddTargetLeagueToLeagueParents(ExternalLeagueCode externalLeagueCode)
         {
-            new Standing { Team = "Loading..." }
-        };
-
-        private volatile ObservableCollection<FixturePast> _fixturePastsValue = new AsyncObservableCollection<FixturePast>
-        {
-            new FixturePast { HomeName = "Loading..." }
-        };
-
-        private volatile ObservableCollection<FixtureFuture> _fixtureFuturesValue = new AsyncObservableCollection<FixtureFuture>
-        {
-            new FixtureFuture { HomeName = "Loading..." }
-        };
-        #endregion
-
-        #region Public members
-        public ObservableCollection<LeagueParent> LeagueParents
-        {
-            get
+            if (LeagueParents.Count(x => x.ExternalLeagueCode == externalLeagueCode) == 0)
             {
-                return _leagueParentsValue;
-            }
-            set
-            {
-                if (value != _leagueParentsValue)
+                LeagueParents.Add(new LeagueParent
                 {
-                    _leagueParentsValue = value;
-                    OnPropertyChanged(nameof(LeagueParents));
-                }
+                    ExternalLeagueCode = externalLeagueCode,
+                    Standings = Standings,
+                    FixturePasts = FixturePasts,
+                    FixtureFutures = FixtureFutures,
+                });
             }
         }
-
-        public ObservableCollection<Standing> Standings
-        {
-            get
-            {
-                return _standingsValue;
-            }
-            set
-            {
-                if (value != _standingsValue)
-                {
-                    _standingsValue = value;
-                    OnPropertyChanged(nameof(Standings));
-                }
-            }
-        }
-
-        public ObservableCollection<FixturePast> FixturePasts
-        {
-            get
-            {
-                return _fixturePastsValue;
-            }
-            set
-            {
-                if (value != _fixturePastsValue)
-                {
-                    _fixturePastsValue = value;
-                    OnPropertyChanged(nameof(FixturePasts));
-                }
-            }
-        }
-
-        public ObservableCollection<FixtureFuture> FixtureFutures
-        {
-            get
-            {
-                return _fixtureFuturesValue;
-            }
-            set
-            {
-                if (value != _fixtureFuturesValue)
-                {
-                    _fixtureFuturesValue = value;
-                    OnPropertyChanged(nameof(FixtureFutures));
-                }
-            }
-        }
-        #endregion
 
         public void FetchDataFromGateway(ExternalLeagueCode externalLeagueCode, GridType gridType)
         {
             ThreadPool.QueueUserWorkItem(delegate
             {
-                //Thread.Sleep(TimeSpan.FromSeconds(10));
-                //string newValue = "Value " + Interlocked.Increment(ref id);
-                //Data = newValue;
+                //Debug.WriteLine("Get thread: " + Thread.CurrentThread.ManagedThreadId);
+                //Thread.Sleep(TimeSpan.FromSeconds(30)); gregt test this
 
                 var leagueParent = new LeagueParent();
 
@@ -264,19 +189,91 @@ namespace FootieData.Vsix.Providers
             }
         }
 
-        private void AddTargetLeagueToLeagueParents(ExternalLeagueCode externalLeagueCode)
+        #region Private members
+        private CompetitionResultSingleton _competitionResultSingletonInstance;
+        private volatile ObservableCollection<LeagueParent> _leagueParentsValue = new AsyncObservableCollection<LeagueParent>();
+
+        private volatile ObservableCollection<Standing> _standingsValue = new AsyncObservableCollection<Standing>
         {
-            if (LeagueParents.Count(x => x.ExternalLeagueCode == externalLeagueCode) == 0)
+            new Standing { Team = "Loading..." }
+        };
+
+        private volatile ObservableCollection<FixturePast> _fixturePastsValue = new AsyncObservableCollection<FixturePast>
+        {
+            new FixturePast { HomeName = "Loading..." }
+        };
+
+        private volatile ObservableCollection<FixtureFuture> _fixtureFuturesValue = new AsyncObservableCollection<FixtureFuture>
+        {
+            new FixtureFuture { HomeName = "Loading..." }
+        };
+        #endregion
+
+        #region Public members
+        public ObservableCollection<LeagueParent> LeagueParents
+        {
+            get
             {
-                LeagueParents.Add(new LeagueParent
+                return _leagueParentsValue;
+            }
+            set
+            {
+                if (value != _leagueParentsValue)
                 {
-                    ExternalLeagueCode = externalLeagueCode,
-                    Standings = Standings,
-                    FixturePasts = FixturePasts,
-                    FixtureFutures = FixtureFutures,
-                });
+                    _leagueParentsValue = value;
+                    OnPropertyChanged(nameof(LeagueParents));
+                }
             }
         }
+
+        public ObservableCollection<Standing> Standings
+        {
+            get
+            {
+                return _standingsValue;
+            }
+            set
+            {
+                if (value != _standingsValue)
+                {
+                    _standingsValue = value;
+                    OnPropertyChanged(nameof(Standings));
+                }
+            }
+        }
+
+        public ObservableCollection<FixturePast> FixturePasts
+        {
+            get
+            {
+                return _fixturePastsValue;
+            }
+            set
+            {
+                if (value != _fixturePastsValue)
+                {
+                    _fixturePastsValue = value;
+                    OnPropertyChanged(nameof(FixturePasts));
+                }
+            }
+        }
+
+        public ObservableCollection<FixtureFuture> FixtureFutures
+        {
+            get
+            {
+                return _fixtureFuturesValue;
+            }
+            set
+            {
+                if (value != _fixtureFuturesValue)
+                {
+                    _fixtureFuturesValue = value;
+                    OnPropertyChanged(nameof(FixtureFutures));
+                }
+            }
+        }
+        #endregion
 
         #region Get data from gateway
         private IEnumerable<Standing> GetStandings(ExternalLeagueCode externalLeagueCode)
@@ -332,12 +329,6 @@ namespace FootieData.Vsix.Providers
     }
 }
 
-
-
-
-
-
-
 //public async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
 //{
 //    try
@@ -356,7 +347,3 @@ namespace FootieData.Vsix.Providers
 //        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
 //    }
 //}
-
-
-
-// Debug.WriteLine("Get thread: " + Thread.CurrentThread.ManagedThreadId + " " + nameof(Data));
