@@ -63,7 +63,7 @@ namespace FootieData.Vsix
             return ToolWindowCreationContext.Unspecified;
         }
 
-        //gregt - never hit ? it ought to be ?
+        //TODO - gregt  never hit ? ought it to be ?
         //protected override string GetToolWindowTitle(Type toolWindowType, int id)
         //{
         //    if (toolWindowType == typeof(VsixToolWindowPane))
