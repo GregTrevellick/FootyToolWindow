@@ -19,7 +19,7 @@ namespace FootballDataOrg
             Token = Frules.FootballDataOrgApiToken;
         }
 
-//gregt revert to async ? convert others to sync ?
+        //gregt revert to async ? convert others to sync ?
         public CompetitionResponseDto GetCompetitionResult()
         {
             var uri = new Uri(baseUri);
