@@ -49,6 +49,7 @@ namespace FootieData.Vsix
 
                 //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
                 InitializeComponent();
+                TextBlockUnexpectedErrorOccuredActivityLogin.Visibility = Visibility.Hidden;
 
                 try
                 {
@@ -68,12 +69,12 @@ namespace FootieData.Vsix
                 InitializeStyling();
                 PopulateUi(false);
 
-                throw new Exception(); //for debugging
+                //throw new Exception(); //for debugging
             }
             catch (Exception ex)
             {
-                //show EntityConstants.UnexpectedErrorOccuredActivityLogin UI
-                throw ex;
+                TextBlockUnexpectedErrorOccuredActivityLogin.Text = EntityConstants.UnexpectedErrorOccuredActivityLog;
+                TextBlockUnexpectedErrorOccuredActivityLogin.Visibility = Visibility.Visible;
             }
         }
 

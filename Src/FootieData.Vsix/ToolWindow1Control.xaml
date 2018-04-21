@@ -15,7 +15,7 @@
         <StackPanel>
 
             <!--<TextBlock Text="{Binding Data}" />-->
-            
+
             <StackPanel Orientation="Horizontal">
                 <Button Content="Refresh" Click="Click_HandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0" Name="BtnRefresh"/>
                 <Button Content="The boss is coming" Click="Click_HandlerBossComing" HorizontalAlignment="Right" Name="BtnLeagueMode"/>
@@ -30,8 +30,10 @@
                 <TextBlock Name="TextBlockBossMode" />
             </StackPanel>
 
+            <TextBlock Name="TextBlockUnexpectedErrorOccuredActivityLogin" Visibility="Hidden" />
+            
             <StackPanel Name="StackPanelLeagueMode" />
-
+           
         </StackPanel>
     </ScrollViewer >
 
