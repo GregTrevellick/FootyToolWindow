@@ -3,11 +3,11 @@ gregt
 right align
 
 
-add mismatch goals for future fixtures
+add midmatch goals for future fixtures
 check status/score of match whilst part way thru a live match
 test vsix rating chaser in prod
 test in vs2015
-copyright in assemblyinfo.cs
+
 
 
 
