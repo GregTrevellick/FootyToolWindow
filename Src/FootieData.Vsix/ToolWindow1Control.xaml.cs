@@ -51,11 +51,11 @@ namespace FootieData.Vsix
             try
             {
                 _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+                //throw new Exception(); //for debugging
             }
             catch (Exception)
             {
                 //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
-                //gregt throw an exception here - what happens ?
             }
 
             GetLastUpdatedDate = getLastUpdatedDate;
