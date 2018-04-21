@@ -2,7 +2,7 @@ update readme screenshots with home away reordering etc
 
 
 
-add midmatch goals for future fixtures
+add mismatch goals for future fixtures
 put timeout into options
 check status/score of match whilst part way thru a live match
 test vsix rating chaser in prod
