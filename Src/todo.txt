@@ -1,5 +1,6 @@
 update readme screenshots with home away reordering etc
-
+gregt
+right align
 
 
 add mismatch goals for future fixtures
