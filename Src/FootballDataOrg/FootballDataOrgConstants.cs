@@ -2,6 +2,6 @@
 {
     class FootballDataOrgConstants
     {
-        public const int Timeout = 30;//gregt put into VS IDE options
+        public const int Timeout = 30;//TODO perhaps - put into VS IDE options
     }
 }
