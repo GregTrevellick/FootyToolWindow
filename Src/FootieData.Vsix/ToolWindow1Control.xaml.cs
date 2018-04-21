@@ -43,30 +43,38 @@ namespace FootieData.Vsix
 
         public ToolWindow1Control(Action<string> getOptionsFromStoreAndMapToInternalFormatMethod, Action<string> updateLastUpdatedDate, Func<string, DateTime> getLastUpdatedDate)
         {
-            //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
-            InitializeComponent();
-
-            //gregt throw an exception here - what happens ?
-
             try
             {
-                _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
                 //throw new Exception(); //for debugging
+
+                //Debug.WriteLine("Worker thread: " + Thread.CurrentThread.ManagedThreadId);
+                InitializeComponent();
+
+                try
+                {
+                    _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+                    //throw new Exception(); //for debugging
+                }
+                catch (Exception)
+                {
+                    //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+                }
+
+                GetLastUpdatedDate = getLastUpdatedDate;
+                GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
+                UpdateLastUpdatedDate = updateLastUpdatedDate;
+                _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
+
+                InitializeStyling();
+                PopulateUi(false);
+
+                throw new Exception(); //for debugging
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+                //show EntityConstants.UnexpectedErrorOccuredActivityLogin UI
+                throw ex;
             }
-
-            GetLastUpdatedDate = getLastUpdatedDate;
-            GetOptionsFromStoreAndMapToInternalFormatMethod = getOptionsFromStoreAndMapToInternalFormatMethod;
-            UpdateLastUpdatedDate = updateLastUpdatedDate;
-            _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
-
-            InitializeStyling();
-            PopulateUi(false);
-
-            //gregt throw an exception here - what happens ?
         }
 
         private void InitializeStyling()
