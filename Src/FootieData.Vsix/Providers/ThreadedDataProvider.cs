@@ -29,8 +29,8 @@ namespace FootieData.Vsix.Providers
         {
             try
             {
-                //below is done in toolwindow1control.xaml.cs too, but is needed in both places
                 _competitionResultSingletonInstance = CompetitionResultSingleton.Instance;
+                //throw new Exception(); //for debugging
             }
             catch (Exception ex)
             {
@@ -329,6 +329,9 @@ namespace FootieData.Vsix.Providers
     }
 }
 
+
+
+
 //public async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
 //{
 //    try
@@ -344,6 +347,5 @@ namespace FootieData.Vsix.Providers
 //    }
 //    catch (Exception)
 //    {
-//        return new List<Standing> { new Standing { Team = "GetStandingsAsync internal error" } };
 //    }
 //}

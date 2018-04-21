@@ -55,6 +55,7 @@ namespace FootieData.Vsix
             catch (Exception)
             {
                 //Do nothing - the resultant null _competitionResultSingletonInstance is handled further down the call stack
+                //gregt throw an exception here - what happens ?
             }
 
             GetLastUpdatedDate = getLastUpdatedDate;
