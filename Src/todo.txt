@@ -1,22 +1,19 @@
-check performance - 
-https://github.com/Microsoft/VSSDK-Analyzers#notification-settings
+update readme screenshots with home away reordering etc
+
+
 
 add midmatch goals for future fixtures
-
 put timeout into options
-update readme screenshots with home away reordering etc
 check status/score of match whilst part way thru a live match
 test vsix rating chaser in prod
-
-
 test in vs2015
-
-
-
-credits -         //https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md
-=======
 set to c#7 ?
 copyright in assemblyinfo.cs
+
+
+
+
+
 
 
 

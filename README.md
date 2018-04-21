@@ -102,6 +102,8 @@ See the [change log](CHANGELOG.md) for release history.
 
 [Thomas Levesque](http://www.thomaslevesque.com/2009/04/17/wpf-binding-to-an-asynchronous-collection/)
 
+[VS SDK Analyzers](https://github.com/Microsoft/VSSDK-Analyzers/blob/master/doc/VSSDK003.md)
+
 [Walid Sakhana](https://github.com/sakhana88)
 
 ## License
