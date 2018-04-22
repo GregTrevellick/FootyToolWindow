@@ -96,6 +96,8 @@ See the [change log](CHANGELOG.md) for release history.
 
 [FootballData.org](https://www.football-data.org)
 
+[Ian Griffiths](https://app.pluralsight.com/profile/author/ian-griffiths)
+
 [Marco Lachmann-Anke](http://marco-lachmann.de/)
 
 [Marco Lachmann-Anke 3dman_eu](https://pixabay.com/en/males-3d-model-isolated-3d-model-2358253/)
