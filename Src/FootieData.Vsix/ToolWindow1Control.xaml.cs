@@ -303,7 +303,7 @@ namespace FootieData.Vsix
 ////////////private Style _homeStyle;
 ////////////private Style _rightAlignStyle;
 
-////////////////#region gregt right align columns - not quite right ?
+
 ////////////////private void SetColumnStylingStandings(DataGrid dataGrid)
 ////////////////{
 ////////////////    //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection

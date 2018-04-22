@@ -1,11 +1,6 @@
-update readme screenshots with home away reordering etc
-gregt
-right align
-
-
-add midmatch goals for future fixtures
-check status/score of match whilst part way thru a live match
-test vsix rating chaser in prod
+//TODO - gregt  never hit ? ought it to be ?
+//gregt revert to async ? convert others to sync ?
+update readme screenshots with home away
 test in vs2015
 
 
@@ -68,12 +63,17 @@ test in vs2015
 
 
 
+test vsix rating chaser in prod
+
+
 Future if becomes popular
 =========================
+add midmatch goals for future fixtures
 put timeout into options
 c.f. leagues table & league name against local dialect
 add league country flags/hyperlinks
 add club crests/hyperlinks
+check status/score of match whilst part way thru a live match
 promotion/relegation zone dotted border lines
 collapse all / expand all
 add 'refresh' icon to refresh button
