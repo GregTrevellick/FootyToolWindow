@@ -38,42 +38,6 @@ namespace FootieData.Vsix
             }
         }
 
-        //private void SetColumnStylingStandings(DataGrid dataGrid)
-        //{
-        //    InitializeStyling();//gregt do in ctor????
-
-        //    //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
-        //    var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
-        //    var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16 };
-        //    var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23 };
-
-        //    var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
-
-        //    WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
-        //    WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
-        //    WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
-        //    WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
-        //    WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
-        //}
-
-        //private void InitializeStyling()
-        //{
-        //    var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
-
-        //    _rightAlignStyle = new Style();
-        //    _rightAlignStyle.Setters.Add(rightAlignSetter);
-
-        //    var homeAwayFontColour = Brushes.SlateGray;
-
-        //    _homeStyle = new Style();
-        //    _homeStyle.Setters.Add(rightAlignSetter);
-        //    _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-
-        //    _awayStyle = new Style();
-        //    _awayStyle.Setters.Add(rightAlignSetter);
-        //    _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-        //}
-
         protected override void OnLoadingRow(DataGridRowEventArgs e)
         {
             base.OnLoadingRow(e);
@@ -85,7 +49,7 @@ namespace FootieData.Vsix
             {
                 #region error column
                 var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
-                var visibility = Visibility.Hidden;
+                var visibility = Visibility.Collapsed;
 
                 if (isPoliteErrorColumn)
                 {
@@ -106,14 +70,36 @@ namespace FootieData.Vsix
                 #endregion
 
                 #region styling 1
-                var isLeftAlignColumn =
-                    item.SortMemberPath == nameof(Standing.Team) ||
-                    item.SortMemberPath == nameof(FixturePast.AwayName) ||
-                    /////item.SortMemberPath == nameof(FixturePast.HomeName) ||
-                    item.SortMemberPath == nameof(FixtureFuture.AwayName);
-                    /////item.SortMemberPath == nameof(FixtureFuture.HomeName)
+                var isRightAlignColumn =
+                    item.SortMemberPath == nameof(FixturePast.Date) ||
+                    item.SortMemberPath == nameof(FixturePast.HomeName) ||
+                    item.SortMemberPath == nameof(FixtureFuture.Date) ||
+                    item.SortMemberPath == nameof(FixtureFuture.HomeName) ||
+                    item.SortMemberPath == nameof(Standing.Against) ||
+                    item.SortMemberPath == nameof(Standing.AwayDraws) ||
+                    item.SortMemberPath == nameof(Standing.AwayGoalsAgainst) ||
+                    item.SortMemberPath == nameof(Standing.AwayGoalsFor) ||
+                    item.SortMemberPath == nameof(Standing.AwayLosses) ||
+                    item.SortMemberPath == nameof(Standing.AwayPlayed) ||
+                    item.SortMemberPath == nameof(Standing.AwayPoints) ||
+                    item.SortMemberPath == nameof(Standing.AwayWins) ||
+                    item.SortMemberPath == nameof(Standing.Diff) ||
+                    item.SortMemberPath == nameof(Standing.Draws) ||
+                    item.SortMemberPath == nameof(Standing.For) ||
+                    item.SortMemberPath == nameof(Standing.HomeDraws) ||
+                    item.SortMemberPath == nameof(Standing.HomeGoalsAgainst) ||
+                    item.SortMemberPath == nameof(Standing.HomeGoalsFor) ||
+                    item.SortMemberPath == nameof(Standing.HomeLosses) ||
+                    item.SortMemberPath == nameof(Standing.HomePlayed) ||
+                    item.SortMemberPath == nameof(Standing.HomePoints) ||
+                    item.SortMemberPath == nameof(Standing.HomeWins) ||
+                    item.SortMemberPath == nameof(Standing.Losses)||
+                    item.SortMemberPath == nameof(Standing.Played) ||
+                    item.SortMemberPath == nameof(Standing.Points) ||
+                    item.SortMemberPath == nameof(Standing.Rank) ||
+                    item.SortMemberPath == nameof(Standing.Wins);
 
-                if (!isLeftAlignColumn)
+                if (isRightAlignColumn)
                 {
                     var rightAlignStyle = new Style();
                     rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
