@@ -47,7 +47,8 @@ namespace FootieData.Vsix
 
             foreach (var item in this.Columns)
             {
-                #region error column
+                //TODO extract out
+                #region error column 
                 var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
                 var visibility = Visibility.Collapsed;
 
@@ -69,6 +70,7 @@ namespace FootieData.Vsix
                 item.Visibility = visibility;
                 #endregion
 
+                //TODO extract out
                 #region styling 1
                 var isRightAlignColumn =
                     item.SortMemberPath == nameof(FixturePast.Date) ||
@@ -108,7 +110,8 @@ namespace FootieData.Vsix
                     item.HeaderStyle = rightAlignStyle;
                 }
                 #endregion
-
+                
+                //TODO extract out
                 #region styling 2
                 //var homeAwayFontColour = Brushes.SlateGray;
                 //////////    _homeStyle = new Style();

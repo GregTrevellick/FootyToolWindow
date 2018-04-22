@@ -1,5 +1,6 @@
 //TODO - gregt  never hit ? ought it to be ?
 //gregt revert to async ? convert others to sync ?
+//TODO extract out
 update readme screenshots with home away
 test in vs2015
 

@@ -33,19 +33,19 @@ namespace FootieData.Common
             return dataGridEmpty;
         }
 
-        public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)
-        {
-            var shouldPerformRefresh = true;
+        //public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)
+        //{
+        //    var shouldPerformRefresh = true;
 
-            var updatedWithinLastXSeconds = UpdatedWithinLastXSeconds(lastUpdatedDate, CommonConstants.RefreshIntervalInSeconds, DateTime.Now);
+        //    var updatedWithinLastXSeconds = UpdatedWithinLastXSeconds(lastUpdatedDate, CommonConstants.RefreshIntervalInSeconds, DateTime.Now);
 
-            if (updatedWithinLastXSeconds)
-            {
-                shouldPerformRefresh = false;
-            }
+        //    if (updatedWithinLastXSeconds)
+        //    {
+        //        shouldPerformRefresh = false;
+        //    }
 
-            return shouldPerformRefresh;
-        }
+        //    return shouldPerformRefresh;
+        //}
 
         public static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate, int refreshIntervalInSeconds, DateTime now)
         {
@@ -74,18 +74,18 @@ namespace FootieData.Common
             return firstItem.GetType() == typeof(NullReturn);
         }
 
-        public static bool ShouldShowLeague(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode)
-        {
-            return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague);
-        }
+        //public static bool ShouldShowLeague(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode)
+        //{
+        //    return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague);
+        //}
 
-        public static bool ShouldExpandGrid(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode, GridType gridType)
-        {
-            return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
-                                          && x.ShowLeague
-                                          && x.LeagueSubOptions.Any(y => y.GridType == gridType
-                                                                         && y.Expand));
-        }
+        //public static bool ShouldExpandGrid(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode, GridType gridType)
+        //{
+        //    return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
+        //                                  && x.ShowLeague
+        //                                  && x.LeagueSubOptions.Any(y => y.GridType == gridType
+        //                                                                 && y.Expand));
+        //}
     }
 }
 
