@@ -30,7 +30,7 @@
                 <TextBlock Name="TextBlockBossMode" />
             </StackPanel>
 
-            <TextBlock Name="TextBlockUnexpectedErrorOccuredActivityLogin" Visibility="Hidden" />
+            <TextBlock Name="TextBlockUnexpectedErrorOccuredActivityLogin" Visibility="Collapsed" />
             
             <StackPanel Name="StackPanelLeagueMode" />
            

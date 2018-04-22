@@ -29,6 +29,7 @@ namespace FootieData.Vsix
 
                 var style = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
                 style.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Click to sort"));
+
                 e.Column.HeaderStyle = style;
             }
             catch (Exception)
@@ -36,6 +37,42 @@ namespace FootieData.Vsix
                 Logger.Log("No data grid column heading found");
             }
         }
+
+        //private void SetColumnStylingStandings(DataGrid dataGrid)
+        //{
+        //    InitializeStyling();//gregt do in ctor????
+
+        //    //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
+        //    var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
+        //    var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16 };
+        //    var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23 };
+
+        //    var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
+
+        //    WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
+        //    WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
+        //    WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
+        //    WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
+        //    WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
+        //}
+
+        //private void InitializeStyling()
+        //{
+        //    var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
+
+        //    _rightAlignStyle = new Style();
+        //    _rightAlignStyle.Setters.Add(rightAlignSetter);
+
+        //    var homeAwayFontColour = Brushes.SlateGray;
+
+        //    _homeStyle = new Style();
+        //    _homeStyle.Setters.Add(rightAlignSetter);
+        //    _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+
+        //    _awayStyle = new Style();
+        //    _awayStyle.Setters.Add(rightAlignSetter);
+        //    _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+        //}
 
         protected override void OnLoadingRow(DataGridRowEventArgs e)
         {
@@ -46,6 +83,7 @@ namespace FootieData.Vsix
 
             foreach (var item in this.Columns)
             {
+                #region error column
                 var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
                 var visibility = Visibility.Hidden;
 
@@ -65,6 +103,32 @@ namespace FootieData.Vsix
                 }
 
                 item.Visibility = visibility;
+                #endregion
+
+                #region styling 1
+                var isLeftAlignColumn =
+                    item.SortMemberPath == nameof(Standing.Team) ||
+                    item.SortMemberPath == nameof(FixturePast.AwayName) ||
+                    /////item.SortMemberPath == nameof(FixturePast.HomeName) ||
+                    item.SortMemberPath == nameof(FixtureFuture.AwayName);
+                    /////item.SortMemberPath == nameof(FixtureFuture.HomeName)
+
+                if (!isLeftAlignColumn)
+                {
+                    var rightAlignStyle = new Style();
+                    rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
+                    item.CellStyle = rightAlignStyle;
+                    item.HeaderStyle = rightAlignStyle;
+                }
+                #endregion
+
+                #region styling 2
+                //var homeAwayFontColour = Brushes.SlateGray;
+                //////////    _homeStyle = new Style();
+                //////////    _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                //////////    _awayStyle = new Style();
+                //////////    _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                #endregion
             }
         }
     }

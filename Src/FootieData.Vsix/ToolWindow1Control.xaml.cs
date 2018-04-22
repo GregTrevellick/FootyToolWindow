@@ -27,9 +27,6 @@ namespace FootieData.Vsix
         #region Private members
         private CompetitionResultSingleton _competitionResultSingletonInstance;
         private LeagueDtosSingleton _leagueDtosSingletonInstance;
-        private Style _awayStyle;
-        private Style _homeStyle;
-        private Style _rightAlignStyle;
 
         private readonly IEnumerable<NullReturn> _nullStandings = new List<NullReturn> { new NullReturn { PoliteError = $"League table {Unavailable}" } };
         private readonly IEnumerable<NullReturn> _nullFixturePasts = new List<NullReturn> { new NullReturn { PoliteError = $"League results {Unavailable}" } };
@@ -66,7 +63,6 @@ namespace FootieData.Vsix
                 UpdateLastUpdatedDate = updateLastUpdatedDate;
                 _leagueDtosSingletonInstance = LeagueDtosSingleton.Instance;
 
-                InitializeStyling();
                 PopulateUi(false);
 
                 //throw new Exception(); //for debugging
@@ -76,24 +72,6 @@ namespace FootieData.Vsix
                 TextBlockUnexpectedErrorOccuredActivityLogin.Text = EntityConstants.UnexpectedErrorOccuredActivityLog;
                 TextBlockUnexpectedErrorOccuredActivityLogin.Visibility = Visibility.Visible;
             }
-        }
-
-        private void InitializeStyling()
-        {
-            var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
-
-            _rightAlignStyle = new Style();
-            _rightAlignStyle.Setters.Add(rightAlignSetter);
-
-            var homeAwayFontColour = Brushes.SlateGray;
-
-            _homeStyle = new Style();
-            _homeStyle.Setters.Add(rightAlignSetter);
-            _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-
-            _awayStyle = new Style();
-            _awayStyle.Setters.Add(rightAlignSetter);
-            _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
         }
 
         private FootieDataGateway GetFootieDataGateway()
@@ -146,21 +124,18 @@ namespace FootieData.Vsix
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Standing);
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).Standings ?? (IEnumerable)_nullStandings;
-                            SetColumnStylingStandings(dataGrid);
                             break;
                         case GridType.Result:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Result);
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixturePasts ?? (IEnumerable)_nullFixturePasts;
-                            SetColumnStylingFixturePasts(dataGrid);
                             break;
                         case GridType.Fixture:
                             threadedDataProvider = new ThreadedDataProvider(externalLeagueCode);
                             this.DataContext = threadedDataProvider;
                             threadedDataProvider.FetchDataFromGateway(externalLeagueCode, GridType.Fixture);
                             dataGrid.ItemsSource = threadedDataProvider.LeagueParents.Single(x => x.ExternalLeagueCode == externalLeagueCode).FixtureFutures ?? (IEnumerable)_nullFixtureFutures;
-                            SetColumnStylingFixtureFutures(dataGrid);
                             break;
                     }
 
@@ -175,34 +150,6 @@ namespace FootieData.Vsix
                 dataGrid.ItemsSource = new List<NullReturn> { new NullReturn { PoliteError = errorText } };
             }
         }
-
-        #region gregt right align columns - not quite right ?
-        private void SetColumnStylingStandings(DataGrid dataGrid)
-        {
-            //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
-            var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16 };
-            var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23 };
-
-            var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
-
-            WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
-            WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
-            WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
-            WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
-            WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
-        }
-
-        private void SetColumnStylingFixturePasts(DataGrid dataGrid)
-        {
-            WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
-        }
-
-        private void SetColumnStylingFixtureFutures(DataGrid dataGrid)
-        {
-            WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
-        }
-        #endregion
 
         private void Click_HandlerBossComing(object sender, RoutedEventArgs e)
         {
@@ -332,8 +279,56 @@ namespace FootieData.Vsix
 
 
 
+//////////private void InitializeStyling()
+//////////{
+//////////    var rightAlignSetter = new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right);
+
+//////////    _rightAlignStyle = new Style();
+//////////    _rightAlignStyle.Setters.Add(rightAlignSetter);
+
+//////////    var homeAwayFontColour = Brushes.SlateGray;
+
+//////////    _homeStyle = new Style();
+//////////    _homeStyle.Setters.Add(rightAlignSetter);
+//////////    _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+
+//////////    _awayStyle = new Style();
+//////////    _awayStyle.Setters.Add(rightAlignSetter);
+//////////    _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+//////////}
 
 
+
+////////////private Style _awayStyle;
+////////////private Style _homeStyle;
+////////////private Style _rightAlignStyle;
+
+////////////////#region gregt right align columns - not quite right ?
+////////////////private void SetColumnStylingStandings(DataGrid dataGrid)
+////////////////{
+////////////////    //these hardcoded columns numbers stinks to high heaven, but using Attributes against column properties is expensive when retrieving using reflection
+////////////////    var primaryColumns = new List<int> { 0, 2, 3, 4, 5, 6, 7, 8, 9 };
+////////////////    var homeColumns = new List<int> { 10, 11, 12, 13, 14, 15, 16 };
+////////////////    var awayColumns = new List<int> { 17, 18, 19, 20, 21, 22, 23 };
+
+////////////////    var rightAlignColumns = primaryColumns.Union(homeColumns).Union(awayColumns);
+
+////////////////    WpfHelper.FormatDataGridColumns(dataGrid.Columns, rightAlignColumns, _rightAlignStyle);
+////////////////    WpfHelper.FormatDataGridColumns(dataGrid.Columns, homeColumns, _homeStyle);
+////////////////    WpfHelper.FormatDataGridColumns(dataGrid.Columns, awayColumns, _awayStyle);
+////////////////    WpfHelper.FormatDataGridHeader(dataGrid.Columns, homeColumns, _homeStyle);
+////////////////    WpfHelper.FormatDataGridHeader(dataGrid.Columns, awayColumns, _awayStyle);
+////////////////}
+
+////////////////private void SetColumnStylingFixturePasts(DataGrid dataGrid)
+////////////////{
+////////////////    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 2 }, _rightAlignStyle);
+////////////////}
+
+////////////////private void SetColumnStylingFixtureFutures(DataGrid dataGrid)
+////////////////{
+////////////////    WpfHelper.FormatDataGridColumns(dataGrid.Columns, new List<int> { 0, 1 }, _rightAlignStyle);
+////////////////}
 
 
 
