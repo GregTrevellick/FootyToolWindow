@@ -72,6 +72,7 @@ namespace FootieData.Vsix
                 #region styling 1
                 var isRightAlignColumn =
                     item.SortMemberPath == nameof(FixturePast.Date) ||
+                    item.SortMemberPath == nameof(FixturePast.GoalsHome) ||
                     item.SortMemberPath == nameof(FixturePast.HomeName) ||
                     item.SortMemberPath == nameof(FixtureFuture.Date) ||
                     item.SortMemberPath == nameof(FixtureFuture.HomeName) ||
