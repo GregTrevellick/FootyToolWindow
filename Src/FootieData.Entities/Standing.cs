@@ -29,7 +29,7 @@ namespace FootieData.Entities
         [Description("PTs")]
         public int Points { get; set; }
 
-        [Description("Home P")]
+        [Description("Home")]
         public int HomePlayed => HomeWins + HomeDraws + HomeLosses;
         [Description("W")]
         public int HomeWins { get; set; }
@@ -44,7 +44,7 @@ namespace FootieData.Entities
         [Description("PTs")]
         public int HomePoints => 3 * HomeWins + HomeDraws;
 
-        [Description("Away P")]
+        [Description("Away")]
         public int AwayPlayed => AwayWins + AwayDraws + AwayLosses;
         [Description("W")]
         public int AwayWins { get; set; }
