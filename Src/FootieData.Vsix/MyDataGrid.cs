@@ -47,79 +47,113 @@ namespace FootieData.Vsix
 
             foreach (var item in this.Columns)
             {
-                //TODO extract out
-                #region error column 
-                var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
-                var visibility = Visibility.Collapsed;
-
-                if (isPoliteErrorColumn)
-                {
-                    if (!hidePoliteError)
-                    {
-                        visibility = Visibility.Visible;
-                    }
-                }
-                else
-                {
-                    if (hidePoliteError)
-                    {
-                        visibility = Visibility.Visible;
-                    }
-                }
-
-                item.Visibility = visibility;
-                #endregion
-
-                //TODO extract out
-                #region styling 1
-                var isRightAlignColumn =
-                    item.SortMemberPath == nameof(FixturePast.Date) ||
-                    item.SortMemberPath == nameof(FixturePast.GoalsHome) ||
-                    item.SortMemberPath == nameof(FixturePast.HomeName) ||
-                    item.SortMemberPath == nameof(FixtureFuture.Date) ||
-                    item.SortMemberPath == nameof(FixtureFuture.HomeName) ||
-                    item.SortMemberPath == nameof(Standing.Against) ||
-                    item.SortMemberPath == nameof(Standing.AwayDraws) ||
-                    item.SortMemberPath == nameof(Standing.AwayGoalsAgainst) ||
-                    item.SortMemberPath == nameof(Standing.AwayGoalsFor) ||
-                    item.SortMemberPath == nameof(Standing.AwayLosses) ||
-                    item.SortMemberPath == nameof(Standing.AwayPlayed) ||
-                    item.SortMemberPath == nameof(Standing.AwayPoints) ||
-                    item.SortMemberPath == nameof(Standing.AwayWins) ||
-                    item.SortMemberPath == nameof(Standing.Diff) ||
-                    item.SortMemberPath == nameof(Standing.Draws) ||
-                    item.SortMemberPath == nameof(Standing.For) ||
-                    item.SortMemberPath == nameof(Standing.HomeDraws) ||
-                    item.SortMemberPath == nameof(Standing.HomeGoalsAgainst) ||
-                    item.SortMemberPath == nameof(Standing.HomeGoalsFor) ||
-                    item.SortMemberPath == nameof(Standing.HomeLosses) ||
-                    item.SortMemberPath == nameof(Standing.HomePlayed) ||
-                    item.SortMemberPath == nameof(Standing.HomePoints) ||
-                    item.SortMemberPath == nameof(Standing.HomeWins) ||
-                    item.SortMemberPath == nameof(Standing.Losses)||
-                    item.SortMemberPath == nameof(Standing.Played) ||
-                    item.SortMemberPath == nameof(Standing.Points) ||
-                    item.SortMemberPath == nameof(Standing.Rank) ||
-                    item.SortMemberPath == nameof(Standing.Wins);
-
-                if (isRightAlignColumn)
-                {
-                    var rightAlignStyle = new Style();
-                    rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
-                    item.CellStyle = rightAlignStyle;
-                    item.HeaderStyle = rightAlignStyle;
-                }
-                #endregion
-                
-                //TODO extract out
-                #region styling 2
-                //var homeAwayFontColour = Brushes.SlateGray;
-                //////////    _homeStyle = new Style();
-                //////////    _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-                //////////    _awayStyle = new Style();
-                //////////    _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-                #endregion
+                SetPoliteErrorMessageVisibility(entityBase, hidePoliteError, item);
+                StyleNumericalColumns(item);
+                StyleHomeAndAwayColumns(item);
             }
+        }
+
+        private static void StyleHomeAndAwayColumns(DataGridColumn item)
+        {
+            var isHomeColumn =
+                item.SortMemberPath == nameof(Standing.HomeDraws) ||
+                item.SortMemberPath == nameof(Standing.HomeGoalsAgainst) ||
+                item.SortMemberPath == nameof(Standing.HomeGoalsFor) ||
+                item.SortMemberPath == nameof(Standing.HomeLosses) ||
+                item.SortMemberPath == nameof(Standing.HomePlayed) ||
+                item.SortMemberPath == nameof(Standing.HomePoints) ||
+                item.SortMemberPath == nameof(Standing.HomeWins);
+
+            var isAwayColumn =
+                item.SortMemberPath == nameof(Standing.AwayDraws) ||
+                item.SortMemberPath == nameof(Standing.AwayGoalsAgainst) ||
+                item.SortMemberPath == nameof(Standing.AwayGoalsFor) ||
+                item.SortMemberPath == nameof(Standing.AwayLosses) ||
+                item.SortMemberPath == nameof(Standing.AwayPlayed) ||
+                item.SortMemberPath == nameof(Standing.AwayPoints) ||
+                item.SortMemberPath == nameof(Standing.AwayWins);
+
+            if (isHomeColumn)
+            {
+                var homeAwayFontColour = Brushes.SlateGray;
+                var _homeStyle = new Style();
+                _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                item.CellStyle = _homeStyle;
+                item.HeaderStyle = _homeStyle;
+            }
+
+            if (isAwayColumn)
+            {
+                var homeAwayFontColour = Brushes.SlateGray;
+                var _awayStyle = new Style();
+                _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                item.CellStyle = _awayStyle;
+                item.HeaderStyle = _awayStyle;
+            }
+        }
+
+        private static void StyleNumericalColumns(DataGridColumn item)
+        {
+            var isRightAlignColumn =
+                item.SortMemberPath == nameof(FixturePast.Date) ||
+                item.SortMemberPath == nameof(FixturePast.GoalsHome) ||
+                item.SortMemberPath == nameof(FixturePast.HomeName) ||
+                item.SortMemberPath == nameof(FixtureFuture.Date) ||
+                item.SortMemberPath == nameof(FixtureFuture.HomeName) ||
+                item.SortMemberPath == nameof(Standing.Against) ||
+                item.SortMemberPath == nameof(Standing.AwayDraws) ||
+                item.SortMemberPath == nameof(Standing.AwayGoalsAgainst) ||
+                item.SortMemberPath == nameof(Standing.AwayGoalsFor) ||
+                item.SortMemberPath == nameof(Standing.AwayLosses) ||
+                item.SortMemberPath == nameof(Standing.AwayPlayed) ||
+                item.SortMemberPath == nameof(Standing.AwayPoints) ||
+                item.SortMemberPath == nameof(Standing.AwayWins) ||
+                item.SortMemberPath == nameof(Standing.Diff) ||
+                item.SortMemberPath == nameof(Standing.Draws) ||
+                item.SortMemberPath == nameof(Standing.For) ||
+                item.SortMemberPath == nameof(Standing.HomeDraws) ||
+                item.SortMemberPath == nameof(Standing.HomeGoalsAgainst) ||
+                item.SortMemberPath == nameof(Standing.HomeGoalsFor) ||
+                item.SortMemberPath == nameof(Standing.HomeLosses) ||
+                item.SortMemberPath == nameof(Standing.HomePlayed) ||
+                item.SortMemberPath == nameof(Standing.HomePoints) ||
+                item.SortMemberPath == nameof(Standing.HomeWins) ||
+                item.SortMemberPath == nameof(Standing.Losses) ||
+                item.SortMemberPath == nameof(Standing.Played) ||
+                item.SortMemberPath == nameof(Standing.Points) ||
+                item.SortMemberPath == nameof(Standing.Rank) ||
+                item.SortMemberPath == nameof(Standing.Wins);
+
+            if (isRightAlignColumn)
+            {
+                var rightAlignStyle = new Style();
+                rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
+                item.CellStyle = rightAlignStyle;
+                item.HeaderStyle = rightAlignStyle;
+            }
+        }
+
+        private static void SetPoliteErrorMessageVisibility(EntityBase entityBase, bool hidePoliteError, DataGridColumn item)
+        {
+            var isPoliteErrorColumn = item.SortMemberPath == nameof(entityBase.PoliteError);
+            var visibility = Visibility.Collapsed;
+
+            if (isPoliteErrorColumn)
+            {
+                if (!hidePoliteError)
+                {
+                    visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                if (hidePoliteError)
+                {
+                    visibility = Visibility.Visible;
+                }
+            }
+
+            item.Visibility = visibility;
         }
     }
 }
