@@ -30,10 +30,10 @@
                 <TextBlock Name="TextBlockBossMode" />
             </StackPanel>
 
-            <TextBlock Name="TextBlockUnexpectedErrorOccuredActivityLogin" Visibility="Collapsed" />
-            
             <StackPanel Name="StackPanelLeagueMode" />
-           
+
+            <TextBlock Name="TextBlockUnexpectedErrorOccuredActivityLogin" Visibility="Collapsed" />
+
         </StackPanel>
     </ScrollViewer >
 
