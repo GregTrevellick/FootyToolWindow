@@ -48,12 +48,32 @@ namespace FootieData.Vsix
             foreach (var item in this.Columns)
             {
                 SetPoliteErrorMessageVisibility(entityBase, hidePoliteError, item);
-                StyleNumericalColumns(item);
-                StyleHomeAndAwayColumns(item);
+
+                var _style = new Style();
+               
+                if (IsNumericalColumn(item))
+                {
+                    _style.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
+                }
+
+                if (IsHomeColumn(item))
+                {
+                    var homeAwayFontColour = Brushes.SlateGray;              
+                    _style.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                }
+
+                if (IsAwayColumn(item))
+                {
+                    var homeAwayFontColour = Brushes.SlateGray;
+                    _style.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
+                }
+
+                item.CellStyle = _style;
+                item.HeaderStyle = _style;
             }
         }
 
-        private static void StyleHomeAndAwayColumns(DataGridColumn item)
+        private static bool IsHomeColumn(DataGridColumn item)
         {
             var isHomeColumn =
                 item.SortMemberPath == nameof(Standing.HomeDraws) ||
@@ -63,7 +83,11 @@ namespace FootieData.Vsix
                 item.SortMemberPath == nameof(Standing.HomePlayed) ||
                 item.SortMemberPath == nameof(Standing.HomePoints) ||
                 item.SortMemberPath == nameof(Standing.HomeWins);
+            return isHomeColumn;
+        }
 
+        private static bool IsAwayColumn(DataGridColumn item)
+        { 
             var isAwayColumn =
                 item.SortMemberPath == nameof(Standing.AwayDraws) ||
                 item.SortMemberPath == nameof(Standing.AwayGoalsAgainst) ||
@@ -72,29 +96,12 @@ namespace FootieData.Vsix
                 item.SortMemberPath == nameof(Standing.AwayPlayed) ||
                 item.SortMemberPath == nameof(Standing.AwayPoints) ||
                 item.SortMemberPath == nameof(Standing.AwayWins);
-
-            if (isHomeColumn)
-            {
-                var homeAwayFontColour = Brushes.SlateGray;
-                var _homeStyle = new Style();
-                _homeStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-                item.CellStyle = _homeStyle;
-                item.HeaderStyle = _homeStyle;
-            }
-
-            if (isAwayColumn)
-            {
-                var homeAwayFontColour = Brushes.SlateGray;
-                var _awayStyle = new Style();
-                _awayStyle.Setters.Add(new Setter(ForegroundProperty, homeAwayFontColour));
-                item.CellStyle = _awayStyle;
-                item.HeaderStyle = _awayStyle;
-            }
+            return isAwayColumn;
         }
 
-        private static void StyleNumericalColumns(DataGridColumn item)
+        private static bool IsNumericalColumn(DataGridColumn item)
         {
-            var isRightAlignColumn =
+            var isNumericalColumn =
                 item.SortMemberPath == nameof(FixturePast.Date) ||
                 item.SortMemberPath == nameof(FixturePast.GoalsHome) ||
                 item.SortMemberPath == nameof(FixturePast.HomeName) ||
@@ -123,14 +130,7 @@ namespace FootieData.Vsix
                 item.SortMemberPath == nameof(Standing.Points) ||
                 item.SortMemberPath == nameof(Standing.Rank) ||
                 item.SortMemberPath == nameof(Standing.Wins);
-
-            if (isRightAlignColumn)
-            {
-                var rightAlignStyle = new Style();
-                rightAlignStyle.Setters.Add(new Setter(TextBlock.TextAlignmentProperty, TextAlignment.Right));
-                item.CellStyle = rightAlignStyle;
-                item.HeaderStyle = rightAlignStyle;
-            }
+            return isNumericalColumn;
         }
 
         private static void SetPoliteErrorMessageVisibility(EntityBase entityBase, bool hidePoliteError, DataGridColumn item)
