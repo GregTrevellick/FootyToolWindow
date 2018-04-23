@@ -82,6 +82,7 @@ namespace FootieData.Vsix
                 item.SortMemberPath == nameof(Standing.HomeLosses) ||
                 item.SortMemberPath == nameof(Standing.HomePlayed) ||
                 item.SortMemberPath == nameof(Standing.HomePoints) ||
+                item.SortMemberPath == nameof(Standing.HomeGoalDiff) ||
                 item.SortMemberPath == nameof(Standing.HomeWins);
             return isHomeColumn;
         }
@@ -95,6 +96,7 @@ namespace FootieData.Vsix
                 item.SortMemberPath == nameof(Standing.AwayLosses) ||
                 item.SortMemberPath == nameof(Standing.AwayPlayed) ||
                 item.SortMemberPath == nameof(Standing.AwayPoints) ||
+                item.SortMemberPath == nameof(Standing.AwayGoalDiff) ||
                 item.SortMemberPath == nameof(Standing.AwayWins);
             return isAwayColumn;
         }
@@ -115,6 +117,8 @@ namespace FootieData.Vsix
                 item.SortMemberPath == nameof(Standing.AwayPlayed) ||
                 item.SortMemberPath == nameof(Standing.AwayPoints) ||
                 item.SortMemberPath == nameof(Standing.AwayWins) ||
+                item.SortMemberPath == nameof(Standing.AwayGoalDiff) ||
+                item.SortMemberPath == nameof(Standing.HomeGoalDiff) ||
                 item.SortMemberPath == nameof(Standing.Diff) ||
                 item.SortMemberPath == nameof(Standing.Draws) ||
                 item.SortMemberPath == nameof(Standing.For) ||

@@ -41,6 +41,8 @@ namespace FootieData.Entities
         public int HomeGoalsFor { get; set; }
         [Description("A")]
         public int HomeGoalsAgainst { get; set; }
+        [Description("GD")]
+        public int HomeGoalDiff => HomeGoalsFor - HomeGoalsAgainst;
         [Description("PTs")]
         public int HomePoints => 3 * HomeWins + HomeDraws;
 
@@ -56,6 +58,8 @@ namespace FootieData.Entities
         public int AwayGoalsFor { get; set; }
         [Description("A")]
         public int AwayGoalsAgainst { get; set; }
+        [Description("GD")]
+        public int AwayGoalDiff => AwayGoalsFor - AwayGoalsAgainst;
         [Description("PTs")]
         public int AwayPoints => 3 * AwayWins + AwayDraws;
     }
