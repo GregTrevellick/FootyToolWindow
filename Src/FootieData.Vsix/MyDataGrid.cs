@@ -106,9 +106,7 @@ namespace FootieData.Vsix
             var isNumericalColumn =
                 item.SortMemberPath == nameof(FixturePast.Date) ||
                 item.SortMemberPath == nameof(FixturePast.GoalsHome) ||
-                item.SortMemberPath == nameof(FixturePast.HomeName) ||
                 item.SortMemberPath == nameof(FixtureFuture.Date) ||
-                item.SortMemberPath == nameof(FixtureFuture.HomeName) ||
                 item.SortMemberPath == nameof(Standing.Against) ||
                 item.SortMemberPath == nameof(Standing.AwayDraws) ||
                 item.SortMemberPath == nameof(Standing.AwayGoalsAgainst) ||

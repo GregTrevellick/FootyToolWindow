@@ -1,6 +1,5 @@
 //TODO - gregt  never hit ? ought it to be ?
 //gregt revert to async ? convert others to sync ?
-update readme screenshots with home away
 test in vs2015
 
 
@@ -68,6 +67,7 @@ test vsix rating chaser in prod
 
 Future if becomes popular
 =========================
+icon for lhs panel tab when reduced to be very narrow
 add midmatch goals for future fixtures
 put timeout into options
 c.f. leagues table & league name against local dialect
