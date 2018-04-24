@@ -1,6 +1,6 @@
 //TODO - gregt  never hit ? ought it to be ?
 //gregt revert to async ? convert others to sync ?
-test in vs2015
+check version in manifest / test in vs2015
 
 
 
