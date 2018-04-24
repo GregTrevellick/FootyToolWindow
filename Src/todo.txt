@@ -1,4 +1,3 @@
-"working on it"
 //gregt revert to async ? convert others to sync ?
 check version in manifest / test in vs2015
 
