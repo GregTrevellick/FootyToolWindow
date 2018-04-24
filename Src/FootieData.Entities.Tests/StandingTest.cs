@@ -17,6 +17,10 @@ namespace FootieData.Entities.Tests
                 HomeWins = 10,
                 HomeDraws = 20,
                 HomeLosses = 30,
+                HomeGoalsAgainst=1,
+                HomeGoalsFor=1,
+                AwayGoalsAgainst=2,
+                AwayGoalsFor=-5,
             };
 
             Assert.AreEqual(6, standing.AwayPlayed);
@@ -25,7 +29,9 @@ namespace FootieData.Entities.Tests
             Assert.AreEqual(22, standing.Draws);
             Assert.AreEqual(33, standing.Losses);
             Assert.AreEqual(5, standing.AwayPoints);
-            Assert.AreEqual(50, standing.HomePoints);            
+            Assert.AreEqual(50, standing.HomePoints);
+            Assert.AreEqual(0, standing.HomeGoalDiff);
+            Assert.AreEqual(-7, standing.AwayGoalDiff);
         }
     }
 }
