@@ -63,16 +63,6 @@ namespace FootieData.Vsix
             return ToolWindowCreationContext.Unspecified;
         }
 
-        //TODO - gregt  never hit ? ought it to be ?
-        //protected override string GetToolWindowTitle(Type toolWindowType, int id)
-        //{
-        //    if (toolWindowType == typeof(VsixToolWindowPane))
-        //    {
-        //        return "VsixToolWindowPane loading";
-        //    }
-        //    return base.GetToolWindowTitle(toolWindowType, id);
-        //}
-
         private LeagueGeneralOptions GetLeagueGeneralOptions(GeneralOptions generalOptions)
         {
             return new LeagueGeneralOptions
@@ -133,3 +123,12 @@ namespace FootieData.Vsix
         }
     }
 }
+
+//protected override string GetToolWindowTitle(Type toolWindowType, int id)
+//{
+//    if (toolWindowType == typeof(VsixToolWindowPane))
+//    {
+//        return "VsixToolWindowPane loading";
+//    }
+//    return base.GetToolWindowTitle(toolWindowType, id);
+//}
