@@ -1,8 +1,5 @@
 [AppVeyorProjectUrl]: https://ci.appveyor.com/project/GregTrevellick/vsixfootie
 [AppVeyorProjectBuildStatusBadgeSvg]: https://ci.appveyor.com/api/projects/status/i7kxey89fewvjkac?svg=true
-[GitHubRepoURL]: https://github.com/GregTrevellick/VsixFootie
-[GitHubRepoIssuesURL]: https://github.com/GregTrevellick/VsixFootie/issues
-[GitHubRepoPullRequestsURL]: https://github.com/GregTrevellick/VsixFootie/pulls
 [VersionNumberBadgeURL]: https://vsmarketplacebadge.apphb.com/version/GregTrevellick.VsixFootie.svg
 
 # Visual Studio Sports Desk
@@ -13,6 +10,9 @@
 
 <!--VSMM readme start-->
 
+[GitHubRepoURL]: https://github.com/GregTrevellick/VsixFootie
+[GitHubRepoIssuesURL]: https://github.com/GregTrevellick/VsixFootie/issues
+[GitHubRepoPullRequestsURL]: https://github.com/GregTrevellick/VsixFootie/pulls
 [VisualStudioURL]: https://www.visualstudio.com/
 [VSMarketplaceUrl]: https://marketplace.visualstudio.com/search?term=trevellick&target=VS&sortBy=Relevance
 [CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware
@@ -20,22 +20,18 @@
 
 ![](Src/FootieData.Vsix/Resources/VsixExtensionPreview_175x175.png)
 
-What more do you want from your IDE than to display the latest soccer scores and tables ? Everything else is just fluff.
-
-This [charity ware][CharityWareURL] Visual Studio extension leverage the  awesome labour of love that is [footballdata.org](https://www.football-data.org).
+Bringing the latest soccer league tables and scores to your IDE, leveraging the awesome labour of love that is [footballdata.org](https://www.football-data.org).
 
    
+![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png?raw=true)
+
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png?raw=true)
 
-Menu access
-
-![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png?raw=true)
+<!--
 
 Options
 
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/Options.png)
-
-<!--
 
 Full screen if you like
 
@@ -59,13 +55,15 @@ For when the boss is around
 
 As [Daniel Freitag](https://www.football-data.org) says, I can't *guarantee* the data to be fully accurate and up-to-date 100% of the time (this is free after all), but this is of course is mine and Daniel's intention.
 
+[Why?][WhyURL]
+
 -->
 
-[Why?][WhyURL]
+Why ? Because I can.
 
 If you like this **free** extension please take just a few seconds to give it a rating.
 
-Bugs can be logged [here][GitHubRepoIssuesURL].
+Any bugs (as if!) can be logged [here][GitHubRepoIssuesURL].
 
 ## Features
 
@@ -116,3 +114,5 @@ See the [change log](CHANGELOG.md) for release history.
 ## License
 
 Software License is available [here](/LICENSE.txt).
+
+Deemed to be [charity ware][CharityWareURL].
