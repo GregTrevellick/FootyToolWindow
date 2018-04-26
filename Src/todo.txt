@@ -1,75 +1,67 @@
 test in vs2015
-add "click column to sort" text
-show last updated in the ui
-//gregt revert to async ? convert others to sync ?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 test vsix rating chaser in prod
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Future if becomes popular
 =========================
+add world cup
+show last updated in the ui
+//gregt revert to async ? convert others to sync ?
 icon for lhs panel tab when reduced to be very narrow
 add midmatch goals for future fixtures
 put timeout into options
@@ -85,6 +77,7 @@ random alternate boss mode text
 restsharp ?
 add country flags to readme.txt features
 set to c#7 ?
+add "click column to sort" text
 
 https://www.nuget.org/packages/Football-Data-API/
 https://github.com/Garand-Gary/Football-Data.co.uk
