@@ -22,10 +22,9 @@
 
 What more do you want from your IDE than to display the latest soccer scores and tables ? Everything else is just fluff.
 
-This **free** [charity ware][CharityWareURL] Visual Studio extension does exactly that, leveraging the  awesome labour of love that is [footballdata.org](https://www.football-data.org).
+This [charity ware][CharityWareURL] Visual Studio extension leverage the  awesome labour of love that is [footballdata.org](https://www.football-data.org).
 
- - *If you like this ***free*** extension please give a star rating above, it only takes a few seconds. You can even [help others][CharityWareURL].*
-    
+   
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/VSSportsDeskRhs.png?raw=true)
 
 Menu access
@@ -35,6 +34,8 @@ Menu access
 Options
 
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/Options.png)
+
+<!--
 
 Full screen if you like
 
@@ -58,7 +59,11 @@ For when the boss is around
 
 As [Daniel Freitag](https://www.football-data.org) says, I can't *guarantee* the data to be fully accurate and up-to-date 100% of the time (this is free after all), but this is of course is mine and Daniel's intention.
 
-[Why bother?][WhyURL]
+-->
+
+[Why?][WhyURL]
+
+If you like this **free** extension please take just a few seconds to give it a rating.
 
 Bugs can be logged [here][GitHubRepoIssuesURL].
 
@@ -66,7 +71,7 @@ Bugs can be logged [here][GitHubRepoIssuesURL].
 
 - League standings are displayed in a dockable window, just like the Output window or the Solution Explorer window
 
-- Configure your preferred football leagues from a choice of major European leagues and one South American league
+- Configure your preferred football leagues from a choice of major international leagues 
   - Bundesliga
   - Campeonato Brasileiro da Série A
   - Eredivisie
@@ -82,7 +87,7 @@ Bugs can be logged [here][GitHubRepoIssuesURL].
 
 - See the next seven days fixtures
 
-- Boss mode (replaces league tables with dummy crash dump data)
+- Stealth mode (hides league tables when your boss is hovering)
 
 <!--VSMM readme end-->
 

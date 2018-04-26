@@ -1,5 +1,9 @@
+test in vs2015
+add "click column to sort" text
+show last updated in the ui
 //gregt revert to async ? convert others to sync ?
-check version in manifest / test in vs2015
+
+
 
 
 

@@ -3,7 +3,7 @@
     <Metadata>
         <Identity Id="28693b18-0c2c-4e86-adf2-adce836b749e" Version="1.53" Language="en-US" Publisher="Greg Trevellick" />
         <DisplayName>VS Sports Desk</DisplayName>
-        <Description xml:space="preserve">International soccer league tables, results and fixtures. No fluff.</Description>
+        <Description xml:space="preserve">Football league tables in the IDE</Description>
         <MoreInfo>https://github.com/GregTrevellick/VsixFootie</MoreInfo>
         <License>LICENSE.txt</License>
         <ReleaseNotes>https://github.com/GregTrevellick/VsixFootie/blob/master/CHANGELOG.md</ReleaseNotes>
@@ -12,7 +12,7 @@
         <Tags>Bundesliga, Championship, Desk, English, Football, Footie, Footy, League, Liga, Premier, Soccer, Sport, United, Sports, Desk</Tags>
     </Metadata>
     <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[11.0,16.0)" />
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0,16.0)" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
