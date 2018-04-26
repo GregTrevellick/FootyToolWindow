@@ -1,6 +1,6 @@
+ensure app uses the api not hardcoded league ids
+decide default leagues to be shown OR  add "options" text somewhere to chose teams
 create release in github
-add "options" text somewhere to chose teams
-
 test in vs2015
 test vsix rating chaser in prod
 
