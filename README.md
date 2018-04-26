@@ -20,8 +20,9 @@
 
 ![](Src/FootieData.Vsix/Resources/VsixExtensionPreview_175x175.png)
 
-Bringing the latest soccer league tables and scores to your IDE, leveraging the awesome labour of love that is [footballdata.org](https://www.football-data.org).
+Bringing the latest soccer league tables and scores to Visual Studio, leveraging the awesome labour of love that is [footballdata.org](https://www.football-data.org).
 
+You need nothing else from your IDE.
    
 ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/MenuViewOtherWindows.png?raw=true)
 
