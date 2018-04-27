@@ -45,7 +45,7 @@ namespace FootieData.Vsix.Options
         [Category(CommonConstants.CategorySubLevelFootball)]
         [DisplayName(CommonConstants.InternalLeagueCodeDescriptionEs1)]
         [Description(CommonConstants.InterestedInLeague)]
-        public bool InterestedInEs1 { get; set; } = false;
+        public bool InterestedInEs1 { get; set; } = true;
 
         [Category(CommonConstants.CategorySubLevelFootball)]
         [DisplayName(CommonConstants.InternalLeagueCodeDescriptionFr1)]
