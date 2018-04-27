@@ -282,7 +282,7 @@ namespace FootieData.Vsix.Providers
             {
                 //throw new Exception();//for debugging
                 var gateway = GetFootieDataGateway();
-                var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
+                var result = gateway.GetFromClientStandings(externalLeagueCode);
                 return result;
             }
             catch (Exception ex)
