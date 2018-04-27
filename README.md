@@ -79,6 +79,8 @@ Any bugs (as if!) can be logged [here][GitHubRepoIssuesURL].
   - Premier League, EFL Championship, EFL League One, EFL League Two (aka Division 1 / 2 / 3 / 4)
   - Primeira Liga
   - Serie A / Serie B
+  
+  ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/Options.png?raw=true)
 
 - League tables sortable by any column
 

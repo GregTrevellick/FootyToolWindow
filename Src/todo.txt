@@ -1,5 +1,5 @@
 ensure app uses the api not hardcoded league ids
-decide default leagues to be shown OR  add "options" text somewhere to chose teams
+decide default leagues to be shown
 create release in github
 test in vs2015
 test vsix rating chaser in prod
@@ -63,6 +63,7 @@ test vsix rating chaser in prod
 Future if becomes popular
 =========================
 add world cup
+add "options" text somewhere to chose teams
 show last updated in the ui
 //gregt revert to async ? convert others to sync ?
 icon for lhs panel tab when reduced to be very narrow
