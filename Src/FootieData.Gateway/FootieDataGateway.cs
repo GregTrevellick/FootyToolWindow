@@ -19,9 +19,9 @@ namespace FootieData.Gateway
             _competitionResultSingleton = competitionResultSingletonInstance;
         }
 
-        public IEnumerable<Standing> GetFromClientStandings(ExternalLeagueCode leagueIdentifierEnum)
+        public IEnumerable<Standing> GetFromClientStandings(ExternalLeagueCode externalLeagueCode)
         {
-            var leagueIdentifier = leagueIdentifierEnum.ToString();
+            var leagueIdentifier = externalLeagueCode.ToString();
 
             IEnumerable<Standing> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
