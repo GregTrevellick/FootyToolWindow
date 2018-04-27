@@ -21,10 +21,8 @@ namespace FootieData.Gateway
 
         public IEnumerable<Standing> GetFromClientStandings(ExternalLeagueCode externalLeagueCode)
         {
-            var leagueIdentifier = externalLeagueCode.ToString();
-
             IEnumerable<Standing> result = null;
-            var idSeason = GetIdSeason(leagueIdentifier);
+            var idSeason = GetIdSeason(externalLeagueCode);
             if (idSeason > 0)
             {
                 StandingsResponse leagueTableResult;
@@ -72,7 +70,7 @@ namespace FootieData.Gateway
         ////////    return result;
         ////////}
 
-        public IEnumerable<FixturePast> GetFromClientFixturePasts(string leagueIdentifier, string timeFrame)
+        public IEnumerable<FixturePast> GetFromClientFixturePasts(ExternalLeagueCode leagueIdentifier, string timeFrame)
         {
             IEnumerable<FixturePast> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
@@ -96,7 +94,7 @@ namespace FootieData.Gateway
             return result;
         }
 
-        public IEnumerable<FixtureFuture> GetFromClientFixtureFutures(string leagueIdentifier, string timeFrame)
+        public IEnumerable<FixtureFuture> GetFromClientFixtureFutures(ExternalLeagueCode leagueIdentifier, string timeFrame)
         {
             IEnumerable<FixtureFuture> result = null;
             var idSeason = GetIdSeason(leagueIdentifier);
@@ -125,13 +123,13 @@ namespace FootieData.Gateway
             Logger.Log($"Exception in {nameof(GetFromClientStandings)}" + ex.Message);
         }
 
-        private int GetIdSeason(string leagueIdentifier, bool getViaHttpRequest = true)
+        private int GetIdSeason(ExternalLeagueCode leagueIdentifier, bool getViaHttpRequest = true)
         {
             int result;
 
             //if (getViaHttpRequest)
             //{
-                var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier);
+                var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier.ToString());
                 result = league?.Id ?? 0;
             //}
             //else

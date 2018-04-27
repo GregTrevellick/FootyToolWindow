@@ -297,7 +297,7 @@ namespace FootieData.Vsix.Providers
             {
                 //throw new Exception();//for debugging
                 var gateway = GetFootieDataGateway();
-                var result = gateway.GetFromClientFixturePasts(externalLeagueCode.ToString(), $"p{CommonConstants.DaysCount}");
+                var result = gateway.GetFromClientFixturePasts(externalLeagueCode, $"p{CommonConstants.DaysCount}");
                 return result;
             }
             catch (Exception ex)
@@ -312,7 +312,7 @@ namespace FootieData.Vsix.Providers
             {
                 //throw new Exception();//for debugging
                 var gateway = GetFootieDataGateway();
-                var result = gateway.GetFromClientFixtureFutures(externalLeagueCode.ToString(), $"n{CommonConstants.DaysCount}");
+                var result = gateway.GetFromClientFixtureFutures(externalLeagueCode, $"n{CommonConstants.DaysCount}");
                 return result;
             }
             catch (Exception ex)
