@@ -70,10 +70,10 @@ namespace FootieData.Gateway
         ////////    return result;
         ////////}
 
-        public IEnumerable<FixturePast> GetFromClientFixturePasts(ExternalLeagueCode leagueIdentifier, string timeFrame)
+        public IEnumerable<FixturePast> GetFromClientFixturePasts(ExternalLeagueCode externalLeagueCode, string timeFrame)
         {
             IEnumerable<FixturePast> result = null;
-            var idSeason = GetIdSeason(leagueIdentifier);
+            var idSeason = GetIdSeason(externalLeagueCode);
             if (idSeason > 0)
             {
                 FixturesResponse fixturesResult;
@@ -94,10 +94,10 @@ namespace FootieData.Gateway
             return result;
         }
 
-        public IEnumerable<FixtureFuture> GetFromClientFixtureFutures(ExternalLeagueCode leagueIdentifier, string timeFrame)
+        public IEnumerable<FixtureFuture> GetFromClientFixtureFutures(ExternalLeagueCode externalLeagueCode, string timeFrame)
         {
             IEnumerable<FixtureFuture> result = null;
-            var idSeason = GetIdSeason(leagueIdentifier);
+            var idSeason = GetIdSeason(externalLeagueCode);
             if (idSeason > 0)
             {
                 FixturesResponse fixturesResult;
@@ -123,13 +123,13 @@ namespace FootieData.Gateway
             Logger.Log($"Exception in {nameof(GetFromClientStandings)}" + ex.Message);
         }
 
-        private int GetIdSeason(ExternalLeagueCode leagueIdentifier, bool getViaHttpRequest = true)
+        private int GetIdSeason(ExternalLeagueCode externalLeagueCode, bool getViaHttpRequest = true)
         {
             int result;
 
             //if (getViaHttpRequest)
             //{
-                var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier.ToString());
+                var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == externalLeagueCode.ToString());
                 result = league?.Id ?? 0;
             //}
             //else
