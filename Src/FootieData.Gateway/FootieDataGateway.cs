@@ -123,20 +123,20 @@ namespace FootieData.Gateway
             Logger.Log($"Exception in {nameof(GetFromClientStandings)}" + ex.Message);
         }
 
-        private int GetIdSeason(string leagueIdentifier, bool getViaHttpRequest = false)
+        private int GetIdSeason(string leagueIdentifier, bool getViaHttpRequest = true)
         {
             int result;
 
-            if (getViaHttpRequest)
-            {
+            //if (getViaHttpRequest)
+            //{
                 var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier);
                 result = league?.Id ?? 0;
-            }
-            else
-            {
-                var leagueDto = LeagueMapping.LeagueDtos.FirstOrDefault(x => x.ExternalLeagueCode.ToString() == leagueIdentifier);
-                result = leagueDto?.ClientLeagueId ?? 0;
-            }
+            //}
+            //else
+            //{
+            //    var leagueDto = LeagueMapping.LeagueDtos.FirstOrDefault(x => x.ExternalLeagueCode.ToString() == leagueIdentifier);
+            //    result = leagueDto?.ClientLeagueId ?? 0;
+            //}
 
             return result;
         }
