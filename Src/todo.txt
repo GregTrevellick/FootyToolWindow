@@ -1,4 +1,3 @@
-ensure app uses the api not hardcoded league ids
 create release in github
 test in vs2015
 test vsix rating chaser in prod
