@@ -127,16 +127,16 @@ namespace FootieData.Gateway
         {
             int result;
 
-            //if (getViaHttpRequest)
-            //{
+            ////////if (getViaHttpRequest)
+            ////////{
                 var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == externalLeagueCode.ToString());
                 result = league?.Id ?? 0;
-            //}
-            //else
-            //{
-            //    var leagueDto = LeagueMapping.LeagueDtos.FirstOrDefault(x => x.ExternalLeagueCode.ToString() == leagueIdentifier);
-            //    result = leagueDto?.ClientLeagueId ?? 0;
-            //}
+            ////////}
+            ////////else
+            ////////{
+            ////////    var leagueDto = LeagueMapping.LeagueDtos.FirstOrDefault(x => x.ExternalLeagueCode.ToString() == leagueIdentifier);
+            ////////    result = leagueDto?.ClientLeagueId ?? 0;
+            ////////}
 
             return result;
         }

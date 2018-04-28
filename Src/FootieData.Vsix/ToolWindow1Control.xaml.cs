@@ -108,7 +108,6 @@ namespace FootieData.Vsix
             try
             {
                 var externalLeagueCode = _leagueDtosSingletonInstance.LeagueDtos.Single(x => x.InternalLeagueCode == internalLeagueCode).ExternalLeagueCode;
-                //var externalLeagueCode = _competitionResultSingletonInstance?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == leagueIdentifier);
                 //throw new Exception();//for debugging
 
                 var dataGridEmpty = DataGridHelper.IsDataGridEmpty(dataGrid);

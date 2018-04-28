@@ -43,10 +43,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LeagueDtosSingleton.cs" />
     <Compile Include="LeagueParent.cs" />
     <Compile Include="EntityConstants.cs" />
     <Compile Include="FixturePast.cs" />
-    <Compile Include="LeagueCodeMappingsSingleton.cs" />
     <Compile Include="NullReturn.cs" />
     <Compile Include="FixtureFuture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
