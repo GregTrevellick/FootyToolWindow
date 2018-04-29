@@ -108,6 +108,7 @@
     <Content Include="VsmmAssetts\AutoHideLhs.png" />
     <Content Include="VsmmAssetts\BossMode.png" />
     <Content Include="VsmmAssetts\FullScreen.png" />
+    <Content Include="VsmmAssetts\zMenuViewOtherWindows.png" />
     <Content Include="VsmmAssetts\Options.png" />
     <Content Include="VsmmAssetts\SortedStartTime.png" />
     <Content Include="VsmmAssetts\SortedReverseGoalDifference.png" />
