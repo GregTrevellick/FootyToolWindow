@@ -1,4 +1,4 @@
-create release in github
+create release in github DONE
 test in vs2015
 test vsix rating chaser in prod
 email daniel
