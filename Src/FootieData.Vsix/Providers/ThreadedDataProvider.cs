@@ -329,23 +329,3 @@ namespace FootieData.Vsix.Providers
     }
 }
 
-
-
-
-//public async Task<IEnumerable<Standing>> GetStandingsAsync(ExternalLeagueCode externalLeagueCode)
-//{
-//    try
-//    {
-//        var theTask = Task.Run(() =>
-//        {
-//            var gateway = GetFootieDataGateway();
-//            var result = gateway.GetFromClientStandings(externalLeagueCode.ToString());
-//            return result;
-//        });
-//        await Task.WhenAll(theTask);
-//        return theTask.Result;
-//    }
-//    catch (Exception)
-//    {
-//    }
-//}

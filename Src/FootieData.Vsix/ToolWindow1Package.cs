@@ -123,12 +123,3 @@ namespace FootieData.Vsix
         }
     }
 }
-
-//protected override string GetToolWindowTitle(Type toolWindowType, int id)
-//{
-//    if (toolWindowType == typeof(VsixToolWindowPane))
-//    {
-//        return "VsixToolWindowPane loading";
-//    }
-//    return base.GetToolWindowTitle(toolWindowType, id);
-//}

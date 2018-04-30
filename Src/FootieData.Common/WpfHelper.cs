@@ -165,33 +165,3 @@ namespace FootieData.Common
         }
     }
 }
-
-
-
-
-
-//using System.Collections.ObjectModel;
-//using System.Globalization;
-//using System.Windows;
-//using System.Windows.Controls;
-//public static void FormatDataGridColumns(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style style)
-//{
-//    if (dataGridColumns.Count > 0)
-//    {
-//        foreach (var index in indexes)
-//        {
-//            dataGridColumns[index].CellStyle = style;
-//        }
-//    }
-//}
-
-//public static void FormatDataGridHeader(ObservableCollection<DataGridColumn> dataGridColumns, IEnumerable<int> indexes, Style style)
-//{
-//    if (dataGridColumns.Count > 0)
-//    {
-//        foreach (var index in indexes)
-//        {
-//            dataGridColumns[index].HeaderStyle = style;
-//        }
-//    }
-//}

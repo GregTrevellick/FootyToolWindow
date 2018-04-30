@@ -28,7 +28,6 @@ namespace FootieData.Gateway
                 StandingsResponse leagueTableResult;
                 try
                 {
-                    ////leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
                     //leagueTableResult = await _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason);
                     leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResult(idSeason);
                 }
@@ -44,31 +43,6 @@ namespace FootieData.Gateway
             }
             return result;
         }
-
-        ////////public async Task<IEnumerable<Standing>> GetFromClientStandingsAsync(string leagueIdentifier)
-        ////////{
-        ////////    IEnumerable<Standing> result = null;
-        ////////    var idSeason = GetIdSeason(leagueIdentifier);
-        ////////    if (idSeason > 0)
-        ////////    {
-        ////////        StandingsResponse leagueTableResult;
-        ////////        try
-        ////////        {
-        ////////            //leagueTableResult = _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason).Result;
-        ////////            leagueTableResult = await _competitionResultSingleton.FootballDataOrgApiGateway.GetLeagueTableResultAsync(idSeason);
-        ////////        }
-        ////////        catch (AggregateException ex)
-        ////////        {
-        ////////            LogAggregateException(ex);
-        ////////            leagueTableResult = new StandingsResponse { Standing = new List<FootballDataOrg.ResponseEntities.Standing> { new FootballDataOrg.ResponseEntities.Standing { TeamName = EntityConstants.PotentialTimeout } }};
-        ////////        }
-        ////////        if (leagueTableResult != null)
-        ////////        {
-        ////////            result = GetResultMatchStandings(leagueTableResult);
-        ////////        }
-        ////////    }
-        ////////    return result;
-        ////////}
 
         public IEnumerable<FixturePast> GetFromClientFixturePasts(ExternalLeagueCode externalLeagueCode, string timeFrame)
         {
@@ -127,16 +101,8 @@ namespace FootieData.Gateway
         {
             int result;
 
-            ////////if (getViaHttpRequest)
-            ////////{
-                var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == externalLeagueCode.ToString());
-                result = league?.Id ?? 0;
-            ////////}
-            ////////else
-            ////////{
-            ////////    var leagueDto = LeagueMapping.LeagueDtos.FirstOrDefault(x => x.ExternalLeagueCode.ToString() == leagueIdentifier);
-            ////////    result = leagueDto?.ClientLeagueId ?? 0;
-            ////////}
+            var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == externalLeagueCode.ToString());
+            result = league?.Id ?? 0;
 
             return result;
         }

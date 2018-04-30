@@ -28,11 +28,9 @@ namespace FootieData.Entities.ReferenceData
             InternalLeagueCode internalLeagueCode,
             ExternalLeagueCode externalLeagueCode,
             string externalLeagueCodeDescription)
-            //////////////////////////////int clientLeagueId)
         {
             return new LeagueDto
             {
-                ////////////////////////////ClientLeagueId = clientLeagueId,
                 InternalLeagueCode = internalLeagueCode,
                 ExternalLeagueCode = externalLeagueCode,
                 ExternalLeagueCodeDescription = externalLeagueCodeDescription

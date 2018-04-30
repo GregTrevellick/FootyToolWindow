@@ -33,20 +33,6 @@ namespace FootieData.Common
             return dataGridEmpty;
         }
 
-        //public static bool ShouldPerformRefresh(DateTime lastUpdatedDate)
-        //{
-        //    var shouldPerformRefresh = true;
-
-        //    var updatedWithinLastXSeconds = UpdatedWithinLastXSeconds(lastUpdatedDate, CommonConstants.RefreshIntervalInSeconds, DateTime.Now);
-
-        //    if (updatedWithinLastXSeconds)
-        //    {
-        //        shouldPerformRefresh = false;
-        //    }
-
-        //    return shouldPerformRefresh;
-        //}
-
         public static bool UpdatedWithinLastXSeconds(DateTime lastUpdatedDate, int refreshIntervalInSeconds, DateTime now)
         {
             var updatedWithinLastXSeconds = false;
@@ -73,19 +59,6 @@ namespace FootieData.Common
             var firstItem = dataGrid.Items.GetItemAt(0);
             return firstItem.GetType() == typeof(NullReturn);
         }
-
-        //public static bool ShouldShowLeague(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode)
-        //{
-        //    return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode && x.ShowLeague);
-        //}
-
-        //public static bool ShouldExpandGrid(IEnumerable<LeagueOption> leagueOptions, InternalLeagueCode internalLeagueCode, GridType gridType)
-        //{
-        //    return leagueOptions.Any(x => x.InternalLeagueCode == internalLeagueCode
-        //                                  && x.ShowLeague
-        //                                  && x.LeagueSubOptions.Any(y => y.GridType == gridType
-        //                                                                 && y.Expand));
-        //}
     }
 }
 
