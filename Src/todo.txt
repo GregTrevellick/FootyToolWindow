@@ -1,5 +1,3 @@
-delete commented out code
-test in vs2015
 test vsix rating chaser in prod
 email daniel
 
@@ -81,6 +79,7 @@ restsharp ?
 add country flags to readme.txt features
 set to c#7 ?
 add "click column to sort" text
+if popular, test in vs2015 - seems to fail with dependency on MPF 15.0 in manifest, but works in 2017 w/o the dependency, so need to test if now works in 2015 without this dependency
 
 https://www.nuget.org/packages/Football-Data-API/
 https://github.com/Garand-Gary/Football-Data.co.uk
