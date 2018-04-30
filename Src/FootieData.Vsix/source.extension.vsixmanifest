@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="28693b18-0c2c-4e86-adf2-adce836b749e" Version="1.53" Language="en-US" Publisher="Greg Trevellick" />
+        <Identity Id="28693b18-0c2c-4e86-adf2-adce836b749e" Version="1.57" Language="en-US" Publisher="Greg Trevellick" />
         <DisplayName>VS Sports Desk</DisplayName>
         <Description xml:space="preserve">Football league tables in the IDE</Description>
         <MoreInfo>https://github.com/GregTrevellick/VsixFootie</MoreInfo>
@@ -12,7 +12,7 @@
         <Tags>Bundesliga, Championship, Desk, English, Football, Footie, Footy, League, Liga, Premier, Soccer, Sport, United, Sports, Desk</Tags>
     </Metadata>
     <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0,16.0)" />
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
     </Installation>
     <Dependencies>
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
