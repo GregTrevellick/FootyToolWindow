@@ -4,7 +4,7 @@ namespace FootieData.Common
 {
     public static class CommonConstants
     {
-        public const string CategorySubLevelFootball = "Football";
+        public const string CategorySubLevel = "Football";
         public const int DaysCount = 7;
         public const string InterestedInLeague = "Set this to 'true' if you are interested in this league.";
         public const int RefreshIntervalInSeconds = 60;

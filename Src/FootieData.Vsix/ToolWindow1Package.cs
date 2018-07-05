@@ -28,10 +28,10 @@ namespace FootieData.Vsix
 
         public ToolWindow1Package()
         {
-            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
-            {
+            //gregt if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            //{
                 ChaseRating();
-            }
+            //}
         }
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
@@ -94,6 +94,6 @@ namespace FootieData.Vsix
             var hiddenChaserOptions = (IRatingDetailsDto)GetDialogPage(typeof(HiddenRatingDetailsDto));
             var packageRatingChaser = new PackageRatingChaser();
             packageRatingChaser.Hunt(hiddenChaserOptions);
-        }          
+        }
     }
 }

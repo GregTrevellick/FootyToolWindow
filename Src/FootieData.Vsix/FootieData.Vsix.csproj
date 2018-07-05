@@ -89,6 +89,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\LICENSE.txt">
+      <Link>LICENSE.txt</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\VsixExtensionPreview_16x16.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
