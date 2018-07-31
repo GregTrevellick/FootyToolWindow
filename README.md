@@ -4,6 +4,9 @@
 
 # Visual Studio Sports Desk
 
+<!--BadgesSTART-->
+<!--BadgesEND-->
+
 [![Licence](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
@@ -72,7 +75,7 @@ Any bugs (as if!) can be logged [here][GitHubRepoIssuesURL].
 
 - Configure your preferred football leagues from a choice of major international leagues 
   - Bundesliga
-  - Campeonato Brasileiro da Série A
+  - Campeonato Brasileiro da Sï¿½rie A
   - Eredivisie
   - La Liga Primera Division
   - Ligue 1 / Ligue 2
