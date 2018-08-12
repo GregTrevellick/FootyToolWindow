@@ -19,10 +19,6 @@
 [![Charity Ware](https://img.shields.io/badge/charity%20ware-thank%20you-brightgreen.svg)](https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware)
 [![License](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)<!--BadgesEND-->
 
-[![Licence](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)
-[![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
-[![][VersionNumberBadgeURL]][VSMarketplaceUrl]
-
 <!--VSMM readme start-->
 
 [GitHubRepoURL]: https://github.com/GregTrevellick/VsixFootie
