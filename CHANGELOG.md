@@ -10,4 +10,4 @@ Individual releases are tagged as such in GitHub.
 **2018-04-30**
 - [x] Initial release
 
-.
+
