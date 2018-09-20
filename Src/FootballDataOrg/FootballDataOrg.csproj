@@ -58,6 +58,7 @@
     <Compile Include="FootballDataOrgApiHttpClient.cs" />
     <Compile Include="FootballDataOrgConstants.cs" />
     <Compile Include="ResponseEntities\DeserializationTargets\V2\competition.cs" />
+    <Compile Include="ResponseEntities\DeserializationTargets\V2\fixtures.cs" />
     <Compile Include="ResponseEntities\DeserializationTargets\V2\standings.cs" />
     <Compile Include="ResponseEntities\ErrorResponse.cs" />
     <Compile Include="ResponseEntities\HomeAway\Away.cs" />

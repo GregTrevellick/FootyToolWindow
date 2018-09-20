@@ -126,7 +126,23 @@ namespace FootballDataOrg
 
         public async Task<FixturesResponse> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
-            var uri = new Uri($"{baseUri}/{idSeason}/fixtures?timeFrame={timeFrame}");
+            var dateFrom = string.Empty;
+            var dateTo = string.Empty;
+            var dateFormat = "yyyy-MM-dd";
+
+            switch (timeFrame)
+            {
+                case "p7":
+                    dateFrom = DateTime.UtcNow.AddDays(-7).ToString(dateFormat);
+                    dateTo = DateTime.UtcNow.ToString(dateFormat);
+                    break;
+                case "n7":
+                    dateFrom = DateTime.UtcNow.ToString(dateFormat);
+                    dateTo = DateTime.UtcNow.AddDays(7).ToString(dateFormat);
+                    break;
+            }
+
+            var uri = new Uri($"{baseUri}/{idSeason}/matches?dateFrom={dateFrom}&dateTo={dateTo}");
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
@@ -139,7 +155,32 @@ namespace FootballDataOrg
                 }
                 else
                 {
-                    return JsonConvert.DeserializeObject<FixturesResponse>(responseString);
+                    var deSer = JsonConvert.DeserializeObject<ResponseEntities.DeserializationTargets.V2.fixt.Rootobject>(responseString);
+
+                    var fixtures = new List<Fixture>();
+                    foreach (var match in deSer.matches)
+                    {
+                        var fixture = new Fixture
+                        {
+                            AwayTeamName = match.awayTeam.name,
+                            Date = match.utcDate,
+                            Status = match.status,
+                            HomeTeamName = match.homeTeam.name,
+                            Result = new ResponseEntities.HomeAway.HomeAwayGoals
+                            {
+                                GoalsAwayTeam = match.score.fullTime.awayTeam,
+                                GoalsHomeTeam = match.score.fullTime.homeTeam
+                            }
+                        };
+
+                        fixtures.Add(fixture);
+                    }
+
+                    var fixturesResponse = new FixturesResponse
+                    {
+                        Fixtures = fixtures
+                    };
+                    return fixturesResponse;
                 }
             }
         }
