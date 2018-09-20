@@ -16,6 +16,8 @@ namespace FootballDataOrg
     public class FootballDataOrgApiGateway
     {
         private string baseUri = "http://api.football-data.org/v2/competitions";
+        private string dateFrom = string.Empty;
+        private string dateTo = string.Empty;
         private string Token { get; set; }
 
         public FootballDataOrgApiGateway()
@@ -76,46 +78,7 @@ namespace FootballDataOrg
                 else
                 {
                     var rootobject = JsonConvert.DeserializeObject<v2s.Rootobject>(responseString);
-                    var triple = rootobject.standings.ToList();
-                    var total = triple.Single(x => x.type == "TOTAL").table;
-                    var home = triple.Single(x => x.type == "HOME").table;
-                    var away = triple.Single(x => x.type == "AWAY").table;
-
-                    var standings = new List<Standing>();
-                    for (int i = 0; i < total.Length; i++)
-                    {
-                        var standing = new Standing
-                        {
-                            Position = total[i].position,
-                            TeamName = total[i].team.name,
-                            PlayedGames = total[i].playedGames,
-                            Points = total[i].points,
-                            Goals = total[i].goalsFor,
-                            GoalsAgainst = total[i].goalsAgainst,
-                            GoalDifference = total[i].goalDifference,
-                            Wins = total[i].won,
-                            Draws = total[i].draw,
-                            Losses = total[i].lost,
-                            Home = new ResponseEntities.HomeAway.Home
-                            {
-                                Draws = home[i].draw,
-                                Goals = home[i].goalsFor,
-                                GoalsAgainst = home[i].goalsAgainst,
-                                Losses = home[i].lost,
-                                Wins = home[i].won
-                            },
-                            Away = new ResponseEntities.HomeAway.Away
-                            {
-                                Draws = away[i].draw,
-                                Goals = away[i].goalsFor,
-                                GoalsAgainst = away[i].goalsAgainst,
-                                Losses = away[i].lost,
-                                Wins = away[i].won
-                            }
-                        };
-                        standings.Add(standing);
-                    }
-
+                    var standings = GetStandings(rootobject);
                     return new StandingsResponse
                     {
                         Standing = standings
@@ -124,30 +87,15 @@ namespace FootballDataOrg
             }
         }
 
-
         public async Task<FixturesResponse> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
-            var dateFrom = string.Empty;
-            var dateTo = string.Empty;
-            var dateFormat = "yyyy-MM-dd";
-
-            switch (timeFrame)
-            {
-                case "p7":
-                    dateFrom = DateTime.UtcNow.AddDays(-7).ToString(dateFormat);
-                    dateTo = DateTime.UtcNow.ToString(dateFormat);
-                    break;
-                case "n7":
-                    dateFrom = DateTime.UtcNow.ToString(dateFormat);
-                    dateTo = DateTime.UtcNow.AddDays(7).ToString(dateFormat);
-                    break;
-            }
+            SetDateRange(timeFrame);
 
             var uri = new Uri($"{baseUri}/{idSeason}/matches?dateFrom={dateFrom}&dateTo={dateTo}");
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
-                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);        
+                var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);
                 var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 
                 if (IsInvalidResponse(responseString, httpResponseMessage))
@@ -161,19 +109,7 @@ namespace FootballDataOrg
                     var fixtures = new List<Fixture>();
                     foreach (var match in rootobject.matches)
                     {
-                        var fixture = new Fixture
-                        {
-                            AwayTeamName = match.awayTeam.name,
-                            Date = match.utcDate,
-                            Status = match.status,
-                            HomeTeamName = match.homeTeam.name,
-                            Result = new ResponseEntities.HomeAway.HomeAwayGoals
-                            {
-                                GoalsAwayTeam = match.score.fullTime.awayTeam,
-                                GoalsHomeTeam = match.score.fullTime.homeTeam
-                            }
-                        };
-
+                        var fixture = GetFixture(match);
                         fixtures.Add(fixture);
                     }
 
@@ -184,7 +120,26 @@ namespace FootballDataOrg
                 }
             }
         }
-        
+
+        private void SetDateRange(string timeFrame)
+        {
+            var dateFormat = "yyyy-MM-dd";
+            var now = DateTime.UtcNow;
+            var formattedNow = now.ToString(dateFormat);
+
+            switch (timeFrame)
+            {
+                case "p7":
+                    dateFrom = now.AddDays(-7).ToString(dateFormat);
+                    dateTo = formattedNow;
+                    break;
+                case "n7":
+                    dateFrom = formattedNow;
+                    dateTo = now.AddDays(7).ToString(dateFormat);
+                    break;
+            }
+        }
+
         private FootballDataOrgApiHttpClient GetFootballDataOrgApiHttpClient()
         {
             return new FootballDataOrgApiHttpClient(Token);
@@ -198,12 +153,7 @@ namespace FootballDataOrg
 
             foreach (var competition in rootobject.competitions)
             {
-                var competitionResponse = new CompetitionResponse
-                {
-                    Id = competition.id,
-                    League = competition.name
-                };
-
+                var competitionResponse = GetCompetitionResponse(competition);
                 competitionResponses.Add(competitionResponse);
             }
 
@@ -219,6 +169,91 @@ namespace FootballDataOrg
         {
             return string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK;
         }
+
+
+
+
+
+
+
+
+        private static CompetitionResponse GetCompetitionResponse(v2c.Competition competition)
+        {
+            return new CompetitionResponse
+            {
+                Id = competition.id,
+                League = competition.name
+            };
+        }
+
+        private static Fixture GetFixture(v2f.Match match)
+        {
+            return new Fixture
+            {
+                AwayTeamName = match.awayTeam.name,
+                Date = match.utcDate,
+                Status = match.status,
+                HomeTeamName = match.homeTeam.name,
+                Result = new ResponseEntities.HomeAway.HomeAwayGoals
+                {
+                    GoalsAwayTeam = match.score.fullTime.awayTeam,
+                    GoalsHomeTeam = match.score.fullTime.homeTeam
+                }
+            };
+        }
+
+        private static List<Standing> GetStandings(v2s.Rootobject rootobject)
+        {
+            var triple = rootobject.standings.ToList();
+            var total = triple.Single(x => x.type == "TOTAL").table;
+            var home = triple.Single(x => x.type == "HOME").table;
+            var away = triple.Single(x => x.type == "AWAY").table;
+
+            var standings = new List<Standing>();
+            for (int i = 0; i < total.Length; i++)
+            {
+                var standing = GetStanding(total, home, away, i);
+                standings.Add(standing);
+            }
+
+            return standings;
+        }
+
+        private static Standing GetStanding(v2s.Table[] total, v2s.Table[] home, v2s.Table[] away, int i)
+        {
+            return new Standing
+            {
+                Position = total[i].position,
+                TeamName = total[i].team.name,
+                PlayedGames = total[i].playedGames,
+                Points = total[i].points,
+                Goals = total[i].goalsFor,
+                GoalsAgainst = total[i].goalsAgainst,
+                GoalDifference = total[i].goalDifference,
+                Wins = total[i].won,
+                Draws = total[i].draw,
+                Losses = total[i].lost,
+                Home = new ResponseEntities.HomeAway.Home
+                {
+                    Draws = home[i].draw,
+                    Goals = home[i].goalsFor,
+                    GoalsAgainst = home[i].goalsAgainst,
+                    Losses = home[i].lost,
+                    Wins = home[i].won
+                },
+                Away = new ResponseEntities.HomeAway.Away
+                {
+                    Draws = away[i].draw,
+                    Goals = away[i].goalsFor,
+                    GoalsAgainst = away[i].goalsAgainst,
+                    Losses = away[i].lost,
+                    Wins = away[i].won
+                }
+            };
+        }
+
+
+
     }
 }
 
