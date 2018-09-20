@@ -101,7 +101,7 @@ namespace FootieData.Gateway
         {
             int result;
 
-            var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.League == externalLeagueCode.ToString());
+            var league = _competitionResultSingleton?.CompetitionResult?.competitions?.SingleOrDefault(x => x.Id == (int)externalLeagueCode);
             result = league?.Id ?? 0;
 
             return result;

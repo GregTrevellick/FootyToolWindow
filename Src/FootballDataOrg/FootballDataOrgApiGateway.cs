@@ -2,16 +2,17 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.FSharp;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Data.FSharp;
 
 namespace FootballDataOrg
 {
     public class FootballDataOrgApiGateway
     {
-        private string baseUri = "http://api.football-data.org/v1/competitions";
+        private string baseUri = "http://api.football-data.org/v2/competitions";
         private string Token { get; set; }
 
         public FootballDataOrgApiGateway()
@@ -58,7 +59,7 @@ namespace FootballDataOrg
 
         public StandingsResponse GetLeagueTableResult(int idSeason)
         {
-            var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
+            var uri = new Uri($"{baseUri}/{idSeason}/standings");
 
             using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
             {
@@ -71,28 +72,57 @@ namespace FootballDataOrg
                 }
                 else
                 {
-                    return JsonConvert.DeserializeObject<StandingsResponse>(responseString);
+                    var standings = new List<Standing>();
+
+                    var rootObj = JsonConvert.DeserializeObject<ResponseEntities.DeserializationTargets.V2.stdgs.Rootobject>(responseString);
+                    var triple = rootObj.standings.ToList();
+                    var total = triple.Single(x => x.type == "TOTAL").table;
+                    var home = triple.Single(x => x.type == "HOME").table;
+                    var away = triple.Single(x => x.type == "AWAY").table;
+
+                    for (int i = 0; i < total.Length; i++)
+                    {
+                        var standing = new Standing
+                        {
+                            Position = total[i].position,
+                            TeamName = total[i].team.name,
+                            PlayedGames = total[i].playedGames,
+                            Points = total[i].points,
+                            Goals = total[i].goalsFor,
+                            GoalsAgainst = total[i].goalsAgainst,
+                            GoalDifference = total[i].goalDifference,
+                            Wins = total[i].won,
+                            Draws = total[i].draw,
+                            Losses = total[i].lost,
+                            Home = new ResponseEntities.HomeAway.Home
+                            {
+                                Draws = home[i].draw,
+                                Goals = home[i].goalsFor,
+                                GoalsAgainst = home[i].goalsAgainst,
+                                Losses = home[i].lost,
+                                Wins = home[i].won
+                            },
+                            Away = new ResponseEntities.HomeAway.Away
+                            {
+                                Draws = away[i].draw,
+                                Goals = away[i].goalsFor,
+                                GoalsAgainst = away[i].goalsAgainst,
+                                Losses = away[i].lost,
+                                Wins = away[i].won
+                            }
+                        };
+                        standings.Add(standing);
+                    }
+
+                    var standingsResponse = new StandingsResponse
+                    {
+                        Standing = standings
+                    };
+                    return standingsResponse;
                 }
             }
         }
 
-        //public async Task<StandingsResponse> GetLeagueTableResultAsync(int idSeason)
-        //{
-        //    var uri = new Uri($"{baseUri}/{idSeason}/leagueTable");
-        //    using (var footballDataOrgApiHttpClient = GetFootballDataOrgApiHttpClient())
-        //    {
-        //        var httpResponseMessage = await footballDataOrgApiHttpClient.GetAsync(uri);                
-        //        var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
-        //        if (IsInvalidResponse(responseString, httpResponseMessage))
-        //        {
-        //            return new StandingsResponse { Error = GetError(responseString) };
-        //        }
-        //        else
-        //        {
-        //            return JsonConvert.DeserializeObject<StandingsResponse>(responseString);
-        //        }
-        //    }
-        //}
 
         public async Task<FixturesResponse> GetFixturesResultAsync(int idSeason, string timeFrame)
         {
@@ -121,7 +151,22 @@ namespace FootballDataOrg
 
         private static IEnumerable<CompetitionResponse> DeserializeCompetitions(string responseString)
         {
-            return JsonConvert.DeserializeObject<IEnumerable<CompetitionResponse>>(responseString);
+            var competitions = JsonConvert.DeserializeObject<ResponseEntities.DeserializationTargets.V2.lges.Rootobject>(responseString);
+
+            var competitionResponses = new List<CompetitionResponse>();
+
+            foreach (var competition in competitions.competitions)
+            {
+                var competitionResponse = new CompetitionResponse
+                {
+                    Id = competition.id,
+                    League = competition.name
+                };
+
+                competitionResponses.Add(competitionResponse);
+            }
+
+            return competitionResponses;
         }
 
         private static string GetError(string responseString)

@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="FootballDataOrgApiHttpClient.cs" />
     <Compile Include="FootballDataOrgConstants.cs" />
+    <Compile Include="ResponseEntities\DeserializationTargets\V2\competition.cs" />
+    <Compile Include="ResponseEntities\DeserializationTargets\V2\standings.cs" />
     <Compile Include="ResponseEntities\ErrorResponse.cs" />
     <Compile Include="ResponseEntities\HomeAway\Away.cs" />
     <Compile Include="FixtureResponseDto.cs" />
@@ -74,6 +76,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResponseEntities\DeserializationTargets\V2\Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
