@@ -123,10 +123,10 @@ Any bugs (as if!) can be logged [here][GitHubRepoIssuesURL].
   - Campeonato Brasileiro da S�rie A
   - Eredivisie
   - La Liga Primera Division
-  - Ligue 1 / Ligue 2
-  - Premier League, EFL Championship, EFL League One, EFL League Two (aka Division 1 / 2 / 3 / 4)
+  - Ligue 1 
+  - Premier League, EFL Championship
   - Primeira Liga
-  - Serie A / Serie B
+  - Serie A 
   
   ![](https://github.com/GregTrevellick/VsixFootie/blob/master/Src/FootieData.Vsix/VsmmAssetts/Options.png?raw=true)
 
