@@ -57,9 +57,9 @@
   <ItemGroup>
     <Compile Include="FootballDataOrgApiHttpClient.cs" />
     <Compile Include="FootballDataOrgConstants.cs" />
-    <Compile Include="ResponseEntities\DeserializationTargets\V2\competition.cs" />
-    <Compile Include="ResponseEntities\DeserializationTargets\V2\fixtures.cs" />
-    <Compile Include="ResponseEntities\DeserializationTargets\V2\standings.cs" />
+    <Compile Include="ResponseEntities\DeserializationTargets\V2\Competition\competition.cs" />
+    <Compile Include="ResponseEntities\DeserializationTargets\V2\Fixtures\fixtures.cs" />
+    <Compile Include="ResponseEntities\DeserializationTargets\V2\Standings\standings.cs" />
     <Compile Include="ResponseEntities\ErrorResponse.cs" />
     <Compile Include="ResponseEntities\HomeAway\Away.cs" />
     <Compile Include="FixtureResponseDto.cs" />
@@ -78,9 +78,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ResponseEntities\DeserializationTargets\V2\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataOrg.ResponseEntities.DeserializationTargets.V2.fixt
+namespace FootballDataOrg.ResponseEntities.DeserializationTargets.V2.Fixtures
 {
     public class Rootobject
     {

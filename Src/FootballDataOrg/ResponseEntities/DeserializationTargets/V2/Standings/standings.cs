@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataOrg.ResponseEntities.DeserializationTargets.V2.stdgs
+namespace FootballDataOrg.ResponseEntities.DeserializationTargets.V2.Standings
 {
     public class Rootobject
     {

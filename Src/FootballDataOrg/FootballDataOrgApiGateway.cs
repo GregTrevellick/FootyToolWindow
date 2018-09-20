@@ -7,6 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using v2c = FootballDataOrg.ResponseEntities.DeserializationTargets.V2.Competition;
+using v2f = FootballDataOrg.ResponseEntities.DeserializationTargets.V2.Fixtures;
+using v2s = FootballDataOrg.ResponseEntities.DeserializationTargets.V2.Standings;
 
 namespace FootballDataOrg
 {
@@ -72,14 +75,13 @@ namespace FootballDataOrg
                 }
                 else
                 {
-                    var standings = new List<Standing>();
-
-                    var rootObj = JsonConvert.DeserializeObject<ResponseEntities.DeserializationTargets.V2.stdgs.Rootobject>(responseString);
-                    var triple = rootObj.standings.ToList();
+                    var rootobject = JsonConvert.DeserializeObject<v2s.Rootobject>(responseString);
+                    var triple = rootobject.standings.ToList();
                     var total = triple.Single(x => x.type == "TOTAL").table;
                     var home = triple.Single(x => x.type == "HOME").table;
                     var away = triple.Single(x => x.type == "AWAY").table;
 
+                    var standings = new List<Standing>();
                     for (int i = 0; i < total.Length; i++)
                     {
                         var standing = new Standing
@@ -114,11 +116,10 @@ namespace FootballDataOrg
                         standings.Add(standing);
                     }
 
-                    var standingsResponse = new StandingsResponse
+                    return new StandingsResponse
                     {
                         Standing = standings
                     };
-                    return standingsResponse;
                 }
             }
         }
@@ -155,10 +156,10 @@ namespace FootballDataOrg
                 }
                 else
                 {
-                    var deSer = JsonConvert.DeserializeObject<ResponseEntities.DeserializationTargets.V2.fixt.Rootobject>(responseString);
+                    var rootobject = JsonConvert.DeserializeObject<v2f.Rootobject>(responseString);
 
                     var fixtures = new List<Fixture>();
-                    foreach (var match in deSer.matches)
+                    foreach (var match in rootobject.matches)
                     {
                         var fixture = new Fixture
                         {
@@ -176,11 +177,10 @@ namespace FootballDataOrg
                         fixtures.Add(fixture);
                     }
 
-                    var fixturesResponse = new FixturesResponse
+                    return new FixturesResponse
                     {
                         Fixtures = fixtures
                     };
-                    return fixturesResponse;
                 }
             }
         }
@@ -192,11 +192,11 @@ namespace FootballDataOrg
 
         private static IEnumerable<CompetitionResponse> DeserializeCompetitions(string responseString)
         {
-            var competitions = JsonConvert.DeserializeObject<ResponseEntities.DeserializationTargets.V2.lges.Rootobject>(responseString);
+            var rootobject = JsonConvert.DeserializeObject<v2c.Rootobject>(responseString);
 
             var competitionResponses = new List<CompetitionResponse>();
 
-            foreach (var competition in competitions.competitions)
+            foreach (var competition in rootobject.competitions)
             {
                 var competitionResponse = new CompetitionResponse
                 {

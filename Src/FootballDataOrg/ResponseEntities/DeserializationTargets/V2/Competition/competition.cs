@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballDataOrg.ResponseEntities.DeserializationTargets.V2.lges
+namespace FootballDataOrg.ResponseEntities.DeserializationTargets.V2.Competition
 {
     public class Rootobject
     {
