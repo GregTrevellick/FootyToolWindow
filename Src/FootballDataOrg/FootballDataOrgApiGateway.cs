@@ -170,13 +170,6 @@ namespace FootballDataOrg
             return string.IsNullOrEmpty(responseString) || httpResponseMessage.StatusCode != HttpStatusCode.OK;
         }
 
-
-
-
-
-
-
-
         private static CompetitionResponse GetCompetitionResponse(v2c.Competition competition)
         {
             return new CompetitionResponse
@@ -251,9 +244,6 @@ namespace FootballDataOrg
                 }
             };
         }
-
-
-
     }
 }
 
