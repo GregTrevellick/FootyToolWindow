@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="28693b18-0c2c-4e86-adf2-adce836b749e" Version="1.58" Language="en-US" Publisher="Greg Trevellick" />
+        <Identity Id="28693b18-0c2c-4e86-adf2-adce836b749e" Version="1.59" Language="en-US" Publisher="Greg Trevellick" />
         <DisplayName>VS Sports Desk</DisplayName>
-        <Description xml:space="preserve">Football league tables in the IDE</Description>
+        <Description xml:space="preserve">Football league tables in the IDE (2017/18 season)</Description>
         <MoreInfo>https://github.com/GregTrevellick/VsixFootie</MoreInfo>
         <License>LICENSE.txt</License>
         <ReleaseNotes>https://github.com/GregTrevellick/VsixFootie/blob/master/CHANGELOG.md</ReleaseNotes>

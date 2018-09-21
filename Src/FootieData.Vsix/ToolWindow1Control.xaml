@@ -15,7 +15,18 @@
         <StackPanel>
 
             <!--<TextBlock Text="{Binding Data}" />-->
-
+            <StackPanel>
+                <TextBlock Name="TextBlockRefreshPostponed0a" Foreground="Red">
+                    This extension no longer displays data for the 2018/19 season.
+                </TextBlock>
+                <TextBlock Name="TextBlockRefreshPostponed0b" Foreground="Red">
+                    It has been superceded by a new extension located at
+                </TextBlock>
+                <TextBlock Name="TextBlockRefreshPostponed0c" Foreground="Red">
+                    https://marketplace.visualstudio.com/items?itemName=GregTrevellick.Football
+                </TextBlock>
+            </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
                 <Button Content="Refresh" Click="Click_HandlerRefresh"  HorizontalAlignment="Left" Margin="0 0 10 0" Name="BtnRefresh"/>
                 <Button Content="The boss is coming" Click="Click_HandlerBossComing" HorizontalAlignment="Right" Name="BtnLeagueMode"/>
