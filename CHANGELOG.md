@@ -10,5 +10,7 @@ Individual releases are tagged as such in GitHub.
 **2018-04-30**
 - [x] Initial release
 
+## 1.59
+**2018-09-21**
+- [x] Application decommissioned
 
-.

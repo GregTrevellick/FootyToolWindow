@@ -121,6 +121,10 @@
     <value>VS Sports Desk</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>A Visual Studio window displaying international soccer league tables, results and fixtures.</value>
+    <value>Football league tables in the IDE (2017/18 season)</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>source.extension.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
