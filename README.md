@@ -7,8 +7,8 @@
 ## This extension no longer displays data for the 2018/19 season and beyond and has been superceded by [this](https://marketplace.visualstudio.com/items?itemName=GregTrevellick.Football) extension
 
 <!--BadgesSTART-->
-[![Read Me Synchronizer](https://img.shields.io/badge/-powered%20by%20read%20me%20synchronizer-brightgreen.svg)](https://github.com/GregTrevellick/ReadMeSynchronizer)
-<!-- Powered by https://github.com/GregTrevellick/ReadMeSynchronizer -->
+[![Read Me Synchronizer](https://img.shields.io/badge/-powered%20by%20read%20me%20synchronizer-brightgreen.svg)](https://github.com/undefined/ReadMeSynchronizer)
+<!-- Powered by https://github.com/undefined/ReadMeSynchronizer -->
 
 [Subscribe](https://github.com/GregTrevellick/VsixFootie/subscription) to receive notificatons.
 
