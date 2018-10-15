@@ -16,7 +16,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/55911452f4154dd9a5599bd6fae3c725)](https://www.codacy.com/project/gtrevellick/VsixFootie/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GregTrevellick/VsixFootie&amp;utm_campaign=Badge_Grade_Dashboard)
 [![CodeBeat](https://codebeat.co/badges/undefined)](https://codebeat.co/projects/github-com-gregtrevellick-vsixfootie-master)
 [![CodeFactor](https://www.codefactor.io/repository/github/GregTrevellick/VsixFootie/badge)](https://www.codefactor.io/repository/github/GregTrevellick/VsixFootie)
-[![DepShield](https://depshield.sonatype.org/badges/GregTrevellick/VsixFootie/depshield.svg)](https://depshield.github.io)
 [![InspecodeRocro Report](https://inspecode.rocro.com/badges/github.com/GregTrevellick/VsixFootie/report?token=IQTJbMIOyXNl_zEKDu1N2hPWgb38J-4qM7ZOL4rRpR8)](https://inspecode.rocro.com/reports/github.com/GregTrevellick/VsixFootie/branch/master/summary)
 
 
